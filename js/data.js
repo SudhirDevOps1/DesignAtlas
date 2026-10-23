@@ -1869,6 +1869,426 @@ const STYLES_DATA = [
     tailwindSnippet: `<div class="bg-neutral-900 border-4 border-yellow-400 shadow-[8px_8px_0px_#1d4ed8] p-6 text-white font-bold">
   <button class="bg-red-600 text-white font-black rounded-full px-6 py-2 border border-white">FORM & FUNCTION</button>
 </div>`
+  },
+  {
+    id: "surrealism",
+    name: "Surrealism",
+    category: "Experimental",
+    cssClass: "style-surrealism",
+    vibe: "Dreamlike juxtaposed elements, irrational perspective, metaphysical atmosphere",
+    bestFit: "Avant-garde creative portfolios, luxury fashion, music albums, art exhibitions",
+    prompt: "Design a [project] in Surrealism style: dreamlike impossible perspective, metaphysical lighting and eerie soft gradients, floating asymmetric card elements, juxtaposed classical motifs with clean modern typography, ethereal palette of deep twilight slate, muted lavender, warm amber, and cream, poetic visual hierarchy with unexpected spatial depth.",
+    palette: ["#1c192c", "#d8b4e2", "#f6ad55", "#faf5ff"],
+    tags: ["surreal", "dreamlike", "metaphysical", "floating", "avant-garde"],
+    audioTone: "ambient",
+    cssSnippet: `.surrealism-card {
+  background: radial-gradient(circle at 80% 20%, rgba(216, 180, 226, 0.25), #1c192c 80%);
+  border: 1px solid rgba(216, 180, 226, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  color: #faf5ff;
+}
+.surrealism-btn {
+  background: linear-gradient(135deg, #d8b4e2, #f6ad55);
+  color: #1c192c;
+  border-radius: 9999px;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(246, 173, 85, 0.4);
+}`,
+    tailwindSnippet: `<div class="bg-slate-900 border border-purple-300/30 shadow-2xl p-6 text-purple-50 rounded-2xl backdrop-blur-md">
+  <button class="bg-gradient-to-r from-purple-300 to-amber-400 text-slate-950 font-bold px-5 py-2.5 rounded-full shadow-lg">Enter Dream</button>
+</div>`
+  },
+  {
+    id: "neoclassical",
+    name: "Neo-Classical",
+    category: "Editorial",
+    cssClass: "style-neoclassical",
+    vibe: "Symmetrical architectural proportion, marble textures, refined serif roman typography",
+    bestFit: "Heritage brands, law firms, high-end architecture, bespoke horology, museums",
+    prompt: "Design a [project] in Neo-Classical style: monumental symmetry, classical proportions, refined Roman serif headings (Didot / Bodoni style), deep antique bronze and warm ivory canvas, hairline gold metallic divider rules, dignified restraint with museum-grade typographic pacing.",
+    palette: ["#171614", "#c5a059", "#f4efe6", "#2a2723"],
+    tags: ["classical", "heritage", "serif", "monumental", "luxury"],
+    audioTone: "bell",
+    cssSnippet: `.neoclassical-card {
+  background: #171614;
+  border: 1px solid #c5a059;
+  outline: 4px solid #171614;
+  outline-offset: 2px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+  color: #f4efe6;
+}
+.neoclassical-btn {
+  background: transparent;
+  color: #c5a059;
+  border: 1px solid #c5a059;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-family: serif;
+}`,
+    tailwindSnippet: `<div class="bg-stone-900 border border-amber-600/60 p-6 text-stone-100 font-serif">
+  <button class="border border-amber-500 text-amber-400 uppercase tracking-widest text-xs px-6 py-2.5 font-serif hover:bg-amber-500 hover:text-stone-950">Acquire Heritage</button>
+</div>`
+  },
+  {
+    id: "scrapbook",
+    name: "Scrapbook / Collage",
+    category: "Playful",
+    cssClass: "style-scrapbook",
+    vibe: "Washi tape stickers, torn paper edges, polaroids, cutout tactile layers",
+    bestFit: "Personal creative blogs, artisan craft shops, travel diaries, student portfolios",
+    prompt: "Design a [project] in Scrapbook Collage style: tactile washi tape overlays, craft paper cutouts, rotated polaroid frames (-3deg to 3deg), pin-board dropshadows, handwritten handwritten script accents alongside monospaced typewriter captions, charming analog warmth.",
+    palette: ["#f5efe6", "#e07a5f", "#3d405b", "#81b29a"],
+    tags: ["scrapbook", "collage", "washi-tape", "tactile", "polaroid"],
+    audioTone: "pop",
+    cssSnippet: `.scrapbook-card {
+  background: #fdfaf5;
+  border: 2px dashed #e07a5f;
+  box-shadow: 4px 6px 16px rgba(61, 64, 91, 0.15);
+  transform: rotate(-1deg);
+  color: #3d405b;
+}
+.scrapbook-btn {
+  background: #e07a5f;
+  color: #ffffff;
+  border-radius: 4px;
+  box-shadow: 2px 3px 0px #3d405b;
+  font-weight: 700;
+  transform: rotate(1deg);
+}`,
+    tailwindSnippet: `<div class="bg-amber-50 border-2 border-dashed border-rose-400 -rotate-1 p-6 text-slate-800 shadow-md">
+  <button class="bg-rose-500 text-white font-bold px-4 py-2 rotate-1 shadow-[2px_3px_0px_#334155] rounded">Pin Memory</button>
+</div>`
+  },
+  {
+    id: "conceptsketch",
+    name: "Conceptual Sketch",
+    category: "Minimal",
+    cssClass: "style-conceptsketch",
+    vibe: "Drafting blueprint grid, technical pencil annotations, gestural architectural lines",
+    bestFit: "Design agency work-in-progress, engineering blogs, prototyping platforms, architects",
+    prompt: "Design a [project] in Conceptual Sketch style: light graph paper background grid (#0055ff at 0.08 opacity), hand-drawn technical pen linework, blueprint drafting annotations, visible coordinate markers, crisp technical monospace typography, raw unrendered exploratory aesthetic.",
+    palette: ["#f8fafc", "#2563eb", "#64748b", "#0f172a"],
+    tags: ["sketch", "drafting", "blueprint", "architectural", "technical"],
+    audioTone: "click",
+    cssSnippet: `.conceptsketch-card {
+  background: #ffffff;
+  background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+  background-size: 16px 16px;
+  border: 1px dashed #2563eb;
+  color: #0f172a;
+}
+.conceptsketch-btn {
+  background: transparent;
+  color: #2563eb;
+  border: 1px solid #2563eb;
+  border-style: solid;
+  font-family: monospace;
+  font-weight: 600;
+}`,
+    tailwindSnippet: `<div class="bg-white border border-dashed border-blue-600 p-6 text-slate-900 font-mono shadow-sm">
+  <button class="border border-blue-600 text-blue-600 px-4 py-2 hover:bg-blue-50 font-mono">DRAFT_SPEC()</button>
+</div>`
+  },
+  {
+    id: "luxurytypography",
+    name: "Luxury Typography",
+    category: "Editorial",
+    cssClass: "style-luxurytypography",
+    vibe: "High-contrast serif display, generous tracking, haute couture monochromatic restraint",
+    bestFit: "Haute couture fashion, Michelin restaurants, high-end real estate, luxury perfumes",
+    prompt: "Design a [project] in Luxury Typography style: majestic high-contrast modern serif typography, immense letter-spacing on subheadings, deep carbon black canvas, pale champagne gold accents, razor-sharp hairline grid borders, supreme editorial restraint with maximum whitespace.",
+    palette: ["#0a0a0c", "#d4af37", "#f5f5f7", "#1f1f24"],
+    tags: ["luxury", "typography", "haute-couture", "champagne", "serif"],
+    audioTone: "chime",
+    cssSnippet: `.luxurytypography-card {
+  background: #0a0a0c;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+  color: #f5f5f7;
+}
+.luxurytypography-btn {
+  background: transparent;
+  color: #d4af37;
+  border: 1px solid #d4af37;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}`,
+    tailwindSnippet: `<div class="bg-zinc-950 border border-amber-400/40 p-8 text-zinc-100 tracking-wide font-serif">
+  <button class="border border-amber-400 text-amber-300 text-xs tracking-[0.25em] uppercase px-6 py-2.5">DISCOVER PRIVATE SALON</button>
+</div>`
+  },
+  {
+    id: "ethereal",
+    name: "Ethereal / Dreamscape",
+    category: "Futuristic",
+    cssClass: "style-ethereal",
+    vibe: "Nebulous pastel aura, iridescent luminous glow, soft floating prismatic diffusion",
+    bestFit: "Wellness apps, ambient soundscapes, meditation platforms, avant-pop digital art",
+    prompt: "Design a [project] in Ethereal Dreamscape style: diffused iridescent lighting, nebulous multi-tone gradient clouds (lilac, rose gold, mint, pearlescent cyan), soft blurred frosted glass panels, delicate typography, heavenly ambient luminescence, weightless floating visual pace.",
+    palette: ["#0f1026", "#e879f9", "#38bdf8", "#fdf4ff"],
+    tags: ["ethereal", "dreamscape", "iridescent", "luminous", "aura"],
+    audioTone: "ambient",
+    cssSnippet: `.ethereal-card {
+  background: radial-gradient(circle at top right, rgba(232, 121, 249, 0.18), rgba(15, 16, 38, 0.95));
+  border: 1px solid rgba(232, 121, 249, 0.3);
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.15);
+  backdrop-filter: blur(16px);
+  color: #fdf4ff;
+}
+.ethereal-btn {
+  background: linear-gradient(135deg, rgba(232, 121, 249, 0.8), rgba(56, 189, 248, 0.8));
+  color: #0f1026;
+  border-radius: 9999px;
+  font-weight: 700;
+  box-shadow: 0 0 20px rgba(232, 121, 249, 0.4);
+}`,
+    tailwindSnippet: `<div class="bg-indigo-950/80 border border-fuchsia-400/30 p-6 rounded-3xl shadow-[0_0_30px_rgba(56,189,248,0.2)] text-fuchsia-50 backdrop-blur-xl">
+  <button class="bg-gradient-to-r from-fuchsia-400 to-sky-400 text-slate-950 font-bold px-6 py-2.5 rounded-full shadow-lg">Ascend Now</button>
+</div>`
+  },
+  {
+    id: "bohemian",
+    name: "Bohemian / Boho Chic",
+    category: "Warm",
+    cssClass: "style-bohemian",
+    vibe: "Terracotta sunbursts, botanical arches, organic hand-spun earth tones, textured warmth",
+    bestFit: "Artisan crafts, sustainable living, yoga studios, botanical brands, organic cafes",
+    prompt: "Design a [project] in Bohemian Boho Chic style: warm terracotta (#c86446), sun-bleached desert sand, sage eucalyptus green, arch motifs, sunburst vector details, organic humanist sans with delicate serif italic highlights, natural earthy warmth and relaxed tactile rhythm.",
+    palette: ["#faf5ee", "#c86446", "#606c38", "#283618"],
+    tags: ["bohemian", "terracotta", "botanical", "earth-tones", "organic"],
+    audioTone: "bell",
+    cssSnippet: `.bohemian-card {
+  background: #fefae0;
+  border: 1px solid #dda15e;
+  border-radius: 24px 24px 12px 12px;
+  box-shadow: 0 10px 25px rgba(200, 100, 70, 0.1);
+  color: #283618;
+}
+.bohemian-btn {
+  background: #c86446;
+  color: #fefae0;
+  border-radius: 9999px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(200, 100, 70, 0.3);
+}`,
+    tailwindSnippet: `<div class="bg-amber-50 border border-amber-300 rounded-t-3xl rounded-b-xl p-6 text-stone-800 shadow-sm">
+  <button class="bg-amber-700 text-amber-50 font-bold px-5 py-2.5 rounded-full shadow-md hover:bg-amber-800">Gather Earth</button>
+</div>`
+  },
+  {
+    id: "anthropomorphic",
+    name: "Anthropomorphic / Mascot UI",
+    category: "Playful",
+    cssClass: "style-anthropomorphic",
+    vibe: "Expressive character mascots, emotional eye micro-states, friendly bubbly badges",
+    bestFit: "Language learning apps, habit trackers, kids educational tech, pet tech startups",
+    prompt: "Design a [project] in Anthropomorphic Mascot UI style (Duolingo / Headspace vibe): friendly expressive illustrated character elements, high-contrast bubbly buttons with tactile bottom shadows, cheerful round geometric badges, playful micro-interactions, delightful emotional UI states.",
+    palette: ["#58cc02", "#1cb0f6", "#ffc800", "#131f24"],
+    tags: ["mascot", "character", "playful", "bubbly", "gamified"],
+    audioTone: "arcade",
+    cssSnippet: `.anthropomorphic-card {
+  background: #ffffff;
+  border: 3px solid #e5e5e5;
+  border-bottom: 6px solid #e5e5e5;
+  border-radius: 20px;
+  color: #131f24;
+}
+.anthropomorphic-btn {
+  background: #58cc02;
+  color: #ffffff;
+  border: none;
+  border-bottom: 4px solid #46a302;
+  border-radius: 16px;
+  font-weight: 800;
+  text-transform: uppercase;
+}`,
+    tailwindSnippet: `<div class="bg-white border-2 border-b-4 border-slate-200 rounded-2xl p-6 text-slate-800 shadow-sm">
+  <button class="bg-green-500 hover:bg-green-600 text-white font-extrabold uppercase px-6 py-3 rounded-2xl border-b-4 border-green-700 active:border-b-0 active:translate-y-1">START STREAK!</button>
+</div>`
+  },
+  {
+    id: "victorian",
+    name: "Victorian Steampunk",
+    category: "Historical",
+    cssClass: "style-victorian",
+    vibe: "Aged brass bezel gauges, filigree scrollwork, deep burgundy velvet, ornate typography",
+    bestFit: "Escape room websites, retro video games, artisanal distillery, gothic mystery novels",
+    prompt: "Design a [project] in Victorian Steampunk style: aged polished brass trims, deep antique mahogany and velvet burgundy canvas, etched mechanical gear filigree, ornamental engraved serif typography, riveted border plates, tactile clockwork instrumentation aesthetic.",
+    palette: ["#1e140f", "#b8860b", "#722f37", "#f3e5ab"],
+    tags: ["victorian", "steampunk", "brass", "filigree", "ornate"],
+    audioTone: "heavy",
+    cssSnippet: `.victorian-card {
+  background: #1e140f;
+  border: 2px solid #b8860b;
+  box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.8), 0 8px 24px rgba(0, 0, 0, 0.7);
+  color: #f3e5ab;
+}
+.victorian-btn {
+  background: linear-gradient(180deg, #b8860b, #7a5806);
+  color: #1e140f;
+  border: 1px solid #ffd700;
+  font-family: serif;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}`,
+    tailwindSnippet: `<div class="bg-stone-950 border-2 border-amber-600 shadow-2xl p-6 text-amber-100 font-serif">
+  <button class="bg-gradient-to-b from-amber-600 to-amber-800 text-stone-950 font-black border border-amber-400 px-5 py-2 uppercase tracking-widest">ENGAGE VALVE</button>
+</div>`
+  },
+  {
+    id: "cybercore",
+    name: "Cybercore / Netpunk",
+    category: "Futuristic",
+    cssClass: "style-cybercore",
+    vibe: "Early web hacker terminal meets futuristic combat HUD, toxic lime and matrix black",
+    bestFit: "Security red-team platforms, crypto protocols, developer command centers, esports",
+    prompt: "Design a [project] in Cybercore Netpunk style: deep void black canvas, toxic fluorescent lime green accents (#00ff66), high-contrast terminal monospace type, digital wireframe telemetry, sharp angled chamfered card corners, tactical cyber ops overlay styling.",
+    palette: ["#050807", "#00ff66", "#008f11", "#e0ffe8"],
+    tags: ["cybercore", "netpunk", "terminal", "matrix", "hacker"],
+    audioTone: "digital",
+    cssSnippet: `.cybercore-card {
+  background: #080d0a;
+  border: 1px solid #00ff66;
+  box-shadow: 0 0 16px rgba(0, 255, 102, 0.25), inset 0 0 12px rgba(0, 255, 102, 0.08);
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  color: #e0ffe8;
+}
+.cybercore-btn {
+  background: #00ff66;
+  color: #050807;
+  font-family: monospace;
+  font-weight: 900;
+  border: none;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}`,
+    tailwindSnippet: `<div class="bg-black border border-emerald-400 shadow-[0_0_20px_rgba(52,211,153,0.3)] p-6 font-mono text-emerald-300">
+  <button class="bg-emerald-400 text-black font-black px-5 py-2 font-mono hover:bg-emerald-300">EXEC_OVERRIDE()</button>
+</div>`
+  },
+  {
+    id: "synthwave",
+    name: "Synthwave / Outrun",
+    category: "Retro",
+    cssClass: "style-synthwave",
+    vibe: "80s retro sunset, wireframe wire horizon grid, neon magenta and electric cyan chrome",
+    bestFit: "Gaming streaming dashboards, music synthesizers, retro arcade events, podcasts",
+    prompt: "Design a [project] in Synthwave Outrun style: glowing 80s neon chrome gradient, perspective wireframe ground grid receding into a setting neon sun, hot neon magenta (#ff2a85) paired with electric cyan (#00f0ff) and sunset amber, italicized chrome racing typography.",
+    palette: ["#1a0b2e", "#ff2a85", "#00f0ff", "#ffe600"],
+    tags: ["synthwave", "outrun", "neon", "80s", "retro-futuristic"],
+    audioTone: "arcade",
+    cssSnippet: `.synthwave-card {
+  background: linear-gradient(180deg, #240046 0%, #10002b 100%);
+  border: 2px solid #ff2a85;
+  box-shadow: 0 0 25px rgba(255, 42, 133, 0.4), inset 0 0 15px rgba(0, 240, 255, 0.2);
+  color: #ffffff;
+}
+.synthwave-btn {
+  background: linear-gradient(90deg, #ff2a85, #ff71ce);
+  color: #ffffff;
+  border: none;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-style: italic;
+  box-shadow: 0 0 18px #ff2a85;
+}`,
+    tailwindSnippet: `<div class="bg-purple-950 border-2 border-pink-500 shadow-[0_0_25px_rgba(236,72,153,0.5)] p-6 text-white">
+  <button class="bg-gradient-to-r from-pink-500 to-cyan-400 text-black font-black italic px-6 py-2.5 rounded shadow-lg uppercase">RIDE THE GRID</button>
+</div>`
+  },
+  {
+    id: "graffiti",
+    name: "Graffiti / Street Art",
+    category: "Bold",
+    cssClass: "style-graffiti",
+    vibe: "Spray-paint drips, wildstyle outlines, stencil textures, raw urban wall energy",
+    bestFit: "Skateboarding brands, hip-hop festivals, urban streetwear, alternative sports",
+    prompt: "Design a [project] in Graffiti Street Art style: high-voltage spray can neon paint splatters, dynamic tilted angle containers, thick black wildstyle marker outlines, stencil spray textures, gritty distressed concrete background, rebel urban visual pacing.",
+    palette: ["#121212", "#ff0055", "#00e5ff", "#f5ee38"],
+    tags: ["graffiti", "street-art", "spray-paint", "stencil", "urban"],
+    audioTone: "heavy",
+    cssSnippet: `.graffiti-card {
+  background: #1c1c1c;
+  border: 3px solid #ff0055;
+  box-shadow: 6px 6px 0px #00e5ff;
+  transform: rotate(-1.5deg);
+  color: #f5ee38;
+}
+.graffiti-btn {
+  background: #ff0055;
+  color: #ffffff;
+  border: 3px solid #000000;
+  box-shadow: 4px 4px 0px #f5ee38;
+  font-weight: 900;
+  text-transform: uppercase;
+  transform: skew(-8deg);
+}`,
+    tailwindSnippet: `<div class="bg-neutral-900 border-4 border-pink-600 shadow-[6px_6px_0px_#06b6d4] -rotate-1 p-6 text-yellow-300">
+  <button class="bg-pink-600 text-white font-black uppercase px-6 py-2 border-2 border-black -skew-x-6 shadow-[4px_4px_0px_#facc15]">TAG THE WALL</button>
+</div>`
+  },
+  {
+    id: "gothic",
+    name: "Gothic / Dark Romantic",
+    category: "Historical",
+    cssClass: "style-gothic",
+    vibe: "Blackletter typography, pointed cathedral arches, obsidian lace, moody chiaroscuro",
+    bestFit: "Dark fantasy games, gothic metal merchandise, alternative subculture, horror media",
+    prompt: "Design a [project] in Gothic Dark Romantic style: rich obsidian void canvas, crimson wine blood accents (#880808), intricate filigree pointed gothic arches, sharp high-contrast blackletter calligraphic headings, silver moon metallic borders, melancholic dramatic lighting.",
+    palette: ["#0b0a0c", "#880808", "#c0c0c0", "#f0edf2"],
+    tags: ["gothic", "dark-romantic", "blackletter", "cathedral", "crimson"],
+    audioTone: "heavy",
+    cssSnippet: `.gothic-card {
+  background: #110f13;
+  border: 1px solid #880808;
+  outline: 1px solid #c0c0c0;
+  outline-offset: -5px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.9);
+  color: #f0edf2;
+}
+.gothic-btn {
+  background: #880808;
+  color: #f0edf2;
+  border: 1px solid #c0c0c0;
+  font-family: serif;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}`,
+    tailwindSnippet: `<div class="bg-stone-950 border border-red-800 p-6 text-stone-200 shadow-2xl font-serif">
+  <button class="bg-red-900 border border-stone-400 text-white font-serif uppercase tracking-widest px-6 py-2 hover:bg-red-800">ENTER SANCTUARY</button>
+</div>`
+  },
+  {
+    id: "mixedmedia",
+    name: "Mixed Media / Raw Collage",
+    category: "Bold",
+    cssClass: "style-mixedmedia",
+    vibe: "Hand-drawn ink scribbles over halftone photos, ripped card stock, vivid acrylic marks",
+    bestFit: "Modern creative agencies, indie record labels, creative workshops, experimental media",
+    prompt: "Design a [project] in Mixed Media Raw Collage style: distressed paper layers, bold hand-drawn ink marker scribbles juxtaposed over monochromatic photography, vivid purple and vermilion acrylic paint strokes, bold industrial sans paired with raw gestural handwriting.",
+    palette: ["#f4f1ea", "#e63946", "#7209b7", "#1d3557"],
+    tags: ["mixed-media", "raw-collage", "ink-scribble", "acrylic", "expressive"],
+    audioTone: "pop",
+    cssSnippet: `.mixedmedia-card {
+  background: #fbf9f4;
+  border: 3px solid #1d3557;
+  box-shadow: 8px 8px 0px #7209b7, -4px -4px 0px #e63946;
+  color: #1d3557;
+}
+.mixedmedia-btn {
+  background: #e63946;
+  color: #ffffff;
+  border: 2px solid #1d3557;
+  box-shadow: 3px 3px 0px #7209b7;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}`,
+    tailwindSnippet: `<div class="bg-amber-50 border-4 border-slate-900 shadow-[8px_8px_0px_#7e22ce] p-6 text-slate-900">
+  <button class="bg-rose-600 text-white font-black uppercase px-6 py-2.5 border-2 border-slate-900 shadow-[4px_4px_0px_#1e293b]">CREATE COLLAGE</button>
+</div>`
   }
 ];
 

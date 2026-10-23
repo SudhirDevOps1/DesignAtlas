@@ -2081,6 +2081,360 @@ dialog::backdrop {
   color: #ffffff;
 }
 
+/* 77. SURREALISM */
+.style-surrealism {
+  background: #1c192c;
+  color: #faf5ff;
+}
+.style-surrealism .demo-box {
+  background: radial-gradient(circle at 80% 20%, rgba(216, 180, 226, 0.25), #1c192c 80%);
+  border: 1px solid rgba(216, 180, 226, 0.3);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+  border-radius: 20px 4px 20px 4px;
+}
+.style-surrealism .demo-btn {
+  background: linear-gradient(135deg, #d8b4e2, #f6ad55);
+  color: #1c192c;
+  border-radius: 9999px;
+  font-weight: 700;
+  border: none;
+}
+.style-surrealism .demo-input {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(216, 180, 226, 0.4);
+  color: #faf5ff;
+}
+
+/* 78. NEO-CLASSICAL */
+.style-neoclassical {
+  background: #171614;
+  color: #f4efe6;
+  font-family: serif;
+}
+.style-neoclassical .demo-box {
+  background: #1f1d19;
+  border: 1px solid #c5a059;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+.style-neoclassical .demo-btn {
+  background: transparent;
+  color: #c5a059;
+  border: 1px solid #c5a059;
+  font-family: serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.style-neoclassical .demo-input {
+  background: #171614;
+  border: 1px solid #c5a059;
+  color: #f4efe6;
+  font-family: serif;
+}
+
+/* 79. SCRAPBOOK */
+.style-scrapbook {
+  background: #fdfaf5;
+  color: #3d405b;
+}
+.style-scrapbook .demo-box {
+  background: #f5efe6;
+  border: 2px dashed #e07a5f;
+  transform: rotate(-1deg);
+  box-shadow: 3px 5px 12px rgba(61, 64, 91, 0.15);
+}
+.style-scrapbook .demo-btn {
+  background: #e07a5f;
+  color: #ffffff;
+  border-radius: 4px;
+  box-shadow: 2px 3px 0px #3d405b;
+  font-weight: 700;
+  transform: rotate(1deg);
+}
+.style-scrapbook .demo-input {
+  background: #ffffff;
+  border: 1px solid #81b29a;
+  color: #3d405b;
+}
+
+/* 80. CONCEPTUAL SKETCH */
+.style-conceptsketch {
+  background: #f8fafc;
+  color: #0f172a;
+  font-family: monospace;
+}
+.style-conceptsketch .demo-box {
+  background: #ffffff;
+  border: 1px dashed #2563eb;
+  background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+.style-conceptsketch .demo-btn {
+  background: transparent;
+  color: #2563eb;
+  border: 1px solid #2563eb;
+  font-family: monospace;
+  font-weight: 600;
+}
+.style-conceptsketch .demo-input {
+  background: #f8fafc;
+  border: 1px solid #64748b;
+  color: #0f172a;
+  font-family: monospace;
+}
+
+/* 81. LUXURY TYPOGRAPHY */
+.style-luxurytypography {
+  background: #0a0a0c;
+  color: #f5f5f7;
+  font-family: serif;
+}
+.style-luxurytypography .demo-box {
+  background: #111114;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+}
+.style-luxurytypography .demo-btn {
+  background: transparent;
+  color: #d4af37;
+  border: 1px solid #d4af37;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.style-luxurytypography .demo-input {
+  background: #0a0a0c;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: #f5f5f7;
+}
+
+/* 82. ETHEREAL */
+.style-ethereal {
+  background: #0f1026;
+  color: #fdf4ff;
+}
+.style-ethereal .demo-box {
+  background: radial-gradient(circle at top right, rgba(232, 121, 249, 0.2), rgba(15, 16, 38, 0.95));
+  border: 1px solid rgba(232, 121, 249, 0.35);
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.18);
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+}
+.style-ethereal .demo-btn {
+  background: linear-gradient(135deg, rgba(232, 121, 249, 0.85), rgba(56, 189, 248, 0.85));
+  color: #0f1026;
+  border-radius: 9999px;
+  font-weight: 700;
+  border: none;
+  box-shadow: 0 0 16px rgba(232, 121, 249, 0.4);
+}
+.style-ethereal .demo-input {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(232, 121, 249, 0.3);
+  color: #fdf4ff;
+}
+
+/* 83. BOHEMIAN */
+.style-bohemian {
+  background: #faf5ee;
+  color: #283618;
+}
+.style-bohemian .demo-box {
+  background: #fefae0;
+  border: 1px solid #dda15e;
+  border-radius: 20px 20px 10px 10px;
+  box-shadow: 0 8px 20px rgba(200, 100, 70, 0.1);
+}
+.style-bohemian .demo-btn {
+  background: #c86446;
+  color: #fefae0;
+  border-radius: 9999px;
+  font-weight: 700;
+  border: none;
+}
+.style-bohemian .demo-input {
+  background: #ffffff;
+  border: 1px solid #dda15e;
+  color: #283618;
+}
+
+/* 84. ANTHROPOMORPHIC */
+.style-anthropomorphic {
+  background: #f7f9fa;
+  color: #131f24;
+}
+.style-anthropomorphic .demo-box {
+  background: #ffffff;
+  border: 2px solid #e5e5e5;
+  border-bottom: 5px solid #e5e5e5;
+  border-radius: 18px;
+}
+.style-anthropomorphic .demo-btn {
+  background: #58cc02;
+  color: #ffffff;
+  border: none;
+  border-bottom: 4px solid #46a302;
+  border-radius: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.style-anthropomorphic .demo-input {
+  background: #f0f2f5;
+  border: 2px solid #e5e5e5;
+  border-radius: 12px;
+  color: #131f24;
+}
+
+/* 85. VICTORIAN */
+.style-victorian {
+  background: #1e140f;
+  color: #f3e5ab;
+  font-family: serif;
+}
+.style-victorian .demo-box {
+  background: #251a14;
+  border: 2px solid #b8860b;
+  box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.7), 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+.style-victorian .demo-btn {
+  background: linear-gradient(180deg, #b8860b, #7a5806);
+  color: #1e140f;
+  border: 1px solid #ffd700;
+  font-family: serif;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+.style-victorian .demo-input {
+  background: #170f0b;
+  border: 1px solid #b8860b;
+  color: #f3e5ab;
+  font-family: serif;
+}
+
+/* 86. CYBERCORE */
+.style-cybercore {
+  background: #050807;
+  color: #e0ffe8;
+  font-family: monospace;
+}
+.style-cybercore .demo-box {
+  background: #080d0a;
+  border: 1px solid #00ff66;
+  box-shadow: 0 0 14px rgba(0, 255, 102, 0.22);
+}
+.style-cybercore .demo-btn {
+  background: #00ff66;
+  color: #050807;
+  font-family: monospace;
+  font-weight: 900;
+  border: none;
+}
+.style-cybercore .demo-input {
+  background: #050807;
+  border: 1px solid #008f11;
+  color: #00ff66;
+  font-family: monospace;
+}
+
+/* 87. SYNTHWAVE */
+.style-synthwave {
+  background: #1a0b2e;
+  color: #ffffff;
+}
+.style-synthwave .demo-box {
+  background: linear-gradient(180deg, #240046 0%, #10002b 100%);
+  border: 2px solid #ff2a85;
+  box-shadow: 0 0 20px rgba(255, 42, 133, 0.35);
+}
+.style-synthwave .demo-btn {
+  background: linear-gradient(90deg, #ff2a85, #ff71ce);
+  color: #ffffff;
+  border: none;
+  font-weight: 800;
+  font-style: italic;
+  box-shadow: 0 0 14px #ff2a85;
+}
+.style-synthwave .demo-input {
+  background: #130026;
+  border: 1px solid #00f0ff;
+  color: #00f0ff;
+}
+
+/* 88. GRAFFITI */
+.style-graffiti {
+  background: #121212;
+  color: #f5ee38;
+}
+.style-graffiti .demo-box {
+  background: #1c1c1c;
+  border: 3px solid #ff0055;
+  box-shadow: 5px 5px 0px #00e5ff;
+  transform: rotate(-1deg);
+}
+.style-graffiti .demo-btn {
+  background: #ff0055;
+  color: #ffffff;
+  border: 2px solid #000000;
+  box-shadow: 3px 3px 0px #f5ee38;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.style-graffiti .demo-input {
+  background: #121212;
+  border: 2px solid #00e5ff;
+  color: #ffffff;
+}
+
+/* 89. GOTHIC */
+.style-gothic {
+  background: #0b0a0c;
+  color: #f0edf2;
+  font-family: serif;
+}
+.style-gothic .demo-box {
+  background: #110f13;
+  border: 1px solid #880808;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.85);
+}
+.style-gothic .demo-btn {
+  background: #880808;
+  color: #f0edf2;
+  border: 1px solid #c0c0c0;
+  font-family: serif;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.style-gothic .demo-input {
+  background: #070608;
+  border: 1px solid #880808;
+  color: #f0edf2;
+  font-family: serif;
+}
+
+/* 90. MIXED MEDIA */
+.style-mixedmedia {
+  background: #f4f1ea;
+  color: #1d3557;
+}
+.style-mixedmedia .demo-box {
+  background: #fbf9f4;
+  border: 3px solid #1d3557;
+  box-shadow: 6px 6px 0px #7209b7, -3px -3px 0px #e63946;
+}
+.style-mixedmedia .demo-btn {
+  background: #e63946;
+  color: #ffffff;
+  border: 2px solid #1d3557;
+  box-shadow: 3px 3px 0px #7209b7;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.style-mixedmedia .demo-input {
+  background: #ffffff;
+  border: 2px solid #1d3557;
+  color: #1d3557;
+}
+
+
 /* ==========================================================================
    PER-STYLE HOVER PERSONALITY (showcase demo components)
    --------------------------------------------------------------------------

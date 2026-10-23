@@ -19,7 +19,7 @@
  * so assets never swap out from under a page that is already running.
  */
 
-const VERSION = 'design-atlas-v1';
+const VERSION = 'design-atlas-v2';
 
 /* Small precache so the first offline use works even if a file was never
    fetched. Everything else is cached opportunistically by the fetch handler.
