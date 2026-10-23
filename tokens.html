@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self'; manifest-src 'self'; worker-src 'self'">
+  <title>Design Atlas — Design Tokens & Architecture Exporter</title>
+  <script src="js/tailwind-browser.js"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col antialiased">
+  
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-white/85 dark:bg-slate-900/85 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2 font-black text-lg">
+          <span class="w-8 h-8 rounded-lg bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white text-sm">DA</span>
+          <span>Design Atlas</span>
+        </a>
+        <span class="text-xs px-2 py-0.5 rounded-full bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300 font-bold">Design Tokens & Specs</span>
+      </div>
+      <div class="flex items-center gap-2 text-xs font-bold">
+        <a href="index.html" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200">🏛️ Main Gallery</a>
+        <a href="playground.html" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200">🎛️ Playground</a>
+        <a href="uikit.html" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200">🎨 UI Kit</a>
+        <a href="prompt-builder.html" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200">🪄 Prompt Studio</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Showcase -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+    
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
+      <div>
+        <span class="text-xs font-bold text-sky-500 uppercase tracking-widest">Design System Tokens</span>
+        <h1 class="text-2xl font-black text-slate-900 dark:text-white mt-1">Export Production Tokens & Configs</h1>
+        <p class="text-xs text-slate-500 mt-0.5">Download DTCG standard JSON, CSS Custom Properties, and Tailwind extensions.</p>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <label class="text-xs font-bold text-slate-500">Design Language:</label>
+        <select id="token-style-select" class="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2 text-xs font-bold outline-none focus:ring-2 focus:ring-sky-500">
+          <!-- Populated by JS -->
+        </select>
+      </div>
+    </div>
+
+    <!-- Token + Framework Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <!-- 1. CSS Custom Properties -->
+      <div class="bg-slate-900 rounded-2xl p-6 border border-slate-800 text-slate-200 flex flex-col justify-between shadow-xl">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
+          <span class="text-xs font-bold text-sky-400 font-mono">1. variables.css (CSS Custom Properties)</span>
+          <div class="flex gap-2">
+            <button id="copy-css-var-btn" class="px-2.5 py-1 text-xs bg-slate-800 hover:bg-slate-700 rounded font-bold">Copy</button>
+            <button id="dl-css-var-btn" class="px-2.5 py-1 text-xs bg-sky-500 hover:bg-sky-600 text-white rounded font-bold">Download</button>
+          </div>
+        </div>
+        <pre class="bg-black/50 p-4 rounded-xl text-[11px] font-mono text-sky-300 overflow-x-auto h-72"><code id="code-css-var"></code></pre>
+      </div>
+
+      <!-- 2. DTCG JSON Format -->
+      <div class="bg-slate-900 rounded-2xl p-6 border border-slate-800 text-slate-200 flex flex-col justify-between shadow-xl">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
+          <span class="text-xs font-bold text-emerald-400 font-mono">2. tokens.json (DTCG Standard)</span>
+          <div class="flex gap-2">
+            <button id="copy-json-btn" class="px-2.5 py-1 text-xs bg-slate-800 hover:bg-slate-700 rounded font-bold">Copy</button>
+            <button id="dl-json-btn" class="px-2.5 py-1 text-xs bg-emerald-500 hover:bg-emerald-600 text-white rounded font-bold">Download</button>
+          </div>
+        </div>
+        <pre class="bg-black/50 p-4 rounded-xl text-[11px] font-mono text-emerald-300 overflow-x-auto h-72"><code id="code-json"></code></pre>
+      </div>
+
+      <!-- 3. Tailwind Config Extension -->
+      <div class="bg-slate-900 rounded-2xl p-6 border border-slate-800 text-slate-200 flex flex-col justify-between shadow-xl">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
+          <span class="text-xs font-bold text-purple-400 font-mono">3. tailwind.config.js (Theme Extension)</span>
+          <div class="flex gap-2">
+            <button id="copy-tw-btn" class="px-2.5 py-1 text-xs bg-slate-800 hover:bg-slate-700 rounded font-bold">Copy</button>
+            <button id="dl-tw-btn" class="px-2.5 py-1 text-xs bg-purple-500 hover:bg-purple-600 text-white rounded font-bold">Download</button>
+          </div>
+        </div>
+        <pre class="bg-black/50 p-4 rounded-xl text-[11px] font-mono text-purple-300 overflow-x-auto h-72"><code id="code-tw"></code></pre>
+      </div>
+
+      <!-- 4. Standalone HTML Starter Boilerplate -->
+      <div class="bg-slate-900 rounded-2xl p-6 border border-slate-800 text-slate-200 flex flex-col justify-between shadow-xl">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
+          <span class="text-xs font-bold text-amber-400 font-mono">4. starter.html (Self-Contained Boilerplate)</span>
+          <div class="flex gap-2">
+            <button id="copy-html-btn" class="px-2.5 py-1 text-xs bg-slate-800 hover:bg-slate-700 rounded font-bold">Copy</button>
+            <button id="dl-html-btn" class="px-2.5 py-1 text-xs bg-amber-500 hover:bg-amber-600 text-white rounded font-bold">Download</button>
+          </div>
+        </div>
+        <pre class="bg-black/50 p-4 rounded-xl text-[11px] font-mono text-amber-200 overflow-x-auto h-72"><code id="code-html"></code></pre>
+      </div>
+
+      <!-- 5. React Component -->
+      <div class="bg-slate-900 rounded-2xl p-6 border border-slate-800 text-slate-200 flex flex-col justify-between shadow-xl">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
+          <span class="text-xs font-bold text-sky-400 font-mono">5. Component.jsx (React 19 + Tailwind)</span>
+          <div class="flex gap-2">
+            <button id="copy-react-btn" class="px-2.5 py-1 text-xs bg-slate-800 hover:bg-slate-700 rounded font-bold">Copy</button>
+            <button id="dl-react-btn" class="px-2.5 py-1 text-xs bg-sky-500 hover:bg-sky-600 text-white rounded font-bold">Download</button>
+          </div>
+        </div>
+        <pre class="bg-black/50 p-4 rounded-xl text-[11px] font-mono text-sky-300 overflow-x-auto h-72"><code id="code-react"></code></pre>
+      </div>
+
+      <!-- 6. Vue Component -->
+      <div class="bg-slate-900 rounded-2xl p-6 border border-slate-800 text-slate-200 flex flex-col justify-between shadow-xl">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
+          <span class="text-xs font-bold text-emerald-400 font-mono">6. Component.vue (Vue 3 SFC)</span>
+          <div class="flex gap-2">
+            <button id="copy-vue-btn" class="px-2.5 py-1 text-xs bg-slate-800 hover:bg-slate-700 rounded font-bold">Copy</button>
+            <button id="dl-vue-btn" class="px-2.5 py-1 text-xs bg-emerald-500 hover:bg-emerald-600 text-white rounded font-bold">Download</button>
+          </div>
+        </div>
+        <pre class="bg-black/50 p-4 rounded-xl text-[11px] font-mono text-emerald-300 overflow-x-auto h-72"><code id="code-vue"></code></pre>
+      </div>
+
+      <!-- 7. Svelte Component -->
+      <div class="bg-slate-900 rounded-2xl p-6 border border-slate-800 text-slate-200 flex flex-col justify-between shadow-xl">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-3">
+          <span class="text-xs font-bold text-orange-400 font-mono">7. Component.svelte (Svelte 5)</span>
+          <div class="flex gap-2">
+            <button id="copy-svelte-btn" class="px-2.5 py-1 text-xs bg-slate-800 hover:bg-slate-700 rounded font-bold">Copy</button>
+            <button id="dl-svelte-btn" class="px-2.5 py-1 text-xs bg-orange-500 hover:bg-orange-600 text-white rounded font-bold">Download</button>
+          </div>
+        </div>
+        <pre class="bg-black/50 p-4 rounded-xl text-[11px] font-mono text-orange-300 overflow-x-auto h-72"><code id="code-svelte"></code></pre>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 text-white border border-slate-700 shadow-2xl text-sm font-semibold">
+    <span class="text-emerald-400">✔</span>
+    <span id="toast-text">Success</span>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/sw-register.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/token-exporter.js"></script>
+  <script src="js/framework-exporter.js"></script>
+  <script>
+    (function () {
+      var stored = safeLS.get('theme', null);
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (stored === 'dark' || (stored === null && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+
+    const toastEl = document.getElementById("toast");
+    const toastText = document.getElementById("toast-text");
+    function showToast(msg) {
+      toastText.textContent = msg;
+      toastEl.classList.remove("translate-y-20", "opacity-0");
+      setTimeout(() => toastEl.classList.add("translate-y-20", "opacity-0"), 2500);
+    }
+
+    const selectEl = document.getElementById("token-style-select");
+    selectEl.innerHTML = STYLES_DATA.map(s => `<option value="${s.id}">${s.name} (${s.category})</option>`).join('');
+
+    function updateTokens(styleId) {
+      const style = STYLES_DATA.find(s => s.id === styleId) || STYLES_DATA[0];
+
+      const cssVar = TokenExporter.generateCSSVariables(style);
+      const jsonStr = TokenExporter.generateDTCGJSON(style);
+      const twStr = TokenExporter.generateTailwindConfig(style);
+      const htmlStr = TokenExporter.generateStarterBoilerplate(style);
+      const reactStr = FrameworkExporter.generateReact(style);
+      const vueStr = FrameworkExporter.generateVue(style);
+      const svelteStr = FrameworkExporter.generateSvelte(style);
+
+      document.getElementById('code-css-var').textContent = cssVar;
+      document.getElementById('code-json').textContent = jsonStr;
+      document.getElementById('code-tw').textContent = twStr;
+      document.getElementById('code-html').textContent = htmlStr;
+      document.getElementById('code-react').textContent = reactStr;
+      document.getElementById('code-vue').textContent = vueStr;
+      document.getElementById('code-svelte').textContent = svelteStr;
+
+      const compName = style.name.replace(/[^a-zA-Z0-9]/g, '');
+
+      // Wire a Copy + Download pair with clipboard fallback and honest feedback
+      const wire = (copyId, dlId, payload, label, filename, mime) => {
+        const copyBtn = document.getElementById(copyId);
+        const dlBtn = document.getElementById(dlId);
+        if (copyBtn) {
+          copyBtn.onclick = () => copyText(payload).then(ok => {
+            soundManager.play(ok ? 'success' : 'heavy');
+            showToast(ok ? `✔ ${label} copied!` : '⚠ Copy blocked — use Ctrl+C');
+          });
+        }
+        if (dlBtn) {
+          dlBtn.onclick = () => {
+            TokenExporter.downloadFile(filename, payload, mime);
+            soundManager.play('success');
+            showToast(`✔ Downloaded ${filename}`);
+          };
+        }
+      };
+
+      wire('copy-css-var-btn', 'dl-css-var-btn', cssVar, 'CSS Variables', `${style.id}-variables.css`, 'text/css');
+      wire('copy-json-btn', 'dl-json-btn', jsonStr, 'DTCG JSON', `${style.id}-tokens.json`, 'application/json');
+      wire('copy-tw-btn', 'dl-tw-btn', twStr, 'Tailwind config', `tailwind.${style.id}.config.js`, 'application/javascript');
+      wire('copy-html-btn', 'dl-html-btn', htmlStr, 'Starter HTML', `${style.id}-starter.html`, 'text/html');
+      wire('copy-react-btn', 'dl-react-btn', reactStr, 'React component', `${compName}Card.jsx`, 'text/jsx');
+      wire('copy-vue-btn', 'dl-vue-btn', vueStr, 'Vue component', `${compName}Card.vue`, 'text/plain');
+      wire('copy-svelte-btn', 'dl-svelte-btn', svelteStr, 'Svelte component', `${compName}Card.svelte`, 'text/plain');
+    }
+
+    selectEl.addEventListener('change', () => {
+      soundManager.play('click');
+      updateTokens(selectEl.value);
+    });
+
+    updateTokens(selectEl.value);
+  </script>
+</body>
+</html>

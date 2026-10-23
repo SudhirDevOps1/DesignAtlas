@@ -1,0 +1,3320 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design Atlas — Interactive UI Design Styles &amp; AI Prompt Gallery</title>
+  <meta name="description" content="Explore 50 iconic UI design styles with live pure-CSS demos, instant AI prompt copy, and full-screen live dashboard previews.">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="Design%20Atlas%20%E2%80%94%20Interactive%20UI%20Design%20Styles%20&amp;%20AI%20Prompt%20Gallery_files/3.4_545G.17"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['Space Mono', 'monospace'],
+            serif: ['Playfair Display', 'serif'],
+            pixel: ['"VT323"', 'monospace'],
+            hand: ['Caveat', 'cursive'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link href="Design%20Atlas%20%E2%80%94%20Interactive%20UI%20Design%20Styles%20&amp;%20AI%20Prompt%20Gallery_files/css2_545G.css" rel="stylesheet">
+
+  <style>
+    /* Global Base */
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(156, 163, 175, 0.4); border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(156, 163, 175, 0.7); }
+
+    /* Modal Backdrop Blur */
+    dialog::backdrop {
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    /* =========================================================
+       SPECIFIC DESIGN STYLES CSS ENGINE (Real CSS - No Images)
+       ========================================================= */
+
+    /* 1. MINIMALISM */
+    .style-minimalism {
+      background: #fafafa;
+      color: #18181b;
+      border: 1px solid #e4e4e7;
+    }
+    .style-minimalism .demo-box {
+      background: #ffffff;
+      border: 1px solid #f4f4f5;
+    }
+    .style-minimalism .demo-btn {
+      background: #18181b;
+      color: #fafafa;
+      transition: all 0.2s;
+    }
+    .style-minimalism .demo-btn:hover { background: #3f3f46; }
+    .style-minimalism .demo-input {
+      border-bottom: 1.5px solid #18181b;
+      background: transparent;
+      outline: none;
+    }
+
+    /* 2. MAXIMALISM */
+    .style-maximalism {
+      background: linear-gradient(135deg, #ff007f 0%, #7928ca 50%, #ff0080 100%);
+      color: #fff;
+      background-size: 200% 200%;
+      animation: maxGlow 8s ease infinite alternate;
+    }
+    @keyframes maxGlow { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+    .style-maximalism .demo-box {
+      background: #ffe600;
+      color: #000;
+      transform: rotate(-1.5deg);
+      border: 3px dashed #ff0055;
+      box-shadow: 6px 6px 0px #00f0ff, -4px -4px 0px #ff007f;
+    }
+    .style-maximalism .demo-btn {
+      background: #00f0ff;
+      color: #000;
+      font-weight: 900;
+      border: 3px solid #000;
+      box-shadow: 4px 4px 0px #ff007f;
+      transform: rotate(2deg);
+    }
+    .style-maximalism .demo-input {
+      background: #fff;
+      border: 3px solid #ff00a0;
+      color: #000;
+      font-weight: 700;
+    }
+
+    /* 3. BRUTALISM */
+    .style-brutalism {
+      background: #ffffff;
+      color: #000000;
+      font-family: 'Courier New', Courier, monospace;
+      border: 4px solid #000000;
+    }
+    .style-brutalism .demo-box {
+      border: 3px solid #000000;
+      background: #ffffff;
+    }
+    .style-brutalism .demo-btn {
+      background: #ffffff;
+      color: #000000;
+      border: 3px solid #000000;
+      font-weight: 800;
+      border-radius: 0px !important;
+    }
+    .style-brutalism .demo-btn:hover { background: #000; color: #fff; }
+    .style-brutalism .demo-input {
+      border: 3px solid #000000;
+      background: #ffffff;
+      border-radius: 0px !important;
+    }
+
+    /* 4. NEO-BRUTALISM */
+    .style-neobrutalism {
+      background: #fef08a;
+      color: #0f172a;
+      border: 3px solid #000;
+      box-shadow: 5px 5px 0px #000;
+    }
+    .style-neobrutalism .demo-box {
+      background: #a7f3d0;
+      border: 3px solid #000;
+      box-shadow: 4px 4px 0px #000;
+    }
+    .style-neobrutalism .demo-btn {
+      background: #f43f5e;
+      color: #fff;
+      border: 3px solid #000;
+      box-shadow: 4px 4px 0px #000;
+      font-weight: 800;
+      transition: all 0.1s;
+    }
+    .style-neobrutalism .demo-btn:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px #000;
+    }
+    .style-neobrutalism .demo-input {
+      background: #fff;
+      border: 3px solid #000;
+      box-shadow: 3px 3px 0px #000;
+      font-weight: 600;
+    }
+
+    /* 5. GLASSMORPHISM */
+    .style-glassmorphism {
+      background: radial-gradient(circle at 10% 20%, #8b5cf6 0%, #ec4899 50%, #3b82f6 100%);
+      color: #ffffff;
+    }
+    .style-glassmorphism .demo-box {
+      background: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+    }
+    .style-glassmorphism .demo-btn {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+    .style-glassmorphism .demo-btn:hover { background: rgba(255, 255, 255, 0.4); }
+    .style-glassmorphism .demo-input {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+    }
+
+    /* 6. CLAYMORPHISM */
+    .style-claymorphism {
+      background: #e0e7ff;
+      color: #3730a3;
+    }
+    .style-claymorphism .demo-box {
+      background: #c7d2fe;
+      border-radius: 24px;
+      box-shadow: inset -6px -6px 12px rgba(99, 102, 241, 0.35),
+                  inset 6px 6px 12px rgba(255, 255, 255, 0.9),
+                  10px 14px 20px rgba(79, 70, 229, 0.2);
+    }
+    .style-claymorphism .demo-btn {
+      background: #818cf8;
+      color: #ffffff;
+      border-radius: 18px;
+      box-shadow: inset -4px -4px 8px rgba(55, 48, 163, 0.4),
+                  inset 4px 4px 8px rgba(255, 255, 255, 0.7),
+                  6px 8px 14px rgba(79, 70, 229, 0.25);
+      font-weight: 700;
+    }
+    .style-claymorphism .demo-btn:hover {
+      box-shadow: inset -2px -2px 6px rgba(55, 48, 163, 0.4),
+                  inset 2px 2px 6px rgba(255, 255, 255, 0.7),
+                  3px 4px 8px rgba(79, 70, 229, 0.25);
+      transform: translateY(2px);
+    }
+    .style-claymorphism .demo-input {
+      background: #eef2ff;
+      border-radius: 16px;
+      box-shadow: inset 4px 4px 8px rgba(99, 102, 241, 0.25),
+                  inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+      border: none;
+    }
+
+    /* 7. NEUMORPHISM */
+    .style-neumorphism {
+      background: #e0e5ec;
+      color: #4b5563;
+    }
+    .style-neumorphism .demo-box {
+      background: #e0e5ec;
+      border-radius: 20px;
+      box-shadow: 8px 8px 16px #bec3c9, -8px -8px 16px #ffffff;
+    }
+    .style-neumorphism .demo-btn {
+      background: #e0e5ec;
+      color: #374151;
+      border-radius: 14px;
+      box-shadow: 6px 6px 12px #bec3c9, -6px -6px 12px #ffffff;
+      font-weight: 600;
+    }
+    .style-neumorphism .demo-btn:active {
+      box-shadow: inset 4px 4px 8px #bec3c9, inset -4px -4px 8px #ffffff;
+    }
+    .style-neumorphism .demo-input {
+      background: #e0e5ec;
+      border-radius: 12px;
+      box-shadow: inset 4px 4px 8px #bec3c9, inset -4px -4px 8px #ffffff;
+      border: none;
+    }
+
+    /* 8. SKEUOMORPHISM */
+    .style-skeuomorphism {
+      background: radial-gradient(circle, #3e3223 0%, #20180f 100%);
+      color: #f7eedd;
+      border: 3px solid #5a4632;
+    }
+    .style-skeuomorphism .demo-box {
+      background: linear-gradient(to bottom, #ded6c9 0%, #b8ab97 100%);
+      border: 2px solid #6b533d;
+      border-top: 2px solid #ffffff;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.6), inset 0 1px 2px rgba(255,255,255,0.7);
+      color: #3d2f21;
+    }
+    .style-skeuomorphism .demo-btn {
+      background: linear-gradient(to bottom, #d44a2b 0%, #99230a 100%);
+      border: 1px solid #591002;
+      border-top: 1px solid #ff7755;
+      color: #ffffff;
+      text-shadow: 0 -1px 1px #400c02;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.4);
+      font-weight: 700;
+    }
+    .style-skeuomorphism .demo-btn:active {
+      box-shadow: inset 0 3px 6px rgba(0,0,0,0.6);
+      transform: translateY(1px);
+    }
+    .style-skeuomorphism .demo-input {
+      background: linear-gradient(to bottom, #cfc6b6, #ebe5db);
+      border: 2px solid #735c46;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+      color: #2b1f14;
+    }
+
+    /* 9. LIQUID GLASS */
+    .style-liquidglass {
+      background: linear-gradient(135deg, #090e1a 0%, #172554 50%, #0369a1 100%);
+      color: #f0fdf4;
+    }
+    .style-liquidglass .demo-box {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.04) 100%);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(255, 255, 255, 0.45);
+      border-top: 2px solid rgba(255, 255, 255, 0.75);
+      border-left: 2px solid rgba(255, 255, 255, 0.7);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), inset 0 0 16px rgba(255, 255, 255, 0.2);
+    }
+    .style-liquidglass .demo-btn {
+      background: linear-gradient(90deg, rgba(56, 189, 248, 0.6) 0%, rgba(99, 102, 241, 0.6) 100%);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.4);
+      color: #fff;
+    }
+    .style-liquidglass .demo-input {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(12px);
+      color: #fff;
+    }
+
+    /* 10. SPATIAL UI */
+    .style-spatialui {
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      color: #e2e8f0;
+      perspective: 800px;
+    }
+    .style-spatialui .demo-box {
+      background: rgba(30, 41, 59, 0.75);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      border-radius: 20px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56, 189, 248, 0.15);
+      transform: rotateX(8deg) rotateY(-6deg) translateZ(10px);
+      transition: transform 0.3s ease;
+    }
+    .style-spatialui .demo-box:hover {
+      transform: rotateX(0deg) rotateY(0deg) translateZ(25px);
+    }
+    .style-spatialui .demo-btn {
+      background: rgba(56, 189, 248, 0.2);
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      color: #38bdf8;
+      border-radius: 9999px;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+    }
+    .style-spatialui .demo-input {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      border-radius: 9999px;
+      color: #fff;
+    }
+
+    /* 11. BENTO GRID */
+    .style-bentogrid {
+      background: #0f172a;
+      color: #f8fafc;
+    }
+    .style-bentogrid .demo-box {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    }
+    .style-bentogrid .demo-btn {
+      background: #38bdf8;
+      color: #0f172a;
+      font-weight: 700;
+      border-radius: 10px;
+    }
+    .style-bentogrid .demo-input {
+      background: #0f172a;
+      border: 1px solid #475569;
+      border-radius: 10px;
+      color: #f8fafc;
+    }
+
+    /* 12. FLAT DESIGN */
+    .style-flatdesign {
+      background: #2c3e50;
+      color: #ecf0f1;
+    }
+    .style-flatdesign .demo-box {
+      background: #34495e;
+      border-radius: 4px;
+    }
+    .style-flatdesign .demo-btn {
+      background: #e74c3c;
+      color: #ffffff;
+      font-weight: 700;
+      border-radius: 4px;
+    }
+    .style-flatdesign .demo-btn:hover { background: #c0392b; }
+    .style-flatdesign .demo-input {
+      background: #ffffff;
+      color: #2c3e50;
+      border-radius: 4px;
+      border: none;
+    }
+
+    /* 13. MATERIAL DESIGN */
+    .style-materialdesign {
+      background: #f5f5f5;
+      color: #212121;
+    }
+    .style-materialdesign .demo-box {
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    }
+    .style-materialdesign .demo-btn {
+      background: #6200ee;
+      color: #ffffff;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+    }
+    .style-materialdesign .demo-btn:hover {
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    .style-materialdesign .demo-input {
+      border: none;
+      border-bottom: 2px solid #6200ee;
+      background: #eeeeee;
+      border-radius: 4px 4px 0 0;
+    }
+
+    /* 14. SWISS / INTERNATIONAL */
+    .style-swiss {
+      background: #ffffff;
+      color: #111111;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      border-left: 6px solid #e11d48;
+    }
+    .style-swiss .demo-box {
+      background: #f4f4f5;
+      border: 1px solid #18181b;
+    }
+    .style-swiss .demo-btn {
+      background: #e11d48;
+      color: #ffffff;
+      font-weight: 700;
+      border-radius: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .style-swiss .demo-input {
+      border: 2px solid #18181b;
+      border-radius: 0;
+      background: #fff;
+    }
+
+    /* 15. BAUHAUS */
+    .style-bauhaus {
+      background: #fffdf5;
+      color: #111111;
+      border: 4px solid #111;
+    }
+    .style-bauhaus .demo-box {
+      background: #ffd000;
+      border: 3px solid #111;
+      position: relative;
+    }
+    .style-bauhaus .demo-btn {
+      background: #e52521;
+      color: #ffffff;
+      font-weight: 800;
+      border: 3px solid #111;
+      border-radius: 9999px;
+    }
+    .style-bauhaus .demo-input {
+      background: #00459c;
+      color: #ffffff;
+      border: 3px solid #111;
+      border-radius: 0;
+    }
+
+    /* 16. ART DECO */
+    .style-artdeco {
+      background: #0d131a;
+      color: #f7e09e;
+      border: 2px solid #d4af37;
+      font-family: 'Cinzel', serif;
+    }
+    .style-artdeco .demo-box {
+      background: #141c24;
+      border: 2px solid #d4af37;
+      outline: 2px solid #0d131a;
+      outline-offset: -6px;
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+    }
+    .style-artdeco .demo-btn {
+      background: linear-gradient(135deg, #d4af37, #aa8214);
+      color: #0b0f14;
+      font-weight: 700;
+      border: 1px solid #ffe89e;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .style-artdeco .demo-input {
+      background: #0b0f14;
+      border: 1px solid #d4af37;
+      color: #f7e09e;
+    }
+
+    /* 17. VAPORWAVE */
+    .style-vaporwave {
+      background: linear-gradient(180deg, #2b1055 0%, #7597de 100%);
+      color: #ffe6ff;
+    }
+    .style-vaporwave .demo-box {
+      background: rgba(43, 16, 85, 0.7);
+      border: 2px solid #ff71ce;
+      box-shadow: 0 0 15px #01cdfe, inset 0 0 10px #ff71ce;
+    }
+    .style-vaporwave .demo-btn {
+      background: linear-gradient(90deg, #ff71ce, #01cdfe);
+      color: #fff;
+      font-weight: 800;
+      box-shadow: 0 0 12px #ff71ce;
+      border: none;
+    }
+    .style-vaporwave .demo-input {
+      background: rgba(1, 205, 254, 0.15);
+      border: 2px solid #05ffa1;
+      color: #fff;
+    }
+
+    /* 18. Y2K AESTHETIC */
+    .style-y2k {
+      background: linear-gradient(135deg, #dbeafe 0%, #fbcfe8 100%);
+      color: #1e1b4b;
+    }
+    .style-y2k .demo-box {
+      background: linear-gradient(180deg, #ffffff 0%, #e0e7ff 100%);
+      border: 2.5px solid #a855f7;
+      border-radius: 24px;
+      box-shadow: 0 8px 16px rgba(168, 85, 247, 0.3), inset 0 2px 4px #ffffff;
+    }
+    .style-y2k .demo-btn {
+      background: linear-gradient(180deg, #ec4899 0%, #be185d 100%);
+      color: #fff;
+      border: 2px solid #fdf2f8;
+      border-radius: 9999px;
+      box-shadow: 0 6px 12px rgba(236, 72, 153, 0.5), inset 0 2px 3px rgba(255,255,255,0.8);
+      font-weight: 800;
+    }
+    .style-y2k .demo-input {
+      background: #fdf4ff;
+      border: 2px solid #ec4899;
+      border-radius: 9999px;
+      color: #831843;
+    }
+
+    /* 19. CYBERPUNK */
+    .style-cyberpunk {
+      background: #000000;
+      color: #ffe600;
+      border: 2px solid #00f0ff;
+    }
+    .style-cyberpunk .demo-box {
+      background: #090a0f;
+      border: 2px solid #ffe600;
+      box-shadow: 0 0 15px rgba(255, 230, 0, 0.3), -3px 0 0 #00f0ff;
+      clip-path: polygon(0 0, 92% 0, 100% 12%, 100% 100%, 8% 100%, 0 88%);
+    }
+    .style-cyberpunk .demo-btn {
+      background: #ffe600;
+      color: #000;
+      font-weight: 900;
+      border: none;
+      clip-path: polygon(0 0, 85% 0, 100% 30%, 100% 100%, 15% 100%, 0 70%);
+      box-shadow: 0 0 10px #ffe600;
+    }
+    .style-cyberpunk .demo-input {
+      background: #111;
+      border: 1px solid #00f0ff;
+      color: #00f0ff;
+    }
+
+    /* 20. DARK LUXE */
+    .style-darkluxe {
+      background: #050505;
+      color: #e5e5e5;
+      border: 1px solid #262626;
+    }
+    .style-darkluxe .demo-box {
+      background: linear-gradient(145deg, #121212 0%, #0a0a0a 100%);
+      border: 1px solid #332a15;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 1px 1px rgba(212, 175, 55, 0.3);
+    }
+    .style-darkluxe .demo-btn {
+      background: linear-gradient(180deg, #d4af37 0%, #997d21 100%);
+      color: #000000;
+      font-weight: 700;
+      border: 1px solid #f6e082;
+      letter-spacing: 1px;
+    }
+    .style-darkluxe .demo-input {
+      background: #121212;
+      border: 1px solid #333333;
+      color: #d4af37;
+    }
+
+    /* 21. EDITORIAL / MAGAZINE */
+    .style-editorial {
+      background: #fdfbf7;
+      color: #1a1a1a;
+      font-family: 'Playfair Display', serif;
+    }
+    .style-editorial .demo-box {
+      background: #ffffff;
+      border-top: 4px solid #1a1a1a;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .style-editorial .demo-btn {
+      background: #1a1a1a;
+      color: #fdfbf7;
+      font-family: 'Inter', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.75rem;
+    }
+    .style-editorial .demo-input {
+      background: transparent;
+      border-bottom: 2px solid #1a1a1a;
+      font-style: italic;
+    }
+
+    /* 22. ORGANIC / BIOMORPHIC */
+    .style-organic {
+      background: #f4efe6;
+      color: #3d3429;
+    }
+    .style-organic .demo-box {
+      background: #e8dfd1;
+      border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+      border: 1.5px solid #d4c5b0;
+    }
+    .style-organic .demo-btn {
+      background: #606c38;
+      color: #fefae0;
+      border-radius: 50px 20px 50px 20px;
+      font-weight: 600;
+    }
+    .style-organic .demo-input {
+      background: #fefae0;
+      border-radius: 20px;
+      border: 1px solid #dda15e;
+      color: #283618;
+    }
+
+    /* 23. RETRO-FUTURISM */
+    .style-retrofuturism {
+      background: #11052c;
+      color: #ff007f;
+      background-image: linear-gradient(rgba(255, 0, 127, 0.15) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255, 0, 127, 0.15) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    .style-retrofuturism .demo-box {
+      background: rgba(26, 8, 62, 0.85);
+      border: 2px solid #00f0ff;
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+    }
+    .style-retrofuturism .demo-btn {
+      background: #ff007f;
+      color: #ffffff;
+      border: 1px solid #ffe6ff;
+      box-shadow: 0 0 10px #ff007f;
+      font-weight: 700;
+    }
+    .style-retrofuturism .demo-input {
+      background: #000;
+      border: 1px solid #00f0ff;
+      color: #00f0ff;
+    }
+
+    /* 24. MEMPHIS */
+    .style-memphis {
+      background: #fff0f5;
+      color: #000;
+      background-image: radial-gradient(#ff007f 15%, transparent 16%), radial-gradient(#00d2d3 15%, transparent 16%);
+      background-size: 30px 30px;
+      background-position: 0 0, 15px 15px;
+    }
+    .style-memphis .demo-box {
+      background: #ffeaa7;
+      border: 3px solid #000;
+      box-shadow: 6px 6px 0px #ff6b6b;
+      transform: rotate(1deg);
+    }
+    .style-memphis .demo-btn {
+      background: #54a0ff;
+      color: #000;
+      border: 3px solid #000;
+      box-shadow: 4px 4px 0px #1dd1a1;
+      font-weight: 800;
+    }
+    .style-memphis .demo-input {
+      background: #fff;
+      border: 3px solid #000;
+    }
+
+    /* 25. PIXEL / 8-BIT */
+    .style-pixel {
+      background: #181425;
+      color: #fee761;
+      font-family: 'VT323', monospace;
+      letter-spacing: 1px;
+    }
+    .style-pixel .demo-box {
+      background: #262b44;
+      border: 4px solid #63c74d;
+      box-shadow: 4px 4px 0px #124e89;
+    }
+    .style-pixel .demo-btn {
+      background: #ff0044;
+      color: #ffffff;
+      border: 3px solid #ffffff;
+      box-shadow: 3px 3px 0px #000000;
+      font-size: 1.1rem;
+    }
+    .style-pixel .demo-input {
+      background: #000;
+      border: 3px solid #fee761;
+      color: #fee761;
+      font-size: 1.1rem;
+    }
+
+    /* 26. SCANDINAVIAN */
+    .style-scandinavian {
+      background: #fbfbfb;
+      color: #2c3e50;
+    }
+    .style-scandinavian .demo-box {
+      background: #ffffff;
+      border: 1px solid #eaedf1;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    }
+    .style-scandinavian .demo-btn {
+      background: #d8c3b0;
+      color: #3e3223;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    .style-scandinavian .demo-input {
+      background: #f4f6f8;
+      border: 1px solid #e1e6eb;
+      border-radius: 8px;
+      color: #2c3e50;
+    }
+
+    /* 27. JAPANDI */
+    .style-japandi {
+      background: #f4eee1;
+      color: #3c3832;
+    }
+    .style-japandi .demo-box {
+      background: #eae2d3;
+      border: 1px solid #d8cdba;
+      border-radius: 6px;
+    }
+    .style-japandi .demo-btn {
+      background: #3c3832;
+      color: #f4eee1;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+    .style-japandi .demo-input {
+      background: #f9f6f0;
+      border: 1px solid #b5a995;
+      border-radius: 4px;
+    }
+
+    /* 28. MONOCHROME */
+    .style-monochrome {
+      background: #000000;
+      color: #ffffff;
+      border: 1px solid #ffffff;
+    }
+    .style-monochrome .demo-box {
+      background: #111111;
+      border: 1.5px solid #ffffff;
+    }
+    .style-monochrome .demo-btn {
+      background: #ffffff;
+      color: #000000;
+      font-weight: 800;
+      border: 1.5px solid #ffffff;
+    }
+    .style-monochrome .demo-btn:hover {
+      background: #000000;
+      color: #ffffff;
+    }
+    .style-monochrome .demo-input {
+      background: #000000;
+      border: 1.5px solid #ffffff;
+      color: #ffffff;
+    }
+
+    /* 29. AURORA */
+    .style-aurora {
+      background: #060913;
+      color: #f1f5f9;
+      position: relative;
+      overflow: hidden;
+    }
+    .style-aurora .demo-box {
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      box-shadow: 0 0 25px rgba(52, 211, 153, 0.25), inset 0 0 15px rgba(168, 85, 247, 0.25);
+    }
+    .style-aurora .demo-btn {
+      background: linear-gradient(90deg, #10b981 0%, #06b6d4 50%, #8b5cf6 100%);
+      color: #ffffff;
+      font-weight: 700;
+      box-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
+    }
+    .style-aurora .demo-input {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(52, 211, 153, 0.4);
+      color: #ffffff;
+    }
+
+    /* 30. NATURE-INSPIRED */
+    .style-nature {
+      background: #edf5eb;
+      color: #1e3a1e;
+    }
+    .style-nature .demo-box {
+      background: #ffffff;
+      border: 1px solid #cce3c9;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(46, 117, 46, 0.08);
+    }
+    .style-nature .demo-btn {
+      background: #2d6a4f;
+      color: #d8f3dc;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+    .style-nature .demo-input {
+      background: #f7faf6;
+      border: 1px solid #74c69d;
+      border-radius: 10px;
+      color: #1b4332;
+    }
+
+    /* 31. ANTI-GRID / ANTI-DESIGN */
+    .style-antigrid {
+      background: #111;
+      color: #00ff66;
+      font-family: 'Courier New', monospace;
+    }
+    .style-antigrid .demo-box {
+      background: #ff0055;
+      color: #ffffff;
+      transform: rotate(-3deg) scale(0.96);
+      border: 3px solid #ffff00;
+    }
+    .style-antigrid .demo-btn {
+      background: #ffff00;
+      color: #000;
+      font-weight: 900;
+      transform: rotate(4deg) translate(8px, -4px);
+      border: 2px solid #000;
+    }
+    .style-antigrid .demo-input {
+      background: #000;
+      border: 2px dashed #00ff66;
+      color: #00ff66;
+      transform: rotate(-1deg);
+    }
+
+    /* 32. SCROLLYTELLING */
+    .style-scrollytelling {
+      background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 100%);
+      color: #f8fafc;
+    }
+    .style-scrollytelling .demo-box {
+      background: rgba(30, 41, 59, 0.8);
+      border-left: 4px solid #6366f1;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+    .style-scrollytelling .demo-btn {
+      background: #6366f1;
+      color: #ffffff;
+      font-weight: 600;
+      border-radius: 8px;
+    }
+    .style-scrollytelling .demo-input {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid #475569;
+      color: #fff;
+    }
+
+    /* 33. 3D / WEBGL */
+    .style-webgl3d {
+      background: radial-gradient(circle at 50% 50%, #1e1e38 0%, #0a0a14 100%);
+      color: #e0e7ff;
+    }
+    .style-webgl3d .demo-box {
+      background: linear-gradient(145deg, #2a2a50 0%, #15152a 100%);
+      border: 1px solid #4338ca;
+      box-shadow: -8px -8px 20px rgba(99, 102, 241, 0.2), 8px 8px 25px rgba(0, 0, 0, 0.8);
+      border-radius: 16px;
+    }
+    .style-webgl3d .demo-btn {
+      background: linear-gradient(90deg, #4f46e5, #06b6d4);
+      color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(79, 70, 229, 0.5);
+      font-weight: 700;
+    }
+    .style-webgl3d .demo-input {
+      background: #0f0f20;
+      border: 1px solid #3730a3;
+      color: #c7d2fe;
+    }
+
+    /* 34. KINETIC TYPOGRAPHY */
+    .style-kinetictype {
+      background: #ffffff;
+      color: #000000;
+      font-family: 'Syne', sans-serif;
+    }
+    .style-kinetictype .demo-box {
+      background: #000000;
+      color: #ffffff;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+    .style-kinetictype .demo-btn {
+      background: #ff3366;
+      color: #ffffff;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .style-kinetictype .demo-input {
+      border: 3px solid #000000;
+      font-weight: 700;
+    }
+
+    /* 35. HUMAN SCRIBBLE */
+    .style-humanscribble {
+      background: #fffdf7;
+      color: #292524;
+      font-family: 'Caveat', cursive;
+    }
+    .style-humanscribble .demo-box {
+      background: #ffffff;
+      border: 2px solid #44403c;
+      border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+      box-shadow: 3px 3px 0px #78716c;
+      font-size: 1.25rem;
+    }
+    .style-humanscribble .demo-btn {
+      background: #fde047;
+      color: #1c1917;
+      border: 2px solid #292524;
+      border-radius: 255px 25px 225px 25px/25px 225px 25px 255px;
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+    .style-humanscribble .demo-input {
+      background: #fff;
+      border: 2px solid #44403c;
+      border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+      font-size: 1.25rem;
+    }
+
+    /* 36. FRUTIGER AERO */
+    .style-frutigeraero {
+      background: linear-gradient(180deg, #38bdf8 0%, #4ade80 70%, #15803d 100%);
+      color: #0f172a;
+    }
+    .style-frutigeraero .demo-box {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.35) 100%);
+      backdrop-filter: blur(8px);
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2), inset 0 2px 4px #ffffff;
+    }
+    .style-frutigeraero .demo-btn {
+      background: linear-gradient(180deg, #38bdf8 0%, #0284c7 50%, #0369a1 100%);
+      border: 1.5px solid #ffffff;
+      border-radius: 9999px;
+      color: #ffffff;
+      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.4), inset 0 2px 3px rgba(255,255,255,0.7);
+      font-weight: 700;
+    }
+    .style-frutigeraero .demo-input {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1.5px solid #38bdf8;
+      border-radius: 9999px;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    /* 37. ACID BRUTALIST */
+    .style-acidbrutalist {
+      background: #000000;
+      color: #ccff00;
+      border: 3px solid #ccff00;
+    }
+    .style-acidbrutalist .demo-box {
+      background: #ccff00;
+      color: #000000;
+      border: 3px solid #ff0099;
+      box-shadow: 6px 6px 0px #ff0099;
+      font-weight: 800;
+    }
+    .style-acidbrutalist .demo-btn {
+      background: #ff0099;
+      color: #ffffff;
+      border: 3px solid #ccff00;
+      box-shadow: 4px 4px 0px #ccff00;
+      font-weight: 900;
+    }
+    .style-acidbrutalist .demo-input {
+      background: #111111;
+      border: 3px solid #ccff00;
+      color: #ccff00;
+    }
+
+    /* 38. MONOLITH */
+    .style-monolith {
+      background: #141414;
+      color: #dedede;
+    }
+    .style-monolith .demo-box {
+      background: #242424;
+      border-left: 10px solid #888888;
+      box-shadow: 12px 12px 0px #0a0a0a;
+    }
+    .style-monolith .demo-btn {
+      background: #383838;
+      color: #ffffff;
+      font-weight: 700;
+      border-radius: 0;
+      box-shadow: 4px 4px 0px #000;
+    }
+    .style-monolith .demo-input {
+      background: #1c1c1c;
+      border: 2px solid #444;
+      color: #fff;
+    }
+
+    /* 39. DARK CINEMA */
+    .style-darkcinema {
+      background: #0b0c10;
+      color: #c5c6c7;
+      border: 1px solid #1f2833;
+    }
+    .style-darkcinema .demo-box {
+      background: #1f2833;
+      border-top: 1px solid #45a29e;
+      border-bottom: 1px solid #45a29e;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    }
+    .style-darkcinema .demo-btn {
+      background: #45a29e;
+      color: #0b0c10;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .style-darkcinema .demo-input {
+      background: #0b0c10;
+      border: 1px solid #45a29e;
+      color: #66fcf1;
+    }
+
+    /* 40. DARK COSMIC */
+    .style-darkcosmic {
+      background: radial-gradient(circle at 80% 20%, #4a0e4e 0%, #0d0221 60%, #000000 100%);
+      color: #f1f5f9;
+    }
+    .style-darkcosmic .demo-box {
+      background: rgba(13, 2, 33, 0.85);
+      border: 1px solid #a855f7;
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.35);
+    }
+    .style-darkcosmic .demo-btn {
+      background: linear-gradient(90deg, #ec4899, #8b5cf6);
+      color: #ffffff;
+      font-weight: 700;
+      box-shadow: 0 0 15px rgba(236, 72, 153, 0.6);
+    }
+    .style-darkcosmic .demo-input {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid #8b5cf6;
+      color: #f5d0fe;
+    }
+
+    /* 41. MID-CENTURY MODERN */
+    .style-midcenturymodern {
+      background: #fbf5e6;
+      color: #2b3a42;
+    }
+    .style-midcenturymodern .demo-box {
+      background: #ffffff;
+      border: 2px solid #e27d60;
+      border-radius: 20px 4px 20px 4px;
+      box-shadow: 6px 6px 0px #41b3a3;
+    }
+    .style-midcenturymodern .demo-btn {
+      background: #e27d60;
+      color: #ffffff;
+      font-weight: 700;
+      border-radius: 4px 16px 4px 16px;
+    }
+    .style-midcenturymodern .demo-input {
+      background: #fcf9f2;
+      border: 2px solid #41b3a3;
+      border-radius: 4px;
+    }
+
+    /* 42. RETRO TERMINAL */
+    .style-retroterminal {
+      background: #0d1117;
+      color: #39ff14;
+      font-family: 'Space Mono', monospace;
+      position: relative;
+    }
+    .style-retroterminal::before {
+      content: " ";
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: repeating-linear-gradient(rgba(0,0,0,0) 0, rgba(0,0,0,0) 2px, rgba(0, 255, 0, 0.05) 3px);
+      pointer-events: none;
+    }
+    .style-retroterminal .demo-box {
+      background: #000000;
+      border: 1.5px solid #39ff14;
+      box-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+    }
+    .style-retroterminal .demo-btn {
+      background: #39ff14;
+      color: #000000;
+      font-weight: 700;
+      border: none;
+    }
+    .style-retroterminal .demo-input {
+      background: #000000;
+      border: 1px solid #39ff14;
+      color: #39ff14;
+    }
+
+    /* 43. RENAISSANCE / BAROQUE */
+    .style-baroque {
+      background: #1b120c;
+      color: #e8d8b9;
+      font-family: 'Cinzel', serif;
+      border: 2px solid #8c6d3b;
+    }
+    .style-baroque .demo-box {
+      background: #2b1d13;
+      border: 2px solid #c5a059;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8), inset 0 0 10px rgba(197, 160, 89, 0.3);
+    }
+    .style-baroque .demo-btn {
+      background: linear-gradient(135deg, #c5a059, #8c6d3b);
+      color: #120a05;
+      font-weight: 700;
+      letter-spacing: 1px;
+      border: 1px solid #f2e3c6;
+    }
+    .style-baroque .demo-input {
+      background: #1b120c;
+      border: 1px solid #c5a059;
+      color: #f2e3c6;
+    }
+
+    /* 44. UKIYO-E */
+    .style-ukiyoe {
+      background: #f7f1e3;
+      color: #2c2c54;
+      border: 3px solid #227093;
+    }
+    .style-ukiyoe .demo-box {
+      background: #ffffff;
+      border: 2px solid #227093;
+      box-shadow: 4px 4px 0px #b33939;
+    }
+    .style-ukiyoe .demo-btn {
+      background: #b33939;
+      color: #ffffff;
+      border: 2px solid #2c2c54;
+      font-weight: 700;
+    }
+    .style-ukiyoe .demo-input {
+      background: #f1f2f6;
+      border: 2px solid #227093;
+      color: #2c2c54;
+    }
+
+    /* 45. DE STIJL */
+    .style-destijl {
+      background: #ffffff;
+      color: #000000;
+      border: 6px solid #000000;
+    }
+    .style-destijl .demo-box {
+      background: #0055ff;
+      color: #ffffff;
+      border: 5px solid #000000;
+    }
+    .style-destijl .demo-btn {
+      background: #ff0000;
+      color: #ffffff;
+      font-weight: 900;
+      border: 4px solid #000000;
+      border-radius: 0;
+    }
+    .style-destijl .demo-input {
+      background: #ffea00;
+      border: 4px solid #000000;
+      color: #000000;
+      font-weight: 700;
+    }
+
+    /* 46. CONSTRUCTIVISM */
+    .style-constructivism {
+      background: #eae6df;
+      color: #111111;
+      font-family: 'Impact', 'Syne', sans-serif;
+    }
+    .style-constructivism .demo-box {
+      background: #cc0000;
+      color: #ffffff;
+      transform: skew(-4deg);
+      border: 3px solid #000000;
+      box-shadow: 6px 6px 0px #000000;
+    }
+    .style-constructivism .demo-btn {
+      background: #000000;
+      color: #ffffff;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transform: skew(4deg);
+      border: 2px solid #cc0000;
+    }
+    .style-constructivism .demo-input {
+      background: #ffffff;
+      border: 3px solid #000000;
+      font-weight: 700;
+    }
+
+    /* 47. ARCHIVAL INDEX */
+    .style-archival {
+      background: #f8f6f0;
+      color: #262626;
+      font-family: 'Space Mono', monospace;
+      border: 1px dashed #737373;
+    }
+    .style-archival .demo-box {
+      background: #ffffff;
+      border: 1px solid #a3a3a3;
+      box-shadow: 2px 2px 0px #d4d4d4;
+    }
+    .style-archival .demo-btn {
+      background: #404040;
+      color: #ffffff;
+      border-radius: 0;
+      font-size: 0.8rem;
+    }
+    .style-archival .demo-input {
+      border: 1px solid #737373;
+      background: #fafaf9;
+    }
+
+    /* 48. MOTION NARRATIVE */
+    .style-motionnarrative {
+      background: #0f172a;
+      color: #e2e8f0;
+    }
+    .style-motionnarrative .demo-box {
+      background: linear-gradient(135deg, #1e293b, #334155);
+      border: 1px solid #64748b;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .style-motionnarrative .demo-btn {
+      background: #3b82f6;
+      color: #fff;
+      font-weight: 600;
+      box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+    }
+    .style-motionnarrative .demo-input {
+      background: #0f172a;
+      border: 1px solid #475569;
+      color: #fff;
+    }
+
+    /* 49. CARD PLAY */
+    .style-cardplay {
+      background: #f0fdf4;
+      color: #14532d;
+    }
+    .style-cardplay .demo-box {
+      background: #ffffff;
+      border-radius: 20px;
+      border: 2px solid #bbf7d0;
+      box-shadow: 0 10px 20px -5px rgba(34, 197, 94, 0.15);
+      transform: rotate(-1deg);
+      transition: transform 0.2s ease;
+    }
+    .style-cardplay .demo-box:hover { transform: rotate(0deg) translateY(-3px); }
+    .style-cardplay .demo-btn {
+      background: #22c55e;
+      color: #ffffff;
+      border-radius: 14px;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+    }
+    .style-cardplay .demo-input {
+      background: #f0fdf4;
+      border: 1.5px solid #86efac;
+      border-radius: 12px;
+    }
+  </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Inter, system-ui, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:Space Mono, monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.bottom-6{bottom:1.5rem}.left-3{left:0.75rem}.right-6{right:1.5rem}.top-0{top:0px}.top-2\.5{top:0.625rem}.z-10{z-index:10}.z-40{z-index:40}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.my-2{margin-top:0.5rem;margin-bottom:0.5rem}.my-6{margin-top:1.5rem;margin-bottom:1.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mr-1{margin-right:0.25rem}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mb-1\.5{margin-bottom:0.375rem}.mb-1{margin-bottom:0.25rem}.mt-0\.5{margin-top:0.125rem}.line-clamp-1{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:1}.line-clamp-2{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-10{height:2.5rem}.h-16{height:4rem}.h-2{height:0.5rem}.h-4{height:1rem}.h-5{height:1.25rem}.h-full{height:100%}.h-44{height:11rem}.h-40{height:10rem}.h-8{height:2rem}.h-9{height:2.25rem}.max-h-\[92vh\]{max-height:92vh}.min-h-screen{min-height:100vh}.min-h-\[560px\]{min-height:560px}.w-10{width:2.5rem}.w-11\/12{width:91.666667%}.w-16{width:4rem}.w-2{width:0.5rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-full{width:100%}.w-48{width:12rem}.w-8{width:2rem}.w-9{width:2.25rem}.max-w-2xl{max-width:42rem}.max-w-6xl{max-width:72rem}.max-w-7xl{max-width:80rem}.flex-1{flex:1 1 0%}.translate-y-20{--tw-translate-y:5rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-y-0{--tw-translate-y:0px;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes pulse{50%{opacity:.5}}.animate-pulse{animation:pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite}.cursor-pointer{cursor:pointer}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-end{align-items:flex-end}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.divide-y > :not([hidden]) ~ :not([hidden]){--tw-divide-y-reverse:0;border-top-width:calc(1px * calc(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px * var(--tw-divide-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.overflow-y-auto{overflow-y:auto}.scroll-smooth{scroll-behavior:smooth}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.whitespace-nowrap{white-space:nowrap}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-md{border-radius:0.375rem}.rounded-xl{border-radius:0.75rem}.rounded{border-radius:0.25rem}.rounded-t{border-top-left-radius:0.25rem;border-top-right-radius:0.25rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-indigo-200{--tw-border-opacity:1;border-color:rgb(199 210 254 / var(--tw-border-opacity, 1))}.border-sky-300{--tw-border-opacity:1;border-color:rgb(125 211 252 / var(--tw-border-opacity, 1))}.border-sky-500\/30{border-color:rgb(14 165 233 / 0.3)}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240 / var(--tw-border-opacity, 1))}.border-slate-300{--tw-border-opacity:1;border-color:rgb(203 213 225 / var(--tw-border-opacity, 1))}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85 / var(--tw-border-opacity, 1))}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59 / var(--tw-border-opacity, 1))}.border-slate-800\/80{border-color:rgb(30 41 59 / 0.8)}.border-slate-100{--tw-border-opacity:1;border-color:rgb(241 245 249 / var(--tw-border-opacity, 1))}.border-white\/20{border-color:rgb(255 255 255 / 0.2)}.border-current{border-color:currentColor}.border-white\/10{border-color:rgb(255 255 255 / 0.1)}.bg-emerald-500{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.bg-indigo-50{--tw-bg-opacity:1;background-color:rgb(238 242 255 / var(--tw-bg-opacity, 1))}.bg-sky-100{--tw-bg-opacity:1;background-color:rgb(224 242 254 / var(--tw-bg-opacity, 1))}.bg-sky-500{--tw-bg-opacity:1;background-color:rgb(14 165 233 / var(--tw-bg-opacity, 1))}.bg-sky-500\/20{background-color:rgb(14 165 233 / 0.2)}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252 / var(--tw-bg-opacity, 1))}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.bg-slate-900\/60{background-color:rgb(15 23 42 / 0.6)}.bg-slate-950{--tw-bg-opacity:1;background-color:rgb(2 6 23 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/80{background-color:rgb(255 255 255 / 0.8)}.bg-black\/20{background-color:rgb(0 0 0 / 0.2)}.bg-slate-200\/80{background-color:rgb(226 232 240 / 0.8)}.bg-black\/40{background-color:rgb(0 0 0 / 0.4)}.bg-gradient-to-tr{background-image:linear-gradient(to top right, var(--tw-gradient-stops))}.from-sky-500{--tw-gradient-from:#0ea5e9 var(--tw-gradient-from-position);--tw-gradient-to:rgb(14 165 233 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-indigo-500{--tw-gradient-to:rgb(99 102 241 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #6366f1 var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-pink-500{--tw-gradient-to:#ec4899 var(--tw-gradient-to-position)}.p-0{padding:0px}.p-2{padding:0.5rem}.p-2\.5{padding:0.625rem}.p-4{padding:1rem}.p-3{padding:0.75rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-3\.5{padding-left:0.875rem;padding-right:0.875rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.py-8{padding-top:2rem;padding-bottom:2rem}.pb-3{padding-bottom:0.75rem}.pb-4{padding-bottom:1rem}.pl-9{padding-left:2.25rem}.pr-4{padding-right:1rem}.pt-1{padding-top:0.25rem}.pt-8{padding-top:2rem}.pt-3{padding-top:0.75rem}.pb-6{padding-bottom:1.5rem}.pl-4{padding-left:1rem}.pt-4{padding-top:1rem}.pt-6{padding-top:1.5rem}.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.font-mono{font-family:Space Mono, monospace}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.font-black{font-weight:900}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-relaxed{line-height:1.625}.tracking-tight{letter-spacing:-0.025em}.tracking-wider{letter-spacing:0.05em}.tracking-wide{letter-spacing:0.025em}.text-amber-400{--tw-text-opacity:1;color:rgb(251 191 36 / var(--tw-text-opacity, 1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.text-indigo-700{--tw-text-opacity:1;color:rgb(67 56 202 / var(--tw-text-opacity, 1))}.text-sky-300{--tw-text-opacity:1;color:rgb(125 211 252 / var(--tw-text-opacity, 1))}.text-sky-700{--tw-text-opacity:1;color:rgb(3 105 161 / var(--tw-text-opacity, 1))}.text-slate-100{--tw-text-opacity:1;color:rgb(241 245 249 / var(--tw-text-opacity, 1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85 / var(--tw-text-opacity, 1))}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59 / var(--tw-text-opacity, 1))}.text-slate-900{--tw-text-opacity:1;color:rgb(15 23 42 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-emerald-300{--tw-text-opacity:1;color:rgb(110 231 183 / var(--tw-text-opacity, 1))}.underline{-webkit-text-decoration-line:underline;text-decoration-line:underline}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.opacity-0{opacity:0}.opacity-75{opacity:0.75}.opacity-80{opacity:0.8}.opacity-90{opacity:0.9}.opacity-70{opacity:0.7}.opacity-100{opacity:1}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-emerald-500\/20{--tw-shadow-color:rgb(16 185 129 / 0.2);--tw-shadow:var(--tw-shadow-colored)}.shadow-sky-500\/25{--tw-shadow-color:rgb(14 165 233 / 0.25);--tw-shadow:var(--tw-shadow-colored)}.outline-none{outline:2px solid transparent;outline-offset:2px}.ring-2{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.ring-sky-400\/40{--tw-ring-color:rgb(56 189 248 / 0.4)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-200{transition-duration:200ms}.duration-300{transition-duration:300ms}.duration-150{transition-duration:150ms}.hover\:-translate-y-1:hover{--tw-translate-y:-0.25rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:bg-emerald-600:hover{--tw-bg-opacity:1;background-color:rgb(5 150 105 / var(--tw-bg-opacity, 1))}.hover\:bg-sky-600:hover{--tw-bg-opacity:1;background-color:rgb(2 132 199 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-100:hover{--tw-bg-opacity:1;background-color:rgb(241 245 249 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-700:hover{--tw-bg-opacity:1;background-color:rgb(51 65 85 / var(--tw-bg-opacity, 1))}.hover\:bg-sky-500:hover{--tw-bg-opacity:1;background-color:rgb(14 165 233 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-300:hover{--tw-bg-opacity:1;background-color:rgb(203 213 225 / var(--tw-bg-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:opacity-100:hover{opacity:1}.hover\:shadow-xl:hover{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-2:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.focus\:ring-sky-500:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(14 165 233 / var(--tw-ring-opacity, 1))}.active\:scale-95:active{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:scale-\[1\.01\]{--tw-scale-x:1.01;--tw-scale-y:1.01;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:text-sky-500{--tw-text-opacity:1;color:rgb(14 165 233 / var(--tw-text-opacity, 1))}.group:hover .group-hover\:text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.dark\:block:is(.dark *){display:block}.dark\:hidden:is(.dark *){display:none}.dark\:border-indigo-800:is(.dark *){--tw-border-opacity:1;border-color:rgb(55 48 163 / var(--tw-border-opacity, 1))}.dark\:border-sky-800:is(.dark *){--tw-border-opacity:1;border-color:rgb(7 89 133 / var(--tw-border-opacity, 1))}.dark\:border-slate-700:is(.dark *){--tw-border-opacity:1;border-color:rgb(51 65 85 / var(--tw-border-opacity, 1))}.dark\:border-slate-800:is(.dark *){--tw-border-opacity:1;border-color:rgb(30 41 59 / var(--tw-border-opacity, 1))}.dark\:bg-indigo-950\/70:is(.dark *){background-color:rgb(30 27 75 / 0.7)}.dark\:bg-sky-950:is(.dark *){--tw-bg-opacity:1;background-color:rgb(8 47 73 / var(--tw-bg-opacity, 1))}.dark\:bg-slate-800:is(.dark *){--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.dark\:bg-slate-800\/80:is(.dark *){background-color:rgb(30 41 59 / 0.8)}.dark\:bg-slate-900\/60:is(.dark *){background-color:rgb(15 23 42 / 0.6)}.dark\:bg-slate-900\/80:is(.dark *){background-color:rgb(15 23 42 / 0.8)}.dark\:bg-slate-950:is(.dark *){--tw-bg-opacity:1;background-color:rgb(2 6 23 / var(--tw-bg-opacity, 1))}.dark\:bg-slate-900:is(.dark *){--tw-bg-opacity:1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.dark\:text-indigo-300:is(.dark *){--tw-text-opacity:1;color:rgb(165 180 252 / var(--tw-text-opacity, 1))}.dark\:text-sky-300:is(.dark *){--tw-text-opacity:1;color:rgb(125 211 252 / var(--tw-text-opacity, 1))}.dark\:text-slate-100:is(.dark *){--tw-text-opacity:1;color:rgb(241 245 249 / var(--tw-text-opacity, 1))}.dark\:text-slate-200:is(.dark *){--tw-text-opacity:1;color:rgb(226 232 240 / var(--tw-text-opacity, 1))}.dark\:text-slate-300:is(.dark *){--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.dark\:text-slate-400:is(.dark *){--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.dark\:text-slate-500:is(.dark *){--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.dark\:text-white:is(.dark *){--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.dark\:hover\:bg-slate-700:hover:is(.dark *){--tw-bg-opacity:1;background-color:rgb(51 65 85 / var(--tw-bg-opacity, 1))}.dark\:hover\:bg-sky-500:hover:is(.dark *){--tw-bg-opacity:1;background-color:rgb(14 165 233 / var(--tw-bg-opacity, 1))}.dark\:hover\:text-white:hover:is(.dark *){--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.group:hover .dark\:group-hover\:text-slate-300:is(.dark *){--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}@media (min-width: 640px){.sm\:block{display:block}.sm\:inline{display:inline}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:flex-row{flex-direction:row}.sm\:gap-4{gap:1rem}.sm\:p-6{padding:1.5rem}.sm\:p-8{padding:2rem}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}.sm\:text-base{font-size:1rem;line-height:1.5rem}.sm\:text-3xl{font-size:1.875rem;line-height:2.25rem}}@media (min-width: 768px){.md\:w-72{width:18rem}.md\:w-auto{width:auto}.md\:flex-row{flex-direction:row}}@media (min-width: 1024px){.lg\:col-span-2{grid-column:span 2 / span 2}.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.lg\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.lg\:px-8{padding-left:2rem;padding-right:2rem}.lg\:text-5xl{font-size:3rem;line-height:1}}@media (min-width: 1280px){.xl\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}}</style></head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col antialiased transition-colors duration-200">
+
+  <!-- ==========================================
+       HEADER & NAVIGATION
+       ========================================== -->
+  <header class="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      
+      <!-- Brand Logo / Title -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 via-indigo-500 to-pink-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-sky-500/25">
+          DA
+        </div>
+        <div>
+          <h1 class="text-xl font-bold tracking-tight flex items-center gap-2">
+            Design Atlas
+            <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300 border border-sky-300 dark:border-sky-800">
+              50 UI Styles
+            </span>
+          </h1>
+          <p class="text-xs text-slate-500 dark:text-slate-400">
+            Interactive Style Gallery · Live Pure-CSS Demos · 1-Click AI Prompts
+          </p>
+        </div>
+      </div>
+
+      <!-- Search and Dark Mode -->
+      <div class="flex items-center w-full md:w-auto gap-3">
+        <!-- Search Bar -->
+        <div class="relative flex-1 md:w-72">
+          <input id="search-input" type="search" placeholder="Search styles, vibes, tags..." class="w-full pl-9 pr-4 py-2 text-sm rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-300 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 transition">
+          <svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </div>
+
+        <!-- Dark Mode Toggle -->
+        <button id="theme-toggle" title="Toggle Dark / Light Mode" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition shadow-sm">
+          <!-- Sun Icon -->
+          <svg id="theme-sun" class="w-5 h-5 hidden dark:block text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+          </svg>
+          <!-- Moon Icon -->
+          <svg id="theme-moon" class="w-5 h-5 block dark:hidden text-slate-700" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Filter Chips Bar -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-3 pt-1 flex items-center gap-2 overflow-x-auto no-scrollbar">
+      <span class="text-xs font-medium text-slate-400 dark:text-slate-500 uppercase tracking-wider mr-1 hidden sm:inline">Filter:</span>
+      <div id="filter-container" class="flex gap-2">
+        <button onclick="setFilter('All')" class="px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-150 bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700">
+          All
+        </button>
+      
+        <button onclick="setFilter('Minimal')" class="px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-150 bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700">
+          Minimal
+        </button>
+      
+        <button onclick="setFilter('Bold')" class="px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-150 bg-sky-500 text-white shadow-md shadow-sky-500/25 ring-2 ring-sky-400/40">
+          Bold
+        </button>
+      
+        <button onclick="setFilter('Retro')" class="px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-150 bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700">
+          Retro
+        </button>
+      
+        <button onclick="setFilter('Futuristic')" class="px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-150 bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700">
+          Futuristic
+        </button>
+      
+        <button onclick="setFilter('Organic')" class="px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-150 bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700">
+          Organic
+        </button>
+      
+        <button onclick="setFilter('Editorial')" class="px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-150 bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700">
+          Editorial
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       HERO BANNER
+       ========================================== -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4 text-center">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 mb-3">
+      <span>✨ UI Architecture Dictionary for AI Generation</span>
+    </div>
+    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+      Browse Design Languages &amp; Copy AI Prompts
+    </h2>
+    <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+      Kissi bhi card par click karke uska <strong class="text-slate-900 dark:text-slate-200">Full-Screen Live Dashboard Preview</strong> dekhiye, aur niche se <strong class="text-slate-900 dark:text-slate-200">Ready-to-use AI Prompt</strong> copy karke Claude, ChatGPT, v0 ya Antigravity ko dekar apna project build kijiye!
+    </p>
+
+    <!-- Stats summary bar -->
+    <div class="mt-6 flex flex-wrap justify-center items-center gap-6 text-xs text-slate-500 dark:text-slate-400">
+      <div class="flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span id="styles-count-text">12 of 49 Styles Shown</span>
+      </div>
+      <div>•</div>
+      <div>100% Pure CSS (No Images)</div>
+      <div>•</div>
+      <div>Instant Dashboard Previews</div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       CARDS GRID
+       ========================================== -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+    <div id="card-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <article onclick="openDashboardModal('maximalism')" class="group cursor-pointer rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-200 flex flex-col overflow-hidden">
+          <!-- MINI LIVE DEMO CONTAINER (REAL CSS, NO IMAGES) -->
+          <div class="h-44 p-4 relative overflow-hidden flex flex-col justify-between style-maximalism transition-transform group-hover:scale-[1.01]">
+            <div class="flex items-center justify-between text-xs font-semibold opacity-90">
+              <span class="tracking-wide uppercase">Maximalism</span>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-black/20 text-white backdrop-blur-sm border border-white/20">LIVE CSS</span>
+            </div>
+
+            <!-- Styled Mini Component Showcase -->
+            <div class="demo-box p-3 rounded-xl transition-all flex flex-col gap-2 shadow-sm">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-xs font-bold truncate">Component Preview</span>
+                <span class="text-[10px] opacity-75 font-mono">$1,420</span>
+              </div>
+              <div class="flex gap-2 items-center">
+                <input type="text" value="Search..." readonly="readonly" tabindex="-1" class="demo-input w-full px-2 py-1 text-xs outline-none rounded pointer-events-none">
+                <button type="button" tabindex="-1" class="demo-btn px-2.5 py-1 text-xs whitespace-nowrap rounded pointer-events-none">
+                  Action
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px] opacity-80 pt-1">
+              <span>● Interactive Preview</span>
+              <span class="font-bold underline">Click to expand ↗</span>
+            </div>
+          </div>
+
+          <!-- CARD FOOTER INFO & ACTIONS -->
+          <div class="p-4 flex-1 flex flex-col justify-between bg-white dark:bg-slate-900">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-1.5">
+                <h3 class="font-bold text-base text-slate-900 dark:text-slate-100 group-hover:text-sky-500 transition-colors">
+                  Maximalism
+                </h3>
+                <span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                  Bold
+                </span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                <strong class="text-slate-700 dark:text-slate-300">Vibe:</strong> Collage, bright colors, zyada elements, bold patterns
+              </p>
+              <p class="text-[11px] text-slate-500 dark:text-slate-500 mt-1 line-clamp-1">
+                <strong>Best fit:</strong> Fashion, music, events, entertainment
+              </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
+              <span class="text-[11px] font-medium text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition">
+                Tap card to test
+              </span>
+              <button type="button" onclick="copyPrompt('Design a [project] in Maximalism style: layered collage, vibrant loud colors, overlapping elements, bold expressive typography, dense visual rhythm, expressive textures, high visual excitement.', 'Maximalism', event)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white dark:hover:bg-sky-500 dark:hover:text-white text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition flex items-center gap-1.5 active:scale-95 shadow-sm" title="Copy ready-to-use AI Prompt">
+                <span>📋</span> Copy Prompt
+              </button>
+            </div>
+          </div>
+        </article>
+      
+        <article onclick="openDashboardModal('brutalism')" class="group cursor-pointer rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-200 flex flex-col overflow-hidden">
+          <!-- MINI LIVE DEMO CONTAINER (REAL CSS, NO IMAGES) -->
+          <div class="h-44 p-4 relative overflow-hidden flex flex-col justify-between style-brutalism transition-transform group-hover:scale-[1.01]">
+            <div class="flex items-center justify-between text-xs font-semibold opacity-90">
+              <span class="tracking-wide uppercase">Brutalism</span>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-black/20 text-white backdrop-blur-sm border border-white/20">LIVE CSS</span>
+            </div>
+
+            <!-- Styled Mini Component Showcase -->
+            <div class="demo-box p-3 rounded-xl transition-all flex flex-col gap-2 shadow-sm">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-xs font-bold truncate">Component Preview</span>
+                <span class="text-[10px] opacity-75 font-mono">$1,420</span>
+              </div>
+              <div class="flex gap-2 items-center">
+                <input type="text" value="Search..." readonly="readonly" tabindex="-1" class="demo-input w-full px-2 py-1 text-xs outline-none rounded pointer-events-none">
+                <button type="button" tabindex="-1" class="demo-btn px-2.5 py-1 text-xs whitespace-nowrap rounded pointer-events-none">
+                  Action
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px] opacity-80 pt-1">
+              <span>● Interactive Preview</span>
+              <span class="font-bold underline">Click to expand ↗</span>
+            </div>
+          </div>
+
+          <!-- CARD FOOTER INFO & ACTIONS -->
+          <div class="p-4 flex-1 flex flex-col justify-between bg-white dark:bg-slate-900">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-1.5">
+                <h3 class="font-bold text-base text-slate-900 dark:text-slate-100 group-hover:text-sky-500 transition-colors">
+                  Brutalism
+                </h3>
+                <span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                  Bold
+                </span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                <strong class="text-slate-700 dark:text-slate-300">Vibe:</strong> Raw, naked HTML look, bold borders, no polish
+              </p>
+              <p class="text-[11px] text-slate-500 dark:text-slate-500 mt-1 line-clamp-1">
+                <strong>Best fit:</strong> Art, experimental, dev tools, underground culture
+              </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
+              <span class="text-[11px] font-medium text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition">
+                Tap card to test
+              </span>
+              <button type="button" onclick="copyPrompt('Design a [project] in Brutalism style: raw HTML aesthetic, system monospace fonts, thick black solid borders, zero shadows, exposed layout structure, unapologetic utilitarian feel.', 'Brutalism', event)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white dark:hover:bg-sky-500 dark:hover:text-white text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition flex items-center gap-1.5 active:scale-95 shadow-sm" title="Copy ready-to-use AI Prompt">
+                <span>📋</span> Copy Prompt
+              </button>
+            </div>
+          </div>
+        </article>
+      
+        <article onclick="openDashboardModal('neobrutalism')" class="group cursor-pointer rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-200 flex flex-col overflow-hidden">
+          <!-- MINI LIVE DEMO CONTAINER (REAL CSS, NO IMAGES) -->
+          <div class="h-44 p-4 relative overflow-hidden flex flex-col justify-between style-neobrutalism transition-transform group-hover:scale-[1.01]">
+            <div class="flex items-center justify-between text-xs font-semibold opacity-90">
+              <span class="tracking-wide uppercase">Neo-Brutalism</span>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-black/20 text-white backdrop-blur-sm border border-white/20">LIVE CSS</span>
+            </div>
+
+            <!-- Styled Mini Component Showcase -->
+            <div class="demo-box p-3 rounded-xl transition-all flex flex-col gap-2 shadow-sm">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-xs font-bold truncate">Component Preview</span>
+                <span class="text-[10px] opacity-75 font-mono">$1,420</span>
+              </div>
+              <div class="flex gap-2 items-center">
+                <input type="text" value="Search..." readonly="readonly" tabindex="-1" class="demo-input w-full px-2 py-1 text-xs outline-none rounded pointer-events-none">
+                <button type="button" tabindex="-1" class="demo-btn px-2.5 py-1 text-xs whitespace-nowrap rounded pointer-events-none">
+                  Action
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px] opacity-80 pt-1">
+              <span>● Interactive Preview</span>
+              <span class="font-bold underline">Click to expand ↗</span>
+            </div>
+          </div>
+
+          <!-- CARD FOOTER INFO & ACTIONS -->
+          <div class="p-4 flex-1 flex flex-col justify-between bg-white dark:bg-slate-900">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-1.5">
+                <h3 class="font-bold text-base text-slate-900 dark:text-slate-100 group-hover:text-sky-500 transition-colors">
+                  Neo-Brutalism
+                </h3>
+                <span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                  Bold
+                </span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                <strong class="text-slate-700 dark:text-slate-300">Vibe:</strong> Bold borders, hard offset shadows, stark vivid colors
+              </p>
+              <p class="text-[11px] text-slate-500 dark:text-slate-500 mt-1 line-clamp-1">
+                <strong>Best fit:</strong> Dev tools, indie products, modern fintech, newsletters
+              </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
+              <span class="text-[11px] font-medium text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition">
+                Tap card to test
+              </span>
+              <button type="button" onclick="copyPrompt('Design a [project] in Neo-Brutalism style: thick 3-4px solid black borders, zero-blur hard offset shadows (4px 4px), high-contrast playful colors, pressed active hover states, rounded chunky cards.', 'Neo-Brutalism', event)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white dark:hover:bg-sky-500 dark:hover:text-white text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition flex items-center gap-1.5 active:scale-95 shadow-sm" title="Copy ready-to-use AI Prompt">
+                <span>📋</span> Copy Prompt
+              </button>
+            </div>
+          </div>
+        </article>
+      
+        <article onclick="openDashboardModal('claymorphism')" class="group cursor-pointer rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-200 flex flex-col overflow-hidden">
+          <!-- MINI LIVE DEMO CONTAINER (REAL CSS, NO IMAGES) -->
+          <div class="h-44 p-4 relative overflow-hidden flex flex-col justify-between style-claymorphism transition-transform group-hover:scale-[1.01]">
+            <div class="flex items-center justify-between text-xs font-semibold opacity-90">
+              <span class="tracking-wide uppercase">Claymorphism</span>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-black/20 text-white backdrop-blur-sm border border-white/20">LIVE CSS</span>
+            </div>
+
+            <!-- Styled Mini Component Showcase -->
+            <div class="demo-box p-3 rounded-xl transition-all flex flex-col gap-2 shadow-sm">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-xs font-bold truncate">Component Preview</span>
+                <span class="text-[10px] opacity-75 font-mono">$1,420</span>
+              </div>
+              <div class="flex gap-2 items-center">
+                <input type="text" value="Search..." readonly="readonly" tabindex="-1" class="demo-input w-full px-2 py-1 text-xs outline-none rounded pointer-events-none">
+                <button type="button" tabindex="-1" class="demo-btn px-2.5 py-1 text-xs whitespace-nowrap rounded pointer-events-none">
+                  Action
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px] opacity-80 pt-1">
+              <span>● Interactive Preview</span>
+              <span class="font-bold underline">Click to expand ↗</span>
+            </div>
+          </div>
+
+          <!-- CARD FOOTER INFO & ACTIONS -->
+          <div class="p-4 flex-1 flex flex-col justify-between bg-white dark:bg-slate-900">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-1.5">
+                <h3 class="font-bold text-base text-slate-900 dark:text-slate-100 group-hover:text-sky-500 transition-colors">
+                  Claymorphism
+                </h3>
+                <span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                  Bold
+                </span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                <strong class="text-slate-700 dark:text-slate-300">Vibe:</strong> Soft, 3D floating clay elements, inner &amp; outer shadows
+              </p>
+              <p class="text-[11px] text-slate-500 dark:text-slate-500 mt-1 line-clamp-1">
+                <strong>Best fit:</strong> Kids apps, gaming, fintech, friendly dashboards
+              </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
+              <span class="text-[11px] font-medium text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition">
+                Tap card to test
+              </span>
+              <button type="button" onclick="copyPrompt('Design a [project] in Claymorphism style: soft tactile 3D rounded shapes, double inner shadows for inflated clay volume, soft outer drop shadow, friendly pastel palette, playful pill buttons.', 'Claymorphism', event)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white dark:hover:bg-sky-500 dark:hover:text-white text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition flex items-center gap-1.5 active:scale-95 shadow-sm" title="Copy ready-to-use AI Prompt">
+                <span>📋</span> Copy Prompt
+              </button>
+            </div>
+          </div>
+        </article>
+      
+        <article onclick="openDashboardModal('bauhaus')" class="group cursor-pointer rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-200 flex flex-col overflow-hidden">
+          <!-- MINI LIVE DEMO CONTAINER (REAL CSS, NO IMAGES) -->
+          <div class="h-44 p-4 relative overflow-hidden flex flex-col justify-between style-bauhaus transition-transform group-hover:scale-[1.01]">
+            <div class="flex items-center justify-between text-xs font-semibold opacity-90">
+              <span class="tracking-wide uppercase">Bauhaus</span>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-black/20 text-white backdrop-blur-sm border border-white/20">LIVE CSS</span>
+            </div>
+
+            <!-- Styled Mini Component Showcase -->
+            <div class="demo-box p-3 rounded-xl transition-all flex flex-col gap-2 shadow-sm">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-xs font-bold truncate">Component Preview</span>
+                <span class="text-[10px] opacity-75 font-mono">$1,420</span>
+              </div>
+              <div class="flex gap-2 items-center">
+                <input type="text" value="Search..." readonly="readonly" tabindex="-1" class="demo-input w-full px-2 py-1 text-xs outline-none rounded pointer-events-none">
+                <button type="button" tabindex="-1" class="demo-btn px-2.5 py-1 text-xs whitespace-nowrap rounded pointer-events-none">
+                  Action
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px] opacity-80 pt-1">
+              <span>● Interactive Preview</span>
+              <span class="font-bold underline">Click to expand ↗</span>
+            </div>
+          </div>
+
+          <!-- CARD FOOTER INFO & ACTIONS -->
+          <div class="p-4 flex-1 flex flex-col justify-between bg-white dark:bg-slate-900">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-1.5">
+                <h3 class="font-bold text-base text-slate-900 dark:text-slate-100 group-hover:text-sky-500 transition-colors">
+                  Bauhaus
+                </h3>
+                <span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                  Bold
+                </span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                <strong class="text-slate-700 dark:text-slate-300">Vibe:</strong> Geometric shapes, primary colors, form follows function
+              </p>
+              <p class="text-[11px] text-slate-500 dark:text-slate-500 mt-1 line-clamp-1">
+                <strong>Best fit:</strong> Art, architecture, creative studios, cultural products
+              </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
+              <span class="text-[11px] font-medium text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition">
+                Tap card to test
+              </span>
+              <button type="button" onclick="copyPrompt('Design a [project] in Bauhaus style: fundamental geometric primitives (circle, square, triangle), primary color scheme (red, blue, yellow, black), functional grid layout, geometric typography.', 'Bauhaus', event)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white dark:hover:bg-sky-500 dark:hover:text-white text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition flex items-center gap-1.5 active:scale-95 shadow-sm" title="Copy ready-to-use AI Prompt">
+                <span>📋</span> Copy Prompt
+              </button>
+            </div>
+          </div>
+        </article>
+      
+        <article onclick="openDashboardModal('memphis')" class="group cursor-pointer rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-200 flex flex-col overflow-hidden">
+          <!-- MINI LIVE DEMO CONTAINER (REAL CSS, NO IMAGES) -->
+          <div class="h-44 p-4 relative overflow-hidden flex flex-col justify-between style-memphis transition-transform group-hover:scale-[1.01]">
+            <div class="flex items-center justify-between text-xs font-semibold opacity-90">
+              <span class="tracking-wide uppercase">Memphis Design</span>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-black/20 text-white backdrop-blur-sm border border-white/20">LIVE CSS</span>
+            </div>
+
+            <!-- Styled Mini Component Showcase -->
+            <div class="demo-box p-3 rounded-xl transition-all flex flex-col gap-2 shadow-sm">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-xs font-bold truncate">Component Preview</span>
+                <span class="text-[10px] opacity-75 font-mono">$1,420</span>
+              </div>
+              <div class="flex gap-2 items-center">
+                <input type="text" value="Search..." readonly="readonly" tabindex="-1" class="demo-input w-full px-2 py-1 text-xs outline-none rounded pointer-events-none">
+                <button type="button" tabindex="-1" class="demo-btn px-2.5 py-1 text-xs whitespace-nowrap rounded pointer-events-none">
+                  Action
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px] opacity-80 pt-1">
+              <span>● Interactive Preview</span>
+              <span class="font-bold underline">Click to expand ↗</span>
+            </div>
+          </div>
+
+          <!-- CARD FOOTER INFO & ACTIONS -->
+          <div class="p-4 flex-1 flex flex-col justify-between bg-white dark:bg-slate-900">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-1.5">
+                <h3 class="font-bold text-base text-slate-900 dark:text-slate-100 group-hover:text-sky-500 transition-colors">
+                  Memphis Design
+                </h3>
+                <span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                  Bold
+                </span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                <strong class="text-slate-700 dark:text-slate-300">Vibe:</strong> Bold geometric patterns, squiggles, confetti dots, playful chaos
+              </p>
+              <p class="text-[11px] text-slate-500 dark:text-slate-500 mt-1 line-clamp-1">
+                <strong>Best fit:</strong> Youth brands, creative agencies, party apps, festivals
+              </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
+              <span class="text-[11px] font-medium text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition">
+                Tap card to test
+              </span>
+              <button type="button" onclick="copyPrompt('Design a [project] in 1980s Memphis Design style: playful squiggles, polka dots, zigzag borders, bright contrasting primary/secondary colors, tilted off-kilter cards, upbeat energetic vibes.', 'Memphis Design', event)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white dark:hover:bg-sky-500 dark:hover:text-white text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition flex items-center gap-1.5 active:scale-95 shadow-sm" title="Copy ready-to-use AI Prompt">
+                <span>📋</span> Copy Prompt
+              </button>
+            </div>
+          </div>
+        </article>
+      
+        <article onclick="openDashboardModal('antigrid')" class="group cursor-pointer rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-200 flex flex-col overflow-hidden">
+          <!-- MINI LIVE DEMO CONTAINER (REAL CSS, NO IMAGES) -->
+          <div class="h-44 p-4 relative overflow-hidden flex flex-col justify-between style-antigrid transition-transform group-hover:scale-[1.01]">
+            <div class="flex items-center justify-between text-xs font-semibold opacity-90">
+              <span class="tracking-wide uppercase">Anti-Grid / Anti-Design</span>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-black/20 text-white backdrop-blur-sm border border-white/20">LIVE CSS</span>
+            </div>
+
+            <!-- Styled Mini Component Showcase -->
+            <div class="demo-box p-3 rounded-xl transition-all flex flex-col gap-2 shadow-sm">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-xs font-bold truncate">Component Preview</span>
+                <span class="text-[10px] opacity-75 font-mono">$1,420</span>
+              </div>
+              <div class="flex gap-2 items-center">
+                <input type="text" value="Search..." readonly="readonly" tabindex="-1" class="demo-input w-full px-2 py-1 text-xs outline-none rounded pointer-events-none">
+                <button type="button" tabindex="-1" class="demo-btn px-2.5 py-1 text-xs whitespace-nowrap rounded pointer-events-none">
+                  Action
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px] opacity-80 pt-1">
+              <span>● Interactive Preview</span>
+              <span class="font-bold underline">Click to expand ↗</span>
+            </div>
+          </div>
+
+          <!-- CARD FOOTER INFO & ACTIONS -->
+          <div class="p-4 flex-1 flex flex-col justify-between bg-white dark:bg-slate-900">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-1.5">
+                <h3 class="font-bold text-base text-slate-900 dark:text-slate-100 group-hover:text-sky-500 transition-colors">
+                  Anti-Grid / Anti-Design
+                </h3>
+                <span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                  Bold
+                </span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                <strong class="text-slate-700 dark:text-slate-300">Vibe:</strong> Deliberate chaos, broken layouts, punk energy, overlapping rules
+              </p>
+              <p class="text-[11px] text-slate-500 dark:text-slate-500 mt-1 line-clamp-1">
+                <strong>Best fit:</strong> Art exhibits, punk music, experimental portfolios, zines
+              </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
+              <span class="text-[11px] font-medium text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition">
+                Tap card to test
+              </span>
+              <button type="button" onclick="copyPrompt('Design a [project] in Anti-Grid / Anti-Design style: deliberately broken layouts, overlapping misaligned elements, distorted typography, chaotic visual hierarchy, punk zine energy, rule-breaking composition.', 'Anti-Grid / Anti-Design', event)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white dark:hover:bg-sky-500 dark:hover:text-white text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition flex items-center gap-1.5 active:scale-95 shadow-sm" title="Copy ready-to-use AI Prompt">
+                <span>📋</span> Copy Prompt
+              </button>
+            </div>
+          </div>
+        </article>
+      
+        <article onclick="openDashboardModal('kinetictype')" class="group cursor-pointer rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-200 flex flex-col overflow-hidden">
+          <!-- MINI LIVE DEMO CONTAINER (REAL CSS, NO IMAGES) -->
+          <div class="h-44 p-4 relative overflow-hidden flex flex-col justify-between style-kinetictype transition-transform group-hover:scale-[1.01]">
+            <div class="flex items-center justify-between text-xs font-semibold opacity-90">
+              <span class="tracking-wide uppercase">Kinetic Typography</span>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-black/20 text-white backdrop-blur-sm border border-white/20">LIVE CSS</span>
+            </div>
+
+            <!-- Styled Mini Component Showcase -->
+            <div class="demo-box p-3 rounded-xl transition-all flex flex-col gap-2 shadow-sm">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-xs font-bold truncate">Component Preview</span>
+                <span class="text-[10px] opacity-75 font-mono">$1,420</span>
+              </div>
+              <div class="flex gap-2 items-center">
+                <input type="text" value="Search..." readonly="readonly" tabindex="-1" class="demo-input w-full px-2 py-1 text-xs outline-none rounded pointer-events-none">
+                <button type="button" tabindex="-1" class="demo-btn px-2.5 py-1 text-xs whitespace-nowrap rounded pointer-events-none">
+                  Action
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px] opacity-80 pt-1">
+              <span>● Interactive Preview</span>
+              <span class="font-bold underline">Click to expand ↗</span>
+            </div>
+          </div>
+
+          <!-- CARD FOOTER INFO & ACTIONS -->
+          <div class="p-4 flex-1 flex flex-col justify-between bg-white dark:bg-slate-900">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-1.5">
+                <h3 class="font-bold text-base text-slate-900 dark:text-slate-100 group-hover:text-sky-500 transition-colors">
+                  Kinetic Typography
+                </h3>
+                <span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                  Bold
+                </span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                <strong class="text-slate-700 dark:text-slate-300">Vibe:</strong> Moving type, dynamic oversized headlines, typographic rhythm
+              </p>
+              <p class="text-[11px] text-slate-500 dark:text-slate-500 mt-1 line-clamp-1">
+                <strong>Best fit:</strong> Creative agencies, music festivals, bold marketing campaigns
+              </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
+              <span class="text-[11px] font-medium text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition">
+                Tap card to test
+              </span>
+              <button type="button" onclick="copyPrompt('Design a [project] in Kinetic Typography style: dynamic oversized variable fonts, animated marquee tickers, bold typographic scale contrast, text-driven structural containers, high energetic impact.', 'Kinetic Typography', event)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white dark:hover:bg-sky-500 dark:hover:text-white text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition flex items-center gap-1.5 active:scale-95 shadow-sm" title="Copy ready-to-use AI Prompt">
+                <span>📋</span> Copy Prompt
+              </button>
+            </div>
+          </div>
+        </article>
+      
+        <article onclick="openDashboardModal('acidbrutalist')" class="group cursor-pointer rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-200 flex flex-col overflow-hidden">
+          <!-- MINI LIVE DEMO CONTAINER (REAL CSS, NO IMAGES) -->
+          <div class="h-44 p-4 relative overflow-hidden flex flex-col justify-between style-acidbrutalist transition-transform group-hover:scale-[1.01]">
+            <div class="flex items-center justify-between text-xs font-semibold opacity-90">
+              <span class="tracking-wide uppercase">Acid Brutalist</span>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-black/20 text-white backdrop-blur-sm border border-white/20">LIVE CSS</span>
+            </div>
+
+            <!-- Styled Mini Component Showcase -->
+            <div class="demo-box p-3 rounded-xl transition-all flex flex-col gap-2 shadow-sm">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-xs font-bold truncate">Component Preview</span>
+                <span class="text-[10px] opacity-75 font-mono">$1,420</span>
+              </div>
+              <div class="flex gap-2 items-center">
+                <input type="text" value="Search..." readonly="readonly" tabindex="-1" class="demo-input w-full px-2 py-1 text-xs outline-none rounded pointer-events-none">
+                <button type="button" tabindex="-1" class="demo-btn px-2.5 py-1 text-xs whitespace-nowrap rounded pointer-events-none">
+                  Action
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px] opacity-80 pt-1">
+              <span>● Interactive Preview</span>
+              <span class="font-bold underline">Click to expand ↗</span>
+            </div>
+          </div>
+
+          <!-- CARD FOOTER INFO & ACTIONS -->
+          <div class="p-4 flex-1 flex flex-col justify-between bg-white dark:bg-slate-900">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-1.5">
+                <h3 class="font-bold text-base text-slate-900 dark:text-slate-100 group-hover:text-sky-500 transition-colors">
+                  Acid Brutalist
+                </h3>
+                <span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                  Bold
+                </span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                <strong class="text-slate-700 dark:text-slate-300">Vibe:</strong> Neon acid green/pink on raw brutalist grid, rave energy
+              </p>
+              <p class="text-[11px] text-slate-500 dark:text-slate-500 mt-1 line-clamp-1">
+                <strong>Best fit:</strong> Techno clubs, music labels, underground fashion, NFT galleries
+              </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
+              <span class="text-[11px] font-medium text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition">
+                Tap card to test
+              </span>
+              <button type="button" onclick="copyPrompt('Design a [project] in Acid Brutalist style: intense radioactive neon green (#ccff00) and hot magenta on pitch black, heavy structural borders, harsh typography, hypnotic rave-poster aesthetic.', 'Acid Brutalist', event)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white dark:hover:bg-sky-500 dark:hover:text-white text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition flex items-center gap-1.5 active:scale-95 shadow-sm" title="Copy ready-to-use AI Prompt">
+                <span>📋</span> Copy Prompt
+              </button>
+            </div>
+          </div>
+        </article>
+      
+        <article onclick="openDashboardModal('monolith')" class="group cursor-pointer rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-200 flex flex-col overflow-hidden">
+          <!-- MINI LIVE DEMO CONTAINER (REAL CSS, NO IMAGES) -->
+          <div class="h-44 p-4 relative overflow-hidden flex flex-col justify-between style-monolith transition-transform group-hover:scale-[1.01]">
+            <div class="flex items-center justify-between text-xs font-semibold opacity-90">
+              <span class="tracking-wide uppercase">Monolith</span>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-black/20 text-white backdrop-blur-sm border border-white/20">LIVE CSS</span>
+            </div>
+
+            <!-- Styled Mini Component Showcase -->
+            <div class="demo-box p-3 rounded-xl transition-all flex flex-col gap-2 shadow-sm">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-xs font-bold truncate">Component Preview</span>
+                <span class="text-[10px] opacity-75 font-mono">$1,420</span>
+              </div>
+              <div class="flex gap-2 items-center">
+                <input type="text" value="Search..." readonly="readonly" tabindex="-1" class="demo-input w-full px-2 py-1 text-xs outline-none rounded pointer-events-none">
+                <button type="button" tabindex="-1" class="demo-btn px-2.5 py-1 text-xs whitespace-nowrap rounded pointer-events-none">
+                  Action
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px] opacity-80 pt-1">
+              <span>● Interactive Preview</span>
+              <span class="font-bold underline">Click to expand ↗</span>
+            </div>
+          </div>
+
+          <!-- CARD FOOTER INFO & ACTIONS -->
+          <div class="p-4 flex-1 flex flex-col justify-between bg-white dark:bg-slate-900">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-1.5">
+                <h3 class="font-bold text-base text-slate-900 dark:text-slate-100 group-hover:text-sky-500 transition-colors">
+                  Monolith
+                </h3>
+                <span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                  Bold
+                </span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                <strong class="text-slate-700 dark:text-slate-300">Vibe:</strong> Massive solid geometric blocks, monumental scale, brutal weight
+              </p>
+              <p class="text-[11px] text-slate-500 dark:text-slate-500 mt-1 line-clamp-1">
+                <strong>Best fit:</strong> Architectural firms, luxury real estate, industrial machinery
+              </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
+              <span class="text-[11px] font-medium text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition">
+                Tap card to test
+              </span>
+              <button type="button" onclick="copyPrompt('Design a [project] in Monolith style: heavy architectural concrete blocks, monumental proportions, dark basalt tones, extreme physical presence, heavy drop blocks, dramatic monolithic silhouette.', 'Monolith', event)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white dark:hover:bg-sky-500 dark:hover:text-white text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition flex items-center gap-1.5 active:scale-95 shadow-sm" title="Copy ready-to-use AI Prompt">
+                <span>📋</span> Copy Prompt
+              </button>
+            </div>
+          </div>
+        </article>
+      
+        <article onclick="openDashboardModal('destijl')" class="group cursor-pointer rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-200 flex flex-col overflow-hidden">
+          <!-- MINI LIVE DEMO CONTAINER (REAL CSS, NO IMAGES) -->
+          <div class="h-44 p-4 relative overflow-hidden flex flex-col justify-between style-destijl transition-transform group-hover:scale-[1.01]">
+            <div class="flex items-center justify-between text-xs font-semibold opacity-90">
+              <span class="tracking-wide uppercase">De Stijl</span>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-black/20 text-white backdrop-blur-sm border border-white/20">LIVE CSS</span>
+            </div>
+
+            <!-- Styled Mini Component Showcase -->
+            <div class="demo-box p-3 rounded-xl transition-all flex flex-col gap-2 shadow-sm">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-xs font-bold truncate">Component Preview</span>
+                <span class="text-[10px] opacity-75 font-mono">$1,420</span>
+              </div>
+              <div class="flex gap-2 items-center">
+                <input type="text" value="Search..." readonly="readonly" tabindex="-1" class="demo-input w-full px-2 py-1 text-xs outline-none rounded pointer-events-none">
+                <button type="button" tabindex="-1" class="demo-btn px-2.5 py-1 text-xs whitespace-nowrap rounded pointer-events-none">
+                  Action
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px] opacity-80 pt-1">
+              <span>● Interactive Preview</span>
+              <span class="font-bold underline">Click to expand ↗</span>
+            </div>
+          </div>
+
+          <!-- CARD FOOTER INFO & ACTIONS -->
+          <div class="p-4 flex-1 flex flex-col justify-between bg-white dark:bg-slate-900">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-1.5">
+                <h3 class="font-bold text-base text-slate-900 dark:text-slate-100 group-hover:text-sky-500 transition-colors">
+                  De Stijl
+                </h3>
+                <span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                  Bold
+                </span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                <strong class="text-slate-700 dark:text-slate-300">Vibe:</strong> Piet Mondrian grid, thick black lines, primary red/blue/yellow blocks
+              </p>
+              <p class="text-[11px] text-slate-500 dark:text-slate-500 mt-1 line-clamp-1">
+                <strong>Best fit:</strong> Modernist art, design schools, creative portfolios
+              </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
+              <span class="text-[11px] font-medium text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition">
+                Tap card to test
+              </span>
+              <button type="button" onclick="copyPrompt('Design a [project] in De Stijl (Mondrian) style: rigid grid of thick black horizontal and vertical lines, asymmetrical color blocks of pure primary red, blue, and yellow with white negative space.', 'De Stijl', event)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white dark:hover:bg-sky-500 dark:hover:text-white text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition flex items-center gap-1.5 active:scale-95 shadow-sm" title="Copy ready-to-use AI Prompt">
+                <span>📋</span> Copy Prompt
+              </button>
+            </div>
+          </div>
+        </article>
+      
+        <article onclick="openDashboardModal('constructivism')" class="group cursor-pointer rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-200 flex flex-col overflow-hidden">
+          <!-- MINI LIVE DEMO CONTAINER (REAL CSS, NO IMAGES) -->
+          <div class="h-44 p-4 relative overflow-hidden flex flex-col justify-between style-constructivism transition-transform group-hover:scale-[1.01]">
+            <div class="flex items-center justify-between text-xs font-semibold opacity-90">
+              <span class="tracking-wide uppercase">Constructivism</span>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-black/20 text-white backdrop-blur-sm border border-white/20">LIVE CSS</span>
+            </div>
+
+            <!-- Styled Mini Component Showcase -->
+            <div class="demo-box p-3 rounded-xl transition-all flex flex-col gap-2 shadow-sm">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-xs font-bold truncate">Component Preview</span>
+                <span class="text-[10px] opacity-75 font-mono">$1,420</span>
+              </div>
+              <div class="flex gap-2 items-center">
+                <input type="text" value="Search..." readonly="readonly" tabindex="-1" class="demo-input w-full px-2 py-1 text-xs outline-none rounded pointer-events-none">
+                <button type="button" tabindex="-1" class="demo-btn px-2.5 py-1 text-xs whitespace-nowrap rounded pointer-events-none">
+                  Action
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px] opacity-80 pt-1">
+              <span>● Interactive Preview</span>
+              <span class="font-bold underline">Click to expand ↗</span>
+            </div>
+          </div>
+
+          <!-- CARD FOOTER INFO & ACTIONS -->
+          <div class="p-4 flex-1 flex flex-col justify-between bg-white dark:bg-slate-900">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-1.5">
+                <h3 class="font-bold text-base text-slate-900 dark:text-slate-100 group-hover:text-sky-500 transition-colors">
+                  Constructivism
+                </h3>
+                <span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                  Bold
+                </span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                <strong class="text-slate-700 dark:text-slate-300">Vibe:</strong> Dynamic diagonal slashes, revolutionary red/black, bold propaganda
+              </p>
+              <p class="text-[11px] text-slate-500 dark:text-slate-500 mt-1 line-clamp-1">
+                <strong>Best fit:</strong> Activism, posters, bold streetwear, avant-garde publications
+              </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
+              <span class="text-[11px] font-medium text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition">
+                Tap card to test
+              </span>
+              <button type="button" onclick="copyPrompt('Design a [project] in Russian Constructivism style: dynamic 45-degree diagonal layout axes, stark high-contrast red, black, and cream palette, heavy slab typography, megaphone geometric shapes.', 'Constructivism', event)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white dark:hover:bg-sky-500 dark:hover:text-white text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition flex items-center gap-1.5 active:scale-95 shadow-sm" title="Copy ready-to-use AI Prompt">
+                <span>📋</span> Copy Prompt
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+    <!-- Empty State -->
+    <div id="empty-state" class="hidden text-center py-20">
+      <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 text-2xl">
+        🔍
+      </div>
+      <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200">No styles match your search</h3>
+      <p class="text-sm text-slate-500 mt-1">Try another keyword or click "All" to reset filters.</p>
+      <button onclick="resetFilters()" class="mt-4 px-4 py-2 bg-sky-500 text-white rounded-xl text-sm font-semibold hover:bg-sky-600 transition">
+        Reset Filters
+      </button>
+    </div>
+  </main>
+
+  <!-- ==========================================
+       FULL-SCREEN DASHBOARD PREVIEW MODAL
+       ========================================== -->
+  <dialog id="style-modal" class="p-0 rounded-2xl w-11/12 max-w-6xl max-h-[92vh] overflow-hidden shadow-2xl bg-slate-950 text-slate-100 border border-slate-700">
+    <div class="flex flex-col h-full max-h-[92vh]">
+      
+      <!-- Modal Header Bar -->
+      <div class="flex items-center justify-between px-6 py-4 bg-slate-900 border-b border-slate-800 z-10">
+        <div class="flex items-center gap-3">
+          <span id="modal-category-badge" class="text-xs uppercase font-bold tracking-wider px-2.5 py-1 rounded-md bg-sky-500/20 text-sky-300 border border-sky-500/30">Bold</span>
+          <h3 id="modal-title" class="text-xl font-bold tracking-tight text-white">Claymorphism — Full Interactive Dashboard</h3>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button id="modal-copy-prompt-btn" class="flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white shadow-md shadow-emerald-500/20 transition">
+            📋 Copy AI Prompt
+          </button>
+          <button id="modal-close-btn" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Meta Details -->
+      <div class="px-6 py-3 bg-slate-900/60 border-b border-slate-800/80 flex flex-wrap items-center justify-between gap-4 text-xs">
+        <div class="flex items-center gap-2">
+          <span class="text-slate-400">Pehchaan / Vibe:</span>
+          <span id="modal-vibe" class="font-medium text-slate-200">Soft, 3D floating clay elements, inner &amp; outer shadows</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-slate-400">Best Fit For:</span>
+          <span id="modal-bestfit" class="font-medium text-slate-200">Kids apps, gaming, fintech, friendly dashboards</span>
+        </div>
+      </div>
+
+      <!-- Modal Interactive Container (Dashboard Canvas) -->
+      <div id="modal-body" class="flex-1 overflow-y-auto p-4 sm:p-6 bg-slate-950">
+        <div class="rounded-2xl p-6 sm:p-8 style-claymorphism transition-all shadow-2xl border border-white/10 min-h-[560px] flex flex-col justify-between">
+          
+          <!-- Dashboard Top Navbar -->
+          <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-current/20">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-sm border border-current">
+                ◈
+              </div>
+              <div>
+                <h4 class="font-extrabold text-lg tracking-tight uppercase">Claymorphism OS</h4>
+                <p class="text-xs opacity-75">Production SaaS Dashboard Layout</p>
+              </div>
+            </div>
+
+            <!-- Top Nav Actions -->
+            <div class="flex items-center gap-3">
+              <div class="relative hidden sm:block">
+                <input type="text" placeholder="Filter metrics..." class="demo-input px-3 py-1.5 text-xs rounded-lg w-48 outline-none">
+              </div>
+              <button class="demo-btn px-4 py-2 text-xs font-bold rounded-lg flex items-center gap-1.5">
+                <span>+</span> New Project
+              </button>
+              <div class="w-8 h-8 rounded-full border border-current flex items-center justify-center text-xs font-bold">
+                JD
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Stat Cards Row (Bento style metrics) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-6">
+            <div class="demo-box p-4 rounded-xl flex flex-col justify-between">
+              <div class="flex items-center justify-between opacity-80 text-xs font-semibold">
+                <span>Monthly Revenue</span>
+                <span>📈 +18.4%</span>
+              </div>
+              <div class="my-2">
+                <span class="text-2xl sm:text-3xl font-black">$48,290</span>
+              </div>
+              <p class="text-[11px] opacity-70">Target: $50,000 / month</p>
+            </div>
+
+            <div class="demo-box p-4 rounded-xl flex flex-col justify-between">
+              <div class="flex items-center justify-between opacity-80 text-xs font-semibold">
+                <span>Active Users</span>
+                <span>🔥 Live</span>
+              </div>
+              <div class="my-2">
+                <span class="text-2xl sm:text-3xl font-black">12,480</span>
+              </div>
+              <p class="text-[11px] opacity-70">Across 84 countries</p>
+            </div>
+
+            <div class="demo-box p-4 rounded-xl flex flex-col justify-between">
+              <div class="flex items-center justify-between opacity-80 text-xs font-semibold">
+                <span>Conversion Rate</span>
+                <span>⚡ Top 5%</span>
+              </div>
+              <div class="my-2">
+                <span class="text-2xl sm:text-3xl font-black">4.82%</span>
+              </div>
+              <p class="text-[11px] opacity-70">+0.6% vs previous cycle</p>
+            </div>
+
+            <div class="demo-box p-4 rounded-xl flex flex-col justify-between">
+              <div class="flex items-center justify-between opacity-80 text-xs font-semibold">
+                <span>Server Health</span>
+                <span>99.98%</span>
+              </div>
+              <div class="my-2">
+                <span class="text-2xl sm:text-3xl font-black">Normal</span>
+              </div>
+              <p class="text-[11px] opacity-70">Latency: 28ms avg</p>
+            </div>
+          </div>
+
+          <!-- Center Content: CSS Chart + Live Data Table -->
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 my-2">
+            
+            <!-- Pure CSS Bar Chart Visualization -->
+            <div class="demo-box p-5 rounded-xl lg:col-span-2 flex flex-col justify-between">
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <h5 class="font-bold text-sm">Growth Performance</h5>
+                  <p class="text-xs opacity-75">Quarterly volume breakdown</p>
+                </div>
+                <div class="flex gap-2">
+                  <span class="text-xs px-2 py-0.5 rounded border border-current font-mono">Q1-Q4</span>
+                </div>
+              </div>
+
+              <!-- Bar Heights using pure CSS heights -->
+              <div class="h-40 flex items-end justify-between gap-2 sm:gap-4 pt-6 px-2 border-b border-current/20">
+                <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                  <div class="demo-btn w-full rounded-t" style="height: 42%;"></div>
+                  <span class="text-[10px] opacity-75">Jan</span>
+                </div>
+                <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                  <div class="demo-btn w-full rounded-t" style="height: 58%;"></div>
+                  <span class="text-[10px] opacity-75">Feb</span>
+                </div>
+                <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                  <div class="demo-btn w-full rounded-t" style="height: 75%;"></div>
+                  <span class="text-[10px] opacity-75">Mar</span>
+                </div>
+                <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                  <div class="demo-btn w-full rounded-t" style="height: 64%;"></div>
+                  <span class="text-[10px] opacity-75">Apr</span>
+                </div>
+                <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                  <div class="demo-btn w-full rounded-t" style="height: 88%;"></div>
+                  <span class="text-[10px] opacity-75">May</span>
+                </div>
+                <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                  <div class="demo-btn w-full rounded-t" style="height: 98%;"></div>
+                  <span class="text-[10px] opacity-75">Jun</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Action Form Card -->
+            <div class="demo-box p-5 rounded-xl flex flex-col justify-between">
+              <div>
+                <h5 class="font-bold text-sm mb-1">Quick Deployment</h5>
+                <p class="text-xs opacity-75 mb-4">Trigger deployment in Claymorphism environment.</p>
+
+                <div class="space-y-3">
+                  <div>
+                    <label class="block text-[11px] font-semibold mb-1 opacity-80">Target Branch</label>
+                    <input type="text" value="production-main" class="demo-input w-full px-3 py-1.5 text-xs rounded">
+                  </div>
+                  <div>
+                    <label class="block text-[11px] font-semibold mb-1 opacity-80">Region Cluster</label>
+                    <input type="text" value="asia-south1 (Mumbai)" class="demo-input w-full px-3 py-1.5 text-xs rounded">
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-4 mt-4 border-t border-current/20 flex gap-2">
+                <button class="demo-btn flex-1 py-2 text-xs font-bold rounded">
+                  Deploy Now
+                </button>
+                <button class="px-3 py-2 text-xs rounded border border-current font-semibold opacity-80 hover:opacity-100">
+                  Logs
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Live Sample Table / Feed -->
+          <div class="demo-box p-5 rounded-xl mt-4 overflow-x-auto">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold uppercase tracking-wider">Recent Transactions</span>
+              <span class="text-xs opacity-75">Status: Auto-sync active</span>
+            </div>
+            <table class="w-full text-left text-xs">
+              <thead>
+                <tr class="border-b border-current/20 opacity-75">
+                  <th class="py-2 pr-4 font-semibold">Client</th>
+                  <th class="py-2 px-4 font-semibold">Design Spec</th>
+                  <th class="py-2 px-4 font-semibold">Amount</th>
+                  <th class="py-2 pl-4 text-right font-semibold">Status</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-current/10">
+                <tr>
+                  <td class="py-2.5 pr-4 font-medium">Acme Global Labs</td>
+                  <td class="py-2.5 px-4">Claymorphism Component System</td>
+                  <td class="py-2.5 px-4 font-mono">$8,450.00</td>
+                  <td class="py-2.5 pl-4 text-right font-bold text-emerald-400">Completed</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 pr-4 font-medium">Hyperion AI Studio</td>
+                  <td class="py-2.5 px-4">Interactive Mobile Kit</td>
+                  <td class="py-2.5 px-4 font-mono">$4,200.00</td>
+                  <td class="py-2.5 pl-4 text-right font-bold opacity-80">Processing</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Bottom Prompt Banner Inside Modal -->
+          <div class="mt-6 p-4 rounded-xl bg-black/40 border border-white/20 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-3 text-white">
+            <div class="text-left">
+              <p class="text-xs font-bold text-emerald-300">Ready to build this for your client or project?</p>
+              <p class="text-xs opacity-80 font-mono mt-0.5 line-clamp-1">Design a [project] in Claymorphism style: soft tactile 3D rounded shapes, double inner shadows for inflated clay volume, soft outer drop shadow, friendly pastel palette, playful pill buttons.</p>
+            </div>
+            <button onclick="copyPrompt('Design a [project] in Claymorphism style: soft tactile 3D rounded shapes, double inner shadows for inflated clay volume, soft outer drop shadow, friendly pastel palette, playful pill buttons.', 'Claymorphism')" class="px-4 py-2 text-xs font-bold bg-white text-slate-900 hover:bg-slate-100 rounded-lg whitespace-nowrap shadow-md">
+              Copy Prompt 📋
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ==========================================
+       TOAST NOTIFICATION
+       ========================================== -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform transition-all duration-300 flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 text-white border border-slate-700 shadow-xl text-sm font-semibold translate-y-20 opacity-0">
+    <span class="text-emerald-400">✔</span>
+    <span id="toast-text">✔ Copied AI Prompt for Claymorphism!</span>
+  </div>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 py-6 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+      <p>© 2026 Design Atlas — Curated for AI Designers, Engineers &amp; Founders.</p>
+      <div class="flex items-center gap-4">
+        <span>Tailwind CSS</span>
+        <span>•</span>
+        <span>Pure CSS Demos</span>
+        <span>•</span>
+        <span>Zero Build Step</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       JAVASCRIPT DATA & LOGIC ENGINE
+       ========================================== -->
+  <script>
+    // 50 COMPLETE DESIGN STYLES WITH METADATA, PROMPTS, AND DETAILED DEMOS
+    const STYLES_DATA = [
+      {
+        id: "minimalism",
+        name: "Minimalism",
+        category: "Minimal",
+        cssClass: "style-minimalism",
+        vibe: "Saaf, kam elements, zyada whitespace, typography-focused",
+        bestFit: "SaaS, docs, portfolio, blogs",
+        prompt: "Design a [project] in Minimalism style: clean layout, generous whitespace, monochrome + one subtle accent, clean sans-serif typography, no decorative clutter, focus on content hierarchy.",
+      },
+      {
+        id: "maximalism",
+        name: "Maximalism",
+        category: "Bold",
+        cssClass: "style-maximalism",
+        vibe: "Collage, bright colors, zyada elements, bold patterns",
+        bestFit: "Fashion, music, events, entertainment",
+        prompt: "Design a [project] in Maximalism style: layered collage, vibrant loud colors, overlapping elements, bold expressive typography, dense visual rhythm, expressive textures, high visual excitement.",
+      },
+      {
+        id: "brutalism",
+        name: "Brutalism",
+        category: "Bold",
+        cssClass: "style-brutalism",
+        vibe: "Raw, naked HTML look, bold borders, no polish",
+        bestFit: "Art, experimental, dev tools, underground culture",
+        prompt: "Design a [project] in Brutalism style: raw HTML aesthetic, system monospace fonts, thick black solid borders, zero shadows, exposed layout structure, unapologetic utilitarian feel.",
+      },
+      {
+        id: "neobrutalism",
+        name: "Neo-Brutalism",
+        category: "Bold",
+        cssClass: "style-neobrutalism",
+        vibe: "Bold borders, hard offset shadows, stark vivid colors",
+        bestFit: "Dev tools, indie products, modern fintech, newsletters",
+        prompt: "Design a [project] in Neo-Brutalism style: thick 3-4px solid black borders, zero-blur hard offset shadows (4px 4px), high-contrast playful colors, pressed active hover states, rounded chunky cards.",
+      },
+      {
+        id: "glassmorphism",
+        name: "Glassmorphism",
+        category: "Futuristic",
+        cssClass: "style-glassmorphism",
+        vibe: "Frosted glass, blur, translucency, floating depth",
+        bestFit: "SaaS dashboards, headers, crypto wallets, modern web apps",
+        prompt: "Design a [project] in Glassmorphism style: translucent panels with backdrop-filter blur (14px+), subtle 1px white border highlights, frosted glass cards, layered depth over vivid gradient background.",
+      },
+      {
+        id: "claymorphism",
+        name: "Claymorphism",
+        category: "Bold",
+        cssClass: "style-claymorphism",
+        vibe: "Soft, 3D floating clay elements, inner & outer shadows",
+        bestFit: "Kids apps, gaming, fintech, friendly dashboards",
+        prompt: "Design a [project] in Claymorphism style: soft tactile 3D rounded shapes, double inner shadows for inflated clay volume, soft outer drop shadow, friendly pastel palette, playful pill buttons.",
+      },
+      {
+        id: "neumorphism",
+        name: "Neumorphism",
+        category: "Minimal",
+        cssClass: "style-neumorphism",
+        vibe: "Soft UI, extruded elements from same background, dual shadows",
+        bestFit: "Smart home controllers, audio sliders, calculators",
+        prompt: "Design a [project] in Neumorphism (Soft UI) style: elements extruded from the same background color, paired light and dark soft drop shadows, concave/convex button states, monochromatic tactile palette.",
+      },
+      {
+        id: "skeuomorphism",
+        name: "Skeuomorphism",
+        category: "Retro",
+        cssClass: "style-skeuomorphism",
+        vibe: "Real-world textures, gradients, 3D bevels, physical realism",
+        bestFit: "Gaming, music instruments, audio DAWs, vintage tools",
+        prompt: "Design a [project] in Skeuomorphism style: realistic physical textures (leather, brushed metal, wood), bevel and emboss gradients, inner specular highlights, deep drop shadows, physical knob/toggle switches.",
+      },
+      {
+        id: "liquidglass",
+        name: "Liquid Glass",
+        category: "Futuristic",
+        cssClass: "style-liquidglass",
+        vibe: "Apple's new material, dynamic glass, specular highlights, dark edges",
+        bestFit: "iOS/macOS apps, premium SaaS, luxury fintech",
+        prompt: "Design a [project] in Liquid Glass style: dynamic translucent material, specular edge highlights, darkened borders, chromatic aberration glow, ultra-fine blur, fluid light refraction.",
+      },
+      {
+        id: "spatialui",
+        name: "Spatial UI",
+        category: "Futuristic",
+        cssClass: "style-spatialui",
+        vibe: "3D space, depth, infinite canvas, floating glass panels",
+        bestFit: "Vision Pro, AR/VR, immersive apps, next-gen interfaces",
+        prompt: "Design a [project] in Spatial UI style: 3D floating glass layers, deep perspective offsets, immersive dark cosmos canvas, ambient lighting reflections, eye/pinch interaction cues, curved spatial panels.",
+      },
+      {
+        id: "bentogrid",
+        name: "Bento Grid",
+        category: "Minimal",
+        cssClass: "style-bentogrid",
+        vibe: "Modular varied-size cells, Apple keynote style, organized blocks",
+        bestFit: "Feature sections, dashboards, landing page showcases",
+        prompt: "Design a [project] in Bento Grid style: modular CSS grid with varied column/row spans, tight consistent gutters, rounded border cards with micro-illustrations and metrics, visual hierarchy across 6-9 tiles.",
+      },
+      {
+        id: "flatdesign",
+        name: "Flat Design",
+        category: "Minimal",
+        cssClass: "style-flatdesign",
+        vibe: "Clean, bold solid colors, no depth or shadows, crisp shapes",
+        bestFit: "Mobile apps, Microsoft Metro UI, productivity tools",
+        prompt: "Design a [project] in Flat Design 2.0 style: crisp solid color blocks, zero drop shadows or gradients, simple geometric icons, high contrast, clean typography, unambiguous touch targets.",
+      },
+      {
+        id: "materialdesign",
+        name: "Material Design",
+        category: "Minimal",
+        cssClass: "style-materialdesign",
+        vibe: "Physics-based depth, elevation z-index, surface ripples",
+        bestFit: "Android apps, Google ecosystem, enterprise workflows",
+        prompt: "Design a [project] in Material Design 3 style: surface elevation hierarchy with tinted shadows, dynamic color extraction, pill buttons, floating action buttons (FAB), ripple interaction feedback.",
+      },
+      {
+        id: "swiss",
+        name: "Swiss / International",
+        category: "Editorial",
+        cssClass: "style-swiss",
+        vibe: "Grid-based, sans-serif, high contrast, objective clarity",
+        bestFit: "Finance, legal docs, publishing, design agency sites",
+        prompt: "Design a [project] in Swiss International Typographic Style: strict 12-column mathematical grid, authentic Helvetica/Akzidenz sans-serif, asymmetric balance, bold red/black accents, objective information delivery.",
+      },
+      {
+        id: "bauhaus",
+        name: "Bauhaus",
+        category: "Bold",
+        cssClass: "style-bauhaus",
+        vibe: "Geometric shapes, primary colors, form follows function",
+        bestFit: "Art, architecture, creative studios, cultural products",
+        prompt: "Design a [project] in Bauhaus style: fundamental geometric primitives (circle, square, triangle), primary color scheme (red, blue, yellow, black), functional grid layout, geometric typography.",
+      },
+      {
+        id: "artdeco",
+        name: "Art Deco",
+        category: "Editorial",
+        cssClass: "style-artdeco",
+        vibe: "Luxurious, geometric, ornamental, gold metallic accents",
+        bestFit: "Luxury brands, high-end hotels, jewelry, formal events",
+        prompt: "Design a [project] in Art Deco style: symmetrical geometric motifs, gold foil gradients on deep navy/obsidian, decorative borders, elegant high-contrast serif typography, Gatsby-era luxury feel.",
+      },
+      {
+        id: "vaporwave",
+        name: "Vaporwave",
+        category: "Retro",
+        cssClass: "style-vaporwave",
+        vibe: "Retro-futuristic, neon pink/cyan, 80s/90s nostalgia, grids",
+        bestFit: "Music streaming, gaming, creative audio tools, retro merch",
+        prompt: "Design a [project] in Vaporwave style: neon magenta and cyan gradients, retro 90s OS windows, wireframe perspective grid horizon, Roman statue/pixel glitch accents, nostalgic chillwave aesthetic.",
+      },
+      {
+        id: "y2k",
+        name: "Y2K Aesthetic",
+        category: "Retro",
+        cssClass: "style-y2k",
+        vibe: "Glossy, futuristic 2000s, chrome, bubble shapes, cyber optimism",
+        bestFit: "Fashion, youth apps, music players, social media",
+        prompt: "Design a [project] in Y2K Aesthetic: glossy pill buttons with white specular glares, chrome metallic gradients, pastel pink/silver/cyan tones, bubble icons, early 2000s techno-optimism.",
+      },
+      {
+        id: "cyberpunk",
+        name: "Cyberpunk",
+        category: "Futuristic",
+        cssClass: "style-cyberpunk",
+        vibe: "Pitch black, neon yellow/cyan, glitch effects, dystopian tech",
+        bestFit: "Gaming, web3, AI agents, dev terminals, sci-fi platforms",
+        prompt: "Design a [project] in Cyberpunk style: pitch black background, neon toxic yellow and cyan accents, chamfered corner cutouts (clip-path), scanline overlays, HUD data telemetry, high-tech dystopian energy.",
+      },
+      {
+        id: "darkluxe",
+        name: "Dark Luxe",
+        category: "Futuristic",
+        cssClass: "style-darkluxe",
+        vibe: "Deep black, champagne gold, subtle specular gleam, cinematic",
+        bestFit: "Developer tools, luxury SaaS, private banking, yachts",
+        prompt: "Design a [project] in Dark Luxe style: deep obsidian (#050505) canvas, brushed brass and champagne gold highlights, subtle radial vignette, razor-sharp 1px dividers, refined typography, ultra-premium feel.",
+      },
+      {
+        id: "editorial",
+        name: "Editorial / Magazine",
+        category: "Editorial",
+        cssClass: "style-editorial",
+        vibe: "Typography-led, asymmetric columns, story-driven whitespace",
+        bestFit: "Publishing, essays, blogs, luxury brand portfolios",
+        prompt: "Design a [project] in Editorial / Magazine style: oversized serif display headlines, multi-column editorial grid, drop caps, generous artistic whitespace, story-first layout, subtle paper grain texture.",
+      },
+      {
+        id: "organic",
+        name: "Organic / Biomorphic",
+        category: "Organic",
+        cssClass: "style-organic",
+        vibe: "Natural shapes, pebble curves, warm earthy terracotta colors",
+        bestFit: "Wellness, meditation, sustainability, botanical apps",
+        prompt: "Design a [project] in Organic / Biomorphic style: pebble border-radii, flowing asymmetrical curves, warm terracotta, sage green, and sandstone palette, natural soft shadows, calming tactile touch.",
+      },
+      {
+        id: "retrofuturism",
+        name: "Retro-Futurism",
+        category: "Retro",
+        cssClass: "style-retrofuturism",
+        vibe: "80s sci-fi, CRT scanlines, neon laser grids, synthwave",
+        bestFit: "Indie gaming, music players, creative synthesizers, events",
+        prompt: "Design a [project] in Retro-Futurism / Synthwave style: 80s neon perspective grid floor, glowing sunset gradients, CRT scanlines, neon magenta and laser blue borders, retro arcade typography.",
+      },
+      {
+        id: "memphis",
+        name: "Memphis Design",
+        category: "Bold",
+        cssClass: "style-memphis",
+        vibe: "Bold geometric patterns, squiggles, confetti dots, playful chaos",
+        bestFit: "Youth brands, creative agencies, party apps, festivals",
+        prompt: "Design a [project] in 1980s Memphis Design style: playful squiggles, polka dots, zigzag borders, bright contrasting primary/secondary colors, tilted off-kilter cards, upbeat energetic vibes.",
+      },
+      {
+        id: "pixel",
+        name: "Pixel / 8-bit",
+        category: "Retro",
+        cssClass: "style-pixel",
+        vibe: "Retro gaming, pixel fonts, chunky stepped borders, limited palette",
+        bestFit: "Gaming, crypto games, retro tooling, indie developers",
+        prompt: "Design a [project] in Pixel Art / 8-Bit style: pixelated monospace typography (VT323 / Press Start 2P), stepped box shadows, limited 16-color palette, chunky hard borders, nostalgic retro RPG game UI.",
+      },
+      {
+        id: "scandinavian",
+        name: "Scandinavian",
+        category: "Minimal",
+        cssClass: "style-scandinavian",
+        vibe: "Light, airy, functional, muted wood tones, cozy hygge warmth",
+        bestFit: "Home decor, lifestyle, wellness, minimalist e-commerce",
+        prompt: "Design a [project] in Scandinavian style: ultra-light airy palette, warm light birch and stone neutrals, functional minimal layout, soft muted shadows, hygge warmth, human-centric simplicity.",
+      },
+      {
+        id: "japandi",
+        name: "Japandi",
+        category: "Organic",
+        cssClass: "style-japandi",
+        vibe: "Japanese wabi-sabi + Scandinavian calm, muted earth tones",
+        bestFit: "Interior design, tea, ceramics, wellness retreats",
+        prompt: "Design a [project] in Japandi style: Japanese wabi-sabi elegance merged with Scandinavian minimalism, muted washi paper textures, linen and clay tones, intentional silence/whitespace, calm craftsmanship.",
+      },
+      {
+        id: "monochrome",
+        name: "Monochrome",
+        category: "Editorial",
+        cssClass: "style-monochrome",
+        vibe: "Pure black & white, stark contrast, sharp lines, oversized serifs",
+        bestFit: "High fashion, photography portfolios, art galleries",
+        prompt: "Design a [project] in pure Monochrome style: 100% black and white, zero grayscale muddiness, razor-sharp stark contrast, oversized serif headlines, dramatic inverted sections, high-fashion attitude.",
+      },
+      {
+        id: "aurora",
+        name: "Aurora",
+        category: "Futuristic",
+        cssClass: "style-aurora",
+        vibe: "Vibrant northern lights gradients, ethereal glows, soft blurs",
+        bestFit: "AI products, creative platforms, modern audio apps",
+        prompt: "Design a [project] in Aurora style: glowing ambient northern lights gradients (emerald, turquoise, violet), diffused high-radius glows, deep nocturnal background, sleek border reflections, ethereal glow.",
+      },
+      {
+        id: "nature",
+        name: "Nature-Inspired",
+        category: "Organic",
+        cssClass: "style-nature",
+        vibe: "Warm organic textures, moss greens, botanical motifs, eco feel",
+        bestFit: "Sustainability, eco-friendly brands, agriculture, organic food",
+        prompt: "Design a [project] in Nature-Inspired style: forest moss and eucalyptus greens, botanical border accents, warm recycled paper tones, soft rounded cards, eco-friendly sustainable vibe.",
+      },
+      {
+        id: "antigrid",
+        name: "Anti-Grid / Anti-Design",
+        category: "Bold",
+        cssClass: "style-antigrid",
+        vibe: "Deliberate chaos, broken layouts, punk energy, overlapping rules",
+        bestFit: "Art exhibits, punk music, experimental portfolios, zines",
+        prompt: "Design a [project] in Anti-Grid / Anti-Design style: deliberately broken layouts, overlapping misaligned elements, distorted typography, chaotic visual hierarchy, punk zine energy, rule-breaking composition.",
+      },
+      {
+        id: "scrollytelling",
+        name: "Scrollytelling",
+        category: "Futuristic",
+        cssClass: "style-scrollytelling",
+        vibe: "Motion-driven narrative, sticky milestones, progressive reveals",
+        bestFit: "Product launch keynotes, longform investigative journalism",
+        prompt: "Design a [project] in Scrollytelling style: narrative scroll milestones, sticky contextual panels, progressive stat reveals, cinematic timeline indicators, immersive storytelling sequence.",
+      },
+      {
+        id: "webgl3d",
+        name: "3D / WebGL",
+        category: "Futuristic",
+        cssClass: "style-webgl3d",
+        vibe: "Immersive 3D depth, isometric lighting, reactive ambient shadows",
+        bestFit: "Hardware showcases, gaming, metaverse, spatial computing",
+        prompt: "Design a [project] in 3D / WebGL aesthetic: simulated three-dimensional lighting, bevel reflections, dark metallic chassis, glowing directional highlights, floating interactive perspective cards.",
+      },
+      {
+        id: "kinetictype",
+        name: "Kinetic Typography",
+        category: "Bold",
+        cssClass: "style-kinetictype",
+        vibe: "Moving type, dynamic oversized headlines, typographic rhythm",
+        bestFit: "Creative agencies, music festivals, bold marketing campaigns",
+        prompt: "Design a [project] in Kinetic Typography style: dynamic oversized variable fonts, animated marquee tickers, bold typographic scale contrast, text-driven structural containers, high energetic impact.",
+      },
+      {
+        id: "humanscribble",
+        name: "Human Scribble",
+        category: "Organic",
+        cssClass: "style-humanscribble",
+        vibe: "Hand-drawn, wobbly imperfect sketch lines, personal touch",
+        bestFit: "Notion creators, indie founders, educational tools, newsletters",
+        prompt: "Design a [project] in Human Scribble / Hand-Drawn style: irregular wobbly border radiuses, hand-drawn underline highlights, sketchy doodle buttons, sticky note cards, authentic human warmth.",
+      },
+      {
+        id: "frutigeraero",
+        name: "Frutiger Aero",
+        category: "Retro",
+        cssClass: "style-frutigeraero",
+        vibe: "Glossy glass, water droplets, clear skies, 2000s tech optimism",
+        bestFit: "Retro tech, nostalgic operating systems, music players",
+        prompt: "Design a [project] in Frutiger Aero (Windows Vista / 7 era) style: glossy glass buttons with bright specular reflections, vibrant sky blue and grassy green gradients, aurora flares, ultra-glossy optimistic tech UI.",
+      },
+      {
+        id: "acidbrutalist",
+        name: "Acid Brutalist",
+        category: "Bold",
+        cssClass: "style-acidbrutalist",
+        vibe: "Neon acid green/pink on raw brutalist grid, rave energy",
+        bestFit: "Techno clubs, music labels, underground fashion, NFT galleries",
+        prompt: "Design a [project] in Acid Brutalist style: intense radioactive neon green (#ccff00) and hot magenta on pitch black, heavy structural borders, harsh typography, hypnotic rave-poster aesthetic.",
+      },
+      {
+        id: "monolith",
+        name: "Monolith",
+        category: "Bold",
+        cssClass: "style-monolith",
+        vibe: "Massive solid geometric blocks, monumental scale, brutal weight",
+        bestFit: "Architectural firms, luxury real estate, industrial machinery",
+        prompt: "Design a [project] in Monolith style: heavy architectural concrete blocks, monumental proportions, dark basalt tones, extreme physical presence, heavy drop blocks, dramatic monolithic silhouette.",
+      },
+      {
+        id: "darkcinema",
+        name: "Dark Cinema",
+        category: "Futuristic",
+        cssClass: "style-darkcinema",
+        vibe: "Cinematic dark, 2.39:1 letterbox framing, moody anamorphic lighting",
+        bestFit: "Film production, trailers, video editors, storytelling apps",
+        prompt: "Design a [project] in Dark Cinema style: 2.39:1 anamorphic letterbox cards, deep theatrical blacks, moody teal & orange lighting contrast, subtle film grain ambiance, widescreen cinematic framing.",
+      },
+      {
+        id: "darkcosmic",
+        name: "Dark Cosmic",
+        category: "Futuristic",
+        cssClass: "style-darkcosmic",
+        vibe: "Deep space nebula, cosmic purples, starlight gradients, void depth",
+        bestFit: "Astronomy apps, AI frontier labs, deep tech platforms",
+        prompt: "Design a [project] in Dark Cosmic style: deep space void (#000000 & #0d0221), swirling nebula gradients in magenta and indigo, starfield particulate glow, cosmic orb indicators, galactic depth.",
+      },
+      {
+        id: "midcenturymodern",
+        name: "Mid-Century Modern",
+        category: "Retro",
+        cssClass: "style-midcenturymodern",
+        vibe: "1950s-60s retro geometric, warm mustard & teal, walnut curves",
+        bestFit: "Furniture design, retro lifestyle, boutique coffee, vintage audio",
+        prompt: "Design a [project] in Mid-Century Modern style: 1950s atomic age geometric shapes, warm mustard yellow, burnt orange, and teal color palette, warm cream background, retro walnut furniture curves.",
+      },
+      {
+        id: "retroterminal",
+        name: "Retro Terminal",
+        category: "Retro",
+        cssClass: "style-retroterminal",
+        vibe: "Phosphor green on pitch black, CRT scanlines, CLI prompts",
+        bestFit: "DevOps tools, security dashboards, hacker consoles, CLI docs",
+        prompt: "Design a [project] in Retro Terminal / CRT style: vibrant phosphor green (#39ff14) text on pitch black, authentic CRT horizontal scanlines, blinking block cursor, ASCII status boxes, monospace command prompts.",
+      },
+      {
+        id: "baroque",
+        name: "Renaissance / Baroque",
+        category: "Editorial",
+        cssClass: "style-baroque",
+        vibe: "Ornate gilded frames, chiaroscuro dramatic contrast, classical",
+        bestFit: "Fine art, museum archives, luxury wine, heritage watches",
+        prompt: "Design a [project] in Renaissance / Baroque style: ornate gilded golden borders, dramatic chiaroscuro deep shadow contrast, classical roman serif typography (Cinzel), antique parchment and oil painting depth.",
+      },
+      {
+        id: "ukiyoe",
+        name: "Ukiyo-e",
+        category: "Organic",
+        cssClass: "style-ukiyoe",
+        vibe: "Japanese woodblock prints, Great Wave indigo, vermilion stamps",
+        bestFit: "Cultural apps, tea houses, Japanese culinary, art collections",
+        prompt: "Design a [project] in Ukiyo-e (Japanese Woodblock) style: traditional indigo blue and vermilion red color palette, bold woodblock ink line contours, washi rice paper background, wave crest motifs, vermilion seal stamps.",
+      },
+      {
+        id: "destijl",
+        name: "De Stijl",
+        category: "Bold",
+        cssClass: "style-destijl",
+        vibe: "Piet Mondrian grid, thick black lines, primary red/blue/yellow blocks",
+        bestFit: "Modernist art, design schools, creative portfolios",
+        prompt: "Design a [project] in De Stijl (Mondrian) style: rigid grid of thick black horizontal and vertical lines, asymmetrical color blocks of pure primary red, blue, and yellow with white negative space.",
+      },
+      {
+        id: "constructivism",
+        name: "Constructivism",
+        category: "Bold",
+        cssClass: "style-constructivism",
+        vibe: "Dynamic diagonal slashes, revolutionary red/black, bold propaganda",
+        bestFit: "Activism, posters, bold streetwear, avant-garde publications",
+        prompt: "Design a [project] in Russian Constructivism style: dynamic 45-degree diagonal layout axes, stark high-contrast red, black, and cream palette, heavy slab typography, megaphone geometric shapes.",
+      },
+      {
+        id: "archival",
+        name: "Archival Index",
+        category: "Editorial",
+        cssClass: "style-archival",
+        vibe: "Documentation-as-design, catalog numbers, structured index cards",
+        bestFit: "Research libraries, design documentation, museum archives",
+        prompt: "Design a [project] in Archival Index style: catalog reference codes (REF-094), structured tabular index metadata, raw unstyled monospaced data grids, manila folder tabs, scholarly documentation aesthetic.",
+      },
+      {
+        id: "motionnarrative",
+        name: "Motion Narrative",
+        category: "Futuristic",
+        cssClass: "style-motionnarrative",
+        vibe: "Cinematic scene transitions, spotlight reveals, smooth velocity",
+        bestFit: "Keynotes, luxury automotive configurators, brand showcases",
+        prompt: "Design a [project] in Motion Narrative style: fluid scene transitions, cinematic directional gradient sweeps, focused lighting highlights, elegant velocity curves, immersive sequential storytelling.",
+      },
+      {
+        id: "cardplay",
+        name: "Card Play",
+        category: "Minimal",
+        cssClass: "style-cardplay",
+        vibe: "Playful interactive cards, tilt physics, tactile modular cards",
+        bestFit: "Fintech cards, task boards, e-commerce collections, dashboard widgets",
+        prompt: "Design a [project] in Card Play style: modular interactive card stacks with subtle tilt on hover, vibrant accent borders, pill tags, tactile grab handles, satisfying bounce micro-interactions.",
+      }
+    ];
+
+    // Filter Categories
+    const CATEGORIES = ["All", "Minimal", "Bold", "Retro", "Futuristic", "Organic", "Editorial"];
+    let currentFilter = "All";
+    let searchQuery = "";
+
+    // DOM Elements
+    const gridEl = document.getElementById("card-grid");
+    const filterContainerEl = document.getElementById("filter-container");
+    const searchInput = document.getElementById("search-input");
+    const emptyStateEl = document.getElementById("empty-state");
+    const themeToggleBtn = document.getElementById("theme-toggle");
+    const stylesCountText = document.getElementById("styles-count-text");
+
+    // Modal Elements
+    const modalEl = document.getElementById("style-modal");
+    const modalTitle = document.getElementById("modal-title");
+    const modalCategoryBadge = document.getElementById("modal-category-badge");
+    const modalVibe = document.getElementById("modal-vibe");
+    const modalBestfit = document.getElementById("modal-bestfit");
+    const modalBody = document.getElementById("modal-body");
+    const modalCloseBtn = document.getElementById("modal-close-btn");
+    const modalCopyPromptBtn = document.getElementById("modal-copy-prompt-btn");
+    let activeModalStyle = null;
+
+    // Toast Element
+    const toastEl = document.getElementById("toast");
+    const toastText = document.getElementById("toast-text");
+    let toastTimeout = null;
+
+    function showToast(message) {
+      toastText.textContent = message;
+      toastEl.classList.remove("translate-y-20", "opacity-0");
+      toastEl.classList.add("translate-y-0", "opacity-100");
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toastEl.classList.remove("translate-y-0", "opacity-100");
+        toastEl.classList.add("translate-y-20", "opacity-0");
+      }, 2500);
+    }
+
+    // Initialize Theme
+    function initTheme() {
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    }
+
+    themeToggleBtn.addEventListener("click", () => {
+      if (document.documentElement.classList.contains("dark")) {
+        document.documentElement.classList.remove("dark");
+        localStorage.theme = "light";
+      } else {
+        document.documentElement.classList.add("dark");
+        localStorage.theme = "dark";
+      }
+    });
+
+    // Render Filter Chips
+    function renderFilters() {
+      filterContainerEl.innerHTML = CATEGORIES.map(cat => `
+        <button
+          onclick="setFilter('${cat}')"
+          class="px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-150 ${
+            currentFilter === cat
+              ? 'bg-sky-500 text-white shadow-md shadow-sky-500/25 ring-2 ring-sky-400/40'
+              : 'bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700'
+          }"
+        >
+          ${cat}
+        </button>
+      `).join("");
+    }
+
+    function setFilter(category) {
+      currentFilter = category;
+      renderFilters();
+      renderCards();
+    }
+
+    function resetFilters() {
+      currentFilter = "All";
+      searchQuery = "";
+      searchInput.value = "";
+      renderFilters();
+      renderCards();
+    }
+
+    // Search Input Listener
+    searchInput.addEventListener("input", (e) => {
+      searchQuery = e.target.value.toLowerCase().trim();
+      renderCards();
+    });
+
+    // Copy Prompt Helper
+    function copyPrompt(text, styleName, event) {
+      if (event) event.stopPropagation();
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(`✔ Copied AI Prompt for ${styleName}!`);
+      }).catch(() => {
+        // Fallback
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+        showToast(`✔ Copied AI Prompt for ${styleName}!`);
+      });
+    }
+
+    // Render Cards
+    function renderCards() {
+      const filtered = STYLES_DATA.filter(item => {
+        const matchesCategory = currentFilter === "All" || item.category === currentFilter;
+        const matchesSearch = !searchQuery ||
+          item.name.toLowerCase().includes(searchQuery) ||
+          item.vibe.toLowerCase().includes(searchQuery) ||
+          item.bestFit.toLowerCase().includes(searchQuery) ||
+          item.category.toLowerCase().includes(searchQuery);
+        return matchesCategory && matchesSearch;
+      });
+
+      stylesCountText.textContent = `${filtered.length} of ${STYLES_DATA.length} Styles Shown`;
+
+      if (filtered.length === 0) {
+        gridEl.innerHTML = "";
+        emptyStateEl.classList.remove("hidden");
+        return;
+      }
+
+      emptyStateEl.classList.add("hidden");
+
+      gridEl.innerHTML = filtered.map(item => `
+        <article
+          onclick="openDashboardModal('${item.id}')"
+          class="group cursor-pointer rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-200 flex flex-col overflow-hidden"
+        >
+          <!-- MINI LIVE DEMO CONTAINER (REAL CSS, NO IMAGES) -->
+          <div class="h-44 p-4 relative overflow-hidden flex flex-col justify-between ${item.cssClass} transition-transform group-hover:scale-[1.01]">
+            <div class="flex items-center justify-between text-xs font-semibold opacity-90">
+              <span class="tracking-wide uppercase">${item.name}</span>
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-black/20 text-white backdrop-blur-sm border border-white/20">LIVE CSS</span>
+            </div>
+
+            <!-- Styled Mini Component Showcase -->
+            <div class="demo-box p-3 rounded-xl transition-all flex flex-col gap-2 shadow-sm">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-xs font-bold truncate">Component Preview</span>
+                <span class="text-[10px] opacity-75 font-mono">$1,420</span>
+              </div>
+              <div class="flex gap-2 items-center">
+                <input
+                  type="text"
+                  value="Search..."
+                  readonly
+                  tabindex="-1"
+                  class="demo-input w-full px-2 py-1 text-xs outline-none rounded pointer-events-none"
+                >
+                <button
+                  type="button"
+                  tabindex="-1"
+                  class="demo-btn px-2.5 py-1 text-xs whitespace-nowrap rounded pointer-events-none"
+                >
+                  Action
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-[11px] opacity-80 pt-1">
+              <span>● Interactive Preview</span>
+              <span class="font-bold underline">Click to expand ↗</span>
+            </div>
+          </div>
+
+          <!-- CARD FOOTER INFO & ACTIONS -->
+          <div class="p-4 flex-1 flex flex-col justify-between bg-white dark:bg-slate-900">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-1.5">
+                <h3 class="font-bold text-base text-slate-900 dark:text-slate-100 group-hover:text-sky-500 transition-colors">
+                  ${item.name}
+                </h3>
+                <span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                  ${item.category}
+                </span>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                <strong class="text-slate-700 dark:text-slate-300">Vibe:</strong> ${item.vibe}
+              </p>
+              <p class="text-[11px] text-slate-500 dark:text-slate-500 mt-1 line-clamp-1">
+                <strong>Best fit:</strong> ${item.bestFit}
+              </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
+              <span class="text-[11px] font-medium text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition">
+                Tap card to test
+              </span>
+              <button
+                type="button"
+                onclick="copyPrompt('${item.prompt.replace(/'/g, "\\'")}', '${item.name}', event)"
+                class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white dark:hover:bg-sky-500 dark:hover:text-white text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition flex items-center gap-1.5 active:scale-95 shadow-sm"
+                title="Copy ready-to-use AI Prompt"
+              >
+                <span>📋</span> Copy Prompt
+              </button>
+            </div>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    // Open Full-Screen Interactive Dashboard Modal
+    function openDashboardModal(styleId) {
+      const item = STYLES_DATA.find(s => s.id === styleId);
+      if (!item) return;
+
+      activeModalStyle = item;
+      modalTitle.textContent = `${item.name} — Full Interactive Dashboard`;
+      modalCategoryBadge.textContent = item.category;
+      modalVibe.textContent = item.vibe;
+      modalBestfit.textContent = item.bestFit;
+
+      // Setup Copy Prompt Button in Modal
+      modalCopyPromptBtn.onclick = () => {
+        copyPrompt(item.prompt, item.name);
+      };
+
+      // Injected Theme-Specific Rich Dashboard
+      modalBody.innerHTML = generateDashboardHTML(item);
+      modalEl.showModal();
+    }
+
+    modalCloseBtn.addEventListener("click", () => modalEl.close());
+    modalEl.addEventListener("click", (e) => {
+      if (e.target === modalEl) modalEl.close();
+    });
+
+    // Helper: Generate Rich Theme Dashboard HTML
+    function generateDashboardHTML(item) {
+      return `
+        <div class="rounded-2xl p-6 sm:p-8 ${item.cssClass} transition-all shadow-2xl border border-white/10 min-h-[560px] flex flex-col justify-between">
+          
+          <!-- Dashboard Top Navbar -->
+          <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-current/20">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-sm border border-current">
+                ◈
+              </div>
+              <div>
+                <h4 class="font-extrabold text-lg tracking-tight uppercase">${item.name} OS</h4>
+                <p class="text-xs opacity-75">Production SaaS Dashboard Layout</p>
+              </div>
+            </div>
+
+            <!-- Top Nav Actions -->
+            <div class="flex items-center gap-3">
+              <div class="relative hidden sm:block">
+                <input
+                  type="text"
+                  placeholder="Filter metrics..."
+                  class="demo-input px-3 py-1.5 text-xs rounded-lg w-48 outline-none"
+                >
+              </div>
+              <button class="demo-btn px-4 py-2 text-xs font-bold rounded-lg flex items-center gap-1.5">
+                <span>+</span> New Project
+              </button>
+              <div class="w-8 h-8 rounded-full border border-current flex items-center justify-center text-xs font-bold">
+                JD
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Stat Cards Row (Bento style metrics) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-6">
+            <div class="demo-box p-4 rounded-xl flex flex-col justify-between">
+              <div class="flex items-center justify-between opacity-80 text-xs font-semibold">
+                <span>Monthly Revenue</span>
+                <span>📈 +18.4%</span>
+              </div>
+              <div class="my-2">
+                <span class="text-2xl sm:text-3xl font-black">$48,290</span>
+              </div>
+              <p class="text-[11px] opacity-70">Target: $50,000 / month</p>
+            </div>
+
+            <div class="demo-box p-4 rounded-xl flex flex-col justify-between">
+              <div class="flex items-center justify-between opacity-80 text-xs font-semibold">
+                <span>Active Users</span>
+                <span>🔥 Live</span>
+              </div>
+              <div class="my-2">
+                <span class="text-2xl sm:text-3xl font-black">12,480</span>
+              </div>
+              <p class="text-[11px] opacity-70">Across 84 countries</p>
+            </div>
+
+            <div class="demo-box p-4 rounded-xl flex flex-col justify-between">
+              <div class="flex items-center justify-between opacity-80 text-xs font-semibold">
+                <span>Conversion Rate</span>
+                <span>⚡ Top 5%</span>
+              </div>
+              <div class="my-2">
+                <span class="text-2xl sm:text-3xl font-black">4.82%</span>
+              </div>
+              <p class="text-[11px] opacity-70">+0.6% vs previous cycle</p>
+            </div>
+
+            <div class="demo-box p-4 rounded-xl flex flex-col justify-between">
+              <div class="flex items-center justify-between opacity-80 text-xs font-semibold">
+                <span>Server Health</span>
+                <span>99.98%</span>
+              </div>
+              <div class="my-2">
+                <span class="text-2xl sm:text-3xl font-black">Normal</span>
+              </div>
+              <p class="text-[11px] opacity-70">Latency: 28ms avg</p>
+            </div>
+          </div>
+
+          <!-- Center Content: CSS Chart + Live Data Table -->
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 my-2">
+            
+            <!-- Pure CSS Bar Chart Visualization -->
+            <div class="demo-box p-5 rounded-xl lg:col-span-2 flex flex-col justify-between">
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <h5 class="font-bold text-sm">Growth Performance</h5>
+                  <p class="text-xs opacity-75">Quarterly volume breakdown</p>
+                </div>
+                <div class="flex gap-2">
+                  <span class="text-xs px-2 py-0.5 rounded border border-current font-mono">Q1-Q4</span>
+                </div>
+              </div>
+
+              <!-- Bar Heights using pure CSS heights -->
+              <div class="h-40 flex items-end justify-between gap-2 sm:gap-4 pt-6 px-2 border-b border-current/20">
+                <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                  <div class="demo-btn w-full rounded-t" style="height: 42%;"></div>
+                  <span class="text-[10px] opacity-75">Jan</span>
+                </div>
+                <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                  <div class="demo-btn w-full rounded-t" style="height: 58%;"></div>
+                  <span class="text-[10px] opacity-75">Feb</span>
+                </div>
+                <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                  <div class="demo-btn w-full rounded-t" style="height: 75%;"></div>
+                  <span class="text-[10px] opacity-75">Mar</span>
+                </div>
+                <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                  <div class="demo-btn w-full rounded-t" style="height: 64%;"></div>
+                  <span class="text-[10px] opacity-75">Apr</span>
+                </div>
+                <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                  <div class="demo-btn w-full rounded-t" style="height: 88%;"></div>
+                  <span class="text-[10px] opacity-75">May</span>
+                </div>
+                <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                  <div class="demo-btn w-full rounded-t" style="height: 98%;"></div>
+                  <span class="text-[10px] opacity-75">Jun</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Action Form Card -->
+            <div class="demo-box p-5 rounded-xl flex flex-col justify-between">
+              <div>
+                <h5 class="font-bold text-sm mb-1">Quick Deployment</h5>
+                <p class="text-xs opacity-75 mb-4">Trigger deployment in ${item.name} environment.</p>
+
+                <div class="space-y-3">
+                  <div>
+                    <label class="block text-[11px] font-semibold mb-1 opacity-80">Target Branch</label>
+                    <input type="text" value="production-main" class="demo-input w-full px-3 py-1.5 text-xs rounded">
+                  </div>
+                  <div>
+                    <label class="block text-[11px] font-semibold mb-1 opacity-80">Region Cluster</label>
+                    <input type="text" value="asia-south1 (Mumbai)" class="demo-input w-full px-3 py-1.5 text-xs rounded">
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-4 mt-4 border-t border-current/20 flex gap-2">
+                <button class="demo-btn flex-1 py-2 text-xs font-bold rounded">
+                  Deploy Now
+                </button>
+                <button class="px-3 py-2 text-xs rounded border border-current font-semibold opacity-80 hover:opacity-100">
+                  Logs
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Live Sample Table / Feed -->
+          <div class="demo-box p-5 rounded-xl mt-4 overflow-x-auto">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold uppercase tracking-wider">Recent Transactions</span>
+              <span class="text-xs opacity-75">Status: Auto-sync active</span>
+            </div>
+            <table class="w-full text-left text-xs">
+              <thead>
+                <tr class="border-b border-current/20 opacity-75">
+                  <th class="py-2 pr-4 font-semibold">Client</th>
+                  <th class="py-2 px-4 font-semibold">Design Spec</th>
+                  <th class="py-2 px-4 font-semibold">Amount</th>
+                  <th class="py-2 pl-4 text-right font-semibold">Status</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-current/10">
+                <tr>
+                  <td class="py-2.5 pr-4 font-medium">Acme Global Labs</td>
+                  <td class="py-2.5 px-4">${item.name} Component System</td>
+                  <td class="py-2.5 px-4 font-mono">$8,450.00</td>
+                  <td class="py-2.5 pl-4 text-right font-bold text-emerald-400">Completed</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 pr-4 font-medium">Hyperion AI Studio</td>
+                  <td class="py-2.5 px-4">Interactive Mobile Kit</td>
+                  <td class="py-2.5 px-4 font-mono">$4,200.00</td>
+                  <td class="py-2.5 pl-4 text-right font-bold opacity-80">Processing</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Bottom Prompt Banner Inside Modal -->
+          <div class="mt-6 p-4 rounded-xl bg-black/40 border border-white/20 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-3 text-white">
+            <div class="text-left">
+              <p class="text-xs font-bold text-emerald-300">Ready to build this for your client or project?</p>
+              <p class="text-xs opacity-80 font-mono mt-0.5 line-clamp-1">${item.prompt}</p>
+            </div>
+            <button
+              onclick="copyPrompt('${item.prompt.replace(/'/g, "\\'")}', '${item.name}')"
+              class="px-4 py-2 text-xs font-bold bg-white text-slate-900 hover:bg-slate-100 rounded-lg whitespace-nowrap shadow-md"
+            >
+              Copy Prompt 📋
+            </button>
+          </div>
+
+        </div>
+      `;
+    }
+
+    // Initialize Everything
+    initTheme();
+    renderFilters();
+    renderCards();
+  </script>
+
+
+</body></html>

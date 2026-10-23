@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self'; manifest-src 'self'; worker-src 'self'">
+  <title>Design Atlas — Ultimate UI Styles Gallery, Playground & AI Prompt Studio</title>
+  <meta name="description" content="Explore 76 iconic UI design styles with live pure-CSS demos, instant AI prompt copy, full-screen dashboard previews, side-by-side comparison studio, component playground, shadow physics lab, and design token + framework exporters.">
+  <meta name="theme-color" content="#0ea5e9">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Design Atlas — Ultimate UI Design Styles Gallery & AI Prompt Studio">
+  <meta property="og:description" content="76 UI design languages, live pure-CSS dashboards, Versus mode, Playground, Timeline, Style Quiz, Prompt Studio and token exporters. Zero build step.">
+  <meta property="og:site_name" content="Design Atlas">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%230ea5e9'/%3E%3Cstop offset='.5' stop-color='%236366f1'/%3E%3Cstop offset='1' stop-color='%23ec4899'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Ctext x='32' y='43' font-family='Arial Black,Arial,sans-serif' font-size='30' font-weight='900' text-anchor='middle' fill='white'%3EDA%3C/text%3E%3C/svg%3E">
+
+  <!-- Tailwind: SELF-HOSTED copy of the Play CDN bundle -> js/tailwind-browser.js
+       (byte-identical to https://cdn.tailwindcss.com, checked into the repo so the
+       site needs no third-party request and works offline). The bundle makes zero
+       runtime network calls (no fetch / currentScript), so serving it from the repo
+       is behaviour-identical. The CDN URL is still used on purpose inside the
+       standalone-HTML exports emitted by favorites.js / token-exporter.js. -->
+  <script src="js/tailwind-browser.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['Space Mono', 'monospace'],
+            serif: ['Playfair Display', 'serif'],
+            pixel: ['"VT323"', 'monospace'],
+            hand: ['Caveat', 'cursive'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Cinzel:wght@600;800&family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Space+Grotesk:wght@500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800&family=VT323&display=swap" rel="stylesheet">
+
+  <!-- Icon sprite (inline subset, MIT-style geometric icons) — used by app + demo showcase -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+    <symbol id="i-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18M3 6h18M3 18h18"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></symbol>
+    <symbol id="i-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></symbol>
+    <symbol id="i-type" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></symbol>
+    <symbol id="i-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0 0 20 2 2 0 0 0 2-2v-1a2 2 0 0 1 2-2h2a4 4 0 0 0 4-4 10 10 0 0 0-10-11z"/><circle cx="7.5" cy="10.5" r="1"/><circle cx="11" cy="7.5" r="1"/><circle cx="15.5" cy="9.5" r="1"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></symbol>
+    <symbol id="i-logout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+    <symbol id="i-star-filled" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></symbol>
+    <symbol id="i-heart-filled" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></symbol>
+  </svg>
+
+  <!-- Core Stylesheet with all 76 pure-CSS style engines -->
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Feature layer: brand harmonization, a11y, motion policy, new module chrome -->
+  <link rel="stylesheet" href="css/features.css">
+  <!-- App Shell Skin: Monolith architectural basalt restyle -->
+  <link rel="stylesheet" href="css/monolith-shell.css">
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col antialiased transition-colors duration-200">
+
+  <!-- ==========================================
+       HEADER & TOP CONTROLS
+       ========================================== -->
+  <header class="sticky top-0 z-40 bg-white/85 dark:bg-slate-900/85 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row items-center justify-between gap-4">
+      
+      <!-- Brand Logo / Title -->
+      <div class="flex items-center gap-3">
+        <a href="#gallery" onclick="switchView('gallery')" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 via-indigo-500 to-pink-500 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-sky-500/25 group-hover:scale-105 transition-transform">
+            DA
+          </div>
+          <div>
+            <h1 class="text-xl font-black tracking-tight flex items-center gap-2">
+              Design Atlas
+              <span id="header-count-badge" class="text-xs font-semibold px-2 py-0.5 rounded-full bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300 border border-sky-300 dark:border-sky-800">
+                76 UI Styles
+              </span>
+            </h1>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400">
+              Interactive Design System · AI Prompt Studio · Pure CSS Sandbox
+            </p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Main Navigation Tabs -->
+      <nav class="flex items-center bg-slate-100 dark:bg-slate-800/80 p-1 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold overflow-x-auto no-scrollbar max-w-full">
+        <button id="nav-tab-gallery" onclick="switchView('gallery')" class="px-3 py-1.5 rounded-lg transition-all bg-white dark:bg-slate-900 shadow-sm text-sky-600 dark:text-sky-400 whitespace-nowrap">
+          🏛️ Gallery
+        </button>
+        <button id="nav-tab-compare" onclick="switchView('compare')" class="px-3 py-1.5 rounded-lg transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white whitespace-nowrap">
+          ⚔️ Versus
+        </button>
+        <button id="nav-tab-playground" onclick="switchView('playground')" class="px-3 py-1.5 rounded-lg transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white whitespace-nowrap">
+          🎛️ Playground
+        </button>
+        <button id="nav-tab-timeline" onclick="switchView('timeline')" class="px-3 py-1.5 rounded-lg transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white whitespace-nowrap">
+          ⏳ Timeline
+        </button>
+        <button id="nav-tab-shadow-lab" onclick="switchView('shadow-lab')" class="px-3 py-1.5 rounded-lg transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white whitespace-nowrap">
+          🌗 Shadow Lab
+        </button>
+        <button id="nav-tab-quiz" onclick="switchView('quiz')" class="px-3 py-1.5 rounded-lg transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white whitespace-nowrap">
+          🎯 Style Quiz
+        </button>
+        <a href="uikit.html" class="px-3 py-1.5 rounded-lg transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white whitespace-nowrap">
+          🎨 UI Kit
+        </a>
+        <a href="tokens.html" class="px-3 py-1.5 rounded-lg transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white whitespace-nowrap">
+          📦 Tokens
+        </a>
+        <button id="nav-tab-prompt-builder" onclick="switchView('prompt-builder')" class="px-3 py-1.5 rounded-lg transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white whitespace-nowrap">
+          🪄 Prompt Studio
+        </button>
+      </nav>
+
+      <!-- Utility Actions (Random, Sound, Moodboard, Dark Mode) -->
+      <div class="flex items-center gap-2">
+        
+        <!-- Random Style Roller -->
+        <button
+          onclick="rollRandomStyle()"
+          title="Surprise Me — Roll a random UI Design Style!"
+          class="px-2.5 py-2 rounded-xl border border-indigo-200 dark:border-indigo-800 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-900 transition shadow-sm text-xs font-bold flex items-center gap-1 active:scale-95"
+        >
+          <span>🎲</span>
+          <span class="hidden sm:inline">Roll Style</span>
+        </button>
+
+        <!-- Tactile Sound Toggle -->
+        <button
+          id="sound-toggle-btn"
+          onclick="toggleSound()"
+          title="Toggle Tactile Web Audio UI Sounds"
+          class="p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition shadow-sm text-xs flex items-center gap-1 font-bold"
+        >
+          <span id="sound-icon">🔇</span>
+          <span class="hidden sm:inline" id="sound-label">Audio</span>
+        </button>
+
+        <!-- Client Moodboard Spec Sheet Export -->
+        <button
+          onclick="exportClientMoodboard()"
+          title="Export Client Design Brief / Spec Sheet (PDF/Print)"
+          class="px-2.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 transition shadow-sm text-xs font-bold flex items-center gap-1"
+        >
+          <span>📑</span>
+          <span class="hidden sm:inline">Export Spec</span>
+        </button>
+
+        <!-- App Shell Skin Cycler -->
+        <button
+          id="app-skin-btn"
+          onclick="cycleAppSkin()"
+          title="Transform the Design Atlas shell itself (Standard / Monolith / Glass / Cyberpunk)"
+          class="p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition shadow-sm text-xs font-bold"
+        >
+          <span id="app-skin-icon">🎨</span>
+        </button>
+
+        <!-- Keyboard Shortcuts Help -->
+        <button
+          id="shortcuts-btn"
+          onclick="openShortcutsHelp()"
+          title="Keyboard Shortcuts (?)"
+          class="hidden sm:p-2 p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition shadow-sm text-xs font-bold"
+        >
+          ⌨
+        </button>
+
+        <!-- Dark Mode Toggle -->
+        <button
+          id="theme-toggle"
+          title="Toggle Dark / Light Mode"
+          class="p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition shadow-sm"
+        >
+          <svg id="theme-sun" class="w-4 h-4 hidden dark:block text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+          </svg>
+          <svg id="theme-moon" class="w-4 h-4 block dark:hidden text-slate-700" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Active App Shell Skin Indicator (only visible when a non-default skin is active) -->
+  <div id="skin-indicator" role="status" aria-live="polite">
+    <span id="skin-indicator-text">🎨 Standard Modern UI</span>
+  </div>
+
+  <!-- ==========================================
+       VIEW CONTAINER 1: GALLERY VIEW
+       ========================================= -->
+  <div id="view-gallery" class="view-panel block">
+    
+    <!-- Hero Banner -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 mb-3">
+        <span id="hero-count-badge">✨ 76 Curated UI Design Languages for AI Prototyping</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 dark:text-white">
+        Browse Design Languages & Copy AI Prompts
+      </h2>
+      <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        Kissi bhi card par click karke uska <strong class="text-slate-900 dark:text-slate-200">Full-Screen Live Dashboard Preview</strong> dekhiye, ya <strong class="text-slate-900 dark:text-slate-200">Prompt Studio</strong> aur <strong class="text-slate-900 dark:text-slate-200">Versus Mode</strong> me compare karke directly AI ko dijiye!
+      </p>
+
+      <!-- Brand Harmonizer Color Presets Strip -->
+      <div class="max-w-2xl mx-auto mt-4 p-2.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-center">
+        <div id="harmonizer-mount"></div>
+      </div>
+
+      <!-- Search, Sort & Result Toolbar -->
+      <div class="max-w-3xl mx-auto mt-4 flex flex-col sm:flex-row items-center gap-3">
+        <div class="relative w-full">
+          <input
+            id="search-input"
+            type="search"
+            placeholder="Search all 76 styles (e.g. glassmorphism, retro, minimal, neon)..."
+            aria-label="Search design styles"
+            class="w-full pl-10 pr-4 py-2.5 text-sm rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 shadow-sm"
+          >
+          <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </div>
+
+        <!-- Sort Order -->
+        <div class="flex items-center gap-2 w-full sm:w-auto">
+          <label for="sort-select" class="text-xs font-bold text-slate-400 whitespace-nowrap">Sort</label>
+          <select
+            id="sort-select"
+            class="gallery-sort w-full sm:w-auto bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2.5 text-xs font-bold outline-none focus:ring-2 focus:ring-sky-500"
+          >
+            <option value="featured">✨ Featured (curated order)</option>
+            <option value="az">🔤 Name A → Z</option>
+            <option value="za">🔡 Name Z → A</option>
+            <option value="category">🗂️ Group by Category</option>
+            <option value="favorites">❤️ Favorites first</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Recently Viewed Strip (rendered by JS, hidden when empty) -->
+      <div id="recently-viewed-wrap" class="hidden max-w-3xl mx-auto mt-3 text-left">
+        <span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Pick up where you left off</span>
+        <div id="recently-viewed" class="recent-strip mt-1.5"></div>
+      </div>
+
+      <!-- Filter Chips Bar -->
+      <div class="max-w-7xl mx-auto pt-4 flex items-center justify-center gap-2 overflow-x-auto no-scrollbar">
+        <div id="filter-container" class="flex gap-2">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Cards Grid -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full">
+      <div class="flex flex-wrap items-center justify-between mb-4 gap-3 text-xs text-slate-500 dark:text-slate-400">
+        <span id="styles-count-text">76 Styles Available</span>
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="stat-pill"><span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span> Pure CSS</span>
+          <span class="stat-pill">🗂️ <b id="stat-categories">6</b> Categories</span>
+          <span class="stat-pill">🏷️ <b id="stat-tags">331</b> Tags</span>
+          <span class="stat-pill">❤️ <b id="stat-favorites">0</b> Saved</span>
+          <span class="stat-pill">⚡ Zero Build Step</span>
+        </div>
+      </div>
+
+      <div id="card-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="empty-state" class="hidden text-center py-20">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 text-2xl">
+          🔍
+        </div>
+        <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200">No styles match your search</h3>
+        <p class="text-sm text-slate-500 mt-1">Try another keyword or click "All" to reset filters.</p>
+        <button onclick="resetFilters()" class="mt-4 px-4 py-2 bg-sky-500 text-white rounded-xl text-sm font-semibold hover:bg-sky-600 transition">
+          Reset Filters
+        </button>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ==========================================
+       VIEW CONTAINER 2: STYLE VERSUS / COMPARE VIEW
+       ========================================== -->
+  <div id="view-compare" class="view-panel hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+    <div id="compare-mount-point"></div>
+  </div>
+
+  <!-- ==========================================
+       VIEW CONTAINER 3: COMPONENT PLAYGROUND
+       ========================================== -->
+  <div id="view-playground" class="view-panel hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+    <div id="playground-mount-point"></div>
+  </div>
+
+  <!-- ==========================================
+       VIEW CONTAINER 4: AI PROMPT BUILDER STUDIO
+       ========================================== -->
+  <div id="view-prompt-builder" class="view-panel hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+    <div id="prompt-builder-mount-point"></div>
+  </div>
+
+  <!-- ==========================================
+       VIEW CONTAINER 5: HISTORICAL DESIGN TIMELINE
+       ========================================== -->
+  <div id="view-timeline" class="view-panel hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+    <div id="timeline-mount-point"></div>
+  </div>
+
+  <!-- ==========================================
+       VIEW CONTAINER 6: STYLE MATCHMAKER QUIZ
+       ========================================== -->
+  <div id="view-quiz" class="view-panel hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+    <div id="quiz-mount-point"></div>
+  </div>
+
+  <!-- ==========================================
+       VIEW CONTAINER 7: SHADOW & ELEVATION PHYSICS LAB
+       ========================================== -->
+  <div id="view-shadow-lab" class="view-panel hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+    <div id="shadow-lab-mount-point"></div>
+  </div>
+
+  <!-- ==========================================
+       FULL-SCREEN DASHBOARD PREVIEW MODAL
+       ========================================== -->
+  <dialog id="style-modal" class="p-0 rounded-2xl w-11/12 max-w-6xl max-h-[92vh] overflow-hidden shadow-2xl bg-slate-950 text-slate-100 border border-slate-700">
+    <div class="flex flex-col h-full max-h-[92vh]">
+      
+      <!-- Modal Header Bar -->
+      <div class="flex items-center justify-between px-6 py-4 bg-slate-900 border-b border-slate-800 z-10">
+        <div class="flex items-center gap-3">
+          <span id="modal-category-badge" class="text-xs uppercase font-bold tracking-wider px-2.5 py-1 rounded-md bg-sky-500/20 text-sky-300 border border-sky-500/30">
+            Category
+          </span>
+          <h3 id="modal-title" class="text-xl font-bold tracking-tight text-white">
+            Style Name
+          </h3>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button
+            id="modal-download-boilerplate-btn"
+            class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg bg-sky-600 hover:bg-sky-500 text-white transition shadow"
+          >
+            ⬇ Starter HTML
+          </button>
+          <button
+            id="modal-test-playground-btn"
+            class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white transition shadow"
+          >
+            🎛️ Playground
+          </button>
+          <button
+            id="modal-full-demo-btn"
+            class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg bg-fuchsia-600 hover:bg-fuchsia-500 text-white transition shadow"
+            title="Poora page demo full-screen me dekho"
+          >
+            🖥️ Full Demo
+          </button>
+          <button
+            id="modal-copy-prompt-btn"
+            class="flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white shadow-md shadow-emerald-500/20 transition"
+          >
+            📋 Copy Prompt
+          </button>
+          <button
+            id="modal-close-btn"
+            class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Meta Details -->
+      <div class="px-6 py-3 bg-slate-900/60 border-b border-slate-800/80 flex flex-wrap items-center justify-between gap-4 text-xs">
+        <div class="flex items-center gap-2">
+          <span class="text-slate-400">Pehchaan / Vibe:</span>
+          <span id="modal-vibe" class="font-medium text-slate-200">...</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-slate-400">Best Fit For:</span>
+          <span id="modal-bestfit" class="font-medium text-slate-200">...</span>
+        </div>
+      </div>
+
+      <!-- Modal Interactive Container (Dashboard Canvas) -->
+      <div id="modal-body" class="flex-1 overflow-y-auto p-4 sm:p-6 bg-slate-950">
+        <!-- Dashboard injected dynamically here -->
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ==========================================
+       FULL-SCREEN LIVE PAGE DEMO SHOWCASE
+       Card kholne par poora mini-website usi style
+       me full-screen me dikhta hai (header, nav,
+       search, images, cards, pricing, table, form,
+       footer) — kuch bhi hataya nahi gaya, ye naya
+       additive layer hai.
+       ========================================== -->
+  <dialog id="showcase-dialog" class="p-0 w-screen h-screen max-w-none max-h-none m-0 overflow-hidden shadow-2xl bg-slate-950 text-slate-100">
+    <div class="flex flex-col h-screen w-screen">
+
+      <!-- Showcase chrome bar -->
+      <div id="showcase-chrome" class="flex flex-wrap items-center gap-2 px-3 sm:px-4 py-2.5 bg-slate-900 border-b border-slate-800 z-20">
+        <div class="flex items-center gap-2 min-w-0">
+          <span id="showcase-badge" class="text-[10px] uppercase font-bold tracking-wider px-2 py-1 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30">Category</span>
+          <span id="showcase-title" class="text-sm font-bold text-white truncate max-w-[42vw] sm:max-w-none">Style — Full Page Demo</span>
+          <span id="showcase-index" class="hidden lg:inline text-[11px] font-mono text-slate-500">#1</span>
+        </div>
+
+        <span id="showcase-vibe" class="hidden xl:inline text-[11px] text-slate-400 truncate max-w-[22%]">vibe</span>
+
+        <!-- Section jumps -->
+        <nav id="showcase-jumps" class="hidden md:flex items-center gap-1 flex-1 justify-center" aria-label="Demo sections"></nav>
+
+        <div class="flex items-center gap-1.5 ml-auto">
+          <span id="showcase-count" class="hidden sm:inline text-[11px] font-mono text-slate-500 mr-1">1 / 76</span>
+          <button type="button" data-showcase-action="prev" title="Previous style (←)" class="px-2 py-1.5 text-xs font-bold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">←</button>
+          <button type="button" data-showcase-action="next" title="Next style (→)" class="px-2 py-1.5 text-xs font-bold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">→</button>
+          <button type="button" data-showcase-action="fullscreen" title="Fullscreen (F)" class="px-2.5 py-1.5 text-xs font-bold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">⛶ Full</button>
+          <button type="button" data-showcase-action="dashboard" title="Purana dashboard view" class="hidden sm:flex items-center px-2.5 py-1.5 text-xs font-bold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">📊 Dashboard</button>
+          <button type="button" data-showcase-action="print" title="Print demo" class="hidden lg:flex px-2.5 py-1.5 text-xs font-bold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">🖨</button>
+          <button type="button" data-showcase-action="copy-prompt" title="Copy this style ka prompt" class="px-2.5 py-1.5 text-xs font-bold rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white transition shadow">📋 Prompt</button>
+          <button type="button" data-showcase-action="boilerplate" title="Starter HTML download" class="hidden sm:flex px-2.5 py-1.5 text-xs font-bold rounded-lg bg-sky-600 hover:bg-sky-500 text-white transition shadow">⬇ HTML</button>
+          <button type="button" data-showcase-action="playground" title="Playground me test karo" class="hidden lg:flex px-2.5 py-1.5 text-xs font-bold rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white transition shadow">🎛️</button>
+          <button type="button" data-showcase-action="close" title="Band karo (Esc)" aria-label="Close demo" class="p-1.5 rounded-lg bg-slate-800 hover:bg-rose-600 text-slate-300 hover:text-white transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- The generated demo website lives here -->
+      <div id="showcase-stage" class="flex-1 min-h-0 overflow-y-auto overflow-x-hidden bg-white"></div>
+    </div>
+  </dialog>
+
+  <!-- ==========================================
+       KEYBOARD SHORTCUTS HELP DIALOG
+       ========================================== -->
+  <dialog id="shortcuts-dialog" class="rounded-2xl w-11/12 max-w-md p-0 shadow-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100">
+    <div class="p-6">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <span class="text-[11px] font-bold uppercase tracking-widest text-sky-500">Hotkeys</span>
+          <h3 class="text-lg font-black">Keyboard Shortcuts</h3>
+        </div>
+        <button id="shortcuts-close-btn" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition" aria-label="Close shortcuts">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+
+      <div class="shortcut-row"><span>Focus gallery search</span><span class="shortcut-keys"><kbd>/</kbd></span></div>
+      <div class="shortcut-row"><span>Open command palette</span><span class="shortcut-keys"><kbd>Ctrl</kbd><span>+</span><kbd>K</kbd></span></div>
+      <div class="shortcut-row"><span>Jump to gallery</span><span class="shortcut-keys"><kbd>1</kbd></span></div>
+      <div class="shortcut-row"><span>Jump to Versus mode</span><span class="shortcut-keys"><kbd>2</kbd></span></div>
+      <div class="shortcut-row"><span>Jump to Playground</span><span class="shortcut-keys"><kbd>3</kbd></span></div>
+      <div class="shortcut-row"><span>Jump to Timeline</span><span class="shortcut-keys"><kbd>4</kbd></span></div>
+      <div class="shortcut-row"><span>Jump to Style Quiz</span><span class="shortcut-keys"><kbd>5</kbd></span></div>
+      <div class="shortcut-row"><span>Jump to Shadow Lab</span><span class="shortcut-keys"><kbd>6</kbd></span></div>
+      <div class="shortcut-row"><span>Jump to Prompt Studio</span><span class="shortcut-keys"><kbd>7</kbd></span></div>
+      <div class="shortcut-row"><span>Roll a random style</span><span class="shortcut-keys"><kbd>R</kbd></span></div>
+      <div class="shortcut-row"><span>Toggle dark mode</span><span class="shortcut-keys"><kbd>D</kbd></span></div>
+      <div class="shortcut-row"><span>Toggle UI sounds</span><span class="shortcut-keys"><kbd>S</kbd></span></div>
+      <div class="shortcut-row"><span>Export client spec sheet</span><span class="shortcut-keys"><kbd>E</kbd></span></div>
+      <div class="shortcut-row"><span>Close modal / overlay</span><span class="shortcut-keys"><kbd>Esc</kbd></span></div>
+      <div class="shortcut-row"><span>Full‑page demo: prev / next style</span><span class="shortcut-keys"><kbd>←</kbd><kbd>→</kbd></span></div>
+      <div class="shortcut-row"><span>Full‑page demo: fullscreen</span><span class="shortcut-keys"><kbd>F</kbd></span></div>
+      <div class="shortcut-row" style="border-bottom:none;"><span>Show this help</span><span class="shortcut-keys"><kbd>?</kbd></span></div>
+
+      <button id="shortcuts-done-btn" class="mt-5 w-full px-4 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-600 text-white text-sm font-bold transition shadow">
+        Got it
+      </button>
+    </div>
+  </dialog>
+
+  <!-- ==========================================
+       TOAST NOTIFICATION
+       ========================================== -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 text-white border border-slate-700 shadow-2xl text-sm font-semibold">
+    <span class="text-emerald-400">✔</span>
+    <span id="toast-text">AI Prompt Copied to Clipboard!</span>
+  </div>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 py-6 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400">
+      <p>© 2026 Design Atlas — Ultimate UI Design Architecture & AI Engineering Workbench.</p>
+      <div class="flex flex-wrap items-center gap-4">
+        <span id="footer-style-count">76 UI Styles</span>
+        <span>•</span>
+        <span id="footer-category-count">6 Categories</span>
+        <span>•</span>
+        <a href="uikit.html" class="underline hover:text-sky-500">UI Kit</a>
+        <span>•</span>
+        <a href="tokens.html" class="underline hover:text-sky-500">Tokens Exporter</a>
+        <span>•</span>
+        <a href="compare.html" class="underline hover:text-sky-500">Versus Mode</a>
+        <span>•</span>
+        <a href="playground.html" class="underline hover:text-sky-500">Playground</a>
+        <span>•</span>
+        <a href="prompt-builder.html" class="underline hover:text-sky-500">Prompt Studio</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       JAVASCRIPT MODULE SCRIPTS
+       ========================================== -->
+  <script src="js/data.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/sw-register.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/favorites.js"></script>
+  <script src="js/token-exporter.js"></script>
+  <script src="js/framework-exporter.js"></script>
+  <script src="js/palette-harmonizer.js"></script>
+  <script src="js/app-skin.js"></script>
+  <script src="js/compare.js"></script>
+  <script src="js/playground.js"></script>
+  <script src="js/prompt-builder.js"></script>
+  <script src="js/timeline.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/shadow-lab.js"></script>
+  <script src="js/command-palette.js"></script>
+  <script src="js/demo-showcase.js"></script>
+
+  <script>
+    // State
+    const CATEGORIES = ["All", "❤️ Favorites", "Minimal", "Bold", "Retro", "Futuristic", "Organic", "Editorial"];
+    const VIEW_NAMES = ['gallery', 'compare', 'playground', 'prompt-builder', 'timeline', 'quiz', 'shadow-lab'];
+    let currentFilter = "All";
+    let currentSort = "featured";
+    let searchQuery = "";
+    let activeView = "gallery";
+
+    // DOM Elements
+    const gridEl = document.getElementById("card-grid");
+    const filterContainerEl = document.getElementById("filter-container");
+    const searchInput = document.getElementById("search-input");
+    const sortSelect = document.getElementById("sort-select");
+    const emptyStateEl = document.getElementById("empty-state");
+    const themeToggleBtn = document.getElementById("theme-toggle");
+    const stylesCountText = document.getElementById("styles-count-text");
+    const headerCountBadge = document.getElementById("header-count-badge");
+    const heroCountBadge = document.getElementById("hero-count-badge");
+    const footerStyleCount = document.getElementById("footer-style-count");
+    const footerCategoryCount = document.getElementById("footer-category-count");
+    const statCategories = document.getElementById("stat-categories");
+    const statTags = document.getElementById("stat-tags");
+    const statFavorites = document.getElementById("stat-favorites");
+    const soundToggleBtn = document.getElementById("sound-toggle-btn");
+    const soundIcon = document.getElementById("sound-icon");
+    const harmonizerMount = document.getElementById("harmonizer-mount");
+    const recentlyViewedWrap = document.getElementById("recently-viewed-wrap");
+    const recentlyViewedEl = document.getElementById("recently-viewed");
+    const shortcutsDialog = document.getElementById("shortcuts-dialog");
+
+    // Modal Elements
+    const modalEl = document.getElementById("style-modal");
+    const modalTitle = document.getElementById("modal-title");
+    const modalCategoryBadge = document.getElementById("modal-category-badge");
+    const modalVibe = document.getElementById("modal-vibe");
+    const modalBestfit = document.getElementById("modal-bestfit");
+    const modalBody = document.getElementById("modal-body");
+    const modalCloseBtn = document.getElementById("modal-close-btn");
+    const modalFullDemoBtn = document.getElementById("modal-full-demo-btn");
+    const modalCopyPromptBtn = document.getElementById("modal-copy-prompt-btn");
+    const modalTestPlaygroundBtn = document.getElementById("modal-test-playground-btn");
+    const modalDownloadBoilerplateBtn = document.getElementById("modal-download-boilerplate-btn");
+    let activeModalStyle = null;
+
+    // Toast
+    const toastEl = document.getElementById("toast");
+    const toastText = document.getElementById("toast-text");
+    let toastTimeout = null;
+
+    function showToast(message) {
+      toastText.textContent = message;
+      toastEl.classList.remove("translate-y-20", "opacity-0");
+      toastEl.classList.add("translate-y-0", "opacity-100");
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toastEl.classList.remove("translate-y-0", "opacity-100");
+        toastEl.classList.add("translate-y-20", "opacity-0");
+      }, 2500);
+    }
+
+    // Audio sound toggle
+    function toggleSound() {
+      const isEnabled = soundManager.toggle();
+      soundIcon.textContent = isEnabled ? "🔊" : "🔇";
+      showToast(isEnabled ? "🔊 Tactile UI audio enabled!" : "🔇 Audio muted");
+    }
+
+    function initSoundIcon() {
+      soundIcon.textContent = soundManager.enabled ? "🔊" : "🔇";
+    }
+
+    // View Switching Engine
+    function switchView(viewName, optTargetStyle) {
+      soundManager.play('click');
+      activeView = viewName;
+
+      // Only touch the hash when it actually changes — prevents the
+      // hashchange listener from re-running switchView a second time.
+      const targetHash = '#' + viewName;
+      if (window.location.hash !== targetHash) {
+        window.location.hash = viewName;
+      }
+
+      VIEW_NAMES.forEach(name => {
+        const panel = document.getElementById(`view-${name}`);
+        const tab = document.getElementById(`nav-tab-${name}`);
+        if (!panel || !tab) return;
+        if (name === viewName) {
+          panel.classList.remove('hidden');
+          panel.classList.add('block');
+          tab.className = "px-3 py-1.5 rounded-lg transition-all bg-white dark:bg-slate-900 shadow-sm text-sky-600 dark:text-sky-400 font-bold whitespace-nowrap";
+        } else {
+          panel.classList.remove('block');
+          panel.classList.add('hidden');
+          tab.className = "px-3 py-1.5 rounded-lg transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white whitespace-nowrap";
+        }
+      });
+
+      if (viewName === 'compare') {
+        renderCompareView('compare-mount-point', optTargetStyle || 'glassmorphism', 'neobrutalism');
+      } else if (viewName === 'playground') {
+        renderPlaygroundView('playground-mount-point', optTargetStyle || 'glassmorphism');
+      } else if (viewName === 'prompt-builder') {
+        renderPromptBuilderView('prompt-builder-mount-point', optTargetStyle || 'glassmorphism');
+      } else if (viewName === 'timeline') {
+        renderTimelineView('timeline-mount-point');
+      } else if (viewName === 'quiz') {
+        renderQuizView('quiz-mount-point');
+      } else if (viewName === 'shadow-lab') {
+        renderShadowLabView('shadow-lab-mount-point', optTargetStyle || 'neobrutalism');
+      }
+
+      // Bring the freshly-activated view into view on small screens
+      if (viewName !== 'gallery' && window.innerWidth < 768) {
+        const panel = document.getElementById(`view-${viewName}`);
+        if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // Random Style Roller
+    function rollRandomStyle() {
+      const rand = STYLES_DATA[Math.floor(Math.random() * STYLES_DATA.length)];
+      soundManager.play('chime');
+      showToast(`🎲 Rolled random style: ${rand.name}!`);
+      openDashboardModal(rand.id);
+    }
+
+    // Theme Toggle (localStorage hardened for file:// / private-mode)
+    function initTheme() {
+      const stored = safeLS.get('theme', null);
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (stored === 'dark' || (stored === null && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    }
+
+    themeToggleBtn.addEventListener("click", () => {
+      soundManager.play('click');
+      toggleTheme();
+    });
+
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.toggle("dark");
+      safeLS.set("theme", isDark ? "dark" : "light");
+      showToast(isDark ? "🌙 Dark mode on" : "☀️ Light mode on");
+    }
+
+    // Filter Chips — derived from the data so new categories appear automatically
+    function getCategories() {
+      const seen = [];
+      STYLES_DATA.forEach(s => { if (!seen.includes(s.category)) seen.push(s.category); });
+      seen.sort();
+      return ["All", "❤️ Favorites", ...seen];
+    }
+
+    function renderFilters() {
+      filterContainerEl.innerHTML = getCategories().map(cat => `
+        <button
+          onclick="setFilter('${cat}')"
+          aria-pressed="${currentFilter === cat}"
+          class="px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-150 ${
+            currentFilter === cat
+              ? 'bg-sky-500 text-white shadow-md shadow-sky-500/25 ring-2 ring-sky-400/40'
+              : 'bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800'
+          }"
+        >
+          ${cat} ${cat === '❤️ Favorites' ? `(${favManager.getCount()})` : ''}
+        </button>
+      `).join("");
+    }
+
+    function setFilter(category) {
+      soundManager.play('click');
+      currentFilter = category;
+      renderFilters();
+      renderCards();
+    }
+
+    function resetFilters() {
+      soundManager.play('click');
+      currentFilter = "All";
+      currentSort = "featured";
+      searchQuery = "";
+      searchInput.value = "";
+      if (sortSelect) sortSelect.value = "featured";
+      renderFilters();
+      renderCards();
+    }
+
+    searchInput.addEventListener("input", (e) => {
+      searchQuery = e.target.value.toLowerCase().trim();
+      renderCards();
+    });
+
+    sortSelect.addEventListener("change", (e) => {
+      currentSort = e.target.value;
+      soundManager.play('click');
+      renderCards();
+      showToast(`Sorted by: ${e.target.options[e.target.selectedIndex].text}`);
+    });
+
+    // Copy prompt (clipboard-safe: falls back on file:// / http://)
+    function copyPrompt(text, styleName, event) {
+      if (event) event.stopPropagation();
+      copyText(text).then(ok => {
+        if (ok) {
+          soundManager.play('success');
+          showToast(`✔ Copied detailed AI Prompt for ${styleName}!`);
+        } else {
+          soundManager.play('heavy');
+          showToast(`⚠ Copy blocked — select the text and press Ctrl+C`);
+        }
+      });
+    }
+
+    // Detailed prompt copy -> js/util.js ka global copyStylePrompt(styleId) use karta hai
+
+    // Copy raw CSS / Tailwind snippets for a style (never inlines the snippet into HTML)
+    function copyStyleCss(styleId, event) {
+      if (event) event.stopPropagation();
+      const style = STYLES_DATA.find(s => s.id === styleId);
+      if (!style) return;
+      copyText(style.cssSnippet).then(ok => {
+        soundManager.play(ok ? 'success' : 'heavy');
+        showToast(ok ? `✔ ${style.name} CSS rules copied!` : '⚠ Copy blocked — use Ctrl+C');
+      });
+    }
+
+    function copyStyleTailwind(styleId, event) {
+      if (event) event.stopPropagation();
+      const style = STYLES_DATA.find(s => s.id === styleId);
+      if (!style) return;
+      copyText(style.tailwindSnippet).then(ok => {
+        soundManager.play(ok ? 'success' : 'heavy');
+        showToast(ok ? `✔ ${style.name} Tailwind markup copied!` : '⚠ Copy blocked — use Ctrl+C');
+      });
+    }
+
+    // Download a ready-to-run framework component for the style
+    function exportComponent(styleId, framework, event) {
+      if (event) event.stopPropagation();
+      const style = STYLES_DATA.find(s => s.id === styleId);
+      if (!style) return;
+      const map = {
+        react: { code: FrameworkExporter.generateReact(style), ext: 'jsx', mime: 'text/jsx' },
+        vue:   { code: FrameworkExporter.generateVue(style),   ext: 'vue',  mime: 'text/plain' },
+        svelte:{ code: FrameworkExporter.generateSvelte(style),ext: 'svelte', mime: 'text/plain' }
+      };
+      const target = map[framework];
+      if (!target) return;
+      const compName = style.name.replace(/[^a-zA-Z0-9]/g, '');
+      TokenExporter.downloadFile(`${compName}Card.${target.ext}`, target.code, target.mime);
+      soundManager.play('success');
+      showToast(`✔ Downloaded ${compName}Card.${target.ext} (${framework.toUpperCase()})!`);
+    }
+
+    // Download Boilerplate
+    function downloadBoilerplate(styleId, event) {
+      if (event) event.stopPropagation();
+      const style = STYLES_DATA.find(s => s.id === styleId);
+      if (!style) return;
+      const html = TokenExporter.generateStarterBoilerplate(style);
+      TokenExporter.downloadFile(`${style.id}-starter.html`, html, 'text/html');
+      soundManager.play('success');
+      showToast(`✔ Downloaded ${style.name} Starter Boilerplate!`);
+    }
+
+    // Toggle Favorite
+    function toggleFav(id, event) {
+      if (event) event.stopPropagation();
+      const isFav = favManager.toggle(id);
+      soundManager.play('pop');
+      showToast(isFav ? `❤️ Added to Favorites!` : `Removed from Favorites`);
+      updateCounts();
+      renderFilters();
+      renderCards();
+    }
+
+    // Highlight matched query fragments without breaking HTML
+    function highlightMatch(text, query) {
+      if (!query) return escapeHTML(text);
+      const lower = text.toLowerCase();
+      const idx = lower.indexOf(query);
+      if (idx === -1) return escapeHTML(text);
+      return escapeHTML(text.slice(0, idx)) +
+        '<mark class="search-hit">' + escapeHTML(text.slice(idx, idx + query.length)) + '</mark>' +
+        highlightMatch(text.slice(idx + query.length), query);
+    }
+
+    /* -------------------------------------------------- generated artwork
+       Palette-derived SVG art, produced by js/demo-showcase.js's makeArt()
+       and logoMark(), which are already exposed as window.DemoShowcase.
+       Every call sits behind a guard so the gallery and the dashboard still
+       render if that script ever fails to load: the markup then falls back to
+       exactly what was there before (no band, the original "◈"/"JD" marks). */
+    function generatedArt(item, variant) {
+      try {
+        if (window.DemoShowcase && typeof window.DemoShowcase.makeArt === 'function') {
+          return window.DemoShowcase.makeArt(item, variant);
+        }
+      } catch (err) { /* artwork must never break the gallery */ }
+      return '';
+    }
+
+    /* Wide banner above the live-CSS preview on each gallery card. Returns an
+       empty string when art is unavailable, so the card is unchanged. */
+    function cardArtMarkup(item) {
+      const src = generatedArt(item, 'band');
+      if (!src) return '';
+      return `
+        <!-- GENERATED ARTWORK BAND (palette -> offline SVG, zero network) -->
+        <div class="relative h-24 sm:h-28 overflow-hidden ${item.cssClass}" data-card-art>
+          <img src="${src}" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover" />
+          <div class="absolute inset-0" style="background:linear-gradient(90deg,rgba(0,0,0,.5),rgba(0,0,0,.08) 55%,rgba(0,0,0,0))"></div>
+          <span class="absolute left-3 bottom-2 text-[9px] leading-none font-black uppercase tracking-[.2em] text-white" style="text-shadow:0 1px 3px rgba(0,0,0,.6)">Generated artwork</span>
+          <span class="absolute right-3 bottom-2 text-[9px] leading-none font-mono text-white/85" style="text-shadow:0 1px 3px rgba(0,0,0,.6)">palette &rarr; svg</span>
+        </div>`;
+    }
+
+    /* logoMark() returns INLINE svg markup (logoSvg overrides do too), so it is
+       injected directly — only makeArt() returns a data: URI usable in <img>. */
+    function dashLogoMarkup(item) {
+      let svg = '';
+      try {
+        if (window.DemoShowcase && typeof window.DemoShowcase.logoMark === 'function') {
+          svg = window.DemoShowcase.logoMark(item);
+        }
+      } catch (err) { svg = ''; }
+      return svg
+        ? `<span class="dash-logo-slot">${svg}</span>`
+        : `<div class="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-sm border border-current">◈</div>`;
+    }
+
+    function dashAvatarMarkup(item) {
+      const src = generatedArt(item, 'avatar');
+      return src
+        ? `<img src="${src}" alt="" width="32" height="32" class="w-8 h-8 rounded-full border border-current object-cover" />`
+        : `<div class="w-8 h-8 rounded-full border border-current flex items-center justify-center text-xs font-bold">JD</div>`;
+    }
+
+    // Render Cards in Grid
+    function renderCards() {
+      let filtered = STYLES_DATA.filter(item => {
+        let matchesCategory = true;
+        if (currentFilter === "❤️ Favorites") {
+          matchesCategory = favManager.isFavorite(item.id);
+        } else if (currentFilter !== "All") {
+          matchesCategory = item.category === currentFilter;
+        }
+
+        const matchesSearch = !searchQuery ||
+          item.name.toLowerCase().includes(searchQuery) ||
+          item.vibe.toLowerCase().includes(searchQuery) ||
+          item.bestFit.toLowerCase().includes(searchQuery) ||
+          item.category.toLowerCase().includes(searchQuery) ||
+          item.tags.some(t => t.toLowerCase().includes(searchQuery));
+
+        return matchesCategory && matchesSearch;
+      });
+
+      // Sorting (non-destructive: the underlying STYLES_DATA order is preserved)
+      const catRank = c => getCategories().indexOf(c);
+      if (currentSort === 'az') {
+        filtered = filtered.slice().sort((a, b) => a.name.localeCompare(b.name));
+      } else if (currentSort === 'za') {
+        filtered = filtered.slice().sort((a, b) => b.name.localeCompare(a.name));
+      } else if (currentSort === 'category') {
+        filtered = filtered.slice().sort((a, b) => catRank(a.category) - catRank(b.category) || a.name.localeCompare(b.name));
+      } else if (currentSort === 'favorites') {
+        filtered = filtered.slice().sort((a, b) => (favManager.isFavorite(b.id) ? 1 : 0) - (favManager.isFavorite(a.id) ? 1 : 0));
+      }
+
+      stylesCountText.textContent = `${filtered.length} of ${STYLES_DATA.length} Styles Shown`;
+
+      if (filtered.length === 0) {
+        gridEl.innerHTML = "";
+        emptyStateEl.classList.remove("hidden");
+        return;
+      }
+
+      emptyStateEl.classList.add("hidden");
+
+      gridEl.innerHTML = filtered.map((item, idx) => {
+        const isFav = favManager.isFavorite(item.id);
+        return `
+          <article
+            style="--card-i:${idx}"
+            onclick="openDashboardModal('${item.id}')"
+            class="group cursor-pointer rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-200 flex flex-col overflow-hidden relative"
+          >
+            <!-- Bookmark Button -->
+            <button
+              onclick="toggleFav('${item.id}', event)"
+              title="${isFav ? 'Remove from favorites' : 'Add to favorites'}"
+              class="absolute top-2.5 right-2.5 z-20 w-8 h-8 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md flex items-center justify-center text-xs transition border border-white/20 shadow-md ${isFav ? 'text-rose-400' : 'text-white/80'}"
+            >
+              ${isFav ? '❤️' : '🤍'}
+            </button>
+
+            ${cardArtMarkup(item)}
+
+            <!-- MINI LIVE DEMO CONTAINER (PURE REAL CSS) -->
+            <div class="h-44 p-4 relative overflow-hidden flex flex-col justify-between ${item.cssClass} transition-transform group-hover:scale-[1.01]">
+              <div class="flex items-center justify-between text-xs font-semibold opacity-90 pr-8">
+                <span class="tracking-wide uppercase font-extrabold">${item.name}</span>
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-black/20 text-white backdrop-blur-sm border border-white/20">LIVE CSS</span>
+              </div>
+
+              <!-- Styled Mini Component Showcase -->
+              <div class="demo-box p-3 rounded-xl transition-all flex flex-col gap-2 shadow-sm">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-xs font-bold truncate">Component Preview</span>
+                  <span class="text-[10px] opacity-75 font-mono">$1,420</span>
+                </div>
+                <div class="flex gap-2 items-center">
+                  <input
+                    type="text"
+                    value="Search..."
+                    readonly
+                    tabindex="-1"
+                    class="demo-input w-full px-2 py-1 text-xs outline-none rounded pointer-events-none"
+                  >
+                  <button
+                    type="button"
+                    tabindex="-1"
+                    class="demo-btn px-2.5 py-1 text-xs whitespace-nowrap rounded pointer-events-none"
+                  >
+                    Action
+                  </button>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between text-[11px] opacity-80 pt-1">
+                <span>● Click for Full Dashboard</span>
+                <span class="font-bold underline">Preview ↗</span>
+              </div>
+            </div>
+
+            <!-- CARD FOOTER INFO & ACTIONS -->
+            <div class="p-4 flex-1 flex flex-col justify-between bg-white dark:bg-slate-900">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-1.5">
+                  <h3 class="font-black text-base text-slate-900 dark:text-slate-100 group-hover:text-sky-500 transition-colors">
+                    ${highlightMatch(item.name, searchQuery)}
+                  </h3>
+                  <span class="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+                    ${item.category}
+                  </span>
+                </div>
+                <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                  <strong class="text-slate-700 dark:text-slate-300">Vibe:</strong> ${item.vibe}
+                </p>
+                <p class="text-[11px] text-slate-500 dark:text-slate-500 mt-1 line-clamp-1">
+                  <strong>Best fit:</strong> ${item.bestFit}
+                </p>
+
+                <!-- Color Palette Dots -->
+                <div class="flex items-center gap-1.5 mt-2.5">
+                  ${item.palette.map(c => `
+                    <span class="w-3.5 h-3.5 rounded-full border border-black/10 inline-block shadow-xs" style="background-color: ${c}" title="${c}"></span>
+                  `).join('')}
+                </div>
+              </div>
+
+              <!-- Action Buttons Row -->
+              <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-1.5">
+                <div class="flex gap-1">
+                  <button
+                    type="button"
+                    onclick="event.stopPropagation(); switchView('playground', '${item.id}')"
+                    title="Open directly in interactive playground"
+                    class="inline-flex items-center justify-center p-1.5 rounded-lg text-xs bg-slate-100 dark:bg-slate-800 hover:bg-indigo-500 hover:text-white dark:hover:bg-indigo-500 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition"
+                  >
+                    ${icon('settings', '', '15px')}
+                  </button>
+                  <button
+                    type="button"
+                    onclick="event.stopPropagation(); switchView('compare', '${item.id}')"
+                    title="Compare in side-by-side versus mode"
+                    class="inline-flex items-center justify-center p-1.5 rounded-lg text-xs bg-slate-100 dark:bg-slate-800 hover:bg-rose-500 hover:text-white dark:hover:bg-rose-500 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition"
+                  >
+                    ${icon('layers', '', '15px')}
+                  </button>
+                  <button
+                    type="button"
+                    onclick="event.stopPropagation(); switchView('prompt-builder', '${item.id}')"
+                    title="Customize AI prompt in Studio"
+                    class="inline-flex items-center justify-center p-1.5 rounded-lg text-xs bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white dark:hover:bg-sky-500 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition"
+                  >
+                    ${icon('zap', '', '15px')}
+                  </button>
+                  <button
+                    type="button"
+                    onclick="downloadBoilerplate('${item.id}', event)"
+                    title="Download standalone starter HTML boilerplate"
+                    class="inline-flex items-center justify-center p-1.5 rounded-lg text-xs bg-slate-100 dark:bg-slate-800 hover:bg-emerald-500 hover:text-white dark:hover:bg-emerald-500 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition"
+                  >
+                    ${icon('download', '', '15px')}
+                  </button>
+                </div>
+
+                <button
+                  type="button"
+                  onclick="copyStylePrompt('${item.id}', event)"
+                  class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 hover:bg-sky-500 hover:text-white dark:hover:bg-sky-500 dark:hover:text-white text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition flex items-center gap-1.5 active:scale-95 shadow-sm"
+                  title="Copy ready-to-use AI Prompt"
+                >
+                  ${icon('copy', '', '14px')} Copy Prompt
+                </button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    // Open Full-Screen Interactive Dashboard Modal
+    function openDashboardModal(styleId) {
+      const item = STYLES_DATA.find(s => s.id === styleId);
+      if (!item) return;
+
+      soundManager.play('click');
+      activeModalStyle = item;
+      rememberRecentStyle(item.id);
+
+      // Full-screen live page demo (header/nav/search/images/cards/form/footer)
+      if (window.DemoShowcase && typeof DemoShowcase.open === 'function') {
+        DemoShowcase.open(styleId);
+        return;
+      }
+
+      modalTitle.textContent = `${item.name} — Full Interactive Dashboard`;
+      modalCategoryBadge.textContent = item.category;
+      modalVibe.textContent = item.vibe;
+      modalBestfit.textContent = item.bestFit;
+
+      modalCopyPromptBtn.onclick = () => {
+        copyStylePrompt(item.id);
+      };
+
+      modalTestPlaygroundBtn.onclick = () => {
+        modalEl.close();
+        switchView('playground', item.id);
+      };
+
+      modalDownloadBoilerplateBtn.onclick = () => {
+        const html = TokenExporter.generateStarterBoilerplate(item);
+        TokenExporter.downloadFile(`${item.id}-starter.html`, html, 'text/html');
+        soundManager.play('success');
+        showToast(`✔ Downloaded ${item.name} Boilerplate!`);
+      };
+
+      modalBody.innerHTML = generateDashboardHTML(item);
+      modalEl.showModal();
+    }
+
+    modalCloseBtn.addEventListener("click", () => modalEl.close());
+    if (modalFullDemoBtn) {
+      modalFullDemoBtn.addEventListener("click", () => {
+        if (activeModalStyle && window.DemoShowcase) DemoShowcase.open(activeModalStyle.id);
+      });
+    }
+    modalEl.addEventListener("click", (e) => {
+      if (e.target === modalEl) modalEl.close();
+    });
+
+    // Generate Dashboard HTML
+    function generateDashboardHTML(item) {
+      return `
+        <div class="rounded-2xl p-6 sm:p-8 ${item.cssClass} transition-all shadow-2xl border border-white/10 min-h-[560px] flex flex-col justify-between">
+          
+          <!-- Top Navbar -->
+          <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-current/20">
+            <div class="flex items-center gap-3">
+              ${dashLogoMarkup(item)}
+              <div>
+                <h4 class="font-extrabold text-lg tracking-tight uppercase">${item.name} OS</h4>
+                <p class="text-xs opacity-75">Production SaaS Dashboard Layout</p>
+              </div>
+            </div>
+
+            <!-- Top Nav Actions -->
+            <div class="flex items-center gap-3">
+              <div class="relative hidden sm:block">
+                <input
+                  type="text"
+                  placeholder="Filter metrics..."
+                  class="demo-input px-3 py-1.5 text-xs rounded-lg w-48 outline-none"
+                >
+              </div>
+              <button class="demo-btn px-4 py-2 text-xs font-bold rounded-lg flex items-center gap-1.5" onclick="soundManager.play('${item.audioTone}')">
+                <span>+</span> New Project
+              </button>
+              ${dashAvatarMarkup(item)}
+            </div>
+          </div>
+
+          <!-- Main Stat Cards Row -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-6">
+            <div class="demo-box p-4 rounded-xl flex flex-col justify-between">
+              <div class="flex items-center justify-between opacity-80 text-xs font-semibold">
+                <span>Monthly Revenue</span>
+                <span>📈 +18.4%</span>
+              </div>
+              <div class="my-2">
+                <span class="text-2xl sm:text-3xl font-black">$48,290</span>
+              </div>
+              <p class="text-[11px] opacity-70">Target: $50,000 / month</p>
+            </div>
+
+            <div class="demo-box p-4 rounded-xl flex flex-col justify-between">
+              <div class="flex items-center justify-between opacity-80 text-xs font-semibold">
+                <span>Active Users</span>
+                <span>🔥 Live</span>
+              </div>
+              <div class="my-2">
+                <span class="text-2xl sm:text-3xl font-black">12,480</span>
+              </div>
+              <p class="text-[11px] opacity-70">Across 84 countries</p>
+            </div>
+
+            <div class="demo-box p-4 rounded-xl flex flex-col justify-between">
+              <div class="flex items-center justify-between opacity-80 text-xs font-semibold">
+                <span>Conversion Rate</span>
+                <span>⚡ Top 5%</span>
+              </div>
+              <div class="my-2">
+                <span class="text-2xl sm:text-3xl font-black">4.82%</span>
+              </div>
+              <p class="text-[11px] opacity-70">+0.6% vs previous cycle</p>
+            </div>
+
+            <div class="demo-box p-4 rounded-xl flex flex-col justify-between">
+              <div class="flex items-center justify-between opacity-80 text-xs font-semibold">
+                <span>Server Health</span>
+                <span>99.98%</span>
+              </div>
+              <div class="my-2">
+                <span class="text-2xl sm:text-3xl font-black">Normal</span>
+              </div>
+              <p class="text-[11px] opacity-70">Latency: 28ms avg</p>
+            </div>
+          </div>
+
+          <!-- Pure CSS Bar Chart + Action Form -->
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 my-2">
+            
+            <div class="demo-box p-5 rounded-xl lg:col-span-2 flex flex-col justify-between">
+              <div class="flex items-center justify-between mb-4">
+                <div>
+                  <h5 class="font-bold text-sm">Growth Performance</h5>
+                  <p class="text-xs opacity-75">Quarterly volume breakdown</p>
+                </div>
+                <span class="text-xs px-2 py-0.5 rounded border border-current font-mono">Q1-Q4</span>
+              </div>
+
+              <!-- Bar Heights -->
+              <div class="h-40 flex items-end justify-between gap-2 sm:gap-4 pt-6 px-2 border-b border-current/20">
+                <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                  <div class="demo-btn w-full rounded-t" style="height: 42%;"></div>
+                  <span class="text-[10px] opacity-75">Jan</span>
+                </div>
+                <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                  <div class="demo-btn w-full rounded-t" style="height: 58%;"></div>
+                  <span class="text-[10px] opacity-75">Feb</span>
+                </div>
+                <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                  <div class="demo-btn w-full rounded-t" style="height: 75%;"></div>
+                  <span class="text-[10px] opacity-75">Mar</span>
+                </div>
+                <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                  <div class="demo-btn w-full rounded-t" style="height: 64%;"></div>
+                  <span class="text-[10px] opacity-75">Apr</span>
+                </div>
+                <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                  <div class="demo-btn w-full rounded-t" style="height: 88%;"></div>
+                  <span class="text-[10px] opacity-75">May</span>
+                </div>
+                <div class="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">
+                  <div class="demo-btn w-full rounded-t" style="height: 98%;"></div>
+                  <span class="text-[10px] opacity-75">Jun</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Action Form Card -->
+            <div class="demo-box p-5 rounded-xl flex flex-col justify-between">
+              <div>
+                <h5 class="font-bold text-sm mb-1">Quick Deployment</h5>
+                <p class="text-xs opacity-75 mb-4">Trigger deployment in ${item.name} environment.</p>
+
+                <div class="space-y-3">
+                  <div>
+                    <label class="block text-[11px] font-semibold mb-1 opacity-80">Target Branch</label>
+                    <input type="text" value="production-main" class="demo-input w-full px-3 py-1.5 text-xs rounded">
+                  </div>
+                  <div>
+                    <label class="block text-[11px] font-semibold mb-1 opacity-80">Region Cluster</label>
+                    <input type="text" value="asia-south1 (Mumbai)" class="demo-input w-full px-3 py-1.5 text-xs rounded">
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-4 mt-4 border-t border-current/20 flex gap-2">
+                <button class="demo-btn flex-1 py-2 text-xs font-bold rounded" onclick="soundManager.play('${item.audioTone}')">
+                  Deploy Now
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Raw Code Accordion inside Modal (CSS + Tailwind + Framework export) -->
+          <div class="mt-4 p-4 rounded-xl bg-black/50 border border-white/20 text-white font-mono text-xs">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <span class="text-emerald-300 font-bold">📄 Production Source Snippets:</span>
+              <div class="flex flex-wrap gap-1.5">
+                <button
+                  type="button"
+                  onclick="copyStyleCss('${item.id}', event)"
+                  class="px-2.5 py-1 text-[11px] bg-sky-500 hover:bg-sky-600 rounded font-bold transition"
+                >
+                  Copy CSS
+                </button>
+                <button
+                  type="button"
+                  onclick="copyStyleTailwind('${item.id}', event)"
+                  class="px-2.5 py-1 text-[11px] bg-indigo-500 hover:bg-indigo-600 rounded font-bold transition"
+                >
+                  Copy Tailwind
+                </button>
+                <button
+                  type="button"
+                  onclick="exportComponent('${item.id}', 'react', event)"
+                  class="px-2.5 py-1 text-[11px] bg-emerald-600 hover:bg-emerald-500 rounded font-bold transition"
+                  title="Download React + Tailwind component"
+                >
+                  ⬇ React
+                </button>
+                <button
+                  type="button"
+                  onclick="exportComponent('${item.id}', 'vue', event)"
+                  class="px-2.5 py-1 text-[11px] bg-teal-600 hover:bg-teal-500 rounded font-bold transition"
+                  title="Download Vue 3 SFC component"
+                >
+                  ⬇ Vue
+                </button>
+                <button
+                  type="button"
+                  onclick="exportComponent('${item.id}', 'svelte', event)"
+                  class="px-2.5 py-1 text-[11px] bg-orange-600 hover:bg-orange-500 rounded font-bold transition"
+                  title="Download Svelte 5 component"
+                >
+                  ⬇ Svelte
+                </button>
+              </div>
+            </div>
+
+            <details open class="mb-2">
+              <summary class="cursor-pointer text-emerald-300 font-bold select-none">Raw CSS rules (.css)</summary>
+              <pre class="mt-2 text-[11px] text-sky-200 overflow-x-auto p-2 bg-black/40 rounded"><code>${escapeHTML(item.cssSnippet)}</code></pre>
+            </details>
+
+            <details class="mb-2">
+              <summary class="cursor-pointer text-sky-300 font-bold select-none">Tailwind markup (.html)</summary>
+              <pre class="mt-2 text-[11px] text-sky-200 overflow-x-auto p-2 bg-black/40 rounded"><code>${escapeHTML(item.tailwindSnippet)}</code></pre>
+            </details>
+
+            <details>
+              <summary class="cursor-pointer text-amber-300 font-bold select-none">Palette tokens (.json)</summary>
+              <pre class="mt-2 text-[11px] text-amber-200 overflow-x-auto p-2 bg-black/40 rounded"><code>${escapeHTML(TokenExporter.generateDTCGJSON(item))}</code></pre>
+            </details>
+          </div>
+
+          <!-- Prompt Banner Inside Modal -->
+          <div class="mt-4 p-4 rounded-xl bg-black/40 border border-white/20 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-3 text-white">
+            <div class="text-left">
+              <p class="text-xs font-bold text-emerald-300">Ready to build this for your client or project?</p>
+              <p class="text-xs opacity-80 font-mono mt-0.5 line-clamp-2">${escapeHTML(typeof buildDetailedPrompt === 'function' ? buildDetailedPrompt(item).split('\n').slice(0, 3).join(' · ') : item.prompt)}</p>
+            </div>
+            <button
+              onclick="copyStylePrompt('${item.id}')"
+              class="px-4 py-2 text-xs font-bold bg-white text-slate-900 hover:bg-slate-100 rounded-lg whitespace-nowrap shadow-md"
+            >
+              Copy Prompt 📋
+            </button>
+          </div>
+
+        </div>
+      `;
+    }
+
+    // Handle Hash Routing (guard prevents switchView running twice per navigation)
+    function handleHash() {
+      const hash = window.location.hash.replace('#', '');
+      if (VIEW_NAMES.includes(hash) && hash !== activeView) {
+        switchView(hash);
+      }
+    }
+    window.addEventListener('hashchange', handleHash);
+
+    // ------------------------------------------------------------------
+    // RECENTLY VIEWED — last 8 opened styles, persisted locally
+    // ------------------------------------------------------------------
+    const RECENT_KEY = 'designatlas_recent';
+    let recentIds = safeLS.getJSON(RECENT_KEY, []);
+
+    function rememberRecentStyle(id) {
+      recentIds = [id, ...recentIds.filter(x => x !== id)].slice(0, 8);
+      safeLS.setJSON(RECENT_KEY, recentIds);
+      renderRecentlyViewed();
+    }
+
+    function renderRecentlyViewed() {
+      const styles = recentIds
+        .map(id => STYLES_DATA.find(s => s.id === id))
+        .filter(Boolean);
+
+      if (styles.length === 0 || activeView !== 'gallery') {
+        recentlyViewedWrap.classList.add('hidden');
+        return;
+      }
+
+      recentlyViewedWrap.classList.remove('hidden');
+      recentlyViewedEl.innerHTML = styles.map(s => `
+        <button
+          type="button"
+          class="recent-chip"
+          onclick="openDashboardModal('${s.id}')"
+          title="${escapeHTML(s.vibe)}"
+        >
+          <span class="recent-swatch" style="background-color:${s.palette[0]}"></span>
+          ${escapeHTML(s.name)}
+          <span style="opacity:.55">${s.category}</span>
+        </button>
+      `).join('');
+    }
+
+    // ------------------------------------------------------------------
+    // APP SHELL SKIN + SHORTCUTS HELP
+    // ------------------------------------------------------------------
+    function cycleAppSkin() {
+      appSkin.cycleNextSkin();
+    }
+
+    function openShortcutsHelp() {
+      if (typeof shortcutsDialog.showModal === 'function') shortcutsDialog.showModal();
+      soundManager.play('pop');
+    }
+
+    document.getElementById('shortcuts-close-btn')?.addEventListener('click', () => shortcutsDialog.close());
+    document.getElementById('shortcuts-done-btn')?.addEventListener('click', () => shortcutsDialog.close());
+    document.getElementById('shortcuts-btn')?.addEventListener('click', openShortcutsHelp);
+    shortcutsDialog?.addEventListener('click', (e) => { if (e.target === shortcutsDialog) shortcutsDialog.close(); });
+
+    // ------------------------------------------------------------------
+    // HERO / FOOTER / STATS — every hard-coded number now derives from data
+    // ------------------------------------------------------------------
+    function updateCounts() {
+      const total = STYLES_DATA.length;
+      const categories = getCategories().filter(c => c !== 'All' && c !== '❤️ Favorites');
+      const tagSet = new Set();
+      STYLES_DATA.forEach(s => s.tags.forEach(t => tagSet.add(t)));
+
+      if (headerCountBadge) headerCountBadge.textContent = `${total} UI Styles`;
+      if (heroCountBadge) heroCountBadge.textContent = `✨ ${total} Curated UI Design Languages for AI Prototyping`;
+      if (footerStyleCount) footerStyleCount.textContent = `${total} UI Styles`;
+      if (footerCategoryCount) footerCategoryCount.textContent = `${categories.length} Categories`;
+      if (statCategories) statCategories.textContent = categories.length;
+      if (statTags) statTags.textContent = tagSet.size;
+      if (statFavorites) statFavorites.textContent = favManager.getCount();
+      if (searchInput && !searchInput.value) {
+        searchInput.placeholder = `Search all ${total} styles (e.g. glassmorphism, retro, minimal, neon)...`;
+      }
+    }
+
+    // Global Keyboard Shortcuts
+    window.addEventListener('keydown', (e) => {
+      const typing = ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName);
+
+      // Full-page demo showcase me global shortcut band (demo ke apne keys hain)
+      const showcaseOpen = document.getElementById('showcase-dialog')?.open;
+      if (showcaseOpen) {
+        if (e.key === 'Escape') showToast('Esc dabaya — demo band');
+        return;
+      }
+
+      // Focus search with '/'
+      if (e.key === '/' && !typing) {
+        e.preventDefault();
+        if (activeView !== 'gallery') switchView('gallery');
+        searchInput.focus();
+        showToast('🔍 Search focused! Type any style name or keyword.');
+        return;
+      }
+
+      // Toggle overlays
+      if (e.key === 'Escape') {
+        if (modalEl.open) modalEl.close();
+        if (shortcutsDialog?.open) shortcutsDialog.close();
+        return;
+      }
+
+      // Ignore single-key shortcuts while typing or with modifiers held
+      if (typing || e.ctrlKey || e.metaKey || e.altKey) return;
+
+      const key = e.key.toLowerCase();
+      const viewKeys = { '1': 'gallery', '2': 'compare', '3': 'playground', '4': 'timeline', '5': 'quiz', '6': 'shadow-lab', '7': 'prompt-builder' };
+
+      if (viewKeys[e.key]) {
+        e.preventDefault();
+        switchView(viewKeys[e.key]);
+      } else if (key === 'r') {
+        e.preventDefault();
+        rollRandomStyle();
+      } else if (key === 'd') {
+        e.preventDefault();
+        toggleTheme();
+      } else if (key === 's') {
+        e.preventDefault();
+        toggleSound();
+      } else if (key === 'e') {
+        e.preventDefault();
+        exportClientMoodboard();
+      } else if (e.key === '?') {
+        e.preventDefault();
+        openShortcutsHelp();
+      }
+    });
+
+    // Initial Startup
+    initTheme();
+    initSoundIcon();
+    updateCounts();
+    renderFilters();
+    renderCards();
+    renderRecentlyViewed();
+    harmonizer.renderHarmonizerToolbar('harmonizer-mount');
+    handleHash();
+  </script>
+</body>
+</html>

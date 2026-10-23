@@ -1,0 +1,172 @@
+/* ==========================================================================
+   DESIGN ATLAS — MONOLITH APP SHELL ARCHITECTURE SKIN
+   Monumental proportions · Dark basalt tones · Concrete drop-blocks
+   ========================================================================== */
+
+body.skin-monolith {
+  background-color: #0d0d11 !important;
+  color: #e5e5ea !important;
+  font-family: 'Inter', system-ui, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Header Monolith Overhaul */
+body.skin-monolith header {
+  background: #141419 !important;
+  border-bottom: 4px solid #000000 !important;
+  box-shadow: 0 8px 0px #000000 !important;
+}
+
+body.skin-monolith header .max-w-7xl {
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+/* Logo Badge */
+body.skin-monolith .group .w-10 {
+  background: #24242e !important;
+  border: 3px solid #000000 !important;
+  box-shadow: 4px 4px 0px #000000 !important;
+  border-radius: 4px !important;
+  color: #ffffff !important;
+}
+
+/* Header Badge */
+body.skin-monolith #header-count-badge {
+  background: #2a2a36 !important;
+  border: 2px solid #000000 !important;
+  color: #e5e5ea !important;
+  border-radius: 2px !important;
+  font-family: 'Space Mono', monospace !important;
+  box-shadow: 2px 2px 0px #000000 !important;
+}
+
+/* Navigation Tabs */
+body.skin-monolith nav {
+  background: #1a1a22 !important;
+  border: 3px solid #000000 !important;
+  box-shadow: 4px 4px 0px #000000 !important;
+  border-radius: 4px !important;
+}
+
+body.skin-monolith nav button,
+body.skin-monolith nav a {
+  border-radius: 2px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  font-weight: 800 !important;
+}
+
+body.skin-monolith nav button.bg-white,
+body.skin-monolith nav button.dark\:bg-slate-900 {
+  background: #323242 !important;
+  color: #ffffff !important;
+  border: 2px solid #000000 !important;
+  box-shadow: 2px 2px 0px #000000 !important;
+}
+
+/* Action Buttons in Header */
+body.skin-monolith #sound-toggle-btn,
+body.skin-monolith #theme-toggle,
+body.skin-monolith button[onclick*="exportClientMoodboard"],
+body.skin-monolith button[onclick*="rollRandomStyle"],
+body.skin-monolith #app-skin-btn {
+  background: #22222c !important;
+  border: 2px solid #000000 !important;
+  box-shadow: 3px 3px 0px #000000 !important;
+  border-radius: 4px !important;
+  color: #e5e5ea !important;
+  font-weight: 800 !important;
+}
+
+body.skin-monolith #sound-toggle-btn:active,
+body.skin-monolith #theme-toggle:active,
+body.skin-monolith button[onclick*="rollRandomStyle"]:active,
+body.skin-monolith #app-skin-btn:active {
+  transform: translate(2px, 2px) !important;
+  box-shadow: 1px 1px 0px #000000 !important;
+}
+
+/* Search Bar */
+body.skin-monolith #search-input {
+  background: #181820 !important;
+  border: 3px solid #000000 !important;
+  box-shadow: 6px 6px 0px #000000 !important;
+  border-radius: 4px !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+body.skin-monolith #search-input:focus {
+  border-color: #8e8e93 !important;
+  box-shadow: 8px 8px 0px #000000 !important;
+}
+
+/* Category Filter Chips */
+body.skin-monolith #filter-container button {
+  border-radius: 4px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  border: 2px solid #000000 !important;
+  box-shadow: 3px 3px 0px #000000 !important;
+  background: #1e1e28 !important;
+  color: #d1d1d6 !important;
+}
+
+body.skin-monolith #filter-container button.bg-sky-500 {
+  background: #48485a !important;
+  color: #ffffff !important;
+  box-shadow: 4px 4px 0px #000000 !important;
+}
+
+/* Gallery Cards in Monolith Skin */
+body.skin-monolith #card-grid article {
+  background: #181822 !important;
+  border: 3px solid #000000 !important;
+  border-radius: 6px !important;
+  box-shadow: 8px 8px 0px #000000 !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+body.skin-monolith #card-grid article:hover {
+  transform: translate(-3px, -3px) !important;
+  box-shadow: 12px 12px 0px #000000 !important;
+}
+
+body.skin-monolith #card-grid article .p-4 {
+  background: #14141c !important;
+}
+
+body.skin-monolith #card-grid article h3 {
+  color: #ffffff !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* Buttons inside Cards */
+body.skin-monolith #card-grid article button {
+  border-radius: 3px !important;
+  border: 1.5px solid #000000 !important;
+  box-shadow: 2px 2px 0px #000000 !important;
+}
+
+/* Modals in Monolith Skin */
+body.skin-monolith dialog#style-modal {
+  background: #101016 !important;
+  border: 4px solid #000000 !important;
+  box-shadow: 16px 16px 0px #000000 !important;
+  border-radius: 6px !important;
+}
+
+body.skin-monolith dialog#style-modal .bg-slate-900 {
+  background: #181824 !important;
+  border-color: #000000 !important;
+}
+
+/* Monolithic Banner Bar */
+.monolith-banner-indicator {
+  background: #1c1c24;
+  border-bottom: 2px solid #000000;
+  box-shadow: 0 3px 0 #000000;
+  font-family: 'Space Mono', monospace;
+}

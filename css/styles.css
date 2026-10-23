@@ -1,0 +1,2309 @@
+/* ==========================================================================
+   DESIGN ATLAS — GLOBAL CORE STYLES & 76 UI DESIGN STYLES ENGINE
+   100% Pure CSS · Zero external image dependencies · Cross-platform
+   ========================================================================== */
+
+/* Global Base */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(156, 163, 175, 0.4); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(156, 163, 175, 0.7); }
+
+/* Modal Backdrop */
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* No Scrollbar utility */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Micro-animations */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.02); }
+}
+
+@keyframes maxGlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* ==========================================================================
+   76 UI DESIGN STYLE CLASSES (Used in Gallery, Playground, Compare, & Modals)
+   ========================================================================== */
+
+/* 1. MINIMALISM */
+.style-minimalism {
+  background: #fafafa;
+  color: #18181b;
+  border: 1px solid #e4e4e7;
+}
+.style-minimalism .demo-box {
+  background: #ffffff;
+  border: 1px solid #f4f4f5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+.style-minimalism .demo-btn {
+  background: #18181b;
+  color: #fafafa;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.style-minimalism .demo-btn:hover { background: #3f3f46; }
+.style-minimalism .demo-input {
+  border: none;
+  border-bottom: 1.5px solid #18181b;
+  background: transparent;
+  outline: none;
+  color: #18181b;
+}
+
+/* 2. MAXIMALISM */
+.style-maximalism {
+  background: linear-gradient(135deg, #ff007f 0%, #7928ca 50%, #ff0080 100%);
+  color: #fff;
+  background-size: 200% 200%;
+  animation: maxGlow 8s ease infinite alternate;
+}
+.style-maximalism .demo-box {
+  background: #ffe600;
+  color: #000;
+  transform: rotate(-1.5deg);
+  border: 3px dashed #ff0055;
+  box-shadow: 6px 6px 0px #00f0ff, -4px -4px 0px #ff007f;
+}
+.style-maximalism .demo-btn {
+  background: #00f0ff;
+  color: #000;
+  font-weight: 900;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0px #ff007f;
+  transform: rotate(2deg);
+  transition: transform 0.1s;
+}
+.style-maximalism .demo-btn:hover { transform: rotate(0deg) scale(1.05); }
+.style-maximalism .demo-input {
+  background: #fff;
+  border: 3px solid #ff00a0;
+  color: #000;
+  font-weight: 700;
+}
+
+/* 3. BRUTALISM */
+.style-brutalism {
+  background: #ffffff;
+  color: #000000;
+  font-family: 'Courier New', Courier, monospace;
+  border: 4px solid #000000;
+}
+.style-brutalism .demo-box {
+  border: 3px solid #000000;
+  background: #ffffff;
+  border-radius: 0 !important;
+}
+.style-brutalism .demo-btn {
+  background: #ffffff;
+  color: #000000;
+  border: 3px solid #000000;
+  font-weight: 800;
+  border-radius: 0px !important;
+}
+.style-brutalism .demo-btn:hover { background: #000; color: #fff; }
+.style-brutalism .demo-input {
+  border: 3px solid #000000;
+  background: #ffffff;
+  color: #000;
+  border-radius: 0px !important;
+}
+
+/* 4. NEO-BRUTALISM */
+.style-neobrutalism {
+  background: #fef08a;
+  color: #0f172a;
+  border: 3px solid #000;
+  box-shadow: 5px 5px 0px #000;
+}
+.style-neobrutalism .demo-box {
+  background: #a7f3d0;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0px #000;
+  border-radius: 8px;
+}
+.style-neobrutalism .demo-btn {
+  background: #f43f5e;
+  color: #fff;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0px #000;
+  font-weight: 800;
+  border-radius: 8px;
+  transition: all 0.1s;
+}
+.style-neobrutalism .demo-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #000;
+}
+.style-neobrutalism .demo-input {
+  background: #fff;
+  border: 3px solid #000;
+  box-shadow: 3px 3px 0px #000;
+  font-weight: 600;
+  border-radius: 6px;
+}
+
+/* 5. GLASSMORPHISM */
+.style-glassmorphism {
+  background: radial-gradient(circle at 10% 20%, #8b5cf6 0%, #ec4899 50%, #3b82f6 100%);
+  color: #ffffff;
+}
+.style-glassmorphism .demo-box {
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+  border-radius: 16px;
+}
+.style-glassmorphism .demo-btn {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+.style-glassmorphism .demo-btn:hover { background: rgba(255, 255, 255, 0.4); }
+.style-glassmorphism .demo-input {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  border-radius: 8px;
+}
+
+/* 6. CLAYMORPHISM */
+.style-claymorphism {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+.style-claymorphism .demo-box {
+  background: #c7d2fe;
+  border-radius: 24px;
+  box-shadow: inset -6px -6px 12px rgba(99, 102, 241, 0.35),
+              inset 6px 6px 12px rgba(255, 255, 255, 0.9),
+              10px 14px 20px rgba(79, 70, 229, 0.2);
+}
+.style-claymorphism .demo-btn {
+  background: #818cf8;
+  color: #ffffff;
+  border-radius: 18px;
+  box-shadow: inset -4px -4px 8px rgba(55, 48, 163, 0.4),
+              inset 4px 4px 8px rgba(255, 255, 255, 0.7),
+              6px 8px 14px rgba(79, 70, 229, 0.25);
+  font-weight: 700;
+}
+.style-claymorphism .demo-btn:hover {
+  box-shadow: inset -2px -2px 6px rgba(55, 48, 163, 0.4),
+              inset 2px 2px 6px rgba(255, 255, 255, 0.7),
+              3px 4px 8px rgba(79, 70, 229, 0.25);
+  transform: translateY(2px);
+}
+.style-claymorphism .demo-input {
+  background: #eef2ff;
+  border-radius: 16px;
+  box-shadow: inset 4px 4px 8px rgba(99, 102, 241, 0.25),
+              inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+  border: none;
+  color: #312e81;
+}
+
+/* 7. NEUMORPHISM */
+.style-neumorphism {
+  background: #e0e5ec;
+  color: #4b5563;
+}
+.style-neumorphism .demo-box {
+  background: #e0e5ec;
+  border-radius: 20px;
+  box-shadow: 8px 8px 16px #bec3c9, -8px -8px 16px #ffffff;
+}
+.style-neumorphism .demo-btn {
+  background: #e0e5ec;
+  color: #374151;
+  border-radius: 14px;
+  box-shadow: 6px 6px 12px #bec3c9, -6px -6px 12px #ffffff;
+  font-weight: 600;
+  border: none;
+}
+.style-neumorphism .demo-btn:active {
+  box-shadow: inset 4px 4px 8px #bec3c9, inset -4px -4px 8px #ffffff;
+}
+.style-neumorphism .demo-input {
+  background: #e0e5ec;
+  border-radius: 12px;
+  box-shadow: inset 4px 4px 8px #bec3c9, inset -4px -4px 8px #ffffff;
+  border: none;
+  color: #1f2937;
+}
+
+/* 8. SKEUOMORPHISM */
+.style-skeuomorphism {
+  background: radial-gradient(circle, #3e3223 0%, #20180f 100%);
+  color: #f7eedd;
+  border: 3px solid #5a4632;
+}
+.style-skeuomorphism .demo-box {
+  background: linear-gradient(to bottom, #ded6c9 0%, #b8ab97 100%);
+  border: 2px solid #6b533d;
+  border-top: 2px solid #ffffff;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.6), inset 0 1px 2px rgba(255,255,255,0.7);
+  color: #3d2f21;
+  border-radius: 10px;
+}
+.style-skeuomorphism .demo-btn {
+  background: linear-gradient(to bottom, #d44a2b 0%, #99230a 100%);
+  border: 1px solid #591002;
+  border-top: 1px solid #ff7755;
+  color: #ffffff;
+  text-shadow: 0 -1px 1px #400c02;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.4);
+  font-weight: 700;
+  border-radius: 6px;
+}
+.style-skeuomorphism .demo-btn:active {
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.6);
+  transform: translateY(1px);
+}
+.style-skeuomorphism .demo-input {
+  background: linear-gradient(to bottom, #cfc6b6, #ebe5db);
+  border: 2px solid #735c46;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+  color: #2b1f14;
+  border-radius: 6px;
+}
+
+/* 9. LIQUID GLASS */
+.style-liquidglass {
+  background: linear-gradient(135deg, #090e1a 0%, #172554 50%, #0369a1 100%);
+  color: #f0fdf4;
+}
+.style-liquidglass .demo-box {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.04) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  border-top: 2px solid rgba(255, 255, 255, 0.75);
+  border-left: 2px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), inset 0 0 16px rgba(255, 255, 255, 0.2);
+  border-radius: 18px;
+}
+.style-liquidglass .demo-btn {
+  background: linear-gradient(90deg, rgba(56, 189, 248, 0.6) 0%, rgba(99, 102, 241, 0.6) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 20px rgba(56, 189, 248, 0.4);
+  color: #fff;
+  border-radius: 12px;
+}
+.style-liquidglass .demo-input {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(12px);
+  color: #fff;
+  border-radius: 10px;
+}
+
+/* 10. SPATIAL UI */
+.style-spatialui {
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  color: #e2e8f0;
+  perspective: 800px;
+}
+.style-spatialui .demo-box {
+  background: rgba(30, 41, 59, 0.75);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 20px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56, 189, 248, 0.15);
+  transform: rotateX(8deg) rotateY(-6deg) translateZ(10px);
+  transition: transform 0.3s ease;
+}
+.style-spatialui .demo-box:hover {
+  transform: rotateX(0deg) rotateY(0deg) translateZ(25px);
+}
+.style-spatialui .demo-btn {
+  background: rgba(56, 189, 248, 0.2);
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  color: #38bdf8;
+  border-radius: 9999px;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+}
+.style-spatialui .demo-input {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 9999px;
+  color: #fff;
+}
+
+/* 11. BENTO GRID */
+.style-bentogrid {
+  background: #0f172a;
+  color: #f8fafc;
+}
+.style-bentogrid .demo-box {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+.style-bentogrid .demo-btn {
+  background: #38bdf8;
+  color: #0f172a;
+  font-weight: 700;
+  border-radius: 10px;
+}
+.style-bentogrid .demo-input {
+  background: #0f172a;
+  border: 1px solid #475569;
+  border-radius: 10px;
+  color: #f8fafc;
+}
+
+/* 12. FLAT DESIGN */
+.style-flatdesign {
+  background: #2c3e50;
+  color: #ecf0f1;
+}
+.style-flatdesign .demo-box {
+  background: #34495e;
+  border-radius: 4px;
+}
+.style-flatdesign .demo-btn {
+  background: #e74c3c;
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 4px;
+  border: none;
+}
+.style-flatdesign .demo-btn:hover { background: #c0392b; }
+.style-flatdesign .demo-input {
+  background: #ffffff;
+  color: #2c3e50;
+  border-radius: 4px;
+  border: none;
+}
+
+/* 13. MATERIAL DESIGN */
+.style-materialdesign {
+  background: #f5f5f5;
+  color: #212121;
+}
+.style-materialdesign .demo-box {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.style-materialdesign .demo-btn {
+  background: #6200ee;
+  color: #ffffff;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+  border: none;
+}
+.style-materialdesign .demo-btn:hover {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+.style-materialdesign .demo-input {
+  border: none;
+  border-bottom: 2px solid #6200ee;
+  background: #eeeeee;
+  border-radius: 4px 4px 0 0;
+  color: #212121;
+}
+
+/* 14. SWISS / INTERNATIONAL */
+.style-swiss {
+  background: #ffffff;
+  color: #111111;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  border-left: 6px solid #e11d48;
+}
+.style-swiss .demo-box {
+  background: #f4f4f5;
+  border: 1px solid #18181b;
+  border-radius: 0;
+}
+.style-swiss .demo-btn {
+  background: #e11d48;
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: none;
+}
+.style-swiss .demo-input {
+  border: 2px solid #18181b;
+  border-radius: 0;
+  background: #fff;
+  color: #111;
+}
+
+/* 15. BAUHAUS */
+.style-bauhaus {
+  background: #fffdf5;
+  color: #111111;
+  border: 4px solid #111;
+}
+.style-bauhaus .demo-box {
+  background: #ffd000;
+  border: 3px solid #111;
+  border-radius: 0;
+}
+.style-bauhaus .demo-btn {
+  background: #e52521;
+  color: #ffffff;
+  font-weight: 800;
+  border: 3px solid #111;
+  border-radius: 9999px;
+}
+.style-bauhaus .demo-input {
+  background: #00459c;
+  color: #ffffff;
+  border: 3px solid #111;
+  border-radius: 0;
+}
+
+/* 16. ART DECO */
+.style-artdeco {
+  background: #0d131a;
+  color: #f7e09e;
+  border: 2px solid #d4af37;
+  font-family: 'Cinzel', serif;
+}
+.style-artdeco .demo-box {
+  background: #141c24;
+  border: 2px solid #d4af37;
+  outline: 2px solid #0d131a;
+  outline-offset: -6px;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+  border-radius: 4px;
+}
+.style-artdeco .demo-btn {
+  background: linear-gradient(135deg, #d4af37, #aa8214);
+  color: #0b0f14;
+  font-weight: 700;
+  border: 1px solid #ffe89e;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+.style-artdeco .demo-input {
+  background: #0b0f14;
+  border: 1px solid #d4af37;
+  color: #f7e09e;
+}
+
+/* 17. VAPORWAVE */
+.style-vaporwave {
+  background: linear-gradient(180deg, #2b1055 0%, #7597de 100%);
+  color: #ffe6ff;
+}
+.style-vaporwave .demo-box {
+  background: rgba(43, 16, 85, 0.7);
+  border: 2px solid #ff71ce;
+  box-shadow: 0 0 15px #01cdfe, inset 0 0 10px #ff71ce;
+  border-radius: 8px;
+}
+.style-vaporwave .demo-btn {
+  background: linear-gradient(90deg, #ff71ce, #01cdfe);
+  color: #fff;
+  font-weight: 800;
+  box-shadow: 0 0 12px #ff71ce;
+  border: none;
+  border-radius: 6px;
+}
+.style-vaporwave .demo-input {
+  background: rgba(1, 205, 254, 0.15);
+  border: 2px solid #05ffa1;
+  color: #fff;
+  border-radius: 6px;
+}
+
+/* 18. Y2K AESTHETIC */
+.style-y2k {
+  background: linear-gradient(135deg, #dbeafe 0%, #fbcfe8 100%);
+  color: #1e1b4b;
+}
+.style-y2k .demo-box {
+  background: linear-gradient(180deg, #ffffff 0%, #e0e7ff 100%);
+  border: 2.5px solid #a855f7;
+  border-radius: 24px;
+  box-shadow: 0 8px 16px rgba(168, 85, 247, 0.3), inset 0 2px 4px #ffffff;
+}
+.style-y2k .demo-btn {
+  background: linear-gradient(180deg, #ec4899 0%, #be185d 100%);
+  color: #fff;
+  border: 2px solid #fdf2f8;
+  border-radius: 9999px;
+  box-shadow: 0 6px 12px rgba(236, 72, 153, 0.5), inset 0 2px 3px rgba(255,255,255,0.8);
+  font-weight: 800;
+}
+.style-y2k .demo-input {
+  background: #fdf4ff;
+  border: 2px solid #ec4899;
+  border-radius: 9999px;
+  color: #831843;
+}
+
+/* 19. CYBERPUNK */
+.style-cyberpunk {
+  background: #000000;
+  color: #ffe600;
+  border: 2px solid #00f0ff;
+}
+.style-cyberpunk .demo-box {
+  background: #090a0f;
+  border: 2px solid #ffe600;
+  box-shadow: 0 0 15px rgba(255, 230, 0, 0.3), -3px 0 0 #00f0ff;
+  clip-path: polygon(0 0, 92% 0, 100% 12%, 100% 100%, 8% 100%, 0 88%);
+}
+.style-cyberpunk .demo-btn {
+  background: #ffe600;
+  color: #000;
+  font-weight: 900;
+  border: none;
+  clip-path: polygon(0 0, 85% 0, 100% 30%, 100% 100%, 15% 100%, 0 70%);
+  box-shadow: 0 0 10px #ffe600;
+}
+.style-cyberpunk .demo-input {
+  background: #111;
+  border: 1px solid #00f0ff;
+  color: #00f0ff;
+}
+
+/* 20. DARK LUXE */
+.style-darkluxe {
+  background: #050505;
+  color: #e5e5e5;
+  border: 1px solid #262626;
+}
+.style-darkluxe .demo-box {
+  background: linear-gradient(145deg, #121212 0%, #0a0a0a 100%);
+  border: 1px solid #332a15;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 1px 1px rgba(212, 175, 55, 0.3);
+  border-radius: 12px;
+}
+.style-darkluxe .demo-btn {
+  background: linear-gradient(180deg, #d4af37 0%, #997d21 100%);
+  color: #000000;
+  font-weight: 700;
+  border: 1px solid #f6e082;
+  letter-spacing: 1px;
+  border-radius: 8px;
+}
+.style-darkluxe .demo-input {
+  background: #121212;
+  border: 1px solid #333333;
+  color: #d4af37;
+  border-radius: 6px;
+}
+
+/* 21. EDITORIAL / MAGAZINE */
+.style-editorial {
+  background: #fdfbf7;
+  color: #1a1a1a;
+  font-family: 'Playfair Display', serif;
+}
+.style-editorial .demo-box {
+  background: #ffffff;
+  border-top: 4px solid #1a1a1a;
+  border-bottom: 1px solid #e5e5e5;
+  border-radius: 0;
+}
+.style-editorial .demo-btn {
+  background: #1a1a1a;
+  color: #fdfbf7;
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.75rem;
+  border-radius: 0;
+}
+.style-editorial .demo-input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #1a1a1a;
+  font-style: italic;
+  color: #1a1a1a;
+}
+
+/* 22. ORGANIC / BIOMORPHIC */
+.style-organic {
+  background: #f4efe6;
+  color: #3d3429;
+}
+.style-organic .demo-box {
+  background: #e8dfd1;
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  border: 1.5px solid #d4c5b0;
+}
+.style-organic .demo-btn {
+  background: #606c38;
+  color: #fefae0;
+  border-radius: 50px 20px 50px 20px;
+  font-weight: 600;
+  border: none;
+}
+.style-organic .demo-input {
+  background: #fefae0;
+  border-radius: 20px;
+  border: 1px solid #dda15e;
+  color: #283618;
+}
+
+/* 23. RETRO-FUTURISM */
+.style-retrofuturism {
+  background: #11052c;
+  color: #ff007f;
+  background-image: linear-gradient(rgba(255, 0, 127, 0.15) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 0, 127, 0.15) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+.style-retrofuturism .demo-box {
+  background: rgba(26, 8, 62, 0.85);
+  border: 2px solid #00f0ff;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+  border-radius: 8px;
+}
+.style-retrofuturism .demo-btn {
+  background: #ff007f;
+  color: #ffffff;
+  border: 1px solid #ffe6ff;
+  box-shadow: 0 0 10px #ff007f;
+  font-weight: 700;
+  border-radius: 6px;
+}
+.style-retrofuturism .demo-input {
+  background: #000;
+  border: 1px solid #00f0ff;
+  color: #00f0ff;
+  border-radius: 6px;
+}
+
+/* 24. MEMPHIS */
+.style-memphis {
+  background: #fff0f5;
+  color: #000;
+  background-image: radial-gradient(#ff007f 15%, transparent 16%), radial-gradient(#00d2d3 15%, transparent 16%);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+.style-memphis .demo-box {
+  background: #ffeaa7;
+  border: 3px solid #000;
+  box-shadow: 6px 6px 0px #ff6b6b;
+  transform: rotate(1deg);
+  border-radius: 4px;
+}
+.style-memphis .demo-btn {
+  background: #54a0ff;
+  color: #000;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0px #1dd1a1;
+  font-weight: 800;
+  border-radius: 4px;
+}
+.style-memphis .demo-input {
+  background: #fff;
+  border: 3px solid #000;
+  border-radius: 4px;
+}
+
+/* 25. PIXEL / 8-BIT */
+.style-pixel {
+  background: #181425;
+  color: #fee761;
+  font-family: 'VT323', monospace;
+  letter-spacing: 1px;
+}
+.style-pixel .demo-box {
+  background: #262b44;
+  border: 4px solid #63c74d;
+  box-shadow: 4px 4px 0px #124e89;
+  border-radius: 0;
+}
+.style-pixel .demo-btn {
+  background: #ff0044;
+  color: #ffffff;
+  border: 3px solid #ffffff;
+  box-shadow: 3px 3px 0px #000000;
+  font-size: 1.1rem;
+  border-radius: 0;
+}
+.style-pixel .demo-input {
+  background: #000;
+  border: 3px solid #fee761;
+  color: #fee761;
+  font-size: 1.1rem;
+  border-radius: 0;
+}
+
+/* 26. SCANDINAVIAN */
+.style-scandinavian {
+  background: #fbfbfb;
+  color: #2c3e50;
+}
+.style-scandinavian .demo-box {
+  background: #ffffff;
+  border: 1px solid #eaedf1;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+.style-scandinavian .demo-btn {
+  background: #d8c3b0;
+  color: #3e3223;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+}
+.style-scandinavian .demo-input {
+  background: #f4f6f8;
+  border: 1px solid #e1e6eb;
+  border-radius: 8px;
+  color: #2c3e50;
+}
+
+/* 27. JAPANDI */
+.style-japandi {
+  background: #f4eee1;
+  color: #3c3832;
+}
+.style-japandi .demo-box {
+  background: #eae2d3;
+  border: 1px solid #d8cdba;
+  border-radius: 6px;
+}
+.style-japandi .demo-btn {
+  background: #3c3832;
+  color: #f4eee1;
+  border-radius: 4px;
+  font-weight: 500;
+  border: none;
+}
+.style-japandi .demo-input {
+  background: #f9f6f0;
+  border: 1px solid #b5a995;
+  border-radius: 4px;
+}
+
+/* 28. MONOCHROME */
+.style-monochrome {
+  background: #000000;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+}
+.style-monochrome .demo-box {
+  background: #111111;
+  border: 1.5px solid #ffffff;
+  border-radius: 0;
+}
+.style-monochrome .demo-btn {
+  background: #ffffff;
+  color: #000000;
+  font-weight: 800;
+  border: 1.5px solid #ffffff;
+  border-radius: 0;
+}
+.style-monochrome .demo-btn:hover {
+  background: #000000;
+  color: #ffffff;
+}
+.style-monochrome .demo-input {
+  background: #000000;
+  border: 1.5px solid #ffffff;
+  color: #ffffff;
+  border-radius: 0;
+}
+
+/* 29. AURORA */
+.style-aurora {
+  background: #060913;
+  color: #f1f5f9;
+  position: relative;
+  overflow: hidden;
+}
+.style-aurora .demo-box {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  box-shadow: 0 0 25px rgba(52, 211, 153, 0.25), inset 0 0 15px rgba(168, 85, 247, 0.25);
+  border-radius: 16px;
+}
+.style-aurora .demo-btn {
+  background: linear-gradient(90deg, #10b981 0%, #06b6d4 50%, #8b5cf6 100%);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
+  border: none;
+  border-radius: 10px;
+}
+.style-aurora .demo-input {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(52, 211, 153, 0.4);
+  color: #ffffff;
+  border-radius: 8px;
+}
+
+/* 30. NATURE-INSPIRED */
+.style-nature {
+  background: #edf5eb;
+  color: #1e3a1e;
+}
+.style-nature .demo-box {
+  background: #ffffff;
+  border: 1px solid #cce3c9;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(46, 117, 46, 0.08);
+}
+.style-nature .demo-btn {
+  background: #2d6a4f;
+  color: #d8f3dc;
+  border-radius: 10px;
+  font-weight: 600;
+  border: none;
+}
+.style-nature .demo-input {
+  background: #f7faf6;
+  border: 1px solid #74c69d;
+  border-radius: 10px;
+  color: #1b4332;
+}
+
+/* 31. ANTI-GRID / ANTI-DESIGN */
+.style-antigrid {
+  background: #111;
+  color: #00ff66;
+  font-family: 'Courier New', monospace;
+}
+.style-antigrid .demo-box {
+  background: #ff0055;
+  color: #ffffff;
+  transform: rotate(-3deg) scale(0.96);
+  border: 3px solid #ffff00;
+}
+.style-antigrid .demo-btn {
+  background: #ffff00;
+  color: #000;
+  font-weight: 900;
+  transform: rotate(4deg) translate(8px, -4px);
+  border: 2px solid #000;
+}
+.style-antigrid .demo-input {
+  background: #000;
+  border: 2px dashed #00ff66;
+  color: #00ff66;
+  transform: rotate(-1deg);
+}
+
+/* 32. SCROLLYTELLING */
+.style-scrollytelling {
+  background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 100%);
+  color: #f8fafc;
+}
+.style-scrollytelling .demo-box {
+  background: rgba(30, 41, 59, 0.8);
+  border-left: 4px solid #6366f1;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+}
+.style-scrollytelling .demo-btn {
+  background: #6366f1;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+}
+.style-scrollytelling .demo-input {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid #475569;
+  color: #fff;
+  border-radius: 8px;
+}
+
+/* 33. 3D / WEBGL */
+.style-webgl3d {
+  background: radial-gradient(circle at 50% 50%, #1e1e38 0%, #0a0a14 100%);
+  color: #e0e7ff;
+}
+.style-webgl3d .demo-box {
+  background: linear-gradient(145deg, #2a2a50 0%, #15152a 100%);
+  border: 1px solid #4338ca;
+  box-shadow: -8px -8px 20px rgba(99, 102, 241, 0.2), 8px 8px 25px rgba(0, 0, 0, 0.8);
+  border-radius: 16px;
+}
+.style-webgl3d .demo-btn {
+  background: linear-gradient(90deg, #4f46e5, #06b6d4);
+  color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(79, 70, 229, 0.5);
+  font-weight: 700;
+  border: none;
+}
+.style-webgl3d .demo-input {
+  background: #0f0f20;
+  border: 1px solid #3730a3;
+  color: #c7d2fe;
+  border-radius: 8px;
+}
+
+/* 34. KINETIC TYPOGRAPHY */
+.style-kinetictype {
+  background: #ffffff;
+  color: #000000;
+  font-family: 'Syne', sans-serif;
+}
+.style-kinetictype .demo-box {
+  background: #000000;
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+.style-kinetictype .demo-btn {
+  background: #ff3366;
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+}
+.style-kinetictype .demo-input {
+  border: 3px solid #000000;
+  font-weight: 700;
+  border-radius: 0;
+}
+
+/* 35. HUMAN SCRIBBLE */
+.style-humanscribble {
+  background: #fffdf7;
+  color: #292524;
+  font-family: 'Caveat', cursive;
+}
+.style-humanscribble .demo-box {
+  background: #ffffff;
+  border: 2px solid #44403c;
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  box-shadow: 3px 3px 0px #78716c;
+  font-size: 1.25rem;
+}
+.style-humanscribble .demo-btn {
+  background: #fde047;
+  color: #1c1917;
+  border: 2px solid #292524;
+  border-radius: 255px 25px 225px 25px/25px 225px 25px 255px;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+.style-humanscribble .demo-input {
+  background: #fff;
+  border: 2px solid #44403c;
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+  font-size: 1.25rem;
+}
+
+/* 36. FRUTIGER AERO */
+.style-frutigeraero {
+  background: linear-gradient(180deg, #38bdf8 0%, #4ade80 70%, #15803d 100%);
+  color: #0f172a;
+}
+.style-frutigeraero .demo-box {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.35) 100%);
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2), inset 0 2px 4px #ffffff;
+}
+.style-frutigeraero .demo-btn {
+  background: linear-gradient(180deg, #38bdf8 0%, #0284c7 50%, #0369a1 100%);
+  border: 1.5px solid #ffffff;
+  border-radius: 9999px;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(2, 132, 199, 0.4), inset 0 2px 3px rgba(255,255,255,0.7);
+  font-weight: 700;
+}
+.style-frutigeraero .demo-input {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1.5px solid #38bdf8;
+  border-radius: 9999px;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 37. ACID BRUTALIST */
+.style-acidbrutalist {
+  background: #000000;
+  color: #ccff00;
+  border: 3px solid #ccff00;
+}
+.style-acidbrutalist .demo-box {
+  background: #ccff00;
+  color: #000000;
+  border: 3px solid #ff0099;
+  box-shadow: 6px 6px 0px #ff0099;
+  font-weight: 800;
+  border-radius: 0;
+}
+.style-acidbrutalist .demo-btn {
+  background: #ff0099;
+  color: #ffffff;
+  border: 3px solid #ccff00;
+  box-shadow: 4px 4px 0px #ccff00;
+  font-weight: 900;
+  border-radius: 0;
+}
+.style-acidbrutalist .demo-input {
+  background: #111111;
+  border: 3px solid #ccff00;
+  color: #ccff00;
+  border-radius: 0;
+}
+
+/* 38. MONOLITH */
+.style-monolith {
+  background: #141414;
+  color: #dedede;
+}
+.style-monolith .demo-box {
+  background: #242424;
+  border-left: 10px solid #888888;
+  box-shadow: 12px 12px 0px #0a0a0a;
+  border-radius: 0;
+}
+.style-monolith .demo-btn {
+  background: #383838;
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 0;
+  box-shadow: 4px 4px 0px #000;
+  border: none;
+}
+.style-monolith .demo-input {
+  background: #1c1c1c;
+  border: 2px solid #444;
+  color: #fff;
+  border-radius: 0;
+}
+
+/* 39. DARK CINEMA */
+.style-darkcinema {
+  background: #0b0c10;
+  color: #c5c6c7;
+  border: 1px solid #1f2833;
+}
+.style-darkcinema .demo-box {
+  background: #1f2833;
+  border-top: 1px solid #45a29e;
+  border-bottom: 1px solid #45a29e;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  border-radius: 6px;
+}
+.style-darkcinema .demo-btn {
+  background: #45a29e;
+  color: #0b0c10;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+}
+.style-darkcinema .demo-input {
+  background: #0b0c10;
+  border: 1px solid #45a29e;
+  color: #66fcf1;
+  border-radius: 4px;
+}
+
+/* 40. DARK COSMIC */
+.style-darkcosmic {
+  background: radial-gradient(circle at 80% 20%, #4a0e4e 0%, #0d0221 60%, #000000 100%);
+  color: #f1f5f9;
+}
+.style-darkcosmic .demo-box {
+  background: rgba(13, 2, 33, 0.85);
+  border: 1px solid #a855f7;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.35);
+  border-radius: 12px;
+}
+.style-darkcosmic .demo-btn {
+  background: linear-gradient(90deg, #ec4899, #8b5cf6);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 0 15px rgba(236, 72, 153, 0.6);
+  border: none;
+  border-radius: 8px;
+}
+.style-darkcosmic .demo-input {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid #8b5cf6;
+  color: #f5d0fe;
+  border-radius: 8px;
+}
+
+/* 41. MID-CENTURY MODERN */
+.style-midcenturymodern {
+  background: #fbf5e6;
+  color: #2b3a42;
+}
+.style-midcenturymodern .demo-box {
+  background: #ffffff;
+  border: 2px solid #e27d60;
+  border-radius: 20px 4px 20px 4px;
+  box-shadow: 6px 6px 0px #41b3a3;
+}
+.style-midcenturymodern .demo-btn {
+  background: #e27d60;
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 4px 16px 4px 16px;
+  border: none;
+}
+.style-midcenturymodern .demo-input {
+  background: #fcf9f2;
+  border: 2px solid #41b3a3;
+  border-radius: 4px;
+}
+
+/* 42. RETRO TERMINAL */
+.style-retroterminal {
+  background: #0d1117;
+  color: #39ff14;
+  font-family: 'Space Mono', monospace;
+  position: relative;
+}
+.style-retroterminal::before {
+  content: " ";
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: repeating-linear-gradient(rgba(0,0,0,0) 0, rgba(0,0,0,0) 2px, rgba(0, 255, 0, 0.05) 3px);
+  pointer-events: none;
+}
+.style-retroterminal .demo-box {
+  background: #000000;
+  border: 1.5px solid #39ff14;
+  box-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+  border-radius: 0;
+}
+.style-retroterminal .demo-btn {
+  background: #39ff14;
+  color: #000000;
+  font-weight: 700;
+  border: none;
+  border-radius: 0;
+}
+.style-retroterminal .demo-input {
+  background: #000000;
+  border: 1px solid #39ff14;
+  color: #39ff14;
+  border-radius: 0;
+}
+
+/* 43. RENAISSANCE / BAROQUE */
+.style-baroque {
+  background: #1b120c;
+  color: #e8d8b9;
+  font-family: 'Cinzel', serif;
+  border: 2px solid #8c6d3b;
+}
+.style-baroque .demo-box {
+  background: #2b1d13;
+  border: 2px solid #c5a059;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8), inset 0 0 10px rgba(197, 160, 89, 0.3);
+  border-radius: 4px;
+}
+.style-baroque .demo-btn {
+  background: linear-gradient(135deg, #c5a059, #8c6d3b);
+  color: #120a05;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: 1px solid #f2e3c6;
+  border-radius: 2px;
+}
+.style-baroque .demo-input {
+  background: #1b120c;
+  border: 1px solid #c5a059;
+  color: #f2e3c6;
+  border-radius: 2px;
+}
+
+/* 44. UKIYO-E */
+.style-ukiyoe {
+  background: #f7f1e3;
+  color: #2c2c54;
+  border: 3px solid #227093;
+}
+.style-ukiyoe .demo-box {
+  background: #ffffff;
+  border: 2px solid #227093;
+  box-shadow: 4px 4px 0px #b33939;
+  border-radius: 4px;
+}
+.style-ukiyoe .demo-btn {
+  background: #b33939;
+  color: #ffffff;
+  border: 2px solid #2c2c54;
+  font-weight: 700;
+  border-radius: 4px;
+}
+.style-ukiyoe .demo-input {
+  background: #f1f2f6;
+  border: 2px solid #227093;
+  color: #2c2c54;
+  border-radius: 4px;
+}
+
+/* 45. DE STIJL */
+.style-destijl {
+  background: #ffffff;
+  color: #000000;
+  border: 6px solid #000000;
+}
+.style-destijl .demo-box {
+  background: #0055ff;
+  color: #ffffff;
+  border: 5px solid #000000;
+  border-radius: 0;
+}
+.style-destijl .demo-btn {
+  background: #ff0000;
+  color: #ffffff;
+  font-weight: 900;
+  border: 4px solid #000000;
+  border-radius: 0;
+}
+.style-destijl .demo-input {
+  background: #ffea00;
+  border: 4px solid #000000;
+  color: #000000;
+  font-weight: 700;
+  border-radius: 0;
+}
+
+/* 46. CONSTRUCTIVISM */
+.style-constructivism {
+  background: #eae6df;
+  color: #111111;
+  font-family: 'Impact', 'Syne', sans-serif;
+}
+.style-constructivism .demo-box {
+  background: #cc0000;
+  color: #ffffff;
+  transform: skew(-4deg);
+  border: 3px solid #000000;
+  box-shadow: 6px 6px 0px #000000;
+  border-radius: 0;
+}
+.style-constructivism .demo-btn {
+  background: #000000;
+  color: #ffffff;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transform: skew(4deg);
+  border: 2px solid #cc0000;
+  border-radius: 0;
+}
+.style-constructivism .demo-input {
+  background: #ffffff;
+  border: 3px solid #000000;
+  font-weight: 700;
+  border-radius: 0;
+}
+
+/* 47. ARCHIVAL INDEX */
+.style-archival {
+  background: #f8f6f0;
+  color: #262626;
+  font-family: 'Space Mono', monospace;
+  border: 1px dashed #737373;
+}
+.style-archival .demo-box {
+  background: #ffffff;
+  border: 1px solid #a3a3a3;
+  box-shadow: 2px 2px 0px #d4d4d4;
+  border-radius: 0;
+}
+.style-archival .demo-btn {
+  background: #404040;
+  color: #ffffff;
+  border-radius: 0;
+  font-size: 0.8rem;
+  border: none;
+}
+.style-archival .demo-input {
+  border: 1px solid #737373;
+  background: #fafaf9;
+  border-radius: 0;
+}
+
+/* 48. MOTION NARRATIVE */
+.style-motionnarrative {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+.style-motionnarrative .demo-box {
+  background: linear-gradient(135deg, #1e293b, #334155);
+  border: 1px solid #64748b;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 12px;
+}
+.style-motionnarrative .demo-btn {
+  background: #3b82f6;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+  border: none;
+  border-radius: 8px;
+}
+.style-motionnarrative .demo-input {
+  background: #0f172a;
+  border: 1px solid #475569;
+  color: #fff;
+  border-radius: 8px;
+}
+
+/* 49. CARD PLAY */
+.style-cardplay {
+  background: #f0fdf4;
+  color: #14532d;
+}
+.style-cardplay .demo-box {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 2px solid #bbf7d0;
+  box-shadow: 0 10px 20px -5px rgba(34, 197, 94, 0.15);
+  transform: rotate(-1deg);
+  transition: transform 0.2s ease;
+}
+.style-cardplay .demo-box:hover { transform: rotate(0deg) translateY(-3px); }
+.style-cardplay .demo-btn {
+  background: #22c55e;
+  color: #ffffff;
+  border-radius: 14px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+  border: none;
+}
+.style-cardplay .demo-input {
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  border-radius: 12px;
+}
+
+/* 50. COTTAGECORE / RUSTIC */
+.style-cottagecore {
+  background: #fbf8f1;
+  color: #4a3e36;
+}
+.style-cottagecore .demo-box {
+  background: #ffffff;
+  border: 1.5px solid #dcd3c1;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(112, 130, 56, 0.08);
+}
+.style-cottagecore .demo-btn {
+  background: #708238;
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+  font-family: serif;
+}
+.style-cottagecore .demo-input {
+  background: #fdfbf7;
+  border: 1px solid #dcd3c1;
+  color: #4a3e36;
+  border-radius: 8px;
+}
+
+/* 51. CORPORATE MEMPHIS */
+.style-corporatememphis {
+  background: #f8f9ff;
+  color: #1e1b4b;
+}
+.style-corporatememphis .demo-box {
+  background: #ffffff;
+  border: 2px solid #e0e7ff;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px -5px rgba(67, 56, 202, 0.1);
+}
+.style-corporatememphis .demo-btn {
+  background: #4338ca;
+  color: #fff;
+  border-radius: 9999px;
+  border: none;
+  font-weight: 700;
+}
+.style-corporatememphis .demo-input {
+  background: #f1f5f9;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 9999px;
+  color: #1e1b4b;
+}
+
+/* 52. DOPAMINE DESIGN */
+.style-dopamine {
+  background: linear-gradient(135deg, #ffbe0b, #fb5607);
+  color: #ffffff;
+}
+.style-dopamine .demo-box {
+  background: #ffffff;
+  color: #18181b;
+  border: 3px solid #ff007f;
+  border-radius: 24px;
+  box-shadow: 0 10px 25px rgba(255, 0, 127, 0.35);
+}
+.style-dopamine .demo-btn {
+  background: #8338ec;
+  color: #ffffff;
+  border-radius: 9999px;
+  border: none;
+  font-weight: 900;
+  box-shadow: 0 4px 12px rgba(131, 56, 236, 0.4);
+}
+.style-dopamine .demo-input {
+  background: #fff0f5;
+  border: 2px solid #ff007f;
+  border-radius: 9999px;
+  color: #8338ec;
+}
+
+/* 53. TOY BRICK / MODULAR BLOCK */
+.style-lego {
+  background: #0055bf;
+  color: #ffffff;
+}
+.style-lego .demo-box {
+  background: #ffffff;
+  color: #000;
+  border: 3px solid #003380;
+  border-radius: 8px;
+  box-shadow: 0 6px 0 #002255;
+}
+.style-lego .demo-btn {
+  background: #d11013;
+  color: #fff;
+  border: 2px solid #800000;
+  box-shadow: 0 4px 0 #600000;
+  border-radius: 4px;
+  font-weight: 900;
+}
+.style-lego .demo-input {
+  background: #ffcf00;
+  border: 2px solid #000;
+  color: #000;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+/* 54. GLASS NOIR / DARK SMOKE */
+.style-glassnoir {
+  background: #09090b;
+  color: #f4f4f5;
+}
+.style-glassnoir .demo-box {
+  background: rgba(24, 24, 27, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.15);
+  border-radius: 16px;
+}
+.style-glassnoir .demo-btn {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 10px;
+}
+.style-glassnoir .demo-input {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f4f4f5;
+  border-radius: 8px;
+}
+
+/* 55. PSYCHEDELIC / GROOVY 70s */
+.style-psychedelic {
+  background: linear-gradient(135deg, #d94e34, #f2a65a 50%, #4a1c40);
+  color: #fff9e6;
+}
+.style-psychedelic .demo-box {
+  background: rgba(74, 28, 64, 0.85);
+  border: 3px solid #ffdb99;
+  border-radius: 28px 8px 28px 8px;
+  box-shadow: 0 10px 25px rgba(217, 78, 52, 0.4);
+}
+.style-psychedelic .demo-btn {
+  background: #f2a65a;
+  color: #2b1126;
+  border-radius: 9999px;
+  font-weight: 900;
+  border: 2px solid #fff;
+}
+.style-psychedelic .demo-input {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid #ffdb99;
+  color: #fff;
+  border-radius: 9999px;
+}
+
+/* 56. BIOMORPHIC DIGITAL */
+.style-biomorphicdigital {
+  background: radial-gradient(circle at 30% 30%, #065f46 0%, #022c22 100%);
+  color: #ecfdf5;
+}
+.style-biomorphicdigital .demo-box {
+  background: rgba(2, 44, 34, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(52, 211, 153, 0.35);
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  box-shadow: 0 0 30px rgba(5, 150, 105, 0.25);
+}
+.style-biomorphicdigital .demo-btn {
+  background: #10b981;
+  color: #022c22;
+  border-radius: 9999px;
+  border: none;
+  font-weight: 800;
+}
+.style-biomorphicdigital .demo-input {
+  background: rgba(6, 95, 70, 0.5);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  color: #a7f3d0;
+  border-radius: 9999px;
+}
+
+/* 57. WEIMAR / EXPRESSIONIST */
+.style-weimar {
+  background: #141414;
+  color: #faf7f2;
+}
+.style-weimar .demo-box {
+  background: #242424;
+  border: 2px solid #faf7f2;
+  box-shadow: 6px 6px 0px #b91c1c;
+  clip-path: polygon(0 0, 100% 3%, 97% 100%, 0 96%);
+}
+.style-weimar .demo-btn {
+  background: #b91c1c;
+  color: #faf7f2;
+  border: 2px solid #faf7f2;
+  font-weight: 900;
+  border-radius: 0;
+}
+.style-weimar .demo-input {
+  background: #000;
+  border: 1.5px solid #faf7f2;
+  color: #faf7f2;
+  border-radius: 0;
+}
+
+/* 58. POP COMIC / BEN-DAY */
+.style-comicretro {
+  background: #fff000;
+  color: #000000;
+}
+.style-comicretro .demo-box {
+  background: #ffffff;
+  border: 4px solid #000000;
+  box-shadow: 6px 6px 0px #000000;
+}
+.style-comicretro .demo-btn {
+  background: #ff0044;
+  color: #ffffff;
+  border: 3px solid #000000;
+  box-shadow: 3px 3px 0px #000000;
+  font-weight: 900;
+}
+.style-comicretro .demo-input {
+  background: #00c3ff;
+  border: 3px solid #000000;
+  color: #000000;
+  font-weight: 800;
+}
+
+/* 59. ANALOG VHS / CASSETTE */
+.style-analogtape {
+  background: #1c1c1e;
+  color: #30d158;
+}
+.style-analogtape .demo-box {
+  background: #2c2c2e;
+  border: 2px solid #3a3a3c;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.8), 0 8px 16px rgba(0,0,0,0.6);
+}
+.style-analogtape .demo-btn {
+  background: #3a3a3c;
+  border: 1px solid #30d158;
+  color: #30d158;
+  border-radius: 4px;
+  font-family: monospace;
+}
+.style-analogtape .demo-input {
+  background: #000000;
+  border: 1px solid #30d158;
+  color: #30d158;
+  font-family: monospace;
+}
+
+/* 60. TYPE-FIRST MONOLITHIC */
+.style-typefirst {
+  background: #ffffff;
+  color: #000000;
+}
+.style-typefirst .demo-box {
+  background: #f5f5f5;
+  border-top: 6px solid #000000;
+  box-shadow: none;
+}
+.style-typefirst .demo-btn {
+  background: #000000;
+  color: #ffffff;
+  border-radius: 0;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.style-typefirst .demo-input {
+  background: #ffffff;
+  border: none;
+  border-bottom: 3px solid #000000;
+  border-radius: 0;
+  font-weight: 800;
+}
+
+/* 61. SOLARPUNK */
+.style-solarpunk {
+  background: linear-gradient(135deg, #fefce8 0%, #ecfdf5 100%);
+  color: #14532d;
+}
+.style-solarpunk .demo-box {
+  background: #ffffff;
+  border: 2px solid #84cc16;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(202, 138, 4, 0.15);
+}
+.style-solarpunk .demo-btn {
+  background: linear-gradient(90deg, #65a30d, #ca8a04);
+  color: #ffffff;
+  border-radius: 12px;
+  font-weight: 700;
+  border: none;
+}
+.style-solarpunk .demo-input {
+  background: #f7fee7;
+  border: 1.5px solid #bef264;
+  color: #14532d;
+  border-radius: 10px;
+}
+
+/* 62. DARK BRUTALISM */
+.style-darkbrutalism {
+  background: #000000;
+  color: #ffffff;
+}
+.style-darkbrutalism .demo-box {
+  background: #111111;
+  border: 3px solid #ffffff;
+  box-shadow: 4px 4px 0px #ffffff;
+}
+.style-darkbrutalism .demo-btn {
+  background: #ffffff;
+  color: #000000;
+  border: 2px solid #ffffff;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.style-darkbrutalism .demo-input {
+  background: #000;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+}
+
+/* 63. LINEAR / RAYCAST DARK */
+.style-linearmodern {
+  background: #0b0c0e;
+  color: #e2e8f0;
+}
+.style-linearmodern .demo-box {
+  background: #131418;
+  border: 1px solid #262830;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.style-linearmodern .demo-btn {
+  background: #5e6ad2;
+  color: #ffffff;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(94, 106, 210, 0.4);
+}
+.style-linearmodern .demo-input {
+  background: #18191f;
+  border: 1px solid #2f323c;
+  color: #fff;
+  border-radius: 8px;
+}
+
+/* 64. CYBER-PHYSICAL ARCHITECTURE */
+.style-cyberphysical {
+  background: #0a0a0c;
+  color: #ffaa00;
+}
+.style-cyberphysical .demo-box {
+  background: #101016;
+  border: 1.5px solid #ffaa00;
+  box-shadow: 0 0 15px rgba(255, 170, 0, 0.2);
+}
+.style-cyberphysical .demo-btn {
+  background: #ffaa00;
+  color: #000000;
+  font-weight: 900;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+.style-cyberphysical .demo-input {
+  background: #000;
+  border: 1px solid #ffaa00;
+  color: #ffaa00;
+  font-family: monospace;
+}
+
+/* 65. RAY-TRACING GLASS */
+.style-raytracing {
+  background: #050814;
+  color: #ffffff;
+}
+.style-raytracing .demo-box {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.03) 100%);
+  backdrop-filter: blur(28px);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), 0 0 20px rgba(56, 189, 248, 0.2);
+  border-radius: 18px;
+}
+.style-raytracing .demo-btn {
+  background: linear-gradient(90deg, #38bdf8, #e879f9);
+  color: #fff;
+  border-radius: 12px;
+  font-weight: 700;
+}
+.style-raytracing .demo-input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 10px;
+}
+
+/* 66. HIGH-DENSITY TERMINAL */
+.style-highdensity {
+  background: #121316;
+  color: #cfd3dc;
+  font-family: 'Space Mono', monospace;
+}
+.style-highdensity .demo-box {
+  background: #16181f;
+  border: 1px solid #2a2e39;
+  border-radius: 2px;
+}
+.style-highdensity .demo-btn {
+  background: #2a2e39;
+  color: #00e676;
+  border: 1px solid #00e676;
+  font-weight: 700;
+  border-radius: 2px;
+}
+.style-highdensity .demo-input {
+  background: #0d0e11;
+  border: 1px solid #2a2e39;
+  color: #00e676;
+  border-radius: 2px;
+}
+
+/* 67. POST-DIGITAL GRUNGE */
+.style-postdigitalgrunge {
+  background: #f4efe6;
+  color: #0f0f0f;
+}
+.style-postdigitalgrunge .demo-box {
+  background: #ffffff;
+  border: 3px dashed #0f0f0f;
+  box-shadow: 6px 6px 0px #cc0022;
+  transform: rotate(-1deg);
+}
+.style-postdigitalgrunge .demo-btn {
+  background: #cc0022;
+  color: #ffffff;
+  border: 2px solid #0f0f0f;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.style-postdigitalgrunge .demo-input {
+  background: #fff;
+  border: 2px solid #000;
+  color: #000;
+}
+
+/* 68. CYBER-GOTH / TECHWEAR */
+.style-cybergoth {
+  background: #08080a;
+  color: #b8ff00;
+}
+.style-cybergoth .demo-box {
+  background: #0f0f14;
+  border: 2px solid #b8ff00;
+  box-shadow: 0 0 15px rgba(184, 255, 0, 0.2);
+  clip-path: polygon(0 0, 95% 0, 100% 8%, 100% 100%, 5% 100%, 0 92%);
+}
+.style-cybergoth .demo-btn {
+  background: #ff003c;
+  color: #ffffff;
+  border: 1px solid #b8ff00;
+  font-weight: 800;
+}
+.style-cybergoth .demo-input {
+  background: #000;
+  border: 1px solid #b8ff00;
+  color: #b8ff00;
+}
+
+/* 69. JAPANESE MA (ZEN SPACE) */
+.style-zenminimal {
+  background: #f9f8f5;
+  color: #44403c;
+}
+.style-zenminimal .demo-box {
+  background: #ffffff;
+  border: 1px solid #e7e5e4;
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+}
+.style-zenminimal .demo-btn {
+  background: #44403c;
+  color: #fafaf9;
+  border-radius: 4px;
+  font-weight: 400;
+}
+.style-zenminimal .demo-input {
+  background: #f9f8f5;
+  border: 1px solid #d6d3d1;
+  color: #44403c;
+  border-radius: 4px;
+}
+
+/* 70. DECONSTRUCTED WIREFRAME */
+.style-deconstructedwire {
+  background: #0a192f;
+  color: #00ffff;
+  font-family: monospace;
+}
+.style-deconstructedwire .demo-box {
+  background: #0d1b2a;
+  border: 1.5px dashed #00ffff;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.15);
+}
+.style-deconstructedwire .demo-btn {
+  background: transparent;
+  border: 1.5px solid #00ffff;
+  color: #00ffff;
+  font-weight: 700;
+}
+.style-deconstructedwire .demo-input {
+  background: #060d17;
+  border: 1px solid #00ffff;
+  color: #00ffff;
+}
+
+/* 71. OBSIDIAN CLAY */
+.style-claydark {
+  background: #141418;
+  color: #e5e5ea;
+}
+.style-claydark .demo-box {
+  background: #1e1e24;
+  border-radius: 20px;
+  box-shadow: 
+    inset -4px -4px 8px rgba(0, 0, 0, 0.8),
+    inset 4px 4px 8px rgba(255, 255, 255, 0.08),
+    6px 10px 18px rgba(0, 0, 0, 0.6);
+}
+.style-claydark .demo-btn {
+  background: #6366f1;
+  color: #ffffff;
+  border-radius: 14px;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.4);
+}
+.style-claydark .demo-input {
+  background: #141418;
+  border: 1px solid #2e2e38;
+  color: #e5e5ea;
+  border-radius: 12px;
+}
+
+/* 72. LIQUID CHROME */
+.style-chromemetal {
+  background: #090a0f;
+  color: #0f172a;
+}
+.style-chromemetal .demo-box {
+  background: linear-gradient(135deg, #e2e8f0 0%, #94a3b8 40%, #ffffff 50%, #64748b 70%, #cbd5e1 100%);
+  border: 1.5px solid #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+}
+.style-chromemetal .demo-btn {
+  background: #000000;
+  color: #ffffff;
+  border-radius: 9999px;
+  font-weight: 800;
+}
+.style-chromemetal .demo-input {
+  background: rgba(255,255,255,0.7);
+  border: 1px solid #94a3b8;
+  color: #000;
+  border-radius: 8px;
+}
+
+/* 73. TACTILE PAPERCRAFT */
+.style-tactilepaper {
+  background: #fdfbf7;
+  color: #292524;
+}
+.style-tactilepaper .demo-box {
+  background: #ffffff;
+  border: 1px solid #e7e0d3;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 6px 16px rgba(0,0,0,0.08);
+}
+.style-tactilepaper .demo-btn {
+  background: #292524;
+  color: #fdfbf7;
+  border-radius: 4px;
+  font-family: serif;
+}
+.style-tactilepaper .demo-input {
+  background: #fdfbf7;
+  border: 1px solid #d7d0c3;
+  color: #292524;
+  border-radius: 4px;
+}
+
+/* 74. 1984 MACINTOSH GUI */
+.style-retrocomputing {
+  background: #ffffff;
+  color: #000000;
+  font-family: 'Space Mono', monospace;
+}
+.style-retrocomputing .demo-box {
+  background: #ffffff;
+  border: 2px solid #000000;
+  box-shadow: 3px 3px 0px #000000;
+}
+.style-retrocomputing .demo-btn {
+  background: #ffffff;
+  border: 2px solid #000000;
+  color: #000000;
+  font-weight: 700;
+  border-radius: 3px;
+}
+.style-retrocomputing .demo-input {
+  background: #ffffff;
+  border: 1.5px solid #000000;
+  color: #000000;
+}
+
+/* 75. GLITCH HOLOGRAM HUD */
+.style-glitchhologram {
+  background: #050814;
+  color: #00f0ff;
+}
+.style-glitchhologram .demo-box {
+  background: rgba(5, 8, 20, 0.85);
+  border: 1.5px solid #00f0ff;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.35);
+}
+.style-glitchhologram .demo-btn {
+  background: rgba(0, 240, 255, 0.2);
+  border: 1px solid #00f0ff;
+  color: #00f0ff;
+  font-weight: 800;
+}
+.style-glitchhologram .demo-input {
+  background: rgba(0, 240, 255, 0.05);
+  border: 1px solid #00f0ff;
+  color: #00f0ff;
+}
+
+/* 76. BAUHAUS DARK */
+.style-bauhausdark {
+  background: #121214;
+  color: #ffffff;
+}
+.style-bauhausdark .demo-box {
+  background: #1c1c22;
+  border: 3px solid #ffd000;
+  box-shadow: 6px 6px 0px #00459c;
+}
+.style-bauhausdark .demo-btn {
+  background: #e52521;
+  color: #ffffff;
+  border-radius: 9999px;
+  font-weight: 900;
+  border: 2px solid #ffffff;
+}
+.style-bauhausdark .demo-input {
+  background: #121214;
+  border: 2px solid #ffd000;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   PER-STYLE HOVER PERSONALITY (showcase demo components)
+   --------------------------------------------------------------------------
+   Generic layer (features.css) sab styles ko baseline lift deta hai. Yeh
+   section un engines ke liye signature behaviour add karta hai jahan hover
+   ka apna character hona chahiye — hard shadows, neumorphic depth, neon glow,
+   glass refraction, press-down ya editorial restraint.
+   Sab rules `.style-x .comp:hover` (0,3,0) hain, isliye generic layer
+   (0,2,0) se upar override hote hain. Sirf pointer devices par.
+   ========================================================================== */
+@media (hover: hover) and (pointer: fine) {
+
+  /* --- A. Brutalist hard-shadow family: shadow grow + diagonal lift --- */
+  .style-brutalism .demo-btn:hover {
+    box-shadow: 7px 7px 0 #000000; transform: translate(-3px, -3px); filter: none;
+  }
+  .style-brutalism .demo-card:hover, .style-brutalism .demo-tile:hover {
+    box-shadow: 9px 9px 0 #000000; transform: translate(-4px, -4px); filter: none;
+  }
+  .style-neobrutalism .demo-btn:hover {
+    box-shadow: 7px 7px 0 #000000; transform: translate(-3px, -3px); filter: none;
+  }
+  .style-neobrutalism .demo-card:hover, .style-neobrutalism .demo-tile:hover {
+    box-shadow: 9px 9px 0 #000000; transform: translate(-5px, -5px); filter: none;
+  }
+  .style-darkbrutalism .demo-btn:hover {
+    box-shadow: 5px 5px 0 #ffffff; transform: translate(-2px, -2px); filter: none;
+  }
+  .style-darkbrutalism .demo-card:hover, .style-darkbrutalism .demo-tile:hover {
+    box-shadow: 8px 8px 0 #ffffff; transform: translate(-4px, -4px); filter: none;
+  }
+  .style-acidbrutalist .demo-btn:hover {
+    box-shadow: 7px 7px 0 #ccff00; transform: translate(-3px, -3px); filter: none;
+  }
+  .style-acidbrutalist .demo-card:hover, .style-acidbrutalist .demo-tile:hover {
+    box-shadow: 9px 9px 0 #ff0099; transform: translate(-4px, -4px); filter: none;
+  }
+
+  /* --- B. Soft-body family: depth badhti hai (never flattened) --- */
+  .style-neumorphism .demo-btn:hover {
+    box-shadow: 9px 9px 18px #bec3c9, -9px -9px 18px #ffffff;
+    transform: translateY(-2px); filter: none;
+  }
+  .style-neumorphism .demo-card:hover, .style-neumorphism .demo-tile:hover {
+    box-shadow: 12px 12px 24px #bec3c9, -12px -12px 24px #ffffff;
+    transform: translateY(-4px); filter: none;
+  }
+  .style-neumorphism .demo-input:hover {
+    box-shadow: inset 5px 5px 10px #bec3c9, inset -5px -5px 10px #ffffff;
+    border-color: transparent;
+  }
+  .style-claymorphism .demo-btn:hover {
+    box-shadow: inset -4px -4px 8px rgba(55, 48, 163, 0.4), inset 4px 4px 8px rgba(255, 255, 255, 0.7),
+                9px 12px 20px rgba(79, 70, 229, 0.38);
+    transform: translateY(-2px); filter: none;
+  }
+  .style-claymorphism .demo-card:hover, .style-claymorphism .demo-tile:hover {
+    box-shadow: inset -6px -6px 12px rgba(99, 102, 241, 0.35), inset 6px 6px 12px rgba(255, 255, 255, 0.9),
+                15px 22px 32px rgba(79, 70, 229, 0.32);
+    transform: translateY(-5px); filter: none;
+  }
+  .style-claydark .demo-btn:hover {
+    box-shadow: 0 9px 20px rgba(99, 102, 241, 0.6); transform: translateY(-2px); filter: none;
+  }
+  .style-claydark .demo-card:hover, .style-claydark .demo-tile:hover {
+    box-shadow: inset -4px -4px 8px rgba(0, 0, 0, 0.8), inset 4px 4px 8px rgba(255, 255, 255, 0.1),
+                11px 17px 28px rgba(0, 0, 0, 0.7);
+    transform: translateY(-5px); filter: none;
+  }
+
+  /* --- C. Glass family: refraction + edge light --- */
+  .style-glassmorphism .demo-btn:hover {
+    background: rgba(255, 255, 255, 0.42); border-color: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3); transform: translateY(-2px) scale(1.02); filter: none;
+  }
+  .style-glassmorphism .demo-card:hover, .style-glassmorphism .demo-tile:hover {
+    background: rgba(255, 255, 255, 0.24); border-color: rgba(255, 255, 255, 0.62);
+    box-shadow: 0 20px 48px rgba(31, 38, 135, 0.42); transform: translateY(-5px); filter: none;
+  }
+  .style-liquidglass .demo-btn:hover {
+    box-shadow: 0 10px 32px rgba(56, 189, 248, 0.6); border-color: rgba(255, 255, 255, 0.85);
+    transform: translateY(-2px); filter: none;
+  }
+  .style-liquidglass .demo-card:hover, .style-liquidglass .demo-tile:hover {
+    border-color: rgba(255, 255, 255, 0.78);
+    box-shadow: 0 18px 44px rgba(56, 189, 248, 0.3); transform: translateY(-5px); filter: none;
+  }
+  .style-glassnoir .demo-btn:hover {
+    background: rgba(255, 255, 255, 0.22); border-color: rgba(255, 255, 255, 0.45);
+    transform: translateY(-2px); filter: none;
+  }
+  .style-glassnoir .demo-card:hover, .style-glassnoir .demo-tile:hover {
+    box-shadow: 0 28px 54px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    transform: translateY(-5px); filter: none;
+  }
+
+  /* --- D. Neon / emissive family: glow burst --- */
+  .style-cyberpunk .demo-btn:hover {
+    box-shadow: 0 0 26px #ffe600, 0 0 9px #00f0ff; transform: translateY(-2px); filter: brightness(1.12);
+  }
+  .style-cyberpunk .demo-card:hover, .style-cyberpunk .demo-tile:hover {
+    box-shadow: 0 0 34px rgba(255, 230, 0, 0.5), -3px 0 0 #00f0ff; transform: translateY(-4px); filter: none;
+  }
+  .style-retroterminal .demo-btn:hover {
+    box-shadow: 0 0 22px rgba(57, 255, 20, 0.85); transform: translateY(-2px); filter: brightness(1.14);
+  }
+  .style-retroterminal .demo-card:hover, .style-retroterminal .demo-tile:hover {
+    box-shadow: 0 0 30px rgba(57, 255, 20, 0.55); transform: translateY(-4px); filter: none;
+  }
+  .style-glitchhologram .demo-btn:hover {
+    box-shadow: 0 0 24px rgba(0, 240, 255, 0.8); text-shadow: 0 0 9px #00f0ff;
+    transform: translateY(-2px); filter: none;
+  }
+  .style-glitchhologram .demo-card:hover, .style-glitchhologram .demo-tile:hover {
+    box-shadow: 0 0 36px rgba(0, 240, 255, 0.55); transform: translateY(-4px); filter: none;
+  }
+  .style-vaporwave .demo-btn:hover {
+    box-shadow: 0 0 28px #ff71ce, 0 0 13px #01cdfe; transform: translateY(-2px); filter: none;
+  }
+  .style-vaporwave .demo-card:hover, .style-vaporwave .demo-tile:hover {
+    box-shadow: 0 0 34px #01cdfe, inset 0 0 15px #ff71ce; transform: translateY(-4px); filter: none;
+  }
+  .style-y2k .demo-btn:hover {
+    box-shadow: 0 11px 22px rgba(236, 72, 153, 0.65), inset 0 2px 3px rgba(255, 255, 255, 0.85);
+    transform: translateY(-2px) scale(1.03); filter: none;
+  }
+  .style-y2k .demo-card:hover, .style-y2k .demo-tile:hover {
+    box-shadow: 0 15px 30px rgba(168, 85, 247, 0.45), inset 0 2px 4px #ffffff;
+    transform: translateY(-5px); filter: none;
+  }
+
+  /* --- E. Editorial restraint: no float, colour + rule only --- */
+  .style-swiss .demo-btn:hover { transform: none; filter: none; background: #111111; color: #ffffff; }
+  .style-swiss .demo-card:hover, .style-swiss .demo-tile:hover {
+    transform: none; filter: none; box-shadow: 0 0 0 2px #e11d48;
+  }
+  .style-editorial .demo-btn:hover { transform: none; filter: none; background: #333333; color: #fdfbf7; }
+  .style-editorial .demo-card:hover, .style-editorial .demo-tile:hover {
+    transform: none; filter: none; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+  }
+  .style-zenminimal .demo-btn:hover { transform: none; filter: none; background: #1c1917; color: #fafaf9; }
+  .style-zenminimal .demo-card:hover, .style-zenminimal .demo-tile:hover {
+    transform: none; filter: none; box-shadow: 0 10px 28px rgba(0, 0, 0, 0.07);
+  }
+  .style-archival .demo-btn:hover { transform: none; filter: none; background: #171717; color: #ffffff; }
+  .style-archival .demo-card:hover, .style-archival .demo-tile:hover {
+    transform: none; filter: none; box-shadow: 4px 4px 0 #a3a3a3;
+  }
+
+  /* --- F. Physical / tactile: real-object motion --- */
+  .style-lego .demo-btn:hover {
+    box-shadow: 0 7px 0 #600000; transform: translateY(-3px); filter: none;
+  }
+  .style-lego .demo-card:hover, .style-lego .demo-tile:hover {
+    box-shadow: 0 11px 0 #002255; transform: translateY(-4px); filter: none;
+  }
+  .style-pixel .demo-btn:hover, .style-retrocomputing .demo-btn:hover {
+    box-shadow: 6px 6px 0 #000000; transform: translate(-2px, -2px); filter: none;
+  }
+  .style-pixel .demo-card:hover, .style-pixel .demo-tile:hover {
+    box-shadow: 7px 7px 0 #124e89; transform: translate(-3px, -3px); filter: none;
+  }
+  .style-retrocomputing .demo-card:hover, .style-retrocomputing .demo-tile:hover {
+    box-shadow: 6px 6px 0 #000000; transform: translate(-3px, -3px); filter: none;
+  }
+  .style-skeuomorphism .demo-btn:hover {
+    box-shadow: 0 7px 12px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    transform: translateY(-2px); filter: brightness(1.06);
+  }
+  .style-skeuomorphism .demo-card:hover, .style-skeuomorphism .demo-tile:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.65); transform: translateY(-4px); filter: none;
+  }
+  .style-tactilepaper .demo-btn:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 10px 22px rgba(0, 0, 0, 0.14);
+    transform: translateY(-2px); filter: none;
+  }
+  .style-tactilepaper .demo-card:hover, .style-tactilepaper .demo-tile:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 14px 32px rgba(0, 0, 0, 0.16);
+    transform: translateY(-4px); filter: none;
+  }
+  .style-analogtape .demo-btn:hover {
+    box-shadow: 0 0 16px rgba(48, 209, 88, 0.55); transform: translateY(-2px); filter: none;
+  }
+  .style-analogtape .demo-card:hover, .style-analogtape .demo-tile:hover {
+    box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.85), 0 14px 30px rgba(0, 0, 0, 0.7);
+    transform: translateY(-4px); filter: none;
+  }
+  .style-linearmodern .demo-btn:hover {
+    box-shadow: 0 8px 22px rgba(94, 106, 210, 0.55); transform: translateY(-2px); filter: none;
+  }
+  .style-linearmodern .demo-card:hover, .style-linearmodern .demo-tile:hover {
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px); filter: none;
+  }
+}
+
+/* Reduced motion: personality hovers bhi neutral (gentle colour kaam karta hai) */
+@media (prefers-reduced-motion: reduce) {
+  .style-brutalism .demo-btn:hover, .style-neobrutalism .demo-btn:hover,
+  .style-darkbrutalism .demo-btn:hover, .style-acidbrutalist .demo-btn:hover,
+  .style-neumorphism .demo-btn:hover, .style-claymorphism .demo-btn:hover,
+  .style-claydark .demo-btn:hover, .style-glassmorphism .demo-btn:hover,
+  .style-liquidglass .demo-btn:hover, .style-glassnoir .demo-btn:hover,
+  .style-cyberpunk .demo-btn:hover, .style-retroterminal .demo-btn:hover,
+  .style-glitchhologram .demo-btn:hover, .style-vaporwave .demo-btn:hover,
+  .style-y2k .demo-btn:hover, .style-lego .demo-btn:hover,
+  .style-pixel .demo-btn:hover, .style-retrocomputing .demo-btn:hover,
+  .style-skeuomorphism .demo-btn:hover, .style-tactilepaper .demo-btn:hover,
+  .style-analogtape .demo-btn:hover, .style-linearmodern .demo-btn:hover,
+  .style-brutalism .demo-card:hover, .style-neobrutalism .demo-card:hover,
+  .style-darkbrutalism .demo-card:hover, .style-acidbrutalist .demo-card:hover,
+  .style-neumorphism .demo-card:hover, .style-claymorphism .demo-card:hover,
+  .style-claydark .demo-card:hover, .style-glassmorphism .demo-card:hover,
+  .style-liquidglass .demo-card:hover, .style-glassnoir .demo-card:hover,
+  .style-cyberpunk .demo-card:hover, .style-retroterminal .demo-card:hover,
+  .style-glitchhologram .demo-card:hover, .style-vaporwave .demo-card:hover,
+  .style-y2k .demo-card:hover, .style-lego .demo-card:hover,
+  .style-pixel .demo-card:hover, .style-retrocomputing .demo-card:hover,
+  .style-skeuomorphism .demo-card:hover, .style-tactilepaper .demo-card:hover,
+  .style-analogtape .demo-card:hover, .style-linearmodern .demo-card:hover {
+    transform: none !important;
+  }
+}
+
+

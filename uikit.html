@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self'; manifest-src 'self'; worker-src 'self'">
+  <title>Design Atlas — Comprehensive Component Library UI Kit</title>
+  <script src="js/tailwind-browser.js"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Cinzel:wght@600;800&family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Space+Grotesk:wght@500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col antialiased">
+  
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-white/85 dark:bg-slate-900/85 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2 font-black text-lg">
+          <span class="w-8 h-8 rounded-lg bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white text-sm">DA</span>
+          <span>Design Atlas</span>
+        </a>
+        <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-bold">UI Kit Library</span>
+      </div>
+      <div class="flex items-center gap-2 text-xs font-bold">
+        <a href="index.html" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200">🏛️ Main Gallery</a>
+        <a href="playground.html" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200">🎛️ Playground</a>
+        <a href="compare.html" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200">⚔️ Versus</a>
+        <a href="tokens.html" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200">📦 Tokens</a>
+        <a href="prompt-builder.html" class="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200">🪄 Prompt Studio</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Showcase -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+    <!-- Top Selector Bar -->
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
+      <div>
+        <span class="text-xs font-bold text-sky-500 uppercase tracking-widest">Atomic Component System</span>
+        <h1 class="text-2xl font-black text-slate-900 dark:text-white mt-1">Design System Component Library</h1>
+        <p class="text-xs text-slate-500 mt-0.5">Inspect buttons, inputs, pills, cards, and toggles rendered strictly in your chosen style.</p>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <label class="text-xs font-bold text-slate-500">Active Design Style:</label>
+        <select id="uikit-style-select" class="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2 text-xs font-bold outline-none focus:ring-2 focus:ring-sky-500">
+          <!-- Populated by JS -->
+        </select>
+        <button id="uikit-download-btn" class="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs shadow">
+          ⬇ Boilerplate HTML
+        </button>
+      </div>
+    </div>
+
+    <!-- Active Style Component Grid Canvas -->
+    <div id="uikit-canvas" class="rounded-3xl p-8 sm:p-12 transition-all shadow-xl flex flex-col gap-12">
+      <!-- Injected dynamically -->
+    </div>
+  </main>
+
+  <!-- Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 text-white border border-slate-700 shadow-2xl text-sm font-semibold">
+    <span class="text-emerald-400">✔</span>
+    <span id="toast-text">Success</span>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/sw-register.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/token-exporter.js"></script>
+  <script>
+    (function () {
+      var stored = safeLS.get('theme', null);
+      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (stored === 'dark' || (stored === null && prefersDark)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+
+    const toastEl = document.getElementById("toast");
+    const toastText = document.getElementById("toast-text");
+    function showToast(msg) {
+      toastText.textContent = msg;
+      toastEl.classList.remove("translate-y-20", "opacity-0");
+      setTimeout(() => toastEl.classList.add("translate-y-20", "opacity-0"), 2500);
+    }
+
+    const selectEl = document.getElementById("uikit-style-select");
+    const canvasEl = document.getElementById("uikit-canvas");
+    const downloadBtn = document.getElementById("uikit-download-btn");
+
+    selectEl.innerHTML = STYLES_DATA.map(s => `<option value="${s.id}">${s.name} (${s.category})</option>`).join('');
+
+    function renderUIKit(styleId) {
+      const style = STYLES_DATA.find(s => s.id === styleId) || STYLES_DATA[0];
+      canvasEl.className = `rounded-3xl p-8 sm:p-12 transition-all shadow-xl flex flex-col gap-12 ${style.cssClass}`;
+
+      canvasEl.innerHTML = `
+        <!-- Section Header -->
+        <div class="border-b border-current/20 pb-6 flex items-center justify-between">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest opacity-80">${style.category} Spec</span>
+            <h2 class="text-3xl font-black mt-1 uppercase">${style.name} UI Kit</h2>
+            <p class="text-xs opacity-75 mt-1">${style.vibe}</p>
+          </div>
+          <button class="demo-btn px-4 py-2 text-xs font-bold rounded-lg" onclick="copyStylePrompt('${style.id}', event)">
+            📋 Copy Style Prompt
+          </button>
+        </div>
+
+        <!-- 1. Buttons Suite -->
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider mb-4 opacity-90">1. Action Buttons</h3>
+          <div class="flex flex-wrap items-center gap-4">
+            <button class="demo-btn px-5 py-2.5 text-xs font-bold rounded-xl" onclick="soundManager.play('${style.audioTone}')">Primary Action</button>
+            <button class="px-5 py-2.5 text-xs font-bold rounded-xl border border-current opacity-85 hover:opacity-100" onclick="soundManager.play('click')">Outline Secondary</button>
+            <button class="demo-btn px-4 py-2 text-xs font-bold rounded-full flex items-center gap-2" onclick="soundManager.play('pop')"><span>✦</span> Pill Action</button>
+            <button class="demo-btn px-3 py-2 text-xs font-bold rounded-lg opacity-50 cursor-not-allowed">Disabled State</button>
+          </div>
+        </div>
+
+        <!-- 2. Form Controls Suite -->
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider mb-4 opacity-90">2. Form Inputs & Selectors</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="demo-box p-4 rounded-xl space-y-2">
+              <label class="block text-xs font-bold opacity-80">Text Input</label>
+              <input type="text" value="john.doe@domain.com" class="demo-input w-full px-3 py-2 text-xs rounded-lg">
+            </div>
+
+            <div class="demo-box p-4 rounded-xl space-y-2">
+              <label class="block text-xs font-bold opacity-80">Select Dropdown</label>
+              <select class="demo-input w-full px-3 py-2 text-xs rounded-lg">
+                <option>Selected Option 01</option>
+                <option>Option 02 (Secondary)</option>
+              </select>
+            </div>
+
+            <div class="demo-box p-4 rounded-xl space-y-3">
+              <label class="block text-xs font-bold opacity-80">Range Slider (85%)</label>
+              <div class="w-full h-2.5 rounded-full bg-current/20 overflow-hidden">
+                <div class="h-full demo-btn" style="width: 85%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Badges, Pills & Status Indicators -->
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider mb-4 opacity-90">3. Status Pills & Badges</h3>
+          <div class="flex flex-wrap items-center gap-3 text-xs font-bold">
+            <span class="px-3 py-1 rounded-full border border-current font-mono">● LIVE RUNNING</span>
+            <span class="px-3 py-1 rounded-full border border-current opacity-80">✓ VERIFIED</span>
+            <span class="px-3 py-1 rounded-full border border-current opacity-60">⏳ PENDING</span>
+            <span class="demo-btn px-3 py-1 rounded-full">ACTIVE PILL</span>
+          </div>
+        </div>
+
+        <!-- 4. Container Cards & Bento Modules -->
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider mb-4 opacity-90">4. Container Modules & Panels</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="demo-box p-6 rounded-2xl flex flex-col justify-between">
+              <div>
+                <span class="text-xs font-bold opacity-75">Bento Metric Module</span>
+                <div class="text-3xl font-black my-2">$94,200.00</div>
+                <p class="text-xs opacity-75">Growth pace at +24.8% over previous interval.</p>
+              </div>
+              <div class="pt-4 mt-4 border-t border-current/20 flex gap-2">
+                <button class="demo-btn px-4 py-1.5 text-xs font-bold rounded">View Report</button>
+              </div>
+            </div>
+
+            <div class="demo-box p-6 rounded-2xl flex flex-col justify-between">
+              <div>
+                <span class="text-xs font-bold opacity-75">Interactive Accordion Panel</span>
+                <div class="text-base font-bold my-2">Security & Identity Encryption</div>
+                <p class="text-xs opacity-75">Keys are rotated every 24 hours under cryptographic isolation.</p>
+              </div>
+              <div class="pt-4 mt-4 border-t border-current/20 flex items-center justify-between text-xs">
+                <span>Algorithm: Ed25519</span>
+                <span class="font-bold underline cursor-pointer">Learn More →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      downloadBtn.onclick = () => {
+        const html = TokenExporter.generateStarterBoilerplate(style);
+        TokenExporter.downloadFile(`${style.id}-starter.html`, html, 'text/html');
+        soundManager.play('success');
+        showToast(`✔ Downloaded ${style.name} Starter Boilerplate!`);
+      };
+    }
+
+    selectEl.addEventListener('change', () => {
+      soundManager.play('click');
+      renderUIKit(selectEl.value);
+    });
+
+    renderUIKit(selectEl.value);
+  </script>
+</body>
+</html>

@@ -1,0 +1,1304 @@
+/* ==========================================================================
+   DESIGN ATLAS — FEATURE LAYER
+   Layer 2 stylesheet: brand harmonization, accessibility, motion policy,
+   and the chrome for newer modules (Shadow Lab, App Skins, Command Palette,
+   Keyboard Help, Recently Viewed, Gallery sorting).
+   Additive only — never overrides the 76 style engines in styles.css
+   unless a feature is explicitly switched on via an html.* flag.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   0. BRAND HARMONIZER — makes --user-brand-accent actually do something
+   --------------------------------------------------------------------------
+   palette-harmonizer.js writes --user-brand-accent / --user-brand-glow onto
+   <html> and toggles .brand-harmonized. Only then do we recolor the live demo
+   components, so the default look of every style stays untouched.
+   -------------------------------------------------------------------------- */
+html.brand-harmonized .demo-btn {
+  background-color: var(--user-brand-accent) !important;
+  border-color: color-mix(in srgb, var(--user-brand-accent) 72%, #000000) !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 18px var(--user-brand-glow, transparent) !important;
+}
+
+html.brand-harmonized .demo-btn:hover {
+  background-color: color-mix(in srgb, var(--user-brand-accent) 86%, #ffffff) !important;
+}
+
+html.brand-harmonized .demo-box {
+  border-color: color-mix(in srgb, var(--user-brand-accent) 34%, transparent) !important;
+}
+
+html.brand-harmonized .demo-input:focus,
+html.brand-harmonized .demo-input:focus-visible {
+  border-color: var(--user-brand-accent) !important;
+  box-shadow: 0 0 0 3px var(--user-brand-glow, transparent) !important;
+  outline: none;
+}
+
+/* Accent rail so the chosen brand color is always visible on screen */
+html.brand-harmonized::before {
+  content: '';
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 3px;
+  z-index: 60;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    var(--user-brand-accent),
+    color-mix(in srgb, var(--user-brand-accent) 45%, #ffffff),
+    var(--user-brand-accent)
+  );
+}
+
+/* --------------------------------------------------------------------------
+   1. ACCESSIBILITY — visible focus ring + reduced motion policy
+   -------------------------------------------------------------------------- */
+:focus-visible {
+  outline: 2px solid #0ea5e9;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+button:focus-visible,
+a:focus-visible,
+select:focus-visible,
+input:focus-visible,
+summary:focus-visible {
+  outline: 2px solid #0ea5e9;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. GALLERY ENTRANCE + SKELETON (progressive reveal for 76 cards)
+   -------------------------------------------------------------------------- */
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+#card-grid > article {
+  animation: cardIn 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--card-i, 0) * 22ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #card-grid > article {
+    animation: none !important;
+  }
+}
+
+/* Highlighted search matches inside card titles */
+mark.search-hit {
+  background: color-mix(in srgb, #0ea5e9 26%, transparent);
+  color: inherit;
+  border-radius: 3px;
+  padding: 0 2px;
+}
+
+/* --------------------------------------------------------------------------
+   3. GALLERY TOOLBAR — sort select + result meta
+   -------------------------------------------------------------------------- */
+.gallery-sort {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 8.5 1.5 4h9z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7rem center;
+  background-size: 10px;
+  padding-right: 2rem;
+}
+
+/* --------------------------------------------------------------------------
+   4. RECENTLY VIEWED STRIP
+   -------------------------------------------------------------------------- */
+.recent-strip {
+  display: flex;
+  gap: 0.6rem;
+  overflow-x: auto;
+  padding-bottom: 0.35rem;
+  scrollbar-width: thin;
+}
+
+.recent-chip {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+  background: #ffffff;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.recent-chip:hover {
+  transform: translateY(-2px);
+  border-color: #38bdf8;
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.1);
+}
+
+.dark .recent-chip {
+  background: #0f172a;
+  color: #cbd5e1;
+  border-color: #1e293b;
+}
+
+.recent-chip .recent-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  display: inline-block;
+}
+
+/* --------------------------------------------------------------------------
+   5. APP SKIN INDICATOR BAR
+   -------------------------------------------------------------------------- */
+#skin-indicator {
+  display: none;
+}
+
+body[class*="skin-"] #skin-indicator {
+  display: block;
+}
+
+.monolith-banner-indicator,
+#skin-indicator {
+  position: sticky;
+  top: 0;
+  z-index: 35;
+  padding: 6px 16px;
+  text-align: center;
+  font-family: 'Space Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: #1c1c24;
+  color: #e5e5ea;
+  border-bottom: 2px solid #000000;
+  box-shadow: 0 3px 0 #000000;
+}
+
+body.skin-glass #skin-indicator {
+  background: rgba(15, 23, 42, 0.72);
+  color: #e0f2fe;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 8px 24px rgba(2, 6, 23, 0.45);
+}
+
+body.skin-cyberpunk #skin-indicator {
+  background: #050814;
+  color: #00f0ff;
+  border-bottom: 1px solid #00f0ff;
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.45);
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.7);
+}
+
+/* Skin cycling button in the header */
+#app-skin-btn {
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+#app-skin-btn:active {
+  transform: translateY(1px);
+}
+
+/* --------------------------------------------------------------------------
+   6. KEYBOARD HELP OVERLAY
+   -------------------------------------------------------------------------- */
+#shortcuts-dialog kbd {
+  display: inline-block;
+  min-width: 1.6rem;
+  padding: 2px 7px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  border-bottom-width: 2px;
+  background: #f8fafc;
+  color: #0f172a;
+  font-family: 'Space Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.dark #shortcuts-dialog kbd {
+  background: #1e293b;
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+#shortcuts-dialog .shortcut-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 9px 0;
+  border-bottom: 1px dashed #e2e8f0;
+  font-size: 13px;
+}
+
+.dark #shortcuts-dialog .shortcut-row {
+  border-bottom-color: #1e293b;
+}
+
+#shortcuts-dialog .shortcut-keys {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+/* --------------------------------------------------------------------------
+   7. COMPARE — swap control
+   -------------------------------------------------------------------------- */
+#compare-swap-btn {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#compare-swap-btn:hover {
+  transform: rotate(180deg);
+}
+
+/* --------------------------------------------------------------------------
+   8. STAT PILLS (footer / hero metrics)
+   -------------------------------------------------------------------------- */
+.stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 700;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+}
+
+.dark .stat-pill {
+  background: #0f172a;
+  border-color: #1e293b;
+  color: #94a3b8;
+}
+
+.stat-pill b {
+  color: #0284c7;
+}
+
+.dark .stat-pill b {
+  color: #38bdf8;
+}
+
+/* --------------------------------------------------------------------------
+   5b. APP SHELL SKINS — Obsidian Glass & Cyberpunk HUD
+   (Monolith lives in css/monolith-shell.css; these two complete the set so
+   every entry in APP_SKINS actually transforms the shell.)
+   -------------------------------------------------------------------------- */
+
+/* ---- Obsidian Liquid Glass ---- */
+body.skin-glass {
+  background:
+    radial-gradient(1000px 600px at 12% -10%, rgba(56, 189, 248, 0.18), transparent 60%),
+    radial-gradient(900px 700px at 88% 0%, rgba(168, 85, 247, 0.16), transparent 55%),
+    #0b1220 !important;
+  color: #e2e8f0 !important;
+}
+
+body.skin-glass header {
+  background: rgba(11, 18, 32, 0.66) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: 0 14px 40px rgba(2, 6, 23, 0.55) !important;
+}
+
+body.skin-glass nav,
+body.skin-glass .gallery-sort {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+body.skin-glass nav button {
+  color: #cbd5e1 !important;
+}
+
+body.skin-glass nav button.bg-white,
+body.skin-glass nav button.dark\:bg-slate-900 {
+  background: rgba(255, 255, 255, 0.16) !important;
+  color: #ffffff !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+}
+
+body.skin-glass #search-input {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  color: #f1f5f9 !important;
+}
+
+body.skin-glass #filter-container button {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  color: #e2e8f0 !important;
+}
+
+body.skin-glass #filter-container button.bg-sky-500 {
+  background: rgba(56, 189, 248, 0.32) !important;
+  color: #ffffff !important;
+  border-color: rgba(56, 189, 248, 0.6) !important;
+}
+
+body.skin-glass #card-grid article {
+  background: rgba(255, 255, 255, 0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 18px 44px rgba(2, 6, 23, 0.5) !important;
+}
+
+body.skin-glass #card-grid article:hover {
+  border-color: rgba(56, 189, 248, 0.55) !important;
+  box-shadow: 0 26px 60px rgba(2, 6, 23, 0.62) !important;
+}
+
+body.skin-glass #card-grid article h3 { color: #f8fafc !important; }
+body.skin-glass #card-grid article .p-4 { background: transparent !important; }
+
+body.skin-glass dialog#style-modal {
+  background: rgba(11, 18, 32, 0.94) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 40px 90px rgba(2, 6, 23, 0.7) !important;
+}
+
+/* ---- Cyberpunk HUD Console ---- */
+body.skin-cyberpunk {
+  background:
+    repeating-linear-gradient(0deg, rgba(0, 240, 255, 0.035) 0 1px, transparent 1px 3px),
+    radial-gradient(900px 500px at 50% -10%, rgba(0, 240, 255, 0.14), transparent 60%),
+    #050814 !important;
+  color: #7df9ff !important;
+  font-family: 'Space Mono', ui-monospace, monospace !important;
+}
+
+body.skin-cyberpunk header {
+  background: rgba(5, 8, 20, 0.92) !important;
+  border-bottom: 2px solid #00f0ff !important;
+  box-shadow: 0 6px 26px rgba(0, 240, 255, 0.28) !important;
+}
+
+body.skin-cyberpunk h1,
+body.skin-cyberpunk h2,
+body.skin-cyberpunk h3 {
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.55);
+  letter-spacing: 0.02em;
+}
+
+body.skin-cyberpunk nav {
+  background: rgba(0, 240, 255, 0.07) !important;
+  border: 1px solid rgba(0, 240, 255, 0.5) !important;
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.25) inset !important;
+  border-radius: 2px !important;
+}
+
+body.skin-cyberpunk nav button,
+body.skin-cyberpunk nav a {
+  border-radius: 2px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: #67e8f9 !important;
+}
+
+body.skin-cyberpunk nav button.bg-white,
+body.skin-cyberpunk nav button.dark\:bg-slate-900 {
+  background: rgba(0, 240, 255, 0.22) !important;
+  color: #ffffff !important;
+  border: 1px solid #00f0ff !important;
+  box-shadow: 0 0 14px rgba(0, 240, 255, 0.6) !important;
+}
+
+body.skin-cyberpunk #search-input,
+body.skin-cyberpunk .gallery-sort {
+  background: rgba(0, 240, 255, 0.06) !important;
+  border: 1px solid rgba(0, 240, 255, 0.55) !important;
+  color: #00f0ff !important;
+  border-radius: 2px !important;
+  caret-color: #00f0ff;
+}
+
+body.skin-cyberpunk #filter-container button {
+  background: transparent !important;
+  border: 1px solid rgba(0, 240, 255, 0.45) !important;
+  color: #67e8f9 !important;
+  border-radius: 2px !important;
+  box-shadow: 0 0 8px rgba(0, 240, 255, 0.18) !important;
+}
+
+body.skin-cyberpunk #filter-container button.bg-sky-500 {
+  background: rgba(0, 240, 255, 0.25) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.7) !important;
+}
+
+/* ==========================================================================
+   FULL-SCREEN DEMO SHOWCASE — live page preview (76 UI styles)
+   Layout layer: sirf structure. Colours style engine (.style-*) se aate hain
+   (currentColor + transparency), taki har style apna look de.
+   ========================================================================== */
+#showcase-dialog {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: #020617;
+  color: #e2e8f0;
+  overflow: hidden;
+}
+#showcase-dialog:not([open]) { display: none; }
+#showcase-dialog::backdrop { background: rgba(2, 6, 23, 0.92); backdrop-filter: blur(6px); }
+
+body.showcase-native-fullscreen #showcase-dialog,
+body.showcase-faux-fullscreen #showcase-dialog { border: 0; }
+
+#showcase-stage {
+  background: #ffffff;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(100, 116, 139, 0.5) transparent;
+}
+#showcase-stage::-webkit-scrollbar { width: 10px; }
+#showcase-stage::-webkit-scrollbar-thumb { background: rgba(100, 116, 139, 0.45); border-radius: 999px; }
+
+.showcase-jump {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.6rem;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 999px;
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.showcase-jump:hover { background: rgba(56, 189, 248, 0.18); color: #f8fafc; }
+
+.showcase-canvas { display: block; width: 100%; }
+.showcase-canvas > [class^="style-"],
+.showcase-canvas > [class*=" style-"] { min-height: 100%; width: 100%; }
+.showcase-meta-note {
+  padding: 0.9rem 1.25rem;
+  font-size: 12px;
+  line-height: 1.6;
+  background: #0f172a;
+  color: #94a3b8;
+  border-top: 1px solid rgba(148, 163, 184, 0.25);
+}
+.showcase-meta-note b { color: #e2e8f0; }
+.showcase-meta-note .demo-mono { color: #7dd3fc; }
+
+/* ---------- demo micro-layout (structure only) ---------- */
+.demo-page { display: flex; flex-direction: column; min-height: 100%; }
+.demo-page section[id] { scroll-margin-top: 72px; }
+
+.demo-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  padding: 0.85rem clamp(1rem, 4vw, 3.5rem);
+  border-bottom: 1px solid currentColor;
+  background: color-mix(in srgb, currentColor 6%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.demo-brand { display: flex; align-items: center; gap: 0.6rem; font-weight: 800; }
+.demo-brand-name { font-weight: 800; letter-spacing: -0.01em; }
+.demo-logo {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid currentColor;
+  border-radius: 0.55rem;
+  font-size: 0.9rem;
+}
+.demo-nav { display: flex; flex-wrap: wrap; gap: 0.35rem 1rem; font-size: 0.85rem; font-weight: 600; }
+.demo-nav a { text-decoration: none; color: inherit; opacity: 0.78; padding: 0.15rem 0; border-bottom: 2px solid transparent; }
+.demo-nav a:hover { opacity: 1; border-bottom-color: currentColor; }
+.demo-header-actions { display: flex; align-items: center; gap: 0.5rem; margin-left: auto; }
+.demo-search { display: flex; align-items: center; gap: 0.4rem; }
+.demo-search input { width: clamp(8rem, 18vw, 13rem); font-size: 0.8rem; padding: 0.4rem 0.7rem; }
+
+.demo-hero {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(1.25rem, 4vw, 3rem);
+  align-items: center;
+  padding: clamp(1.5rem, 5vw, 4rem) clamp(1rem, 4vw, 3.5rem);
+}
+.demo-hero-copy { display: flex; flex-direction: column; gap: 1rem; }
+.demo-h1 { font-size: clamp(2rem, 5.2vw, 3.75rem); line-height: 1.02; font-weight: 900; letter-spacing: -0.03em; margin: 0; }
+.demo-h2 { font-size: clamp(1.35rem, 3vw, 2.1rem); line-height: 1.12; font-weight: 800; margin: 0 0 0.35rem; letter-spacing: -0.02em; }
+.demo-h3 { font-size: 1.05rem; font-weight: 800; margin: 0 0 0.35rem; }
+.demo-lead { font-size: clamp(0.95rem, 1.4vw, 1.1rem); line-height: 1.65; opacity: 0.85; margin: 0; max-width: 46ch; }
+.demo-chip,
+.demo-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  align-self: flex-start;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+}
+.demo-chip-float { align-self: flex-end; margin-bottom: 0.5rem; }
+.demo-hero-cta { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.demo-stats { display: flex; flex-wrap: wrap; gap: 1.5rem; margin: 0.5rem 0 0; }
+.demo-stats div { display: flex; flex-direction: column; }
+.demo-stats dt { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.65; }
+.demo-stats dd { margin: 0; font-size: 1.5rem; font-weight: 900; }
+
+.demo-hero-art { margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+.demo-hero-art img,
+.demo-tile img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+  border-radius: 0.9rem;
+  object-fit: cover;
+}
+.demo-hero-art figcaption,
+.demo-tile figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.78rem;
+  opacity: 0.8;
+}
+
+.demo-marquee {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1rem 2rem;
+  padding: 1rem clamp(1rem, 4vw, 3.5rem);
+  border-block: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  font-size: 0.75rem;
+  opacity: 0.65;
+}
+
+.demo-section { padding: clamp(1.5rem, 4vw, 3.25rem) clamp(1rem, 4vw, 3.5rem); display: grid; gap: 1.25rem; }
+.demo-section-head { display: grid; gap: 0.25rem; max-width: 60ch; }
+.demo-section-head p { margin: 0; opacity: 0.8; line-height: 1.6; }
+.demo-grid { display: grid; gap: 1rem; }
+.demo-grid-3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); }
+
+.demo-card { display: flex; flex-direction: column; gap: 0.55rem; padding: 1.15rem; border-radius: 0.9rem; position: relative; }
+.demo-card p { margin: 0; line-height: 1.6; opacity: 0.85; font-size: 0.9rem; }
+.demo-card-icon { font-size: 1.4rem; }
+.demo-card-highlight { outline: 2px solid currentColor; outline-offset: 2px; }
+.demo-price { font-size: 2.1rem; font-weight: 900; margin: 0; line-height: 1; }
+.demo-price small { font-size: 0.8rem; font-weight: 600; opacity: 0.7; }
+.demo-list { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.3rem; font-size: 0.88rem; opacity: 0.85; }
+.demo-card .demo-btn { margin-top: auto; align-self: flex-start; }
+
+.demo-tile { margin: 0; padding: 0.6rem; border-radius: 0.9rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.demo-tile img { border-radius: 0.6rem; }
+
+.demo-quote {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  padding: 1.5rem;
+  border-radius: 0.9rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+.demo-quote p { margin: 0 0 0.5rem; }
+.demo-quote cite { font-size: 0.85rem; opacity: 0.75; font-style: normal; }
+.demo-avatar { width: 3.5rem; height: 3.5rem; border-radius: 1rem; flex: none; }
+
+.demo-table-wrap { padding: 0.35rem; border-radius: 0.9rem; overflow-x: auto; }
+.demo-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.demo-table th,
+.demo-table td { text-align: left; padding: 0.7rem 0.85rem; border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent); }
+.demo-table th { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; }
+.demo-mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+.demo-section-form { grid-template-columns: 1.4fr 0.9fr; align-items: start; }
+.demo-form-card { padding: 1.4rem; border-radius: 0.9rem; display: grid; gap: 0.9rem; }
+.demo-form-card form { display: grid; gap: 0.8rem; }
+.demo-form-card label { display: grid; gap: 0.3rem; font-size: 0.82rem; font-weight: 700; }
+.demo-form-card input,
+.demo-form-card select,
+.demo-form-card textarea { font-size: 0.9rem; padding: 0.55rem 0.7rem; width: 100%; }
+.demo-form-card textarea { resize: vertical; }
+.demo-checkbox { display: flex !important; align-items: center; gap: 0.5rem; font-weight: 600 !important; }
+.demo-form-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.demo-side-panel { padding: 1.25rem; border-radius: 0.9rem; display: grid; gap: 0.7rem; font-size: 0.9rem; }
+.demo-progress { height: 0.55rem; border-radius: 999px; background: color-mix(in srgb, currentColor 18%, transparent); overflow: hidden; }
+.demo-progress span { display: block; height: 100%; background: currentColor; }
+
+.demo-footer { margin-top: auto; border-top: 1px solid currentColor; padding: 2rem clamp(1rem, 4vw, 3.5rem) 1.25rem; display: grid; gap: 1.5rem; }
+.demo-footer-grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); }
+.demo-footer-grid h4 { margin: 0 0 0.5rem; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; opacity: 0.7; }
+.demo-footer-grid a { display: block; text-decoration: none; color: inherit; opacity: 0.8; font-size: 0.88rem; padding: 0.15rem 0; }
+.demo-footer-grid a:hover { opacity: 1; }
+.demo-footer-bar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem; padding-top: 1rem; border-top: 1px solid color-mix(in srgb, currentColor 15%, transparent); font-size: 0.8rem; opacity: 0.75; }
+.demo-footer-links a {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity 0.18s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .demo-footer-links a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 0.28em; }
+}
+
+/* Dropdown triggers (account menu + nav submenu) ko hover/focus feedback
+   nahi milta tha. Dono ke inline styles `background`/`opacity` lock hain, so
+   woh properties CSS se nahi badal saktin — transform/filter use kiye (ye
+   inline me nahi hain). Nav parent ka opacity ek targeted !important se. */
+.demo-dropdown-trigger { transition: transform 0.18s ease, filter 0.18s ease; }
+@media (hover: hover) and (pointer: fine) {
+  .demo-dropdown-trigger:hover { transform: translateY(-1px); filter: brightness(1.12); }
+  .demo-nav-parent:hover { opacity: 1 !important; }
+}
+
+@media (max-width: 900px) {
+  .demo-hero { grid-template-columns: 1fr; }
+  .demo-section-form { grid-template-columns: 1fr; }
+  .demo-nav { order: 3; width: 100%; }
+  .demo-header-actions { margin-left: 0; }
+}
+@media (max-width: 560px) {
+  .demo-search { display: none; }
+  .demo-header { gap: 0.5rem; }
+}
+
+/* ==========================================================================
+   ICON SYSTEM — inline <symbol> sprite helper
+   ========================================================================== */
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: none;
+}
+svg.icon { overflow: visible; }
+
+/* Per-style generated logo mark (palette-derived, contrast-aware) */
+.demo-logo-mark {
+  width: 1.7em; height: 1.7em; display: block; flex: none;
+  overflow: visible; filter: drop-shadow(0 1px 2px rgba(0,0,0,.14));
+}
+.demo-brand-name .demo-logo-mark,
+.demo-footer .demo-logo-mark { width: 1.1em; height: 1.1em; display: inline-block; vertical-align: -0.18em; }
+
+/* Dashboard modal: the generated mark sits in a fixed 36px brand slot, so let
+   it fill that box instead of the em-based default above. */
+.dash-logo-slot { width: 2.25rem; height: 2.25rem; display: flex; align-items: center; justify-content: center; flex: none; overflow: hidden; }
+.dash-logo-slot .demo-logo-mark { width: 100%; height: 100%; filter: none; }
+
+/* ==========================================================================
+   DEMO SHOWCASE — production components (dropdown, tooltip, tabs,
+   skeleton, modal, validation) — structure only, style engine colors
+   ========================================================================== */
+
+/* --- Dropdown (notification bell, user menu) --- */
+.demo-dropdown { position: relative; }
+.demo-dropdown-trigger { position: relative; display: inline-flex; align-items: center; gap: .4rem; }
+.demo-badge-dot {
+  position: absolute; top: 0; right: 0;
+  min-width: .9rem; height: .9rem; padding: 0 .18rem;
+  border-radius: 999px; font-size: .58rem; font-weight: 800;
+  display: grid; place-items: center; line-height: 1;
+  background: currentColor;
+}
+.demo-badge-dot > span { color: #fff; mix-blend-mode: normal; }
+.demo-dropdown-menu {
+  position: absolute; top: calc(100% + .5rem); right: 0; z-index: 60;
+  min-width: 14rem; max-width: min(90vw, 22rem);
+  padding: .4rem;
+  display: none;
+}
+.demo-dropdown[data-open="true"] .demo-dropdown-menu { display: block; }
+.demo-dropdown-head { padding: .55rem .7rem; font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; opacity: .65; border-bottom: 1px solid color-mix(in srgb, currentColor 14%, transparent); margin-bottom: .3rem; }
+.demo-dropdown-item {
+  display: flex; align-items: flex-start; gap: .6rem;
+  width: 100%; padding: .6rem .7rem; text-align: left;
+  background: none; border: 0; color: inherit; cursor: pointer;
+  font: inherit; border-radius: .5rem;
+}
+.demo-dropdown-item:hover { background: color-mix(in srgb, currentColor 9%, transparent); }
+.demo-dropdown-item .icon { font-size: 1rem; margin-top: .1rem; opacity: .8; }
+.demo-dropdown-item small { display: block; opacity: .7; font-size: .74rem; margin-top: .12rem; }
+.demo-dropdown-item strong { font-size: .84rem; }
+.demo-dropdown-foot { border-top: 1px solid color-mix(in srgb, currentColor 14%, transparent); margin-top: .3rem; padding-top: .3rem; }
+
+/* --- Tooltip --- */
+.demo-tip { position: relative; }
+.demo-tip::after {
+  content: attr(data-tip);
+  position: absolute; bottom: calc(100% + .5rem); left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  padding: .35rem .6rem; font-size: .72rem; font-weight: 700;
+  white-space: nowrap; pointer-events: none; opacity: 0;
+  background: #0f172a; color: #e2e8f0; border-radius: .4rem;
+  z-index: 70; transition: opacity .15s ease, transform .15s ease;
+}
+.demo-tip:hover::after, .demo-tip:focus-visible::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+@media (prefers-reduced-motion: reduce) { .demo-tip::after { transition: none; } }
+
+/* --- Tabs --- */
+.demo-tabs { display: flex; gap: .25rem; border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent); }
+.demo-tab {
+  padding: .6rem 1rem; font-size: .85rem; font-weight: 700;
+  background: none; border: 0; color: inherit; cursor: pointer;
+  opacity: .6; border-bottom: 2px solid transparent; margin-bottom: -1px;
+}
+.demo-tab[aria-selected="true"] { opacity: 1; border-bottom-color: currentColor; }
+.demo-tab:hover { opacity: 1; }
+.demo-tab-panel[hidden] { display: none; }
+
+/* --- Skeleton loaders --- */
+.demo-skeleton {
+  position: relative; overflow: hidden;
+  background: color-mix(in srgb, currentColor 12%, transparent);
+  border-radius: .5rem;
+}
+.demo-skeleton::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, currentColor 24%, transparent), transparent);
+  transform: translateX(-100%); animation: demoShimmer 1.4s infinite;
+}
+@keyframes demoShimmer { 100% { transform: translateX(100%); } }
+@media (prefers-reduced-motion: reduce) { .demo-skeleton::after { animation: none; opacity: .35; } }
+.demo-skeleton-line { height: .8rem; margin-bottom: .55rem; }
+.demo-skeleton-line.w-60 { width: 60%; }
+.demo-skeleton-line.w-80 { width: 80%; }
+.demo-skeleton-block { height: 7rem; }
+
+/* --- Form validation states --- */
+.demo-input.is-invalid { border-color: #ef4444 !important; box-shadow: 0 0 0 2px color-mix(in srgb, #ef4444 30%, transparent) !important; }
+.demo-input.is-valid { border-color: #10b981 !important; }
+.demo-field-error { display: none; color: #ef4444; font-size: .74rem; font-weight: 700; margin-top: .25rem; }
+.demo-field-error.show { display: block; }
+.demo-alert { display: flex; gap: .6rem; align-items: flex-start; padding: .75rem .9rem; border: 1px solid currentColor; border-radius: .6rem; font-size: .84rem; font-weight: 600; }
+.demo-alert .icon { font-size: 1.05rem; margin-top: .05rem; }
+.demo-alert-success { border-color: #10b981; color: #065f46; background: color-mix(in srgb, #10b981 12%, transparent); }
+.demo-alert-error { border-color: #ef4444; color: #991b1b; background: color-mix(in srgb, #ef4444 12%, transparent); }
+.demo-alert-info { border-color: #0ea5e9; color: #075985; background: color-mix(in srgb, #0ea5e9 12%, transparent); }
+
+/* --- In-demo modal / dialog --- */
+.demo-modal-backdrop {
+  position: absolute; inset: 0; z-index: 80;
+  background: rgba(2, 6, 23, .62); backdrop-filter: blur(4px);
+  display: none; place-items: center; padding: 1rem;
+}
+.demo-modal-backdrop[data-open="true"] { display: grid; }
+.demo-modal {
+  width: min(100%, 34rem); max-height: 86%; overflow: auto;
+  padding: 1.35rem; border-radius: 1rem;
+  background: #fff; color: #0f172a;
+  border: 1px solid #e2e8f0; box-shadow: 0 24px 60px rgba(2, 6, 23, .35);
+  display: grid; gap: .9rem;
+}
+.demo-modal h3 { margin: 0; font-size: 1.15rem; font-weight: 800; }
+.demo-modal-actions { display: flex; gap: .6rem; justify-content: flex-end; flex-wrap: wrap; }
+
+/* --- Toasts inside demo (notification examples) --- */
+.demo-toasts { position: absolute; right: 1rem; bottom: 1rem; z-index: 90; display: grid; gap: .6rem; max-width: min(90vw, 20rem); }
+.demo-toast { display: flex; gap: .55rem; align-items: flex-start; padding: .7rem .85rem; border-radius: .7rem; font-size: .82rem; font-weight: 600; background: #fff; color: #0f172a; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(2,6,23,.18); animation: demoToastIn .25s ease; }
+.demo-toast .icon { font-size: 1rem; margin-top: .05rem; }
+@keyframes demoToastIn { from { opacity: 0; transform: translateY(8px); } }
+@media (prefers-reduced-motion: reduce) { .demo-toast { animation: none; } }
+
+/* --- Table controls (sort + pagination) --- */
+.demo-th-sort { background: none; border: 0; color: inherit; font: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: .3rem; padding: 0; text-transform: inherit; letter-spacing: inherit; opacity: .7; }
+.demo-th-sort:hover { opacity: 1; }
+.demo-th-sort .icon { font-size: .7rem; }
+.demo-pagination { display: flex; gap: .35rem; align-items: center; justify-content: flex-end; padding-top: .7rem; }
+.demo-page-btn { min-width: 2rem; padding: .3rem .5rem; font-size: .8rem; font-weight: 700; background: none; border: 1px solid color-mix(in srgb, currentColor 25%, transparent); color: inherit; cursor: pointer; border-radius: .45rem; }
+.demo-page-btn[aria-current="page"] { background: currentColor; color: #fff; }
+.demo-page-btn:disabled { opacity: .4; cursor: not-allowed; }
+
+/* --- Nav dropdown (desktop nav ke liye submenu) --- */
+.demo-nav-item { position: relative; }
+.demo-nav-menu {
+  position: absolute; top: calc(100% + .4rem); left: 0; z-index: 60;
+  min-width: 11rem; padding: .35rem; display: none;
+  background: #fff; color: #0f172a; border: 1px solid #e2e8f0; border-radius: .7rem;
+  box-shadow: 0 16px 40px rgba(2,6,23,.18);
+}
+.demo-nav-item[data-open="true"] .demo-nav-menu { display: grid; }
+.demo-nav-menu a, .demo-nav-menu button {
+  display: flex; align-items: center; gap: .5rem; width: 100%;
+  padding: .5rem .65rem; font-size: .84rem; font-weight: 600;
+  background: none; border: 0; color: inherit; cursor: pointer;
+  text-align: left; border-radius: .45rem; text-decoration: none;
+}
+.demo-nav-menu a:hover, .demo-nav-menu button:hover { background: #f1f5f9; }
+
+/* ==========================================================================
+   DEMO SHOWCASE — universal interaction layer (hover / focus / active)
+   --------------------------------------------------------------------------
+   Har style engine ke liye baseline: colours `currentColor` se derive hote
+   hain, isliye yeh layer khud har palette par adapt ho jaati hai (76/76).
+   Style-specific rules (`.style-x .demo-btn:hover`) zyada specificity rakhte
+   hain aur isse override kar sakte hain — yeh sirf fallback baseline hai.
+   ========================================================================== */
+
+/* NOTE: generic layer kabhi box-shadow / border-radius nahi badalta —
+   warna engines ka apna signature shadow (neumorphism, brutalism, glass)
+   hover par gayab ho jaata. Sirf lift + tint. Shadow personality
+   style-specific rules neeche (styles.css) handle karti hain. */
+
+/* --- Buttons --- */
+.demo-btn {
+  transition: transform .18s cubic-bezier(.2,.7,.3,1), box-shadow .18s ease,
+              background-color .18s ease, border-color .18s ease,
+              color .18s ease, filter .18s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .demo-btn:hover:not(:disabled):not([disabled]) {
+    transform: translateY(-2px);
+    filter: saturate(1.06) brightness(1.04);
+  }
+}
+.demo-btn:active:not(:disabled):not([disabled]) { transform: translateY(0) scale(.985); filter: none; }
+
+/* --- Inputs --- */
+.demo-input {
+  transition: border-color .18s ease, box-shadow .18s ease, background-color .18s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .demo-input:hover { border-color: color-mix(in srgb, currentColor 45%, transparent); }
+}
+.demo-input:focus, .demo-input:focus-visible {
+  outline: none;
+  border-color: color-mix(in srgb, currentColor 60%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, currentColor 22%, transparent);
+}
+
+/* --- Focus ring: har interactive demo element par --- */
+.demo-btn:focus-visible,
+.demo-tab:focus-visible,
+.demo-page-btn:focus-visible,
+.demo-th-sort:focus-visible,
+.demo-dropdown-item:focus-visible,
+.demo-nav a:focus-visible,
+.demo-nav-menu a:focus-visible,
+.demo-nav-menu button:focus-visible,
+.demo-footer-grid a:focus-visible,
+.demo-footer-links a:focus-visible,
+.demo-dropdown-trigger:focus-visible,
+.demo-search:focus-within {
+  outline: 2px solid color-mix(in srgb, currentColor 70%, transparent);
+  outline-offset: 2px;
+}
+
+/* --- Cards & gallery tiles (delight lift + image zoom) --- */
+.demo-card, .demo-tile {
+  transition: transform .22s cubic-bezier(.2,.7,.3,1), box-shadow .22s ease,
+              border-color .22s ease, background-color .22s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .demo-card:hover, .demo-tile:hover {
+    transform: translateY(-4px);
+    filter: brightness(1.02);
+  }
+  .demo-tile:hover img { transform: scale(1.045); filter: saturate(1.08); }
+}
+.demo-tile { overflow: hidden; }
+.demo-tile img { transition: transform .35s cubic-bezier(.2,.7,.3,1), filter .35s ease; }
+
+/* --- Table rows --- */
+.demo-table tbody tr { transition: background-color .15s ease; }
+@media (hover: hover) and (pointer: fine) {
+  .demo-table tbody tr:hover { background: color-mix(in srgb, currentColor 7%, transparent); }
+}
+
+/* --- Pagination --- */
+.demo-page-btn { transition: background-color .16s ease, color .16s ease, border-color .16s ease, transform .16s ease; }
+@media (hover: hover) and (pointer: fine) {
+  .demo-page-btn:hover:not(:disabled):not([aria-current="page"]) {
+    background: color-mix(in srgb, currentColor 12%, transparent);
+    transform: translateY(-1px);
+  }
+}
+.demo-page-btn:active:not(:disabled) { transform: translateY(0); }
+
+/* --- Chips / tags: sirf pointer wale devices par halka lift --- */
+.demo-chip, .demo-tag { transition: transform .18s ease, box-shadow .18s ease, filter .18s ease; }
+@media (hover: hover) and (pointer: fine) {
+  .demo-chip:hover, .demo-tag:hover { transform: translateY(-1px); filter: brightness(1.05); }
+}
+
+/* --- Reduced motion: sab kuch neutral --- */
+@media (prefers-reduced-motion: reduce) {
+  .demo-btn, .demo-input, .demo-card, .demo-tile, .demo-tile img,
+  .demo-page-btn, .demo-chip, .demo-tag, .demo-table tbody tr {
+    transition: none !important;
+  }
+  .demo-btn:hover, .demo-card:hover, .demo-tile:hover,
+  .demo-page-btn:hover, .demo-chip:hover, .demo-tag:hover { transform: none !important; }
+  .demo-tile:hover img { transform: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo-page *, .showcase-jump, .demo-nav a { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+
+/* ==========================================================================
+   DEMO DOCS SECTION — setup steps, code sample, tokens, do/don't
+   ========================================================================== */
+.demo-docs-col { display: grid; gap: .85rem; align-content: start; }
+
+.demo-docs-steps { margin: 0; padding-left: 1.25rem; display: grid; gap: .55rem; font-size: .88rem; line-height: 1.6; }
+.demo-docs-steps li::marker { font-weight: 800; opacity: .75; }
+
+.demo-code {
+  font-family: ui-monospace, "Space Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .84em; padding: .1em .4em; border-radius: .35em;
+  background: color-mix(in srgb, currentColor 12%, transparent);
+  word-break: break-word;
+}
+
+.demo-code-block {
+  margin: 0; padding: .95rem 1.05rem; overflow-x: auto;
+  font-family: ui-monospace, "Space Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .8rem; line-height: 1.7; border-radius: .7rem;
+  background: color-mix(in srgb, currentColor 9%, transparent);
+  border: 1px solid color-mix(in srgb, currentColor 16%, transparent);
+  color: inherit;
+}
+.demo-code-block code { font: inherit; white-space: pre; }
+.demo-code-block:focus-visible { outline: 2px solid color-mix(in srgb, currentColor 70%, transparent); outline-offset: 2px; }
+
+.demo-swatch {
+  display: inline-block; width: 1.4rem; height: 1.4rem; vertical-align: -0.35rem;
+  border-radius: .4rem; border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35);
+}
+
+.demo-docs-note {
+  display: flex; gap: .5rem; align-items: flex-start; margin: 0;
+  font-size: .8rem; line-height: 1.55; opacity: .82;
+}
+
+/* specificity 0,2,0 = style engine ke barabar, features.css baad me load
+   hota hai isliye ye jeet jata hai — !important ki zaroorat nahi */
+.demo-box.demo-docs-do, .demo-box.demo-docs-dont { border-top-width: 3px; }
+.demo-box.demo-docs-do { border-top-color: #10b981; }
+.demo-box.demo-docs-dont { border-top-color: #ef4444; }
+
+@media (max-width: 720px) {
+  .demo-code-block { font-size: .74rem; }
+}
+
+@media print {
+  #showcase-dialog { position: static; width: auto; height: auto; max-width: none; background: #fff; }
+  #showcase-chrome { display: none !important; }
+  #showcase-stage { overflow: visible; max-height: none; }
+}
+
+body.skin-cyberpunk #card-grid article {
+  background: rgba(5, 8, 20, 0.9) !important;
+  border: 1px solid rgba(0, 240, 255, 0.42) !important;
+  border-radius: 2px !important;
+  box-shadow: 0 0 0 1px rgba(0, 240, 255, 0.08), 0 0 22px rgba(0, 240, 255, 0.16) !important;
+}
+
+body.skin-cyberpunk #card-grid article:hover {
+  border-color: #00f0ff !important;
+  box-shadow: 0 0 34px rgba(0, 240, 255, 0.5) !important;
+}
+
+body.skin-cyberpunk #card-grid article h3 { color: #00f0ff !important; }
+body.skin-cyberpunk #card-grid article .p-4 { background: transparent !important; }
+
+body.skin-cyberpunk dialog#style-modal {
+  background: rgba(5, 8, 20, 0.97) !important;
+  border: 2px solid #00f0ff !important;
+  box-shadow: 0 0 60px rgba(0, 240, 255, 0.45) !important;
+  border-radius: 2px !important;
+}
+
+body.skin-cyberpunk .stat-pill {
+  background: rgba(0, 240, 255, 0.08) !important;
+  border-color: rgba(0, 240, 255, 0.4) !important;
+  color: #67e8f9 !important;
+}
+
+/* --------------------------------------------------------------------------
+   9. TABULAR NUMBERS for metrics
+   -------------------------------------------------------------------------- */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------------------
+   10. PRINT — Spec sheet / moodboard friendly
+   -------------------------------------------------------------------------- */
+@media print {
+  header,
+  footer,
+  #toast,
+  #skin-indicator,
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .view-panel {
+    display: block !important;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+/* ==========================================================================
+   COMPONENT SIZING & POLISH
+   --------------------------------------------------------------------------
+   Tailwind preflight (`* { padding: 0 }`) ki wajah se `.demo-btn` /
+   `.demo-input` ka padding poora chala jata tha — buttons cramped aur
+   chhote dikhte the. Ye base sizing unhe production jaisa banata hai.
+   Style engines (`.style-x .demo-btn`) zyada specificity rakhte hain aur
+   colour / border / radius override kar sakte hain — sirf geometry yahan
+   set ho rahi hai.
+   ========================================================================== */
+
+.demo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.62rem 1.2rem;
+  min-height: 42px;
+  font-size: 0.925rem;
+  font-weight: 600;
+  line-height: 1.25;
+  border-radius: 0.65rem;
+  border: 0 solid currentColor;          /* width 0 by default, engines override */
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+.demo-btn svg.icon, .demo-btn img { flex: none; }
+
+/* Ghost / outline variant — pehle iska koi rule hi nahi tha */
+.demo-page .demo-btn-ghost {
+  background: transparent;
+  color: inherit;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, currentColor 45%, transparent);
+}
+.demo-page .demo-btn-ghost:hover {
+  background: color-mix(in srgb, currentColor 10%, transparent);
+}
+.demo-page .demo-btn-ghost:active {
+  background: color-mix(in srgb, currentColor 16%, transparent);
+}
+
+/* Hero CTAs pehla chehra hote hain — inhe bada, confident banao.
+   `.demo-btn-lg` = single class = specificity (0,1,0), aur har style ka apna
+   `.style-x .demo-btn` rule (0,2,0) ISSE JEETTA hai. Matlab jo styles apna
+   font-size / border-radius set karti hain (brutalism ka square corner,
+   pixel ka 1.1rem type, editorial ka 0.75rem uppercase) woh bilkul preserve
+   rehti hain — aur woh properties jo engines kabhi set hi nahi karte
+   (padding, min-height, font-weight) yahan se milti hain. Isliye har device
+   par button bada dikhta hai, par style ki pehchaan nahi badalti. */
+.demo-btn-lg {
+  padding: 0.95rem 1.75rem;
+  min-height: 54px;
+  font-size: 1.06rem;
+  font-weight: 700;
+  border-radius: 0.85rem;
+}
+
+/* Card ke andar button full-width (mobile par) */
+@media (max-width: 560px) {
+  .demo-card .demo-btn,
+  .demo-form-actions .demo-btn,
+  .demo-modal-actions .demo-btn { width: 100%; }
+}
+
+/* --- Inputs: readable, type-safe, touch-safe --- */
+.demo-input,
+.demo-search input,
+.demo-form-card input:not([type="checkbox"]),
+.demo-form-card select,
+.demo-form-card textarea,
+.demo-modal input {
+  min-height: 42px;
+  font-size: 0.95rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.6rem;
+}
+.demo-form-card textarea { min-height: 6rem; }
+.demo-form-card input[type="checkbox"] {
+  min-height: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  padding: 0;
+  accent-color: currentColor;
+  cursor: pointer;
+}
+.demo-search input { width: clamp(9rem, 18vw, 14rem); }
+
+/* Select chevron affordance (Tailwind chevron nahi deta) */
+.demo-form-card select,
+.demo-input[type="select"],
+select.demo-input {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+                    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: right 1.05rem center, right 0.7rem center;
+  background-size: 0.35rem 0.35rem, 0.35rem 0.35rem;
+  background-repeat: no-repeat;
+  padding-right: 2.2rem;
+}
+
+/* --- Mobile / tablet / small phone --- */
+@media (max-width: 900px) {
+  .demo-btn-lg { padding: 0.85rem 1.4rem; min-height: 50px; }
+}
+@media (max-width: 560px) {
+  .demo-header-actions { flex-wrap: wrap; }
+  .demo-search { flex: 1 1 100%; order: 5; }
+  .demo-search input { width: 100%; }
+  .demo-quote { flex-direction: column; padding: 1.15rem; }
+  .demo-quote .demo-avatar { width: 2.75rem; height: 2.75rem; }
+  .demo-marquee { letter-spacing: 0.12em; gap: 0.75rem 1.25rem; }
+  .demo-table th, .demo-table td { padding: 0.6rem 0.65rem; }
+  .demo-form-card, .demo-side-panel, .demo-quote { padding: 1.1rem; }
+  .demo-price { font-size: 1.85rem; }
+}
+@media (max-width: 420px) {
+  .demo-btn-lg { width: 100%; }
+  .demo-nav { font-size: 0.8rem; gap: 0.25rem 0.7rem; }
+  .demo-section-head h2 { font-size: 1.25rem; }
+}
+
+/* --- Touch devices: 44px+ targets (WCAG 2.5.5) --- */
+@media (pointer: coarse) {
+  .demo-btn { min-height: 48px; padding: 0.75rem 1.35rem; }
+  .demo-btn-lg { min-height: 56px; padding: 0.9rem 1.6rem; }
+  .demo-nav a { padding: 0.55rem 0.15rem; }
+  .demo-page-btn { min-height: 44px; min-width: 2.6rem; }
+  .demo-dropdown-item { padding: 0.85rem 0.9rem; }
+  .demo-tab { padding: 0.8rem 1.05rem; }
+  .demo-input, .demo-search input,
+  .demo-form-card input:not([type="checkbox"]),
+  .demo-form-card select, .demo-form-card textarea { min-height: 48px; }
+  .demo-checkbox input[type="checkbox"] { width: 1.3rem; height: 1.3rem; }
+}
+
+/* ==========================================================================
+   ANIMATIONS — sections reveal, overlays enter, panels fade
+   Sab JS-driven class ke saath, isliye agar JS fail ho to content dikh-
+   ta rehta hai (opacity:0 sirf tab lagta hai jab `.demo-reveal` add ho).
+   ========================================================================== */
+.demo-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.2, 0.7, 0.3, 1), transform 0.6s cubic-bezier(0.2, 0.7, 0.3, 1);
+  will-change: opacity, transform;
+}
+.demo-reveal.is-visible { opacity: 1; transform: none; will-change: auto; }
+
+/* Dropdown menu slide-in */
+.demo-dropdown-menu,
+.demo-nav-menu {
+  transform-origin: top right;
+  animation: demoMenuIn 0.16s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+@keyframes demoMenuIn {
+  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+}
+
+/* In-demo modal pop */
+@keyframes demoModalIn {
+  from { opacity: 0; transform: translateY(14px) scale(0.97); }
+}
+.demo-modal-backdrop[data-open="true"] .demo-modal { animation: demoModalIn 0.22s cubic-bezier(0.2, 0.7, 0.3, 1); }
+
+/* Tab panel cross-fade */
+@keyframes demoPanelIn { from { opacity: 0; transform: translateY(6px); } }
+.demo-tab-panel:not([hidden]) { animation: demoPanelIn 0.22s ease; }
+
+/* Skeleton pulse keeps shimmer, but add an entrance */
+.demo-skeleton { animation: demoSkelIn 0.3s ease; }
+@keyframes demoSkelIn { from { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .demo-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .demo-dropdown-menu, .demo-nav-menu, .demo-modal,
+  .demo-tab-panel:not([hidden]), .demo-skeleton { animation: none !important; }
+}
