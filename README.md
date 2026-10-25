@@ -48,19 +48,24 @@ Every style opens into a **full-page demo of a fake product website** rebuilt by
 
 ```
 index.html            gallery + showcase chrome + icon sprite + inline app JS
-compare|playground|prompt-builder|tokens|uikit.html   focused pages (styles.css only)
+compare|playground|prompt-builder|tokens|uikit.html   focused pages (styles.css + shell-v2.css)
 css/styles.css        the 103 .style-* engines (numbered comments) + comfort layer
 css/features.css      shared .demo-* components, generic hover/focus layer, icon system
 css/monolith-shell.css  app-skin variants
+css/shell-v2.css      chrome design layer: header/hero/cards (index) + sub-page
+                      headers, ghost sub-nav, plates; carries the .icon base
+                      for pages that don't load features.css
 js/data.js            single source of truth: 103 style records (id, name, category,
                       palette ×4, prompt, cssSnippet, tailwindSnippet, vibe/vibeEn, tags…)
 js/util.js            shared globals + buildDetailedPrompt (Node-requireable, exported)
+js/icon-sprite.js     shared icon-sprite injector for the 5 sub-pages (extracted
+                      verbatim from index.html; verify.js guards the 37-symbol sync)
 js/demo-showcase.js   builds the whole showcase demo + interactivity + night preview
 sw.js + js/sw-register.js   network-first service worker (fresh CSS/JS after every edit)
-verify.js             zero-dependency test suite (108 checks, exit 1 on failure)
+verify.js             zero-dependency test suite (122 checks, exit 1 on failure)
 ```
 
-**Load order is law** — CSS: `styles.css` → `features.css` → `monolith-shell.css`. JS: `data.js` → `util.js` → `sw-register.js` → page scripts. Specificity: engines are (0,2,0); generic rules never exceed (0,1,0) on identity props.
+**Load order is law** — CSS: `styles.css` → `features.css` → `monolith-shell.css` → `shell-v2.css`. JS: `data.js` → `util.js` → `sw-register.js` → `icon-sprite.js` → page scripts. Specificity: engines are (0,2,0); generic rules never exceed (0,1,0) on identity props.
 
 **Constraints as standing invariants**
 
@@ -81,7 +86,7 @@ verify.js             zero-dependency test suite (108 checks, exit 1 on failure)
 ## Verification
 
 ```
-node verify.js      # 108 checks: syntax, data integrity, CSS↔data sync, prompts,
+node verify.js      # 122 checks: syntax, data integrity, CSS↔data sync, prompts,
                     # wiring, load order, CSP, service worker, comfort layer
 ```
 

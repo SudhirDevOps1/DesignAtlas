@@ -13,7 +13,7 @@ Serve over HTTP. `file://` breaks clipboard copy and some loaders.
 
 ## Verify — run `node verify.js` after every change
 
-`verify.js` is a **zero-dependency suite, 108 checks, exit code 1 on failure**. It is the only automated test in the repo, and it covers exactly the invariants that have already bitten this project:
+`verify.js` is a **zero-dependency suite, 122 checks, exit code 1 on failure**. It is the only automated test in the repo, and it covers exactly the invariants that have already bitten this project:
 
 - syntax of every `js/*.js` **and** of the 12 inline `<script>` blocks in the HTML — `node --check` never sees the inline ones, which is where the real breakage hides
 - data integrity: unique ids, required fields, 4-colour palettes, `cssClass === style-<id>`
@@ -102,9 +102,9 @@ The showcase stage is fully interactive: `demo-showcase.js` delegates on `#showc
 
 ## Load order is law
 
-**CSS** — `styles.css` → `features.css` → `monolith-shell.css` (`index.html` lines **95 / 97 / 99**). Never reorder. Equal-specificity ties go to source order, and `features.css` is deliberately *after* the 103 style engines so its generic rules win ties.
+**CSS** — `styles.css` → `features.css` → `monolith-shell.css` → **`shell-v2.css`**. Never reorder. Equal-specificity ties go to source order, and `features.css` is deliberately *after* the 103 style engines so its generic rules win ties.
 
-Only `index.html` links all three; `compare`/`playground`/`prompt-builder`/`tokens`/`uikit` link **only** `styles.css`. That is intentional — do not "complete" the cascade on those pages.
+`index.html` links the whole cascade. `compare`/`playground`/`prompt-builder`/`tokens`/`uikit` link **only `styles.css` + `shell-v2.css`** — intentional: the two middle layers are index-only, while `shell-v2.css` must come *after* `styles.css` everywhere it is loaded (verify.js asserts the order on every page). Because the sub-pages do not load `features.css`, their sprite base (`.icon`) is duplicated verbatim-matched inside `shell-v2.css`; keep the two in sync if `features.css`'s icon rules ever change.
 
 **JS** — `js/data.js` first, `js/util.js` second, `js/sw-register.js` third, on **every** page (all 6 load all three, exactly once). `util.js` holds the shared globals: `escapeHTML`, `escapeJSString`, `copyText`, `icon`, `safeLS`, `clampNumber`, `buildDetailedPrompt`, `copyStylePrompt`. New shared helpers go in `util.js`, not in a page script — and **add them to `module.exports` too**, so Node consumers (including `verify.js`) can reach them. `copyStylePrompt` was defined but left out of the exports once; `verify.js` now guards that.
 
@@ -130,12 +130,14 @@ Style engines are 103 blocks in `css/styles.css` named `.style-<id>`, so any eng
 
 - `js/data.js` — 103 style records: `prompt`, `palette`, `cssSnippet`, `tailwindSnippet`, `logoSvg`, … single source of truth. Records may carry a `vibeEn` English gloss; the copied spec prefers it while the site keeps showing the Hinglish `vibe`.
 - `js/util.js` — shared helpers + the shared globals, Node-requireable, exported.
+- `js/icon-sprite.js` — shared icon-sprite **injector** for the 5 sub-pages: the `<svg><symbol>` markup is extracted verbatim from `index.html`'s inline sprite (regenerate with the temp script; `verify.js` guards a 37-symbol id-set sync). It injects at `document.body` start, so sprite `<use>` refs resolve on pages that don't carry the inline sprite. If you add a symbol to index, regenerate this file too.
 - `js/tailwind-browser.js` — vendored Tailwind bundle (398 KB). Vendor code; do not hand-edit.
 - `js/sw-register.js` + `sw.js` — service worker and its registration.
 - `README.md` — human-facing docs: feature tour, architecture map, style-adding recipe, verification bar.
 - `verify.js` — the test suite. Run it from the repo root.
 - `css/styles.css` — the 103 `.style-*` engines (numbered comments 1–103) + a per-style hover / reduced-motion block at the end. New engines go between the last engine and that block.
 - `css/features.css` — shared `.demo-*` components, the universal hover + focus layer, docs CSS.
+- `css/shell-v2.css` — chrome design layer: index header/hero/toolbar/chips/cards/footer + the five sub-page headers (`.sv2-standalone`), ghost sub-nav (`.sv2-subnav`), hero plates (`.sv2-plate`). Also carries the `.icon` base for pages that don't load `features.css`. Loaded after `styles.css` on every page that links it.
 - Page JS maps to pages: `compare.js`→`compare.html`, `playground.js`→`playground.html`, `quiz.js`/`favorites.js`/`demo-showcase.js`→`index.html`, etc. `demo-showcase.js` builds the entire demo page into `#showcase-stage`.
 - **`Design Atlas — Interactive UI Design Styles & AI Prompt Gallery.htm` and its `_files/` folder are a stray browser "Save Page As" snapshot, not source.** Nothing links to it. Do not edit, delete, or treat it as a page.
 

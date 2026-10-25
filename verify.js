@@ -327,12 +327,13 @@ function sectionOrder() {
     check(`${page}: no window.STYLES_DATA`, !html.includes('window.STYLES_DATA'));
   }
 
-  /* CSS cascade: styles.css -> features.css -> monolith-shell.css.
+  /* CSS cascade: styles.css -> features.css -> monolith-shell.css -> shell-v2.css.
      Pages may link a subset (compare/uikit only need styles.css), so assert
      that whichever subset is present keeps the cascade order. index.html must
      carry all three, since the showcase .demo-* components depend on
-     features.css winning ties after the engines. */
-  const CASCADE = ['css/styles.css', 'css/features.css', 'css/monolith-shell.css'];
+     features.css winning ties after the engines. shell-v2.css is last on
+     every page that links it (it restyles the shared chrome). */
+  const CASCADE = ['css/styles.css', 'css/features.css', 'css/monolith-shell.css', 'css/shell-v2.css'];
   for (const page of HTML_PAGES) {
     const html = read(page);
     const linked = CASCADE.filter((f) => html.includes(f));
@@ -343,6 +344,27 @@ function sectionOrder() {
   }
   check('index.html loads the full cascade', CASCADE.every((f) => read('index.html').includes(f)),
     CASCADE.join(' < '));
+
+  /* Phase 2: the five sub-pages resolve sprite <use> refs through the shared
+     injector, loaded right after the service-worker registration. */
+  const SUB_PAGES = ['compare.html', 'playground.html', 'prompt-builder.html', 'tokens.html', 'uikit.html'];
+  for (const page of SUB_PAGES) {
+    const html = read(page);
+    check(`${page}: icon-sprite.js after sw-register.js`,
+      html.indexOf('js/sw-register.js') >= 0 && html.indexOf('js/icon-sprite.js') > html.indexOf('js/sw-register.js'),
+      'injector missing or misplaced');
+  }
+
+  /* The shared injector's symbol set must stay in byte-sync with the sprite
+     that lives inline in index.html — otherwise icon()/subnav icons resolve
+     on one page and vanish on another. */
+  const spriteIds = (src) => [...src.replace(/\\/g, '').matchAll(/<symbol id="([^"]+)"/g)].map((m) => m[1]);
+  const inlineIds = spriteIds(read('index.html'));
+  const injectorIds = spriteIds(read(path.join('js', 'icon-sprite.js')));
+  const sameSet = inlineIds.length === 37 && injectorIds.length === inlineIds.length &&
+    inlineIds.every((id, i) => injectorIds[i] === id);
+  check('icon-sprite.js symbol set syncs with inline index sprite (37)', sameSet,
+    `inline=${inlineIds.length} injector=${injectorIds.length}`);
 
   /* The per-page check above covers the HTML and its inline scripts; this one
      covers the js/ sources, where assigning STYLES_DATA to window would

@@ -1,12 +1,16 @@
 /* ==========================================================================
    SHELL v2 — cohesive design layer (my-taste rework of the Atlas chrome)
    --------------------------------------------------------------------------
-   SCOPE: index.html shell ONLY — header, hero, toolbar, filter chips, card
-   frames, footer. The 103 .style-* engines, the showcase stage, and
-   features.css generic components are untouched (additive standing rule).
-   Specificity: hooks are id/class-level; identity props (color, radius,
-   font) set on shell elements only, never on .style-* internals.
-   LINKED ONLY FROM index.html for a reason: other pages keep their shell.
+   DESIGN GRAMMAR (shared): hairline separators, soft two-layer shadows, one
+   indigo->sky accent, radius scale 9/16, 150-180ms cubic-bezier motion,
+   tabular numerals on counts.
+   SCOPE: the shell chrome ONLY — header, hero, toolbar, filter chips, card
+   frames, footer (index), and the standalone page headers/plates (the five
+   sub-pages). The 103 .style-* engines, the showcase stage, and features.css
+   generic components are untouched (additive standing rule).
+
+   LINKED FROM index.html AND the five sub-pages. It must stay loaded AFTER
+   css/styles.css everywhere (verify.js guards the order).
    ========================================================================== */
 
 /* ---------------------------------------------------------------- tokens */
@@ -242,6 +246,81 @@
 }
 .sv2-footer a:hover {
   border-bottom-color: currentColor;
+}
+
+/* ==========================================================================
+   SUB-PAGES
+   --------------------------------------------------------------------------
+   compare / playground / prompt-builder / tokens / uikit load ONLY
+   styles.css (not features.css), so the sprite icon base is duplicated here,
+   on purpose and verbatim-matched to features.css rules 732–744.
+   ========================================================================== */
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: none;
+}
+svg.icon { overflow: visible; }
+
+/* --------------------------------------------------- standalone page header */
+/* Same chrome grammar as the index shell: hairline bar, quiet brand lockup,
+   ghost sub-nav chips instead of filled grey pills. */
+.sv2-standalone {
+  background: rgba(255, 255, 255, 0.78);
+  border-bottom: 1px solid var(--sv2-hairline);
+}
+.dark .sv2-standalone {
+  background: rgba(9, 11, 18, 0.78);
+  border-bottom-color: var(--sv2-hairline-dark);
+}
+.sv2-standalone > div {
+  padding-top: 0.65rem;
+  padding-bottom: 0.65rem;
+}
+.sv2-standalone .w-8.h-8 {
+  border-radius: 9px;
+  box-shadow: 0 5px 14px -6px rgba(99, 102, 241, 0.45);
+}
+
+/* Sub-nav: hairline ghost chips with a crisp hover + real focus ring */
+.sv2-subnav a {
+  border-radius: 9px;
+  transition: background-color 150ms var(--sv2-ease), color 150ms var(--sv2-ease);
+}
+.sv2-subnav a:hover {
+  background: rgba(2, 8, 23, 0.05);
+}
+.dark .sv2-subnav a:hover {
+  background: rgba(148, 163, 184, 0.12);
+}
+.sv2-subnav a:focus-visible {
+  outline: 2px solid #0ea5e9;
+  outline-offset: 2px;
+}
+.sv2-subnav svg.icon {
+  opacity: 0.75;
+}
+.sv2-subnav a:hover svg.icon {
+  opacity: 1;
+}
+
+/* Hero plate (tokens/uikit top card): filled card → hairline tray */
+.sv2-plate {
+  border-color: var(--sv2-hairline) !important;
+  border-radius: 16px;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 1.75rem;
+}
+.dark .sv2-plate {
+  border-color: var(--sv2-hairline-dark) !important;
 }
 
 /* -------------------------------------------------------------- scrollbar */
