@@ -13,12 +13,12 @@ Serve over HTTP. `file://` breaks clipboard copy and some loaders.
 
 ## Verify — run `node verify.js` after every change
 
-`verify.js` is a **zero-dependency suite, 94 checks, exit code 1 on failure**. It is the only automated test in the repo, and it covers exactly the invariants that have already bitten this project:
+`verify.js` is a **zero-dependency suite, 101 checks, exit code 1 on failure**. It is the only automated test in the repo, and it covers exactly the invariants that have already bitten this project:
 
 - syntax of every `js/*.js` **and** of the 12 inline `<script>` blocks in the HTML — `node --check` never sees the inline ones, which is where the real breakage hides
 - data integrity: unique ids, required fields, 4-colour palettes, `cssClass === style-<id>`
-- **`css/styles.css` and `js/data.js` staying in sync in both directions** (76 engines ↔ 76 records, no orphans either way). It strips CSS comments first, because `styles.css` documents itself with a `.style-x` placeholder that a naive scan counts as a 77th engine.
-- `buildDetailedPrompt()` returns a ≥3000 char brief for all 76 styles, with the expected section markers, and never throws
+- **`css/styles.css` and `js/data.js` staying in sync in both directions** (90 engines ↔ 90 records, no orphans either way). It strips CSS comments first, because `styles.css` documents itself with a `.style-x` placeholder that a naive scan counts as a 91st engine.
+- `buildDetailedPrompt()` returns a ≥3000 char brief for all 90 styles, with the expected section markers, and never throws; it also guards that the universal brief is **stack-agnostic** (STACK ADAPTATION / ACCEPTANCE CHECKLIST / PROTECTION present, no HTML-only deliverable) and that `{stack:'react'}` narrows it
 - wiring: no orphan `js/*.js`, no dead `<script src>`/`<link href>`
 - load order, CSP meta and service-worker wiring on all 6 pages
 - `window.STYLES_DATA` never reappearing in HTML or in any js source
@@ -29,7 +29,7 @@ Low-level equivalent: `node --check js\*.js` (18 files). Inline blocks need a se
 
 **Browser:** read the console after loading a page. All 6 pages should be at **0 errors** (1 known warning: the Tailwind production notice — see below, it is not a defect).
 
-**Structural bar that `verify.js` cannot reach** (needs a DOM): every one of the **76 styles must open** and render 8 sections + footer + hero + 4 visible table rows + 5 pagination buttons + a prompt of ≥3000 chars.
+**Structural bar that `verify.js` cannot reach** (needs a DOM): every one of the **90 styles must open** and render 8 sections + footer + hero + 4 visible table rows + 5 pagination buttons + a prompt of ≥3000 chars.
 
 ## Tailwind is self-hosted, not the CDN
 
@@ -87,13 +87,13 @@ All imagery is generated at runtime from each style's palette — **no image fil
 
 Consumers in `index.html`: `cardArtMarkup()` puts an artwork band **above** each gallery card's live-CSS preview (the preview is never removed); `dashLogoMarkup()` / `dashAvatarMarkup()` fill the dashboard's brand slot (`.dash-logo-slot`, sized in `features.css`) and avatar.
 
-**Both are guarded on purpose.** If `window.DemoShowcase` is unavailable, `cardArtMarkup()` emits nothing (card unchanged) and the dashboard falls back to its original `◈` / `JD` marks. Verified by deleting `window.DemoShowcase` and re-rendering: 76 cards, 0 bands, 0 errors. `verify.js` cannot check this — it has no DOM.
+**Both are guarded on purpose.** If `window.DemoShowcase` is unavailable, `cardArtMarkup()` emits nothing (card unchanged) and the dashboard falls back to its original `◈` / `JD` marks. Verified by deleting `window.DemoShowcase` and re-rendering: 90 cards, 0 bands, 0 errors. `verify.js` cannot check this — it has no DOM.
 
 `generateDashboardHTML()` is only reachable via the **📊 Dashboard** button in the showcase chrome; a plain card click routes to the full-screen showcase, so the dashboard is a fallback surface.
 
 ## Load order is law
 
-**CSS** — `styles.css` → `features.css` → `monolith-shell.css` (`index.html` lines **95 / 97 / 99**). Never reorder. Equal-specificity ties go to source order, and `features.css` is deliberately *after* the 76 style engines so its generic rules win ties.
+**CSS** — `styles.css` → `features.css` → `monolith-shell.css` (`index.html` lines **95 / 97 / 99**). Never reorder. Equal-specificity ties go to source order, and `features.css` is deliberately *after* the 90 style engines so its generic rules win ties.
 
 Only `index.html` links all three; `compare`/`playground`/`prompt-builder`/`tokens`/`uikit` link **only** `styles.css`. That is intentional — do not "complete" the cascade on those pages.
 
@@ -101,7 +101,7 @@ Only `index.html` links all three; `compare`/`playground`/`prompt-builder`/`toke
 
 ## Specificity convention (broken once already)
 
-Style engines are 76 blocks in `css/styles.css` named `.style-<id>`, so any engine rule is **(0,2,0)** — e.g. `.style-brutalism .demo-btn`.
+Style engines are 90 blocks in `css/styles.css` named `.style-<id>`, so any engine rule is **(0,2,0)** — e.g. `.style-brutalism .demo-btn`.
 
 - Generic rule must **lose** to the engine (identity props: `font-size`, `border-radius`, `color`, `border`, `font-family`) → stay at **≤ (0,1,0)**. That is exactly why the hero size class is `.demo-btn-lg` (one class) and not `.demo-page .demo-hero-cta .demo-btn`.
 - Generic rule only sets props engines **never** set (`padding`, `min-height`, `width`) → any specificity is safe.
@@ -119,12 +119,12 @@ Style engines are 76 blocks in `css/styles.css` named `.style-<id>`, so any engi
 
 ## Structure
 
-- `js/data.js` — 76 style records: `prompt`, `palette`, `cssSnippet`, `tailwindSnippet`, `logoSvg`, … single source of truth (89 KB).
+- `js/data.js` — 90 style records: `prompt`, `palette`, `cssSnippet`, `tailwindSnippet`, `logoSvg`, … single source of truth.
 - `js/util.js` — shared helpers + the shared globals, Node-requireable, exported.
 - `js/tailwind-browser.js` — vendored Tailwind bundle (398 KB). Vendor code; do not hand-edit.
 - `js/sw-register.js` + `sw.js` — service worker and its registration.
 - `verify.js` — the test suite. Run it from the repo root.
-- `css/styles.css` — the 76 `.style-*` engines + a per-style hover / reduced-motion block at the end.
+- `css/styles.css` — the 90 `.style-*` engines + a per-style hover / reduced-motion block at the end.
 - `css/features.css` — shared `.demo-*` components, the universal hover + focus layer, docs CSS.
 - Page JS maps to pages: `compare.js`→`compare.html`, `playground.js`→`playground.html`, `quiz.js`/`favorites.js`/`demo-showcase.js`→`index.html`, etc. `demo-showcase.js` builds the entire demo page into `#showcase-stage`.
 - **`Design Atlas — Interactive UI Design Styles & AI Prompt Gallery.htm` and its `_files/` folder are a stray browser "Save Page As" snapshot, not source.** Nothing links to it. Do not edit, delete, or treat it as a page.
@@ -132,5 +132,5 @@ Style engines are 76 blocks in `css/styles.css` named `.style-<id>`, so any engi
 ## Project constraints
 
 - **Additive only.** Standing requirement: never remove existing code or content. A file that looks dead gets wired in with a `<script>`/`<link>` tag, not deleted. (Vendoring a dependency in place of its CDN URL is the one sanctioned exception, and the original URL is preserved in a comment.)
-- **Derive counts, never hardcode them.** `76` appears only in comments and SEO copy; every UI count reads `STYLES_DATA.length`. This was a real bug once — keep it fixed.
-- Prompts are built by `buildDetailedPrompt(style)` and copied through `copyStylePrompt(styleId)` on every page. Pass a **style id**; never embed prompt text in an HTML `onclick` attribute (quotes/newlines break it).
+- **Derive counts, never hardcode them.** The style count (currently **90**) appears only in comments and SEO copy; every UI count reads `STYLES_DATA.length`. This was a real bug once — keep it fixed.
+- Prompts are built by `buildDetailedPrompt(style, opts)` — **stack-agnostic by default**: 14 English sections (ROLE → SCOPE & PROTECTION → ART DIRECTION → AUTHENTIC CSS/Tailwind fences → tokens → LAYOUT & RESPONSIVE → COMPONENTS → STATE MATRIX → MOTION → ACCESSIBILITY → STACK ADAPTATION → ACCEPTANCE CHECKLIST → DELIVERABLE), so one copied brief installs the design into *any* project (React/Next/Vue/Svelte/Astro/Tailwind/HTML/native). `opts.stack` (`html|tailwind|next|react|css-in-js|vue|svelte|astro|shadcn|mui|react-native|flutter`) narrows the doc to that stack's mapping; `opts.scope:'build'` + `stack:'html'` reproduces the old single-HTML deliverable; `opts.project` replaces the `[project]` placeholder. Copied through `copyStylePrompt(styleId, event, opts)` on every page. Pass a **style id**; never embed prompt text in an HTML `onclick` attribute (quotes/newlines break it).

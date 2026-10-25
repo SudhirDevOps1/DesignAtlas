@@ -177,6 +177,21 @@ function sectionPrompts(data) {
   for (const marker of ['ART DIRECTION', 'COLOR SYSTEM', 'RESPONSIVE', 'ACCESSIBILITY', 'DELIVERABLE']) {
     check(`prompt contains "${marker}"`, first.includes(marker));
   }
+
+  // Universal restyle speen stack-agnostic hona chahiye: any project, any framework.
+  for (const needle of ['STACK ADAPTATION', 'ACCEPTANCE CHECKLIST', 'PROTECTION', 'STATE MATRIX']) {
+    check(`universal prompt contains "${needle}"`, first.includes(needle));
+  }
+  const htmlLocked = data.filter((s) => {
+    const t = build(s);
+    return t.includes('koi framework nahi') || t.includes('ek hi complete HTML file');
+  });
+  check('universal prompt installs on any stack (not HTML-locked)', htmlLocked.length === 0,
+    htmlLocked.length ? htmlLocked.slice(0, 5).map((s) => s.id).join(', ') : `${data.length}/${data.length} stack-agnostic`);
+  const narrowed = build(data[0], { stack: 'react' });
+  check('stack option narrows the prompt (react)', narrowed.length < first.length && narrowed.includes('React (Vite)'), 'narrowing broken');
+  const scoped = build(data[0], { scope: 'build' });
+  check('build scope keeps the HTML fallback deliverable', scoped.includes('self-contained HTML file with one <style> block'), 'fallback lost');
 }
 
 /* ------------------------------------------------------------------ *

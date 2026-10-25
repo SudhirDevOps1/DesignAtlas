@@ -185,98 +185,228 @@ function daMapRoles(palette) {
   return { surface: surface, ink: ink, accent: accent, muted: muted };
 }
 
+/* Stack-specific install notes. 'universal' prints the whole mapping table so
+   ONE copied brief installs into ANY project (React, Next.js, Vue, Svelte, Astro,
+   Tailwind, plain HTML, React Native, Flutter). A specific stack prints only its
+   own row. Body copy is English on purpose — ye prompt AI IDEs ko jaata hai,
+   site UI nahi. */
+var DA_STACK_NOTES = {
+  universal: null,
+  html: 'every token becomes a custom property on :root in one global stylesheet; semantic markup only; the AUTHENTIC CSS fence applies literally.',
+  tailwind: '(v3.5+ / v4) install the tokens in the theme — theme.extend.colors/borderRadius/boxShadow in config, or the CSS-first @theme block — and build utilities only from those tokens; never hardcoded hexes in markup.',
+  next: ':root custom properties in app/globals.css, imported once by the root layout; tokens are server-safe; dark mode toggles a data-theme attribute, never a second theme file.',
+  react: 'tokens in one src/styles/tokens.css imported at the app entry; components compose classes/utilities from those tokens; no per-component inline style blobs, no styled-jsx residue.',
+  'css-in-js': 'build ONE theme object from §3–§5 and wrap the tree in ThemeProvider; components read theme.* only — zero literal colour values in code.',
+  vue: ':root custom properties in the global stylesheet; SFC <style> blocks consume var(); runtime themes switch a data-theme attribute (a store toggle is not a styling system).',
+  svelte: ':root variables in the global (+layout) stylesheet; component styles consume var(); runes hold state — they never style.',
+  astro: 'tokens in a global stylesheet (<style is:global> or one imported CSS file); scoped styles may reference the variables for layout only.',
+  shadcn: 'override the published CSS variables (--background, --foreground, --primary, --radius and friends) in the global stylesheet with §3–§5 values; keep the shadcn component structure as-is.',
+  mui: 'ONE createTheme from §3–§5 (palette, typography, shape.borderRadius, shadows) wrapped in ThemeProvider; baseline overrides only where the theme cannot reach.',
+  'react-native': 'tokens become a central theme constants file (colors/spacing/radii) every component imports; surfaces are the §3 surface/ink pairs; depth follows the elevation spec; no web-only CSS.',
+  flutter: 'ONE ThemeData from §3–§5 (ColorScheme, TextTheme, ShapeTheme, component-specific themes); keep the Material 3 chrome silent so this language reads pure.'
+};
+var DA_STACK_LABELS = {
+  universal: 'ANY STACK — stack-agnostic (host stack auto-detect on arrival)',
+  html: 'Zero-build HTML + CSS',
+  tailwind: 'Tailwind CSS',
+  next: 'Next.js (App Router)',
+  react: 'React (Vite)',
+  'css-in-js': 'styled-components / Emotion (CSS-in-JS)',
+  vue: 'Vue 3',
+  svelte: 'Svelte 5',
+  astro: 'Astro',
+  shadcn: 'shadcn/ui + Radix',
+  mui: 'Material UI',
+  'react-native': 'React Native + Expo',
+  flutter: 'Flutter + Material 3'
+};
+
 /**
  * @param {object} style — data.js ka ek record
- * @returns {string} clipboard-ready multi-section prompt
+ * @param {{stack?: string, scope?: string, project?: string}} [opts]
+ *   stack   : 'universal' (default — brief kisi bhi stack pe install ho jaata hai)
+ *             ya html | tailwind | next | react | css-in-js | vue | svelte | astro | shadcn | mui | react-native | flutter
+ *   scope   : 'restyle' (default — existing project ki design layer update, kuch
+ *             delete/rewrite nahi) ya 'build' (naye project ka full scaffold).
+ *             Purana HTML-only deliverable scope:'build' + stack:'html' me milta hai.
+ *   project : project label jo '[project]' placeholder ki jagah aaye.
+ * @returns {string} clipboard-ready multi-section design spec
  */
-function buildDetailedPrompt(style) {
+function buildDetailedPrompt(style, opts) {
   if (!style || typeof style !== 'object') return '';
 
-  var RULE = '────────────────────────────────────────────────';
+  var RULE = '════════════════════════════════════════════════════';
   var name = style.name || 'This style';
   var cat = style.category || 'UI';
   var p = Array.isArray(style.palette) ? style.palette : [];
   var tags = Array.isArray(style.tags) && style.tags.length ? style.tags.join(', ') : '—';
+  opts = opts || {};
+  var stack = String(opts.stack || 'universal').toLowerCase();
+  var isBuild = String(opts.scope || 'restyle') === 'build';
+  var target = String(opts.project || '[project]');
+  var stackLabel = DA_STACK_LABELS[stack] || ('host stack: ' + stack);
+
+  var roles = daMapRoles(p);
+  function roleLine(label, e) {
+    return '   ' + daPad(label, 24) + e.hex + '   (palette[' + e.idx + '])';
+  }
+  var cr = daContrast(roles.ink.hex, roles.surface.hex);
+  var cssFence = String(style.cssSnippet || '').trim();
+  var twFence = String(style.tailwindSnippet || '').trim();
 
   var L = [];
-  L.push('UI DESIGN BRIEF — ' + name + ' (' + cat + ')');
+  L.push('DESIGN SPEC — ' + name + ' (' + cat + ') — install into ' + target);
+  L.push('Mode: ' + (isBuild ? 'assemble fresh' : 'restyle existing project, additive') + '  ·  Target stack: ' + stackLabel);
   L.push(RULE);
   L.push('');
-  L.push('[project] ko NEECHE di gayi exact art direction + spec ke hisaab se design karo.');
-  L.push('Jitna ho sake exact values (colors, sizes, timings) follow karo.');
+
+  L.push('ROLE');
+  L.push('   Senior product designer + front-end engineer. Install the design language described');
+  L.push('   below into ' + target + ', on whatever stack it runs — React, Next.js, Vue, Svelte,');
+  L.push('   Astro, Tailwind, plain HTML, React Native, Flutter or anything else. The design layer');
+  L.push('   is the deliverable; the host project keeps its own architecture and code idioms.');
   L.push('');
 
-  L.push('1) ART DIRECTION');
-  L.push('   ' + (style.prompt || ('Design a [project] in ' + name + ' style.')));
+  L.push('SCOPE & PROTECTION RULES — these outrank every generic prompting habit');
+  L.push('   1. This spec is atomic: bind to it exclusively. Do not blend other design styles and');
+  L.push('      do not soften it toward generic defaults — "plain rounded cards with a shadow" is');
+  L.push('      a violation, not a safe choice. When unsure of a detail, choose the MORE ' + name + ' option.');
+  L.push('   2. Design layer only — ' + (isBuild ? 'fresh build: nothing exists to protect yet, keep this contract for every feature added later.' :
+    'never delete or rewrite business logic, data fetching, routing, state management, tests or content. Touch presentation only, follow the host file conventions, output diffs for touched files and new files only where genuinely needed.'));
+  L.push('   3. Do not drop sections to save space. If one cannot be applied to this project,');
+  L.push('      name it and say why instead of silently merging it into defaults.');
+  L.push('   4. Zero new dependencies that would visually override this language (no new UI kit,');
+  L.push('      no theme pack); font stacks fall back to system equivalents offline.');
+  L.push('');
+
+  L.push('1) ART DIRECTION — the voice of this language');
+  L.push('   ' + (style.prompt || ('Design ' + target + ' in the ' + name + ' language.')));
   L.push('');
 
   L.push('2) STYLE DNA');
   L.push('   • Vibe      : ' + (style.vibe || '—'));
   if (style.bestFit) L.push('   • Best for  : ' + style.bestFit);
   L.push('   • Keywords  : ' + tags);
+  L.push('   • Interface sound: ' + (style.audioTone || 'subtle'));
   if (DA_PROMPT_CATEGORY_NOTES[cat]) L.push('   • ' + DA_PROMPT_CATEGORY_NOTES[cat]);
   L.push('');
 
-  var roles = daMapRoles(p);
-  function roleLine(label, e) {
-    return '   ' + daPad(label, 22) + e.hex + '   (palette[' + e.idx + '])';
+  L.push('3) AUTHENTIC CSS REFERENCE — port these tokens, then consume them everywhere');
+  if (cssFence) {
+    L.push('   ```css');
+    L.push('   ' + cssFence.split('\n').join('\n   '));
+    L.push('   ```');
   }
-  var cr = daContrast(roles.ink.hex, roles.surface.hex);
-  L.push('3) COLOR SYSTEM — exact values, inhe hi use karo');
+  if (twFence) {
+    L.push('   Tailwind fingerprint (same components expressed as utilities):');
+    L.push('   ```html');
+    L.push('   ' + twFence.split('\n').join('\n   '));
+    L.push('   ```');
+  }
+  L.push('');
+
+  L.push('4) COLOR SYSTEM — exact values, install as named tokens, reuse everywhere');
   L.push(roleLine('Surface / background', roles.surface));
   L.push(roleLine('Ink / text', roles.ink));
   L.push(roleLine('Accent / brand', roles.accent));
   L.push(roleLine('Muted / surface-2', roles.muted));
+  L.push('   • Token names (--color-surface, --color-ink, --color-accent, --color-surface-2) or the');
+  L.push('     host framework\'s equivalent (see STACK ADAPTATION). Hover/active/focus derive from');
+  L.push('     these four only (mix with surface/ink at 8–14%). No ad-hoc hexes anywhere.');
   L.push('   • Ink-on-Surface contrast ≈ ' + cr.toFixed(1) + ':1' +
-    (cr >= 4.5 ? ' (WCAG AA pass).' : ' — AA ke liye 4.5:1 chahiye, isliye body text surface par hi rakho.'));
-  L.push('   Rules: sirf ye 4 tokens; body text par accent mat lagao; hover/active me sirf inhi se derive karo.');
-  L.push('');
-
-  L.push('4) LAYOUT & GRID');
-  L.push('   • Mobile-first, max-width 1200px, 12-column grid, 24px gutters, 8px spacing scale (4/8/12/16/24/32/48/64).');
-  L.push('   • Page structure: sticky header (logo + nav + search + actions) → hero → marquee → feature grid →');
-  L.push('     gallery → pricing → testimonial → data table → docs → contact form → footer.');
-  L.push('   • Section padding: clamp(1.5rem, 4vw, 3.25rem) vertical, clamp(1rem, 4vw, 3.5rem) horizontal.');
+    (cr >= 4.5 ? ' (WCAG AA pass).' : ' — AA needs 4.5:1, so keep body text on ' + roles.surface.hex + ' itself.'));
+  L.push('   • Never put the accent on body text; never tint more than one surface per screen ' + name + '-deep.');
   L.push('');
 
   L.push('5) TYPOGRAPHY');
   L.push('   • Scale: 12 / 14 / 16 / 20 / 24 / 32 / 48px. Body 16px, line-height 1.6, measure max 65ch.');
-  L.push('   • Headings: weight 800–900, tracking −0.02em, line-height 1.05–1.2.');
+  L.push('   • Headings: weight 800–900, tracking -0.02em, line-height 1.05–1.2. The cssSnippet above wins on type choices.');
   L.push('   • Eyebrow/label: 12px, uppercase, tracking 0.08em, weight 800.');
   L.push('');
 
-  L.push('6) COMPONENTS TO BUILD (sab par default + hover + focus-visible state)');
-  L.push('   Buttons (solid / outline / ghost / icon), inputs (text, select, textarea, checkbox) valid + invalid states ke saath,');
-  L.push('   cards, gallery tiles, sortable + paginated data table, sticky header + dropdown menus, search bar,');
-  L.push('   modal dialog, toast notifications, tabs, tooltips, skeleton loaders, progress bar, footer with link columns.');
+  L.push('6) SPACING · RADIUS · DEPTH');
+  L.push('   • 8px spacing scale (4/8/12/16/24/32/48/64); sections follow the cssSnippet\'s rhythm where it sets one.');
+  L.push('   • Radii, borders and shadow language: take them from the AUTHENTIC CSS fence — they are');
+  L.push('     this style\'s identity, not decoration. If it has none, derive at most 3 radii and 2');
+  L.push('     elevations and reuse them everywhere.');
   L.push('');
 
-  L.push('7) MOTION');
-  L.push('   • Hover: 180ms ease-out, sirf EK hi property badlo (2px lift ya colour shift) — sab kuch animate mat karo.');
-  L.push('   • Section reveal: 600ms fade-up (opacity 0→1, translateY 20px→0) via IntersectionObserver.');
-  L.push('   • Overlay enter: 220ms scale 0.97→1 + fade. Focus ring: 2px outline, 2px offset, turant (no delay).');
-  L.push('   • prefers-reduced-motion par saare transitions/animations band, content instantly visible.');
+  L.push('7) LAYOUT & RESPONSIVE — layout behaviour, content-agnostic');
+  L.push('   • Mobile-first; primary content column max-width 1200px; 12-column grid, 24px gutters.');
+  L.push('   • No landing-page skeleton is assumed: dashboard, docs, admin, commerce or marketing,');
+  L.push('     apply the same rhythm to the project\'s actual information architecture. Keep the');
+  L.push('     existing routes/pages/navigation; do not invent or delete content zones.');
+  L.push('   • Section padding: clamp(1.5rem, 4vw, 3.25rem) vertical, clamp(1rem, 4vw, 3.5rem) horizontal.');
+  L.push('   • < 560px   : single column, nav wraps, CTAs full-width, 48px touch targets.');
+  L.push('   • 560–900px : 2-column grids where content supports them, panels stack.');
+  L.push('   • > 900px   : full layout, hover states live, 40–44px control heights.');
+  L.push('   • Tables scroll horizontally inside a wrapper; media keeps aspect-ratio; zero layout shift.');
   L.push('');
 
-  L.push('8) RESPONSIVE — har device par test karo');
-  L.push('   • < 560px   : single column, nav wraps, CTAs full-width, search full-width, 48px touch targets.');
-  L.push('   • 560–900px : 2-column grids, hero stacks, side panel neeche aata hai.');
-  L.push('   • > 900px   : full layout, hover states active, 40–44px control heights.');
-  L.push('   • Tables horizontal-scroll wrapper me; images aspect-ratio locked, no layout shift.');
+  L.push('8) COMPONENTS — build in the host framework\'s own idiom, variants via props/variants');
+  L.push('   • Buttons (solid / outline / ghost / icon), inputs (text, select, textarea, checkbox) with');
+  L.push('     valid + invalid states, cards, nav/header with dropdowns, search + filter bar, data table');
+  L.push('     (sortable + paginated), modal dialog, toasts, tabs, tooltips, skeleton loaders, progress, footer.');
+  L.push('   • One implementation per component type with variants — no one-off copies of a styled button.');
+  L.push('   • Extend the project\'s EXISTING component inventory first; wrap and restyle before writing new.');
   L.push('');
 
-  L.push('9) ACCESSIBILITY');
-  L.push('   • Semantic HTML (header/nav/main/section/footer), sahi heading order, form labels.');
-  L.push('   • Har interactive element keyboard-reachable with visible focus; icon-only buttons par aria-label.');
-  L.push('   • Images par meaningful alt; colour ko single information channel mat banao.');
+  L.push('9) STATE MATRIX — no control ships without all of these');
+  L.push('   default / hover (180ms ease-out, ONE property) / focus-visible (2px ring, 2px offset,');
+  L.push('   instant) / active (pressed ~0.97 scale) / disabled (muted token, not just opacity) /');
+  L.push('   loading (skeleton in surface-2) / empty / error (message in text, never colour alone) / success.');
   L.push('');
 
-  L.push('10) DELIVERABLE');
-  L.push('    Production-ready HTML + CSS (koi framework nahi), mobile-first, semantic, accessible.');
-  L.push('    Poori tarah self-contained: inline SVG icons, koi external image/font request nahi.');
+  L.push('10) MOTION — quiet, one property at a time');
+  L.push('   • Hover 180ms ease-out (2px lift or colour shift only). Reveal 600ms fade-up 20px via an');
+  L.push('     intersection observer in the host platform. Overlay enter 220ms scale 0.97→1 + fade.');
+  L.push('   • prefers-reduced-motion: every transition/animation off, content instantly visible.');
+  L.push('');
+
+  L.push('11) ACCESSIBILITY — non-negotiable');
+  L.push('   • Semantic landmarks and heading order per platform; labels on every form control.');
+  L.push('   • Keyboard-reachable interactive elements with visible focus; aria-label on icon-only buttons.');
+  L.push('   • Meaningful alt text where media exists; colour is never the only information channel.');
+  L.push('');
+
+  L.push('12) STACK ADAPTATION — how to install the tokens on ' + stackLabel);
+  if (DA_STACK_NOTES[stack]) {
+    L.push('   • ' + DA_STACK_NOTES[stack]);
+  } else {
+    Object.keys(DA_STACK_NOTES).forEach(function (k) {
+      if (k === 'universal') return;
+      L.push('   • ' + daPad((DA_STACK_LABELS[k] || k) + ':', 44) + DA_STACK_NOTES[k]);
+    });
+    L.push('   Pick the row matching ' + target + '\x27s actual stack and apply ONLY that mapping.');
+  }
+  L.push('');
+
+  L.push('13) ACCEPTANCE CHECKLIST — verify before answering');
+  L.push('   [ ] Every colour in the output comes from §4; zero invented hexes.');
+  L.push('   [ ] Tokens live in exactly one place, per this brief\'s stack mapping.');
+  L.push('   [ ] Every interactive element passes the §9 state matrix and keyboard reachability.');
+  L.push('   [ ] Motion follows §10 including prefers-reduced-motion.');
+  L.push('   [ ] Body-text contrast on its surface ≥ 4.5:1 (computed here: ' + cr.toFixed(1) + ':1).');
+  L.push('   [ ] Restyle-only: no logic, route, data or content changes beyond the design layer' + (isBuild ? '.' : '.'));
+  L.push('   [ ] A stranger recognises this screen as ' + name + ' in one second. If not, make it MORE ' + name + '.');
+  L.push('');
+
+  L.push('14) DELIVERABLE');
+  if (isBuild) {
+    L.push('    Complete, runnable ' + stackLabel + ' code implementing sections 1–13 (components may be');
+    L.push('    trimmed where the project needs fewer), mobile-first, semantic, accessible. If the');
+    L.push('    stack is genuinely unknown, deliver a self-contained HTML file with one <style> block');
+    L.push('    so it runs anywhere.');
+  } else {
+    L.push('    The design layer installed into ' + target + ': token source wired per STACK ADAPTATION,');
+    L.push('    components from §8 restyled, host stack idioms respected, business logic untouched.');
+    L.push('    Deliver diffs for modified files plus only the genuinely new files. Zero external');
+    L.push('    image/font requests unless the project already relies on them.');
+  }
   L.push('');
   L.push(RULE);
-  L.push('Output: ek hi complete HTML file jisme <style> block ho aur sab sections + interactive states hon.');
+  L.push('Output: ' + (isBuild ? 'complete working code for ' + (stack === 'universal' ? 'the detected host stack' : stackLabel) + ', implementing sections 1–13.' :
+    'restyle diffs for ' + (stack === 'universal' ? 'the detected host stack' : stackLabel) + ' — design layer only, per the scope rules.'));
 
   return L.join('\n');
 }
@@ -286,14 +416,14 @@ function buildDetailedPrompt(style) {
  * se detailed prompt copy hota hai — HTML attribute me lambi text embed
  * karne ki zaroorat nahi, sirf style id pass hoti hai.
  */
-function copyStylePrompt(styleId, event) {
+function copyStylePrompt(styleId, event, opts) {
   if (event && event.stopPropagation) event.stopPropagation();
   var list = (typeof STYLES_DATA !== 'undefined' && STYLES_DATA) ? STYLES_DATA : [];
   var style = null;
   for (var i = 0; i < list.length; i++) if (list[i] && list[i].id === styleId) { style = list[i]; break; }
   if (!style) return;
 
-  var text = buildDetailedPrompt(style) || style.prompt || '';
+  var text = buildDetailedPrompt(style, opts) || style.prompt || '';
 
   // index.html apna copyPrompt + toast rakhta hai; baaki pages fallback use karte hain
   if (typeof copyPrompt === 'function') { copyPrompt(text, style.name); return; }
