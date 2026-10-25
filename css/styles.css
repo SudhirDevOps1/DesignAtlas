@@ -3028,4 +3028,28 @@ dialog::backdrop {
   }
 }
 
-
+/* ==========================================================================
+   SHOWCASE COMFORT LAYER (additive — demo chrome ke saath, kisi engine ko
+   touch nahi karta)
+   1) Day/Night preview: `.da-night` poore demo canvas ko invert karta hai
+      (invert + hue-rotate). 103 engines ke har ek ka dark variant haath se
+      likhna impractical hai, aur invert hone par contrast pairs equivalent
+      rehte hain (L' = 1 - L) — readability night me bani rehti hai. Dark
+      styles (cyberpunk, darkluxe, sportgrid…) ka ye ulta asar deta hai:
+      unka "day look" — dono direction me preview fair hai.
+   2) `.da-pressed`: jis `data-demo-action` ka hook nahi, us .demo-btn par
+      press pulse — har click par "button live hai" feedback.
+   NOTE: night filter par jaanboojkar transition NahiN hai — hidden/throttled
+   tabs me transition rAF tick se chalti hai aur computed value start par
+   phans sakti hai (headless QA me dekha gaya). Instant apply deterministic hai.
+   ========================================================================== */
+.showcase-canvas.da-night { filter: invert(1) hue-rotate(160deg); }
+.da-pressed { animation: da-press 240ms ease-out; }
+@keyframes da-press {
+  0% { transform: scale(1); }
+  40% { transform: scale(0.96); }
+  100% { transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .da-pressed { animation: none; }
+}

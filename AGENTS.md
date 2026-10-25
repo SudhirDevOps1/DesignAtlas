@@ -13,7 +13,7 @@ Serve over HTTP. `file://` breaks clipboard copy and some loaders.
 
 ## Verify — run `node verify.js` after every change
 
-`verify.js` is a **zero-dependency suite, 105 checks, exit code 1 on failure**. It is the only automated test in the repo, and it covers exactly the invariants that have already bitten this project:
+`verify.js` is a **zero-dependency suite, 108 checks, exit code 1 on failure**. It is the only automated test in the repo, and it covers exactly the invariants that have already bitten this project:
 
 - syntax of every `js/*.js` **and** of the 12 inline `<script>` blocks in the HTML — `node --check` never sees the inline ones, which is where the real breakage hides
 - data integrity: unique ids, required fields, 4-colour palettes, `cssClass === style-<id>`
@@ -91,9 +91,18 @@ Consumers in `index.html`: `cardArtMarkup()` puts an artwork band **above** each
 
 `generateDashboardHTML()` is only reachable via the **📊 Dashboard** button in the showcase chrome; a plain card click routes to the full-screen showcase, so the dashboard is a fallback surface.
 
+## Showcase comfort layer (day/night preview + press feedback)
+
+The showcase stage is fully interactive: `demo-showcase.js` delegates on `#showcase-stage` — dropdowns (`data-demo-dropdown-toggle`), tabs (`.demo-tab`), table sort (`.demo-th-sort`), pagination, modals, toasts, form validation. Every `data-demo-action` button is hooked.
+
+- **Day/Night preview**: chrome button `data-showcase-action="night"` (or keyboard **N**) toggles `.showcase-canvas.da-night`, which applies `filter: invert(1) hue-rotate(160deg)` to the entire demo canvas — a computational night look for all **103** engines (hand-writing a dark variant per engine is impractical; invert keeps contrast pairs equivalent). Dark styles (cyberpunk, darkluxe, sportgrid…) get their "day look" the same way. Preference persists in localStorage key **`daShowcaseNight`** via `safeLS`; `open()` calls `restoreNight()` silently on every reopen.
+- **No transition on the night filter, on purpose**: headless/hidden tabs throttle rAF, which parks a CSS transition at its start value (`invert(0)`) forever and makes computed-style verification lie. Instant apply is deterministic for users and tests.
+- **Plain-button fallback**: a `.demo-btn` with no hook gets the `da-pressed` pulse animation + a toast in `onStageClick`'s `if (!el)` path — hooked buttons return earlier, so feedback never double-fires.
+- `verify.js` guards the wiring (night chrome button, invert rule, `toggleNight`/`restoreNight()` in demo-showcase).
+
 ## Load order is law
 
-**CSS** — `styles.css` → `features.css` → `monolith-shell.css` (`index.html` lines **95 / 97 / 99**). Never reorder. Equal-specificity ties go to source order, and `features.css` is deliberately *after* the 90 style engines so its generic rules win ties.
+**CSS** — `styles.css` → `features.css` → `monolith-shell.css` (`index.html` lines **95 / 97 / 99**). Never reorder. Equal-specificity ties go to source order, and `features.css` is deliberately *after* the 103 style engines so its generic rules win ties.
 
 Only `index.html` links all three; `compare`/`playground`/`prompt-builder`/`tokens`/`uikit` link **only** `styles.css`. That is intentional — do not "complete" the cascade on those pages.
 

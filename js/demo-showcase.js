@@ -947,6 +947,37 @@
     }, 1600);
   }
 
+  /* ------------------------------------------------- day/night preview
+   `.da-night` invert-filter layer (styles.css SHOWCASE COMFORT LAYER) har
+   style ka night look computationally deta hai — 103 engines ke har ek ke
+   liye haath se dark variant likhna impractical hai. Persisted via
+   localStorage key `daShowcaseNight` (safeLS), sirf showcase ke liye. */
+  var NIGHT_KEY = 'daShowcaseNight';
+  var nightOn = false;
+
+  function setNight(on, announce) {
+    var cv = stage ? stage.querySelector('.showcase-canvas') : null;
+    if (!cv) return;
+    cv.classList.toggle('da-night', !!on);
+    nightOn = !!on;
+    var btn = document.querySelector('[data-showcase-action="night"]');
+    if (btn) {
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      btn.textContent = on ? '☀️ Day' : '🌙 Night';
+    }
+    safeLS.set(NIGHT_KEY, on ? '1' : '0');
+    if (announce) {
+      if (typeof soundManager !== 'undefined' && soundManager.play) soundManager.play('click');
+      if (typeof showToast === 'function') {
+        showToast(on ? '🌙 Night preview on — invert-filter night look' : '☀️ Day preview — original colours');
+      }
+    }
+  }
+
+  function toggleNight() { setNight(!nightOn, true); }
+
+  function restoreNight() { setNight(safeLS.get(NIGHT_KEY) === '1', false); }
+
   /* ------------------------------------------------------------- delegate */
   function onStageClick(e) {
     /* 1) Dropdown toggles (bell, user menu, nav submenu) */
@@ -990,7 +1021,20 @@
 
     /* 4) Demo actions */
     var el = e.target.closest ? e.target.closest('[data-demo-action]') : null;
-    if (!el) return;
+    if (!el) {
+      /* Additive fallback (COMFORT LAYER): jis .demo-btn ka koi action hook
+         nahi hai wo bhi zinda lage — press pulse + toast. Hooked buttons
+         (dropdown/tab/sort/page/action) upar ke branches me khud return
+         karte hain, isliye double feedback nahi hota. */
+      var plainBtn = e.target.closest ? e.target.closest('.demo-btn') : null;
+      if (plainBtn) {
+        plainBtn.classList.remove('da-pressed');
+        void plainBtn.offsetWidth; /* animation restart */
+        plainBtn.classList.add('da-pressed');
+        pushDemoToast('check', 'Button pressed — hover/focus/active/disabled states is engine me live hain.');
+      }
+      return;
+    }
     var act = el.getAttribute('data-demo-action');
 
     if (act === 'cta') pushDemoToast('check', 'CTA clicked — yeh button us style me rendered hai');
@@ -1206,6 +1250,7 @@
     else if (typing) return;
     else if (e.key === 'ArrowRight') { move(1); }
     else if (e.key === 'ArrowLeft') { move(-1); }
+    else if (e.key === 'n' || e.key === 'N') { e.preventDefault(); toggleNight(); }
     else if (e.key === 'f' || e.key === 'F') { e.preventDefault(); toggleFullscreen(); }
   }
 
@@ -1216,6 +1261,7 @@
     if (act === 'close') close();
     else if (act === 'prev') move(-1);
     else if (act === 'next') move(1);
+    else if (act === 'night') toggleNight();
     else if (act === 'fullscreen') toggleFullscreen();
     else if (act === 'copy-prompt') copyCurrentPrompt();
     else if (act === 'boilerplate') downloadBoilerplate();
@@ -1308,6 +1354,9 @@
     /* har style fresh state se start ho — table page 1 par */
     tablePageState.page = 1;
     renderDemoPage(stage);
+
+    /* persisted Day/Night preference silently restore karo */
+    restoreNight();
 
     revealSections();
 

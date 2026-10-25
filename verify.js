@@ -286,6 +286,14 @@ function sectionWiring() {
   check('no orphan js file', orphans.length === 0, orphans.join(', '));
 
   check('service worker file present', fs.existsSync(path.join(ROOT, 'sw.js')));
+
+  // Showcase comfort layer: Day/Night preview + press feedback must stay wired.
+  const indexSrc = read('index.html');
+  check('showcase chrome has the night toggle', /data-showcase-action="night"/.test(indexSrc), 'chrome button missing');
+  const stylesCssSrc = fs.readFileSync(path.join(ROOT, 'css', 'styles.css'), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
+  check('night invert layer lives in styles.css', /\.showcase-canvas\.da-night\s*\{[^}]*invert/.test(stylesCssSrc), 'invert rule missing');
+  const showcaseSrc = fs.readFileSync(path.join(ROOT, 'js', 'demo-showcase.js'), 'utf8');
+  check('night logic wired in demo-showcase', showcaseSrc.includes('function toggleNight') && showcaseSrc.includes('restoreNight()'), 'logic missing');
 }
 
 /* ------------------------------------------------------------------ *
