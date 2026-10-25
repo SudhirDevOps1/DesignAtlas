@@ -13,12 +13,12 @@ Serve over HTTP. `file://` breaks clipboard copy and some loaders.
 
 ## Verify — run `node verify.js` after every change
 
-`verify.js` is a **zero-dependency suite, 101 checks, exit code 1 on failure**. It is the only automated test in the repo, and it covers exactly the invariants that have already bitten this project:
+`verify.js` is a **zero-dependency suite, 103 checks, exit code 1 on failure**. It is the only automated test in the repo, and it covers exactly the invariants that have already bitten this project:
 
 - syntax of every `js/*.js` **and** of the 12 inline `<script>` blocks in the HTML — `node --check` never sees the inline ones, which is where the real breakage hides
 - data integrity: unique ids, required fields, 4-colour palettes, `cssClass === style-<id>`
 - **`css/styles.css` and `js/data.js` staying in sync in both directions** (90 engines ↔ 90 records, no orphans either way). It strips CSS comments first, because `styles.css` documents itself with a `.style-x` placeholder that a naive scan counts as a 91st engine.
-- `buildDetailedPrompt()` returns a ≥3000 char brief for all 90 styles, with the expected section markers, and never throws; it also guards that the universal brief is **stack-agnostic** (STACK ADAPTATION / ACCEPTANCE CHECKLIST / PROTECTION present, no HTML-only deliverable) and that `{stack:'react'}` narrows it
+- `buildDetailedPrompt()` returns a ≥3000 char brief for all 90 styles, with the expected section markers, and never throws; it also guards that the universal brief is **stack-agnostic** (STACK ADAPTATION / ACCEPTANCE CHECKLIST / PROTECTION present, no HTML-only deliverable), that `{stack:'react'}` narrows it, that the contrast advice always resolves ('WCAG AA pass' or a `--color-ink-strong` fallback), and that ROLE carries the detect-or-ask `[project]` rule
 - wiring: no orphan `js/*.js`, no dead `<script src>`/`<link href>`
 - load order, CSP meta and service-worker wiring on all 6 pages
 - `window.STYLES_DATA` never reappearing in HTML or in any js source

@@ -178,7 +178,7 @@ function sectionPrompts(data) {
     check(`prompt contains "${marker}"`, first.includes(marker));
   }
 
-  // Universal restyle speen stack-agnostic hona chahiye: any project, any framework.
+  // Universal restyle spec is stack-agnostic: any project, any framework.
   for (const needle of ['STACK ADAPTATION', 'ACCEPTANCE CHECKLIST', 'PROTECTION', 'STATE MATRIX']) {
     check(`universal prompt contains "${needle}"`, first.includes(needle));
   }
@@ -192,6 +192,20 @@ function sectionPrompts(data) {
   check('stack option narrows the prompt (react)', narrowed.length < first.length && narrowed.includes('React (Vite)'), 'narrowing broken');
   const scoped = build(data[0], { scope: 'build' });
   check('build scope keeps the HTML fallback deliverable', scoped.includes('self-contained HTML file with one <style> block'), 'fallback lost');
+
+  // Contrast advice must always resolve: the pair either passes AA outright,
+  // or the brief names the computed --color-ink-strong fallback token.
+  const unresolvedContrast = data.filter((s) => {
+    const t = build(s);
+    return !(t.includes('WCAG AA pass') || t.includes('--color-ink-strong'));
+  });
+  check('contrast advice always resolvable (AA pass or --color-ink-strong)', unresolvedContrast.length === 0,
+    unresolvedContrast.length ? unresolvedContrast.slice(0, 5).map((s) => s.id).join(', ') : `${data.length}/${data.length} resolvable`);
+
+  // ROLE must carry the detect-or-ask rule so a pasted prompt never stalls on [project].
+  const noAsk = data.filter((s) => !build(s).includes('DETECT the target'));
+  check('ROLE carries the detect-or-ask target rule', noAsk.length === 0,
+    noAsk.length ? noAsk.slice(0, 5).map((s) => s.id).join(', ') : `${data.length}/${data.length} guarded`);
 }
 
 /* ------------------------------------------------------------------ *

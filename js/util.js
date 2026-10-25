@@ -163,6 +163,37 @@ function daContrast(a, b) {
   return (hi + 0.05) / (lo + 0.05);
 }
 
+/* Ink ko black/white ki taraf mix karke ek HAMESHA-AA-pass body-text colour
+   deta hai — jaise Maximalism ka #ff007f on #ffe600 sirf 3.0:1 hota hai. */
+function daMixHex(hexA, hexB, t) {
+  var a = daHexToRgb(hexA), b = daHexToRgb(hexB);
+  if (!a || !b) return null;
+  return '#' + [0, 1, 2].map(function (i) {
+    var v = Math.round(a[i] + (b[i] - a[i]) * t);
+    return ('0' + v.toString(16)).slice(-2);
+  }).join('');
+}
+
+/** @returns {{hex:string, toward:string, pct:number, contrast:number} | null} */
+function daInkFallback(inkHex, surfaceHex) {
+  if (!daHexToRgb(inkHex) || !daHexToRgb(surfaceHex)) return null; // rgba palette — AI mix khud karega
+  var toWhite = daLum(surfaceHex) < 0.35;
+  var base = toWhite ? '#f5f5f5' : '#000000';
+  for (var t = 0.2; t <= 0.90001; t += 0.1) {
+    var mixed = daMixHex(inkHex, base, t);
+    if (mixed && daContrast(mixed, surfaceHex) >= 4.5) {
+      return {
+        hex: mixed, toward: toWhite ? 'white' : 'black', pct: Math.round(t * 100),
+        contrast: daContrast(mixed, surfaceHex)
+      };
+    }
+  }
+  return {
+    hex: toWhite ? '#f5f5f5' : '#111111', toward: toWhite ? 'white' : 'black', pct: 100,
+    contrast: daContrast(toWhite ? '#f5f5f5' : '#111111', surfaceHex)
+  };
+}
+
 /**
  * Palette ke colours ko ROLE se map karta hai (position se NAHI — kyunki
  * har style ka palette order alag hota hai). Sabse dark = ink, sabse light
@@ -251,6 +282,7 @@ function buildDetailedPrompt(style, opts) {
     return '   ' + daPad(label, 24) + e.hex + '   (palette[' + e.idx + '])';
   }
   var cr = daContrast(roles.ink.hex, roles.surface.hex);
+  var inkFallback = daInkFallback(roles.ink.hex, roles.surface.hex);
   var cssFence = String(style.cssSnippet || '').trim();
   var twFence = String(style.tailwindSnippet || '').trim();
 
@@ -265,6 +297,10 @@ function buildDetailedPrompt(style, opts) {
   L.push('   below into ' + target + ', on whatever stack it runs — React, Next.js, Vue, Svelte,');
   L.push('   Astro, Tailwind, plain HTML, React Native, Flutter or anything else. The design layer');
   L.push('   is the deliverable; the host project keeps its own architecture and code idioms.');
+  L.push('   ' + target + ' comes first: if it is still the placeholder above, DETECT the target from');
+  L.push('   whatever this conversation has (repo, files, package.json, routes) — its stack and app');
+  L.push('   type — before writing a line. Nothing attached? Ask one short question ("Which project/');
+  L.push('   stack is this design going into?") and wait. Never silently invent a project.');
   L.push('');
 
   L.push('SCOPE & PROTECTION RULES — these outrank every generic prompting habit');
@@ -313,8 +349,15 @@ function buildDetailedPrompt(style, opts) {
   L.push('   • Token names (--color-surface, --color-ink, --color-accent, --color-surface-2) or the');
   L.push('     host framework\'s equivalent (see STACK ADAPTATION). Hover/active/focus derive from');
   L.push('     these four only (mix with surface/ink at 8–14%). No ad-hoc hexes anywhere.');
-  L.push('   • Ink-on-Surface contrast ≈ ' + cr.toFixed(1) + ':1' +
-    (cr >= 4.5 ? ' (WCAG AA pass).' : ' — AA needs 4.5:1, so keep body text on ' + roles.surface.hex + ' itself.'));
+  L.push('   • Ink-on-Surface contrast ≈ ' + cr.toFixed(1) + ':1' + (cr >= 4.5
+    ? ' (WCAG AA pass).'
+    : ' — below AA 4.5:1. Body text therefore runs on --color-ink-strong ' +
+      (inkFallback
+        ? inkFallback.hex + ' (the ink mixed ' + inkFallback.pct + '% toward ' + inkFallback.toward +
+          ', verified ' + inkFallback.contrast.toFixed(1) + ':1 on the surface). ' +
+          'Keep ' + roles.ink.hex + ' itself for headings, borders and decorative FX only.'
+        : '(palette here is not plain hex — mix the ink ~30% toward ' + (daLum(roles.surface.hex) < 0.35 ? 'white' : 'black') +
+          ' and verify ≥4.5:1 yourself). Keep ' + roles.ink.hex + ' for headings/FX only.')));
   L.push('   • Never put the accent on body text; never tint more than one surface per screen ' + name + '-deep.');
   L.push('');
 
@@ -373,11 +416,12 @@ function buildDetailedPrompt(style, opts) {
   if (DA_STACK_NOTES[stack]) {
     L.push('   • ' + DA_STACK_NOTES[stack]);
   } else {
+    L.push('   Detect first, then pick: identify the host stack from its files (package.json deps,');
+    L.push('   config, import style) — or ask the user — and apply ONLY that row below.');
     Object.keys(DA_STACK_NOTES).forEach(function (k) {
       if (k === 'universal') return;
       L.push('   • ' + daPad((DA_STACK_LABELS[k] || k) + ':', 44) + DA_STACK_NOTES[k]);
     });
-    L.push('   Pick the row matching ' + target + '\x27s actual stack and apply ONLY that mapping.');
   }
   L.push('');
 
@@ -386,7 +430,9 @@ function buildDetailedPrompt(style, opts) {
   L.push('   [ ] Tokens live in exactly one place, per this brief\'s stack mapping.');
   L.push('   [ ] Every interactive element passes the §9 state matrix and keyboard reachability.');
   L.push('   [ ] Motion follows §10 including prefers-reduced-motion.');
-  L.push('   [ ] Body-text contrast on its surface ≥ 4.5:1 (computed here: ' + cr.toFixed(1) + ':1).');
+  L.push('   [ ] Body-text contrast on its surface ≥ 4.5:1 (pair here: ' + cr.toFixed(1) + ':1' + (cr >= 4.5 ?
+    ').' :
+    ' — body text uses --color-ink-strong ' + (inkFallback ? inkFallback.hex : '(compute the mixed ink yourself)') + ').'));
   L.push('   [ ] Restyle-only: no logic, route, data or content changes beyond the design layer' + (isBuild ? '.' : '.'));
   L.push('   [ ] A stranger recognises this screen as ' + name + ' in one second. If not, make it MORE ' + name + '.');
   L.push('');
