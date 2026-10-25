@@ -3,12 +3,19 @@
  * Enables Design Atlas itself to morph its entire UI into Monolith, Glass, or Cyberpunk
  */
 
+/* Skin → sprite icon mapping (real SVGs from the index-only icon sprite) */
 const APP_SKINS = [
-  { id: 'default', name: 'Standard Modern UI', icon: '🎨' },
-  { id: 'monolith', name: 'Monolith Architectural Basalt', icon: '🏛️' },
-  { id: 'glass', name: 'Obsidian Liquid Glass', icon: '💎' },
-  { id: 'cyberpunk', name: 'Cyberpunk HUD Console', icon: '⚡' }
+  { id: 'default', name: 'Standard Modern UI', iconRef: 'palette' },
+  { id: 'monolith', name: 'Monolith Architectural Basalt', iconRef: 'box' },
+  { id: 'glass', name: 'Obsidian Liquid Glass', iconRef: 'layers' },
+  { id: 'cyberpunk', name: 'Cyberpunk HUD Console', iconRef: 'zap' }
 ];
+
+/* Inline <use> markup — app-skin.js is index-only, where the sprite lives */
+function appSkinIcon(name) {
+  return '<svg class="icon" aria-hidden="true" focusable="false"><use href="#i-' +
+    String(name || 'palette').replace(/[^a-z0-9-]/gi, '') + '"></use></svg>';
+}
 
 class AppSkinManager {
   constructor() {
@@ -40,12 +47,12 @@ class AppSkinManager {
     // Update banner indicator if present
     const indicator = document.getElementById('skin-indicator-text');
     if (indicator) {
-      indicator.textContent = skinObj ? `${skinObj.icon} ${skinObj.name}` : skinId;
+      indicator.innerHTML = skinObj ? appSkinIcon(skinObj.iconRef) + ' ' + skinObj.name : skinId;
     }
 
     // Update the header skin button
     const iconEl = document.getElementById('app-skin-icon');
-    if (iconEl && skinObj) iconEl.textContent = skinObj.icon;
+    if (iconEl && skinObj) iconEl.innerHTML = appSkinIcon(skinObj.iconRef);
     const btn = document.getElementById('app-skin-btn');
     if (btn && skinObj) btn.title = `App Skin: ${skinObj.name} — click to cycle`;
 

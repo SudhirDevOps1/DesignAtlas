@@ -963,7 +963,7 @@
     var btn = document.querySelector('[data-showcase-action="night"]');
     if (btn) {
       btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-      btn.textContent = on ? '☀️ Day' : '🌙 Night';
+      btn.textContent = on ? 'Day' : 'Night';
     }
     safeLS.set(NIGHT_KEY, on ? '1' : '0');
     if (announce) {

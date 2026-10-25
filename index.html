@@ -129,31 +129,31 @@
       <!-- Main Navigation Tabs -->
       <nav class="flex items-center bg-slate-100 dark:bg-slate-800/80 p-1 rounded-xl border border-slate-200 dark:border-slate-700 text-xs font-bold overflow-x-auto no-scrollbar max-w-full">
         <button id="nav-tab-gallery" onclick="switchView('gallery')" class="px-3 py-1.5 rounded-lg transition-all bg-white dark:bg-slate-900 shadow-sm text-sky-600 dark:text-sky-400 whitespace-nowrap">
-          🏛️ Gallery
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-home"></use></svg> Gallery
         </button>
         <button id="nav-tab-compare" onclick="switchView('compare')" class="px-3 py-1.5 rounded-lg transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white whitespace-nowrap">
-          ⚔️ Versus
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-layers"></use></svg> Versus
         </button>
         <button id="nav-tab-playground" onclick="switchView('playground')" class="px-3 py-1.5 rounded-lg transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white whitespace-nowrap">
-          🎛️ Playground
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-settings"></use></svg> Playground
         </button>
         <button id="nav-tab-timeline" onclick="switchView('timeline')" class="px-3 py-1.5 rounded-lg transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white whitespace-nowrap">
-          ⏳ Timeline
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-clock"></use></svg> Timeline
         </button>
         <button id="nav-tab-shadow-lab" onclick="switchView('shadow-lab')" class="px-3 py-1.5 rounded-lg transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white whitespace-nowrap">
-          🌗 Shadow Lab
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-eye"></use></svg> Shadow Lab
         </button>
         <button id="nav-tab-quiz" onclick="switchView('quiz')" class="px-3 py-1.5 rounded-lg transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white whitespace-nowrap">
-          🎯 Style Quiz
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-star"></use></svg> Style Quiz
         </button>
         <a href="uikit.html" class="px-3 py-1.5 rounded-lg transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white whitespace-nowrap">
-          🎨 UI Kit
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-palette"></use></svg> UI Kit
         </a>
         <a href="tokens.html" class="px-3 py-1.5 rounded-lg transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white whitespace-nowrap">
-          📦 Tokens
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-box"></use></svg> Tokens
         </a>
         <button id="nav-tab-prompt-builder" onclick="switchView('prompt-builder')" class="px-3 py-1.5 rounded-lg transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white whitespace-nowrap">
-          🪄 Prompt Studio
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-type"></use></svg> Prompt Studio
         </button>
       </nav>
 
@@ -166,7 +166,7 @@
           title="Surprise Me — Roll a random UI Design Style!"
           class="px-2.5 py-2 rounded-xl border border-indigo-200 dark:border-indigo-800 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-900 transition shadow-sm text-xs font-bold flex items-center gap-1 active:scale-95"
         >
-          <span>🎲</span>
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-zap"></use></svg>
           <span class="hidden sm:inline">Roll Style</span>
         </button>
 
@@ -177,7 +177,7 @@
           title="Toggle Tactile Web Audio UI Sounds"
           class="p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition shadow-sm text-xs flex items-center gap-1 font-bold"
         >
-          <span id="sound-icon">🔇</span>
+          <span id="sound-icon" class="inline-flex"><svg class="icon text-slate-400" aria-hidden="true" focusable="false"><use href="#i-bell"></use></svg></span>
           <span class="hidden sm:inline" id="sound-label">Audio</span>
         </button>
 
@@ -187,7 +187,7 @@
           title="Export Client Design Brief / Spec Sheet (PDF/Print)"
           class="px-2.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 transition shadow-sm text-xs font-bold flex items-center gap-1"
         >
-          <span>📑</span>
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-download"></use></svg>
           <span class="hidden sm:inline">Export Spec</span>
         </button>
 
@@ -198,7 +198,7 @@
           title="Transform the Design Atlas shell itself (Standard / Monolith / Glass / Cyberpunk)"
           class="p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition shadow-sm text-xs font-bold"
         >
-          <span id="app-skin-icon">🎨</span>
+          <span id="app-skin-icon" class="inline-flex"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-palette"></use></svg></span>
         </button>
 
         <!-- Keyboard Shortcuts Help -->
@@ -208,7 +208,7 @@
           title="Keyboard Shortcuts (?)"
           class="hidden sm:p-2 p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition shadow-sm text-xs font-bold"
         >
-          ⌨
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-menu"></use></svg>
         </button>
 
         <!-- Dark Mode Toggle -->
@@ -231,7 +231,7 @@
 
   <!-- Active App Shell Skin Indicator (only visible when a non-default skin is active) -->
   <div id="skin-indicator" role="status" aria-live="polite">
-    <span id="skin-indicator-text">🎨 Standard Modern UI</span>
+    <span id="skin-indicator-text"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-palette"></use></svg> Standard Modern UI</span>
   </div>
 
   <!-- ==========================================
@@ -242,7 +242,8 @@
     <!-- Hero Banner -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4 text-center">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 dark:bg-indigo-950/70 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 mb-3">
-        <span id="hero-count-badge">✨ 103 Curated UI Design Languages for AI Prototyping</span>
+        <svg class="icon text-amber-400" aria-hidden="true" focusable="false"><use href="#i-star"></use></svg>
+        <span id="hero-count-badge">103 Curated UI Design Languages for AI Prototyping</span>
       </div>
       <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 dark:text-white">
         Browse Design Languages & Copy AI Prompts
@@ -278,11 +279,11 @@
             id="sort-select"
             class="gallery-sort w-full sm:w-auto bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2.5 text-xs font-bold outline-none focus:ring-2 focus:ring-sky-500"
           >
-            <option value="featured">✨ Featured (curated order)</option>
-            <option value="az">🔤 Name A → Z</option>
-            <option value="za">🔡 Name Z → A</option>
-            <option value="category">🗂️ Group by Category</option>
-            <option value="favorites">❤️ Favorites first</option>
+            <option value="featured">Featured (curated order)</option>
+            <option value="az">Name A → Z</option>
+            <option value="za">Name Z → A</option>
+            <option value="category">Group by Category</option>
+            <option value="favorites">Favorites first</option>
           </select>
         </div>
       </div>
@@ -307,10 +308,10 @@
         <span id="styles-count-text">103 Styles Available</span>
         <div class="flex flex-wrap items-center gap-2">
           <span class="stat-pill"><span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span> Pure CSS</span>
-          <span class="stat-pill">🗂️ <b id="stat-categories">12</b> Categories</span>
-          <span class="stat-pill">🏷️ <b id="stat-tags">425</b> Tags</span>
-          <span class="stat-pill">❤️ <b id="stat-favorites">0</b> Saved</span>
-          <span class="stat-pill">⚡ Zero Build Step</span>
+          <span class="stat-pill"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-grid"></use></svg> <b id="stat-categories">12</b> Categories</span>
+          <span class="stat-pill"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-file"></use></svg> <b id="stat-tags">425</b> Tags</span>
+          <span class="stat-pill"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-heart"></use></svg> <b id="stat-favorites">0</b> Saved</span>
+          <span class="stat-pill"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-zap"></use></svg> Zero Build Step</span>
         </div>
       </div>
 
@@ -461,6 +462,10 @@
 
       <!-- Showcase chrome bar -->
       <div id="showcase-chrome" class="flex flex-wrap items-center gap-2 px-3 sm:px-4 py-2.5 bg-slate-900 border-b border-slate-800 z-20">
+        <button type="button" data-showcase-action="close" title="Back to gallery (Esc)" class="px-2.5 py-1.5 text-xs font-bold rounded-lg bg-slate-800 hover:bg-rose-600 text-slate-200 hover:text-white transition flex items-center gap-1.5">
+          <svg class="icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>
+          Gallery
+        </button>
         <div class="flex items-center gap-2 min-w-0">
           <span id="showcase-badge" class="text-[10px] uppercase font-bold tracking-wider px-2 py-1 rounded bg-sky-500/20 text-sky-300 border border-sky-500/30">Category</span>
           <span id="showcase-title" class="text-sm font-bold text-white truncate max-w-[42vw] sm:max-w-none">Style — Full Page Demo</span>
@@ -476,13 +481,13 @@
           <span id="showcase-count" class="hidden sm:inline text-[11px] font-mono text-slate-500 mr-1">1 / 103</span>
           <button type="button" data-showcase-action="prev" title="Previous style (←)" class="px-2 py-1.5 text-xs font-bold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">←</button>
           <button type="button" data-showcase-action="next" title="Next style (→)" class="px-2 py-1.5 text-xs font-bold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">→</button>
-          <button type="button" data-showcase-action="night" aria-pressed="false" title="Day/Night preview (N) — poora demo invert hoke night look deta hai" class="px-2.5 py-1.5 text-xs font-bold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">🌙 Night</button>
-          <button type="button" data-showcase-action="fullscreen" title="Fullscreen (F)" class="px-2.5 py-1.5 text-xs font-bold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">⛶ Full</button>
-          <button type="button" data-showcase-action="dashboard" title="Purana dashboard view" class="hidden sm:flex items-center px-2.5 py-1.5 text-xs font-bold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">📊 Dashboard</button>
-          <button type="button" data-showcase-action="print" title="Print demo" class="hidden lg:flex px-2.5 py-1.5 text-xs font-bold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">🖨</button>
-          <button type="button" data-showcase-action="copy-prompt" title="Copy this style ka prompt" class="px-2.5 py-1.5 text-xs font-bold rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white transition shadow">📋 Prompt</button>
-          <button type="button" data-showcase-action="boilerplate" title="Starter HTML download" class="hidden sm:flex px-2.5 py-1.5 text-xs font-bold rounded-lg bg-sky-600 hover:bg-sky-500 text-white transition shadow">⬇ HTML</button>
-          <button type="button" data-showcase-action="playground" title="Playground me test karo" class="hidden lg:flex px-2.5 py-1.5 text-xs font-bold rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white transition shadow">🎛️</button>
+          <button type="button" data-showcase-action="night" aria-pressed="false" title="Day/Night preview (N) — poora demo invert hoke night look deta hai" class="px-2.5 py-1.5 text-xs font-bold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">Night</button>
+          <button type="button" data-showcase-action="fullscreen" title="Fullscreen (F)" class="px-2.5 py-1.5 text-xs font-bold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">Full</button>
+          <button type="button" data-showcase-action="dashboard" title="Purana dashboard view" class="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-bold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-grid"></use></svg> Dashboard</button>
+          <button type="button" data-showcase-action="print" title="Print demo" class="hidden lg:flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-bold rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-file"></use></svg> Print</button>
+          <button type="button" data-showcase-action="copy-prompt" title="Copy this style ka prompt" class="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-bold rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white transition shadow"><svg class="icon dark:stroke-white" aria-hidden="true" focusable="false"><use href="#i-copy"></use></svg> Prompt</button>
+          <button type="button" data-showcase-action="boilerplate" title="Starter HTML download" class="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-bold rounded-lg bg-sky-600 hover:bg-sky-500 text-white transition shadow"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-download"></use></svg> HTML</button>
+          <button type="button" data-showcase-action="playground" title="Playground me test karo" class="hidden lg:flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-bold rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white transition shadow"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-settings"></use></svg> Playground</button>
           <button type="button" data-showcase-action="close" title="Band karo (Esc)" aria-label="Close demo" class="p-1.5 rounded-lg bg-slate-800 hover:bg-rose-600 text-slate-300 hover:text-white transition">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
           </button>
@@ -647,15 +652,22 @@
       }, 2500);
     }
 
-    // Audio sound toggle
+    // Audio sound toggle (sprite icon + state colour, no emoji)
+    function setSoundIcon(enabled) {
+      if (!soundIcon) return;
+      soundIcon.innerHTML =
+        '<svg class="icon ' + (enabled ? 'text-sky-500' : 'text-slate-400') +
+        '" aria-hidden="true" focusable="false"><use href="#i-bell"></use></svg>';
+    }
+
     function toggleSound() {
       const isEnabled = soundManager.toggle();
-      soundIcon.textContent = isEnabled ? "🔊" : "🔇";
+      setSoundIcon(isEnabled);
       showToast(isEnabled ? "🔊 Tactile UI audio enabled!" : "🔇 Audio muted");
     }
 
     function initSoundIcon() {
-      soundIcon.textContent = soundManager.enabled ? "🔊" : "🔇";
+      setSoundIcon(!!soundManager.enabled);
     }
 
     // View Switching Engine
@@ -1416,7 +1428,7 @@
       STYLES_DATA.forEach(s => s.tags.forEach(t => tagSet.add(t)));
 
       if (headerCountBadge) headerCountBadge.textContent = `${total} UI Styles`;
-      if (heroCountBadge) heroCountBadge.textContent = `✨ ${total} Curated UI Design Languages for AI Prototyping`;
+      if (heroCountBadge) heroCountBadge.textContent = `${total} Curated UI Design Languages for AI Prototyping`;
       if (footerStyleCount) footerStyleCount.textContent = `${total} UI Styles`;
       if (footerCategoryCount) footerCategoryCount.textContent = `${categories.length} Categories`;
       if (statCategories) statCategories.textContent = categories.length;

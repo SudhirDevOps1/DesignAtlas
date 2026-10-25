@@ -93,7 +93,7 @@ class PaletteHarmonizer {
         </div>
       </div>
       <p class="text-[10px] text-slate-400 mt-1 leading-snug">
-        Recolors every live demo button, card edge and focus ring across all 76 styles to your brand hue — without touching the source CSS.
+        Recolors every live demo button, card edge and focus ring across all ${STYLES_DATA.length} styles to your brand hue — without touching the source CSS.
       </p>
     `;
 

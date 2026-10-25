@@ -214,6 +214,15 @@ function sectionPrompts(data) {
 
   // Real-world Utility + Native categories must stay present in the collection.
   check('Utility and Native categories present', data.some((s) => s.category === 'Utility') && data.some((s) => s.category === 'Native'), 'categories missing');
+
+  // Production polish: README, real sprite icons in the header chrome, no stale counts.
+  const chromeSrc = read('index.html');
+  check('README present', fs.existsSync(path.join(ROOT, 'README.md')), 'README.md missing');
+  check('header uses sprite icons (no emoji nav)', /href="#i-home"/.test(chromeSrc) && /href="#i-type"/.test(chromeSrc), 'sprite icons missing');
+  const harmonizerSrc = fs.readFileSync(path.join(ROOT, 'js', 'palette-harmonizer.js'), 'utf8');
+  check('no stale "76" style count in copy', !/all 76 styles|76 UI Styles|76 Styles Available/.test(chromeSrc + harmonizerSrc), 'stale count found');
+  check('harmonizer derives count from data', /STYLES_DATA\.length/.test(harmonizerSrc), 'hardcoded count found');
+  check('showcase chrome has the Back-to-gallery button', /data-showcase-action="close"\s+title="Back to gallery/.test(chromeSrc), 'back button missing');
 }
 
 /* ------------------------------------------------------------------ *

@@ -132,6 +132,7 @@ Style engines are 103 blocks in `css/styles.css` named `.style-<id>`, so any eng
 - `js/util.js` — shared helpers + the shared globals, Node-requireable, exported.
 - `js/tailwind-browser.js` — vendored Tailwind bundle (398 KB). Vendor code; do not hand-edit.
 - `js/sw-register.js` + `sw.js` — service worker and its registration.
+- `README.md` — human-facing docs: feature tour, architecture map, style-adding recipe, verification bar.
 - `verify.js` — the test suite. Run it from the repo root.
 - `css/styles.css` — the 103 `.style-*` engines (numbered comments 1–103) + a per-style hover / reduced-motion block at the end. New engines go between the last engine and that block.
 - `css/features.css` — shared `.demo-*` components, the universal hover + focus layer, docs CSS.
