@@ -1,0 +1,276 @@
+/* ==========================================================================
+   SHELL v2 — cohesive design layer (my-taste rework of the Atlas chrome)
+   --------------------------------------------------------------------------
+   SCOPE: index.html shell ONLY — header, hero, toolbar, filter chips, card
+   frames, footer. The 103 .style-* engines, the showcase stage, and
+   features.css generic components are untouched (additive standing rule).
+   Specificity: hooks are id/class-level; identity props (color, radius,
+   font) set on shell elements only, never on .style-* internals.
+   LINKED ONLY FROM index.html for a reason: other pages keep their shell.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------- tokens */
+:root {
+  --sv2-radius: 12px;
+  --sv2-radius-sm: 9px;
+  --sv2-ring: 0 0 0 3px rgba(56, 189, 248, 0.35);
+  --sv2-hairline: rgba(15, 23, 42, 0.08);
+  --sv2-hairline-dark: rgba(148, 163, 184, 0.14);
+  --sv2-shadow-soft: 0 1px 2px rgba(15, 23, 42, 0.06), 0 4px 14px -6px rgba(15, 23, 42, 0.08);
+  --sv2-shadow-lift: 0 2px 4px rgba(15, 23, 42, 0.05), 0 16px 32px -12px rgba(15, 23, 42, 0.16);
+  --sv2-ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+.dark {
+  --sv2-hairline: var(--sv2-hairline-dark);
+  --sv2-shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 14px -6px rgba(0, 0, 0, 0.35);
+  --sv2-shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.35), 0 18px 36px -12px rgba(0, 0, 0, 0.55);
+}
+
+/* Universal shell focus ring — keyboard paths never disappear */
+.sv2-header :focus-visible,
+.sv2-hero :focus-visible,
+.sv2-footer :focus-visible,
+#card-grid :focus-visible {
+  outline: 2px solid #0ea5e9;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ---------------------------------------------------------------- header */
+.sv2-header {
+  border-bottom: 1px solid var(--sv2-hairline);
+  background: rgba(255, 255, 255, 0.78);
+}
+.dark .sv2-header {
+  background: rgba(9, 11, 18, 0.78);
+}
+
+.sv2-header > div {
+  padding-top: 0.65rem;
+  padding-bottom: 0.65rem;
+}
+
+/* Brand: tighter lockup, quieter badge */
+.sv2-header h1 {
+  letter-spacing: -0.02em;
+}
+.sv2-header h1 span[id$="count-badge"] {
+  font-variant-numeric: tabular-nums;
+  background: transparent !important;
+  border: 1px solid var(--sv2-hairline);
+  color: inherit;
+  opacity: 0.72;
+  letter-spacing: 0.01em;
+}
+.sv2-header h1 + p {
+  letter-spacing: 0.005em;
+}
+.sv2-header .w-10.h-10 {
+  border-radius: 10px;
+  box-shadow: 0 6px 16px -6px rgba(99, 102, 241, 0.45);
+}
+
+/* Nav tabs: quiet pills, active reads as ink-on-paper */
+.sv2-header nav a,
+.sv2-header nav button {
+  border-radius: 8px;
+  transition: color 150ms var(--sv2-ease), background-color 150ms var(--sv2-ease), box-shadow 150ms var(--sv2-ease);
+}
+.sv2-header nav button[id^="nav-tab-"][class*="bg-white"] {
+  box-shadow: inset 0 0 0 1px var(--sv2-hairline), 0 1px 2px rgba(15, 23, 42, 0.08);
+}
+.dark .sv2-header nav button[id^="nav-tab-"][class*="bg-white"] {
+  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.2), 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* Utility action chips: uniform ghost buttons */
+.sv2-actions > button {
+  border-radius: 10px;
+  border-color: var(--sv2-hairline);
+  transition: transform 120ms var(--sv2-ease), background-color 150ms var(--sv2-ease), box-shadow 150ms var(--sv2-ease), color 150ms var(--sv2-ease);
+}
+.sv2-actions > button:active {
+  transform: scale(0.94);
+}
+
+/* ------------------------------------------------------------------ hero */
+.sv2-hero {
+  padding-top: 3rem;
+  padding-bottom: 1.25rem;
+}
+
+/* Kicker badge: hairline ghost, not a filled pill */
+.sv2-hero > div:nth-of-type(1) {
+  background: transparent !important;
+  border: 1px solid var(--sv2-hairline);
+  backdrop-filter: none;
+}
+
+/* Display type: tighter, breathing */
+.sv2-hero h2 {
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+}
+.sv2-hero h2 + p {
+  max-width: 44rem;
+  opacity: 0.92;
+}
+
+/* Harmonizer frame: from filled card to hairline tray */
+.sv2-hero .max-w-2xl {
+  border: 1px solid var(--sv2-hairline);
+  border-radius: 14px;
+  background: color-mix(in srgb, white 60%, transparent);
+  box-shadow: none;
+}
+.dark .sv2-hero .max-w-2xl {
+  background: rgba(148, 163, 184, 0.06);
+}
+
+/* -------------------------------------------------------- search + sort */
+.sv2-toolbar input[type="search"] {
+  border-radius: 999px;
+  border-color: var(--sv2-hairline);
+  box-shadow: var(--sv2-shadow-soft);
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  transition: box-shadow 150ms var(--sv2-ease), border-color 150ms var(--sv2-ease);
+}
+.sv2-toolbar input[type="search"]:focus {
+  border-color: rgba(56, 189, 248, 0.5);
+  outline: none;
+  box-shadow: var(--sv2-ring);
+}
+.sv2-toolbar select {
+  border-radius: 999px;
+  border-color: var(--sv2-hairline);
+  box-shadow: none;
+  transition: box-shadow 150ms var(--sv2-ease);
+}
+.sv2-toolbar select:focus {
+  outline: none;
+  box-shadow: var(--sv2-ring);
+}
+
+/* ---------------------------------------------------------- filter chips */
+#filter-container button {
+  border-radius: 999px;
+  font-size: 0.72rem;
+  padding: 0.35rem 0.7rem;
+  letter-spacing: 0.01em;
+  transition: background-color 150ms var(--sv2-ease), color 150ms var(--sv2-ease), box-shadow 150ms var(--sv2-ease), transform 120ms var(--sv2-ease);
+}
+#filter-container button:active {
+  transform: scale(0.96);
+}
+/* Active chip: ink-on-paper monochrome instead of loud sky fill */
+#filter-container button[class*="bg-sky-500"] {
+  background: #1e293b;
+  color: #f8fafc;
+  box-shadow: 0 4px 12px -4px rgba(15, 23, 42, 0.45);
+}
+.dark #filter-container button[class*="bg-sky-500"] {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+/* ------------------------------------------------------------ card grid */
+#card-grid article {
+  border-radius: 16px;
+  border-color: var(--sv2-hairline);
+  box-shadow: var(--sv2-shadow-soft);
+  transition: transform 180ms var(--sv2-ease), box-shadow 180ms var(--sv2-ease), border-color 180ms var(--sv2-ease);
+}
+/* Quiet lift + accent hairline on hover (replaces loud 2xl shadow jump) */
+#card-grid article:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sv2-shadow-lift);
+  border-color: rgba(56, 189, 248, 0.35);
+}
+#card-grid article::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  border-radius: 16px 16px 0 0;
+  background: linear-gradient(90deg, #6366f1, #0ea5e9, #22d3ee);
+  opacity: 0;
+  transition: opacity 180ms var(--sv2-ease);
+  pointer-events: none;
+  z-index: 30;
+}
+#card-grid article:hover::after {
+  opacity: 1;
+}
+
+/* Card header copy rhythm */
+#card-grid article h3 {
+  letter-spacing: -0.015em;
+}
+
+/* Favorite button: ghost ring, not a dark bubble */
+#card-grid article button[title*="favorites"],
+#card-grid article button[title*="favorite"] {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+}
+
+/* Footer info copy hierarchy */
+#card-grid article p strong {
+  font-weight: 600;
+}
+
+/* Palette dots: file under the name, consistent size */
+#card-grid article .rounded-full.inline-block[style*="background-color"] {
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.12);
+}
+
+/* ---------------------------------------------------------------- footer */
+.sv2-footer {
+  border-top: 1px solid var(--sv2-hairline);
+}
+.sv2-footer a {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 1px;
+  transition: color 150ms var(--sv2-ease), border-color 150ms var(--sv2-ease);
+}
+.sv2-footer a:hover {
+  border-bottom-color: currentColor;
+}
+
+/* -------------------------------------------------------------- scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.35) transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+/* ----------------------------------------------------------- safe motion */
+@media (prefers-reduced-motion: reduce) {
+  #card-grid article,
+  #card-grid article::after,
+  #filter-container button,
+  .sv2-actions > button,
+  .sv2-header nav a,
+  .sv2-header nav button {
+    transition: none;
+  }
+  #card-grid article:hover {
+    transform: none;
+  }
+}

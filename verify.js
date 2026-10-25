@@ -223,6 +223,11 @@ function sectionPrompts(data) {
   check('no stale "76" style count in copy', !/all 76 styles|76 UI Styles|76 Styles Available/.test(chromeSrc + harmonizerSrc), 'stale count found');
   check('harmonizer derives count from data', /STYLES_DATA\.length/.test(harmonizerSrc), 'hardcoded count found');
   check('showcase chrome has the Back-to-gallery button', /data-showcase-action="close"\s+title="Back to gallery/.test(chromeSrc), 'back button missing');
+
+  // Shell v2 redesign layer: exists, index-only, hooks landed.
+  check('shell-v2.css exists and is linked from index', fs.existsSync(path.join(ROOT, 'css', 'shell-v2.css')) && /<link rel="stylesheet" href="css\/shell-v2.css">/.test(chromeSrc), 'missing link or file');
+  check('shell-v2 hooks present (header/hero/footer/toolbar/actions)',
+    ['sv2-header', 'sv2-hero', 'sv2-footer', 'sv2-toolbar', 'sv2-actions'].every((c) => chromeSrc.includes(c)), 'hooks missing');
 }
 
 /* ------------------------------------------------------------------ *
