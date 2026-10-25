@@ -206,6 +206,14 @@ function sectionPrompts(data) {
   const noAsk = data.filter((s) => !build(s).includes('DETECT the target'));
   check('ROLE carries the detect-or-ask target rule', noAsk.length === 0,
     noAsk.length ? noAsk.slice(0, 5).map((s) => s.id).join(', ') : `${data.length}/${data.length} guarded`);
+
+  // The spec (AI-facing) must be fully English: vibeEn gloss wins over Hinglish vibe.
+  const hinglish = data.filter((s) => /zyada|saaf\b/i.test(build(s)));
+  check('prompt STYLE DNA is fully English (vibeEn gloss applied)', hinglish.length === 0,
+    hinglish.length ? hinglish.slice(0, 5).map((s) => s.id).join(', ') : 'all specs English');
+
+  // Real-world Utility + Native categories must stay present in the collection.
+  check('Utility and Native categories present', data.some((s) => s.category === 'Utility') && data.some((s) => s.category === 'Native'), 'categories missing');
 }
 
 /* ------------------------------------------------------------------ *

@@ -127,7 +127,9 @@ var DA_PROMPT_CATEGORY_NOTES = {
   Futuristic: 'Glow/neon accents, glass ya gradient surfaces, depth layers, motion-forward interactions.',
   Retro: 'Period-accurate type + limited palette, texture (CRT/paper/tape), chunky tactile controls.',
   Editorial: 'Magazine grid, strong typographic hierarchy, rules/columns, drop caps, generous measure.',
-  Organic: 'Soft irregular shapes, natural palettes, generous curves, gentle springy motion.'
+  Organic: 'Soft irregular shapes, natural palettes, generous curves, gentle springy motion.',
+  Utility: 'Real systems design: content outranks chrome, zero decoration, task clarity first, disciplined data typography.',
+  Native: 'Platform-native idiom: match the host OS visual grammar (typography, blur bars, motion) so nothing feels bolted on.'
 };
 
 function daPad(s, n) { s = String(s || ''); while (s.length < n) s += ' '; return s; }
@@ -320,7 +322,7 @@ function buildDetailedPrompt(style, opts) {
   L.push('');
 
   L.push('2) STYLE DNA');
-  L.push('   • Vibe      : ' + (style.vibe || '—'));
+  L.push('   • Vibe      : ' + (style.vibeEn || style.vibe || '—'));
   if (style.bestFit) L.push('   • Best for  : ' + style.bestFit);
   L.push('   • Keywords  : ' + tags);
   L.push('   • Interface sound: ' + (style.audioTone || 'subtle'));

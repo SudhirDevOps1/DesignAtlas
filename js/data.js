@@ -10,6 +10,7 @@ const STYLES_DATA = [
     category: "Minimal",
     cssClass: "style-minimalism",
     vibe: "Saaf, kam elements, zyada whitespace, typography-focused",
+    vibeEn: "Clean, minimal elements, generous whitespace, typography-focused",
     bestFit: "SaaS, docs, portfolio, blogs",
     prompt: "Design a [project] in Minimalism style: clean layout, generous whitespace, monochrome + one subtle accent, clean sans-serif typography, no decorative clutter, focus on content hierarchy.",
     palette: ["#fafafa", "#ffffff", "#e4e4e7", "#18181b"],
@@ -37,6 +38,7 @@ const STYLES_DATA = [
     category: "Bold",
     cssClass: "style-maximalism",
     vibe: "Collage, bright colors, zyada elements, bold patterns",
+    vibeEn: "Collage, bright colors, plenty of elements, bold patterns",
     bestFit: "Fashion, music, events, entertainment",
     prompt: "Design a [project] in Maximalism style: layered collage, vibrant loud colors, overlapping elements, bold expressive typography, dense visual rhythm, expressive textures, high visual excitement.",
     palette: ["#ff007f", "#7928ca", "#ffe600", "#00f0ff"],
@@ -2288,6 +2290,390 @@ const STYLES_DATA = [
 }`,
     tailwindSnippet: `<div class="bg-amber-50 border-4 border-slate-900 shadow-[8px_8px_0px_#7e22ce] p-6 text-slate-900">
   <button class="bg-rose-600 text-white font-black uppercase px-6 py-2.5 border-2 border-slate-900 shadow-[4px_4px_0px_#1e293b]">CREATE COLLAGE</button>
+</div>`
+  },
+  {
+    id: "govcivic",
+    name: "Gov Civic",
+    category: "Utility",
+    cssClass: "style-govcivic",
+    vibe: "Public-service clarity: content is the interface, zero decoration, readable by everyone",
+    bestFit: "Government portals, civic utilities, healthcare forms, tax self-service",
+    prompt: "Design a [project] in Gov Civic style: content-first public services — black on white, one decisive blue action colour, GOV-style 19px+ body, thick yellow focus states, task-based step pages, no brand art, absolute clarity before charm.",
+    palette: ["#ffffff", "#f3f2f1", "#1d70b8", "#0b0c0c"],
+    tags: ["public-service", "content-first", "task-flow", "no-flourish"],
+    audioTone: "click",
+    cssSnippet: `.govcivic-panel {
+  background: #ffffff;
+  color: #0b0c0c;
+  border-bottom: 2px solid #b1b4b6;
+  border-radius: 0;
+}
+.govcivic-btn {
+  background: #1d70b8;
+  color: #ffffff;
+  border-radius: 0;
+  box-shadow: 0 2px 0 rgba(11, 12, 12, 0.55);
+  font-weight: 700;
+}`,
+    tailwindSnippet: `<div class="bg-white border-b-2 border-gray-300 text-black rounded-none p-5">
+  <button class="bg-sky-700 text-white font-bold px-5 py-2.5 rounded-none shadow-[0_2px_0_rgba(11,12,12,.55)]">Continue</button>
+</div>`
+  },
+  {
+    id: "fintechledger",
+    name: "FinTech Ledger",
+    category: "Utility",
+    cssClass: "style-fintechledger",
+    vibe: "Trust-first money UI: calm neutrals, tabular numerals, strict status colour discipline",
+    bestFit: "Banking, wallets, invoicing, payments, analytics dashboards",
+    prompt: "Design a [project] in FinTech Ledger style: calm neutral surfaces with one deep indigo action accent, tabular-numeral amounts right-aligned, green=credit/red=debit discipline, generous card separation, hairline tables, no decoration that costs trust.",
+    palette: ["#f6f8fb", "#ffffff", "#5865f2", "#0f1728"],
+    tags: ["fintech", "tabular-nums", "trust", "hairline"],
+    audioTone: "chime",
+    cssSnippet: `.fintechledger-card {
+  background: #ffffff;
+  color: #0f1728;
+  border: 1px solid #e3e8ef;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(15, 23, 40, 0.05);
+}
+.fintechledger-btn {
+  background: #5865f2;
+  color: #ffffff;
+  border-radius: 8px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}`,
+    tailwindSnippet: `<div class="bg-white border border-[#e3e8ef] rounded-xl p-6 text-[#0f1728] shadow-sm">
+  <button class="bg-[#5865f2] text-white font-bold rounded-lg px-5 py-2.5 [font-variant-numeric:tabular-nums]">Send Payment</button>
+</div>`
+  },
+  {
+    id: "devhandbook",
+    name: "Dev Handbook",
+    category: "Utility",
+    cssClass: "style-devhandbook",
+    vibe: "Code-first documentation: mono detail, bordered panels, quiet keyboard-friendly chrome",
+    bestFit: "API docs, SDK references, developer tools, changelogs",
+    prompt: "Design a [project] in Dev Handbook style: developer documentation system — system sans prose with mono code blocks, bordered info panels and admonitions, sticky lightweight nav, copy-ready snippets, everything keyboard-navigable.",
+    palette: ["#ffffff", "#f6f8fa", "#0969da", "#1f2328"],
+    tags: ["docs", "api", "mono", "keyboard-first"],
+    audioTone: "click",
+    cssSnippet: `.devhandbook-panel {
+  background: #f6f8fa;
+  color: #1f2328;
+  border: 1px solid #d1d9e0;
+  border-radius: 6px;
+}
+.devhandbook-code {
+  background: #f6f8fa;
+  color: #1f2328;
+  border: 1px solid #d1d9e0;
+  border-radius: 6px;
+}
+.devhandbook-btn {
+  background: #1f2328;
+  color: #ffffff;
+  border-radius: 6px;
+  font-weight: 600;
+}`,
+    tailwindSnippet: `<div class="bg-[#f6f8fa] border border-[#d1d9e0] rounded-md p-4 text-[#1f2328] font-mono text-sm">
+  <button class="bg-[#1f2328] text-white font-semibold rounded-md px-4 py-1.5">Copy</button>
+</div>`
+  },
+  {
+    id: "einkreader",
+    name: "E-Ink Reader",
+    category: "Utility",
+    cssClass: "style-einkreader",
+    vibe: "E-paper calm: no glare, no animation, book-like measure discipline",
+    bestFit: "Reading apps, long-form articles, e-learning, distraction-free docs",
+    prompt: "Design a [project] in E-Ink Reader style: paper-white surfaces, high-contrast grey text, zero animation or glow (e-paper), selection via 2px borders only, 65-75ch measure, generous leading, charge-conscious dark-mode page alternative.",
+    palette: ["#f7f6f2", "#e8e6e0", "#2b6c5f", "#202020"],
+    tags: ["e-ink", "reading", "no-motion", "calm"],
+    audioTone: "subtle",
+    cssSnippet: `.einkreader-page {
+  background: #ffffff;
+  color: #202020;
+  border: 2px solid #d8d5cd;
+  border-radius: 4px;
+  box-shadow: none;
+}
+.einkreader-btn {
+  background: #ffffff;
+  color: #202020;
+  border: 2px solid #202020;
+  border-radius: 4px;
+  font-weight: 600;
+}`,
+    tailwindSnippet: `<div class="bg-white border-2 border-[#d8d5cd] rounded p-6 text-[#202020] shadow-none">
+  <button class="bg-white text-[#202020] border-2 border-black rounded px-5 py-2 font-semibold">Read Chapter 12</button>
+</div>`
+  },
+  {
+    id: "highcontrast",
+    name: "High Contrast",
+    category: "Utility",
+    cssClass: "style-highcontrast",
+    vibe: "Accessibility AA+/AAA first: 7:1 text pairs, 4px focus rings, colour never the only channel",
+    bestFit: "Healthcare, banking, public portals, inclusive enterprise products",
+    prompt: "Design a [project] in High Contrast style: every text pair AA+ at minimum, aim 7:1; 4px visible focus rings before decoration; no colour-only meaning — icons or labels accompany every status; 24px+ touch targets; no low-opacity placeholders.",
+    palette: ["#f2f2f2", "#ffffff", "#005eb8", "#111111"],
+    tags: ["accessibility", "aaa", "focus-first", "inclusive"],
+    audioTone: "click",
+    cssSnippet: `.highcontrast-panel {
+  background: #ffffff;
+  color: #111111;
+  border: 2px solid #111111;
+  border-radius: 6px;
+}
+.highcontrast-btn {
+  background: #005eb8;
+  color: #ffffff;
+  border: 2px solid #111111;
+  border-radius: 6px;
+  font-weight: 800;
+}`,
+    tailwindSnippet: `<div class="bg-white border-2 border-black rounded-md p-6 text-black">
+  <button class="bg-[#005eb8] text-white border-2 border-black font-extrabold rounded-md px-5 py-2.5">Book Appointment</button>
+</div>`
+  },
+  {
+    id: "blueprint",
+    name: "Blueprint Draft",
+    category: "Utility",
+    cssClass: "style-blueprint",
+    vibe: "Engineering drawing: dashed markers, dimension labels, uppercase specs",
+    bestFit: "Technical docs, architecture/real estate, product specs, hardware portals",
+    prompt: "Design a [project] in Blueprint style: precision drafting language on white paper — 1px technical borders, dashed layout markers, dimension-tick dividers, uppercase micro-labels, coordinate cues, zero ornament and zero shadows.",
+    palette: ["#f8f9fb", "#e4eaf2", "#1e5aa8", "#16233a"],
+    tags: ["drafting", "technical", "dashed", "precision"],
+    audioTone: "click",
+    cssSnippet: `.blueprint-panel {
+  background: #ffffff;
+  color: #16233a;
+  border: 1px dashed #1e5aa8;
+  border-radius: 0;
+  box-shadow: none;
+}
+.blueprint-btn {
+  background: #1e5aa8;
+  color: #ffffff;
+  border-radius: 0;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}`,
+    tailwindSnippet: `<div class="bg-white border border-dashed border-[#1e5aa8] rounded-none p-6 text-[#16233a] shadow-none">
+  <button class="bg-[#1e5aa8] text-white font-bold uppercase tracking-widest rounded-none px-5 py-2.5">View Spec Sheet</button>
+</div>`
+  },
+  {
+    id: "iosnative",
+    name: "iOS Native",
+    category: "Native",
+    cssClass: "style-iosnative",
+    vibe: "Apple HIG: grouped inset lists, translucent bars, system type, unmistakably native",
+    bestFit: "iOS apps, PWAs, mobile-first settings screens, subscription products",
+    prompt: "Design a [project] in iOS Native style: Apple HIG surfaces — grouped inset lists (rounded 10-12px rows on grey canvas), translucent blurred bars, system font stack (SF Pro / -apple-system / Inter fallback), #007AFF interactive tint with #FF3B30 only for destructive, push-navigation feel, dare to be plain.",
+    palette: ["#f2f2f7", "#ffffff", "#007aff", "#1c1c1e"],
+    tags: ["ios", "hig", "grouped-lists", "native"],
+    audioTone: "pop",
+    cssSnippet: `.iosnative-group {
+  background: #ffffff;
+  color: #1c1c1e;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px rgba(60, 60, 67, 0.1);
+}
+.iosnative-btn {
+  background: #007aff;
+  color: #ffffff;
+  border-radius: 10px;
+  font-weight: 600;
+}
+.iosnative-field {
+  background: rgba(118, 118, 128, 0.12);
+  color: #1c1c1e;
+  border: none;
+  border-radius: 10px;
+}`,
+    tailwindSnippet: `<div class="bg-white rounded-[12px] shadow-[0_0_0_1px_rgba(60,60,67,.1)] text-[#1c1c1e] p-4">
+  <button class="bg-[#007aff] text-white font-semibold rounded-[10px] px-5 py-2.5">Allow Notifications</button>
+</div>`
+  },
+  {
+    id: "fluentdesign",
+    name: "Fluent Design",
+    category: "Native",
+    cssClass: "style-fluentdesign",
+    vibe: "Windows 11 Fluent: Mica haze, soft acrylic elevation, calm geometric precision",
+    bestFit: "Windows apps, enterprise tools, desktop-first dashboards",
+    prompt: "Design a [project] in Fluent Design style: Windows 11 language — light Mica haze, 8px-radius acrylic cards with a hairline top highlight, Segoe UI/system stack, subtle reveal-border hover, restrained depth, 4px geometry everywhere.",
+    palette: ["#f3f3f3", "#ffffff", "#0067c0", "#262626"],
+    tags: ["windows", "fluent", "mica", "acrylic"],
+    audioTone: "click",
+    cssSnippet: `.fluentdesign-card {
+  background: rgba(255, 255, 255, 0.8);
+  color: #262626;
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  box-shadow: inset 0 1px 0 #ffffff;
+  backdrop-filter: blur(12px);
+}
+.fluentdesign-btn {
+  background: #0067c0;
+  color: #ffffff;
+  border-radius: 4px;
+  font-weight: 600;
+}`,
+    tailwindSnippet: `<div class="bg-white/80 backdrop-blur-[12px] border border-[#e4e4e4] rounded-lg p-6 text-[#262626] shadow-[inset_0_1px_0_#fff]">
+  <button class="bg-[#0067c0] text-white font-semibold rounded px-5 py-2">Open Settings</button>
+</div>`
+  },
+  {
+    id: "festiveindia",
+    name: "Festive India",
+    category: "Warm",
+    cssClass: "style-festiveindia",
+    vibe: "Tyohaar ka bazaar: marigold gold, rani pink, sale energy, cultural focus",
+    bestFit: "Festive e-commerce sales, events, gifting, food, cultural brands",
+    prompt: "Design a [project] in Festive India style: marigold-gold + rani-pink festival palette, rangoli-flavoured borders and badges, celebratory sale ribbons, dense offers kept readable with dark ink on cream, tactile shine that stays legible.",
+    palette: ["#fff8ec", "#ffd166", "#e91e8c", "#5b2a00"],
+    tags: ["festive", "bazaar", "gold", "sale", "cultural"],
+    audioTone: "chime",
+    cssSnippet: `.festiveindia-card {
+  background: #ffffff;
+  color: #5b2a00;
+  border: 2px solid #ffd166;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(233, 30, 140, 0.12);
+}
+.festiveindia-btn {
+  background: #e91e8c;
+  color: #ffffff;
+  border-radius: 9999px;
+  box-shadow: 0 3px 0 #ffd166;
+  font-weight: 800;
+}`,
+    tailwindSnippet: `<div class="bg-white border-2 border-[#ffd166] rounded-2xl p-6 text-[#5b2a00] shadow-lg">
+  <button class="bg-[#e91e8c] text-white font-extrabold rounded-full px-6 py-2.5 shadow-[0_3px_0_#ffd166]">Shop the Sale</button>
+</div>`
+  },
+  {
+    id: "menucard",
+    name: "Bistro Menu",
+    category: "Warm",
+    cssClass: "style-menucard",
+    vibe: "Bistro menu on paper: serif dish names, dotted price leaders, single-rule ornament",
+    bestFit: "Restaurants, cafés, food delivery, hospitality brands",
+    prompt: "Design a [project] in Bistro Menu style: warm paper canvas, serif display names, dotted leaders to prices, wine/rust accent, single-rule ornament only (no clip art), thin-framed photography, generous margins like a printed carte.",
+    palette: ["#faf5ee", "#f0e6d6", "#9a3324", "#2f2118"],
+    tags: ["restaurant", "menu", "serif", "hospitality"],
+    audioTone: "subtle",
+    cssSnippet: `.menucard-panel {
+  background: #fffdf9;
+  color: #2f2118;
+  border: 1px solid #e2d5bf;
+  border-radius: 10px;
+  box-shadow: 0 1px 0 rgba(47, 33, 24, 0.06);
+}
+.menucard-btn {
+  background: #9a3324;
+  color: #faf5ee;
+  border-radius: 0;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}`,
+    tailwindSnippet: `<div class="bg-[#fffdf9] border border-[#e2d5bf] rounded-[10px] p-6 text-[#2f2118]">
+  <button class="bg-[#9a3324] text-[#faf5ee] font-bold rounded-none px-6 py-2.5 tracking-wide">Order Thaali</button>
+</div>`
+  },
+  {
+    id: "kawaii",
+    name: "Kawaii Pastel",
+    category: "Playful",
+    cssClass: "style-kawaii",
+    vibe: "Japanese cute: pastel candy glow, rounded-everything, sticker badges, kind tone",
+    bestFit: "Kids brands, stationery, dessert apps, character IP",
+    prompt: "Design a [project] in Kawaii style: pastel candy palette, everything rounded (16-22px), blush-glow cards, sticker-style badges, chunky rounded buttons with soft candy shadows, kind friendly copy tone.",
+    palette: ["#fff5f9", "#ffd6e7", "#ff7ac0", "#4a3b52"],
+    tags: ["kawaii", "pastel", "cute", "rounded"],
+    audioTone: "pop",
+    cssSnippet: `.kawaii-card {
+  background: #ffffff;
+  color: #4a3b52;
+  border: 3px solid #ffd6e7;
+  border-radius: 22px;
+  box-shadow: 0 6px 18px rgba(255, 122, 192, 0.18);
+}
+.kawaii-btn {
+  background: #ff7ac0;
+  color: #ffffff;
+  border: 2px solid #ffd6e7;
+  border-radius: 9999px;
+  font-weight: 800;
+}`,
+    tailwindSnippet: `<div class="bg-white border-[3px] border-[#ffd6e7] rounded-[22px] p-6 text-[#4a3b52] shadow-lg">
+  <button class="bg-[#ff7ac0] text-white font-extrabold border-2 border-[#ffd6e7] rounded-full px-6 py-2.5">Add to Basket</button>
+</div>`
+  },
+  {
+    id: "sportgrid",
+    name: "Sport Grid",
+    category: "Bold",
+    cssClass: "style-sportgrid",
+    vibe: "Match-day dash: dark stadium grid, volt-lime energy, scoreboard numerals",
+    bestFit: "Sports, fitness, esports, stats-heavy trackers",
+    prompt: "Design a [project] in Sport Grid style: dark stadium canvas with committed grid, volt-lime energy accent on ink-black, oversized numerals for scores/stats, angled section headers, ticker marquee, ruthless boldness that stays legible.",
+    palette: ["#0b0f14", "#11161d", "#ceff00", "#ffffff"],
+    tags: ["sports", "energy", "dark", "scoreboard"],
+    audioTone: "heavy",
+    cssSnippet: `.sportgrid-panel {
+  background: #11161d;
+  color: #ffffff;
+  border: 1px solid #232b36;
+  border-radius: 0;
+}
+.sportgrid-btn {
+  background: #ceff00;
+  color: #0b0f14;
+  border-radius: 0;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}`,
+    tailwindSnippet: `<div class="bg-[#11161d] border border-[#232b36] rounded-none p-6 text-white">
+  <button class="bg-[#ceff00] text-[#0b0f14] font-black uppercase rounded-none px-6 py-2.5">View Live Scores</button>
+</div>`
+  },
+  {
+    id: "broadsheetnews",
+    name: "Broadsheet News",
+    category: "Editorial",
+    cssClass: "style-broadsheetnews",
+    vibe: "Digital broadsheet: serif headlines, kicker-rule rhythm, dense trusted columns",
+    bestFit: "News portals, magazines, journals, research publications",
+    prompt: "Design a [project] in Broadsheet News style: digital broadsheet — serif display headlines with kicker/rule rhythm, dense multi-column story grid with 1px dividers, neutral greys only, quarantined ad slots, Times-inspired trust in every line.",
+    palette: ["#ffffff", "#f7f7f5", "#cc0000", "#111111"],
+    tags: ["news", "broadsheet", "serif", "columns"],
+    audioTone: "subtle",
+    cssSnippet: `.broadsheetnews-card {
+  background: #ffffff;
+  color: #111111;
+  border: 1px solid #dbdbdb;
+  border-radius: 0;
+  box-shadow: none;
+}
+.broadsheetnews-btn {
+  background: #111111;
+  color: #ffffff;
+  border-radius: 0;
+  font-weight: 700;
+}`,
+    tailwindSnippet: `<div class="bg-white border border-[#dbdbdb] rounded-none p-6 text-black shadow-none">
+  <button class="bg-black text-white font-bold rounded-none px-6 py-2.5">Read the Full Story</button>
 </div>`
   }
 ];

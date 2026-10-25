@@ -2434,6 +2434,374 @@ dialog::backdrop {
   color: #1d3557;
 }
 
+/* 91. GOV CIVIC / PUBLIC SERVICES */
+.style-govcivic {
+  background: #ffffff;
+  color: #0b0c0c;
+}
+.style-govcivic .demo-box {
+  background: #f3f2f1;
+  border-bottom: 2px solid #b1b4b6;
+  border-radius: 0;
+}
+.style-govcivic .demo-btn {
+  background: #1d70b8;
+  color: #ffffff;
+  border-radius: 0;
+  box-shadow: 0 2px 0 rgba(11, 12, 12, 0.55);
+  font-weight: 700;
+}
+.style-govcivic .demo-btn:hover { background: #145892; }
+.style-govcivic .demo-btn:focus-visible {
+  outline: 3px solid #ffdd00;
+  outline-offset: 0;
+}
+.style-govcivic .demo-input {
+  background: #ffffff;
+  border: 2px solid #0b0c0c;
+  border-radius: 0;
+  color: #0b0c0c;
+}
+
+/* 92. FINTECH LEDGER */
+.style-fintechledger {
+  background: #f6f8fb;
+  color: #0f1728;
+  font-variant-numeric: tabular-nums;
+}
+.style-fintechledger .demo-box {
+  background: #ffffff;
+  border: 1px solid #e3e8ef;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(15, 23, 40, 0.05);
+}
+.style-fintechledger .demo-btn {
+  background: #5865f2;
+  color: #ffffff;
+  border-radius: 8px;
+  font-weight: 700;
+}
+.style-fintechledger .demo-btn:hover { background: #4750d8; }
+.style-fintechledger .demo-input {
+  background: #ffffff;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  color: #0f1728;
+}
+
+/* 93. DEV HANDBOOK */
+.style-devhandbook {
+  background: #ffffff;
+  color: #1f2328;
+}
+.style-devhandbook .demo-box {
+  background: #f6f8fa;
+  border: 1px solid #d1d9e0;
+  border-radius: 6px;
+}
+.style-devhandbook .demo-btn {
+  background: #1f2328;
+  color: #ffffff;
+  border-radius: 6px;
+  font-weight: 600;
+}
+.style-devhandbook .demo-btn:hover { background: #0969da; }
+.style-devhandbook .demo-input {
+  background: #ffffff;
+  border: 1px solid #d1d9e0;
+  border-radius: 6px;
+  color: #1f2328;
+}
+
+/* 94. E-INK READER */
+.style-einkreader {
+  background: #f7f6f2;
+  color: #202020;
+}
+.style-einkreader .demo-box {
+  background: #ffffff;
+  border: 2px solid #d8d5cd;
+  border-radius: 4px;
+  box-shadow: none;
+}
+.style-einkreader .demo-btn {
+  background: #ffffff;
+  color: #202020;
+  border: 2px solid #202020;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.style-einkreader .demo-btn:hover {
+  background: #202020;
+  color: #f7f6f2;
+}
+.style-einkreader .demo-btn:focus-visible,
+.style-einkreader .demo-card:focus-visible,
+.style-einkreader .demo-tile:focus-visible {
+  outline: 3px solid #2b6c5f;
+  outline-offset: 2px;
+}
+.style-einkreader .demo-card:hover,
+.style-einkreader .demo-tile:hover {
+  background: #202020;
+  color: #f7f6f2;
+  border: 2px solid #202020;
+  border-radius: 4px;
+  box-shadow: none;
+  transform: none;
+}
+.style-einkreader .demo-input {
+  background: #ffffff;
+  border: 2px solid #d8d5cd;
+  border-radius: 4px;
+  color: #202020;
+}
+
+/* 95. HIGH CONTRAST (AA+/AAA first) */
+.style-highcontrast {
+  background: #ffffff;
+  color: #111111;
+}
+.style-highcontrast .demo-box {
+  background: #ffffff;
+  border: 2px solid #111111;
+  border-radius: 6px;
+}
+.style-highcontrast .demo-btn {
+  background: #005eb8;
+  color: #ffffff;
+  border: 2px solid #111111;
+  border-radius: 6px;
+  font-weight: 800;
+}
+.style-highcontrast .demo-btn:hover {
+  background: #003e75;
+  text-decoration: underline;
+}
+.style-highcontrast .demo-input {
+  background: #ffffff;
+  border: 2px solid #111111;
+  border-radius: 6px;
+  color: #111111;
+}
+.style-highcontrast :focus-visible {
+  outline: 4px solid #111111;
+  outline-offset: 2px;
+}
+
+/* 96. BLUEPRINT DRAFT */
+.style-blueprint {
+  background: #f8f9fb;
+  color: #16233a;
+}
+.style-blueprint .demo-box {
+  background: #ffffff;
+  border: 1px dashed #1e5aa8;
+  border-radius: 0;
+  box-shadow: none;
+}
+.style-blueprint .demo-btn {
+  background: #1e5aa8;
+  color: #ffffff;
+  border-radius: 0;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.style-blueprint .demo-btn:hover { background: #16233a; }
+.style-blueprint .demo-input {
+  background: #ffffff;
+  border: 1px solid #1e5aa8;
+  border-radius: 0;
+  color: #16233a;
+}
+
+/* 97. iOS NATIVE (HIG) */
+.style-iosnative {
+  background: #f2f2f7;
+  color: #1c1c1e;
+}
+.style-iosnative .demo-box {
+  background: #ffffff;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px rgba(60, 60, 67, 0.1);
+}
+.style-iosnative .demo-btn {
+  background: #007aff;
+  color: #ffffff;
+  border-radius: 10px;
+  font-weight: 600;
+}
+.style-iosnative .demo-btn:hover { background: #0071e3; }
+.style-iosnative .demo-input {
+  background: rgba(118, 118, 128, 0.12);
+  border: none;
+  border-radius: 10px;
+  color: #1c1c1e;
+}
+
+/* 98. FLUENT DESIGN (Windows 11) */
+.style-fluentdesign {
+  background: #f3f3f3;
+  color: #262626;
+}
+.style-fluentdesign .demo-box {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  box-shadow: inset 0 1px 0 #ffffff;
+  backdrop-filter: blur(12px);
+}
+.style-fluentdesign .demo-btn {
+  background: #0067c0;
+  color: #ffffff;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.style-fluentdesign .demo-btn:hover { background: #1975c5; }
+.style-fluentdesign .demo-input {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  color: #262626;
+}
+
+/* 99. FESTIVE INDIA */
+.style-festiveindia {
+  background: #fff8ec;
+  color: #5b2a00;
+}
+.style-festiveindia .demo-box {
+  background: #ffffff;
+  border: 2px solid #ffd166;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(233, 30, 140, 0.12);
+}
+.style-festiveindia .demo-btn {
+  background: #e91e8c;
+  color: #ffffff;
+  border-radius: 9999px;
+  box-shadow: 0 3px 0 #ffd166;
+  font-weight: 800;
+}
+.style-festiveindia .demo-btn:hover { background: #c22272; }
+.style-festiveindia .demo-btn:active { box-shadow: 0 1px 0 #ffd166; }
+.style-festiveindia .demo-input {
+  background: #fffdf8;
+  border: 2px solid #ffd166;
+  border-radius: 10px;
+  color: #5b2a00;
+}
+
+/* 100. BISTRO MENU CARD */
+.style-menucard {
+  background: #faf5ee;
+  color: #2f2118;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+.style-menucard .demo-box {
+  background: #fffdf9;
+  border: 1px solid #e2d5bf;
+  border-radius: 10px;
+  box-shadow: 0 1px 0 rgba(47, 33, 24, 0.06);
+}
+.style-menucard .demo-btn {
+  background: #9a3324;
+  color: #faf5ee;
+  border-radius: 0;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.style-menucard .demo-btn:hover { background: #7a2818; }
+.style-menucard .demo-input {
+  background: #fffdf9;
+  border: none;
+  border-bottom: 1.5px solid #9a3324;
+  border-radius: 0;
+  color: #2f2118;
+}
+
+/* 101. KAWAII PASTEL */
+.style-kawaii {
+  background: #fff5f9;
+  color: #4a3b52;
+}
+.style-kawaii .demo-box {
+  background: #ffffff;
+  border: 3px solid #ffd6e7;
+  border-radius: 22px;
+  box-shadow: 0 6px 18px rgba(255, 122, 192, 0.18);
+}
+.style-kawaii .demo-btn {
+  background: #ff7ac0;
+  color: #ffffff;
+  border: 2px solid #ffd6e7;
+  border-radius: 9999px;
+  font-weight: 800;
+}
+.style-kawaii .demo-btn:hover { background: #ff5cae; }
+.style-kawaii .demo-btn:active { transform: translateY(1px); }
+.style-kawaii .demo-input {
+  background: #ffffff;
+  border: 2px solid #ffd6e7;
+  border-radius: 14px;
+  color: #4a3b52;
+}
+
+/* 102. BROADSHEET NEWS */
+.style-broadsheetnews {
+  background: #ffffff;
+  color: #111111;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+.style-broadsheetnews .demo-box {
+  background: #ffffff;
+  border: 1px solid #dbdbdb;
+  border-radius: 0;
+  box-shadow: none;
+}
+.style-broadsheetnews .demo-btn {
+  background: #111111;
+  color: #ffffff;
+  border-radius: 0;
+  font-weight: 700;
+}
+.style-broadsheetnews .demo-btn:hover { background: #cc0000; }
+.style-broadsheetnews .demo-input {
+  background: #ffffff;
+  border: none;
+  border-bottom: 1px solid #111111;
+  border-radius: 0;
+  color: #111111;
+}
+
+/* 103. SPORT GRID */
+.style-sportgrid {
+  background: #0b0f14;
+  color: #ffffff;
+}
+.style-sportgrid .demo-box {
+  background: #11161d;
+  border: 1px solid #232b36;
+  border-radius: 0;
+}
+.style-sportgrid .demo-btn {
+  background: #ceff00;
+  color: #0b0f14;
+  border-radius: 0;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.style-sportgrid .demo-btn:hover { background: #f2ff66; }
+.style-sportgrid .demo-input {
+  background: #0e131a;
+  border: 1px solid #232b36;
+  border-radius: 0;
+  color: #ffffff;
+}
+
 
 /* ==========================================================================
    PER-STYLE HOVER PERSONALITY (showcase demo components)
