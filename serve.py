@@ -103,6 +103,32 @@ class AtlasHandler(http.server.BaseHTTPRequestHandler):
     def do_HEAD(self):
         self._serve(False)
 
+    def do_POST(self):
+        # DEV-ONLY helper: lets a page deliver a generated text file
+        # (e.g. the harvested Tailwind compiled CSS) straight to disk.
+        # Guarded: only filenames matching [A-Za-z0-9._-]\.css inside css/,
+        # and only when explicitly enabled via --dev-sink.
+        if "--dev-sink" not in sys.argv:
+            return self._respond(403, b"sink disabled", "text/plain")
+        path = self.path.split("?", 1)[0].split("#", 1)[0]
+        if path != "/__sink":
+            return self._respond(404, b"not found", "text/plain")
+        target = self.headers.get("X-Target", "")
+        if not target or not target.startswith("css/") or "/" in target[4:] or not target[4:].endswith(".css"):
+            return self._respond(400, b"bad target", "text/plain")
+        filename = os.path.basename(target)
+        if not filename or not filename.replace("-", "").replace("_", "").replace(".", "").isalnum():
+            return self._respond(400, b"bad filename", "text/plain")
+        try:
+            length = int(self.headers.get("Content-Length", "0"))
+        except ValueError:
+            length = 0
+        body = self.rfile.read(length) if length else b""
+        disk = os.path.join(ROOT, "css", filename)
+        with open(disk, "wb") as fp:
+            fp.write(body)
+        self._respond(200, ("saved %s (%d bytes)" % (filename, len(body))).encode(), "text/plain")
+
     def _respond(self, code, body, ctype):
         self.send_response(code)
         self.send_header("Content-Type", ctype)

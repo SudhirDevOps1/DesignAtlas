@@ -308,8 +308,39 @@ function sectionWiring() {
 
   check('every local src/href exists', dangling.length === 0, dangling.slice(0, 5).join(', '));
 
-  const orphans = allJs.filter((f) => ![...referenced].some((r) => r.replace(/^\.\//, '') === `js/${f}`));
+  /* After the runtime-JIT removal, js/tailwind-browser.js is intentionally
+     unreferenced from the HTML: it stays on disk as the vendored compile
+     source (see the head comment in index.html). Everything else on disk
+     must remain wired in. */
+  const ORPHAN_OK = new Set(['tailwind-browser.js']);
+  const orphans = allJs.filter((f) => !ORPHAN_OK.has(f) &&
+    ![...referenced].some((r) => r.replace(/^\.\//, '') === `js/${f}`));
   check('no orphan js file', orphans.length === 0, orphans.join(', '));
+  check('vendored tailwind bundle kept as regeneration source',
+    fs.existsSync(path.join(ROOT, 'js', 'tailwind-browser.js')), 'missing');
+
+  /* Static Tailwind: every page must link its harvested compiled CSS instead
+     of the runtime JIT, before its other stylesheets. */
+  const TW_COMPILED = {
+    'index.html': 'css/tailwind-compiled-index.css',
+    'compare.html': 'css/tailwind-compiled-compare.css',
+    'playground.html': 'css/tailwind-compiled-playground.css',
+    'prompt-builder.html': 'css/tailwind-compiled-prompt-builder.css',
+    'tokens.html': 'css/tailwind-compiled-tokens.css',
+    'uikit.html': 'css/tailwind-compiled-uikit.css',
+  };
+  for (const [page, href] of Object.entries(TW_COMPILED)) {
+    const html = read(page);
+    check(`${page}: compiled tailwind linked before own stylesheets`,
+      html.includes(href) && html.indexOf(href) < html.indexOf('css/styles.css'),
+      'link missing or misplaced');
+    check(`${page}: runtime JIT not referenced`, !/<script[^>]+src="js\/tailwind-browser\.js"/.test(html), 'script still wired');
+  }
+  const idxTw = fs.readFileSync(path.join(ROOT, 'css', 'tailwind-compiled-index.css'), 'utf8');
+  check('compiled tailwind carries preflight, dark-mode and grid sentinel',
+    idxTw.includes('--tw-border-spacing-x:0') && idxTw.includes('.dark') &&
+    idxTw.includes('.bg-sky-500{') && idxTw.includes('.hidden{display:none}'),
+    'sentinels missing');
 
   check('service worker file present', fs.existsSync(path.join(ROOT, 'sw.js')));
 

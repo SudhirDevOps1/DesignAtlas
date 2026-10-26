@@ -71,7 +71,7 @@ verify.js             zero-dependency test suite (122 checks, exit 1 on failure)
 
 - **Additive only** — never remove code/content; wire dead files in instead.
 - **Derive counts, never hardcode them** — every UI count reads `STYLES_DATA.length`.
-- **CSP is enforced via `<meta>`** with `'unsafe-inline'` scripts (static server can't inject nonces); no external requests — Tailwind is vendored at `js/tailwind-browser.js`, all imagery is runtime SVG, icons come from a 37-symbol inline sprite.
+- **CSP is enforced via `<meta>`** with `'unsafe-inline'` scripts (static server can't inject nonces); no external requests — Tailwind is **pre-compiled per page** (`css/tailwind-compiled-*.css`, harvested verbatim from the vendored `js/tailwind-browser.js` runtime), all imagery is runtime SVG, icons come from a 37-symbol inline sprite.
 - Full agent-facing operational details: **[AGENTS.md](AGENTS.md)**.
 
 ---
@@ -90,11 +90,11 @@ node verify.js      # 122 checks: syntax, data integrity, CSS↔data sync, promp
                     # wiring, load order, CSP, service worker, comfort layer
 ```
 
-Browser bar: **0 console errors** on all 6 pages (one known Tailwind production notice from the vendored bundle is expected); every style opens with 8+ sections, live buttons, and a ≥3000-char prompt.
+Browser bar: **0 console errors** on all 6 pages (the old vendor production warning is gone with the static compiled CSS); every style opens with 8+ sections, live buttons, and a ≥3000-char prompt.
 
 ## Tech
 
-No package manager, no bundler, no framework — HTML + vanilla JS + hand-written CSS engines + vendored Tailwind runtime. Serve over HTTP (the service worker requires it; `file://` breaks clipboard).
+No package manager, no bundler, no framework — HTML + vanilla JS + hand-written CSS engines + Tailwind pre-compiled per page (the vendored runtime bundle stays in-repo as the regeneration source). Serve over HTTP (the service worker requires it; `file://` breaks clipboard), preferably with `python serve.py`.
 
 ---
 

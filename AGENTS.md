@@ -29,18 +29,21 @@ It mutates nothing. If you add a file, extend the wiring checks.
 
 Low-level equivalent: `node --check js\*.js` (18 files). Inline blocks need a separate parse — a re-runnable checker lives at `C:\Users\NATIONAL COMPUTER\AppData\Local\Temp\opencode\check-inline.js`.
 
-**Browser:** read the console after loading a page. All 6 pages should be at **0 errors** (1 known warning: the Tailwind production notice — see below, it is not a defect).
+**Browser:** read the console after loading a page. All 6 pages should be at **0 errors** and, since the runtime Tailwind JIT was replaced by static compiled CSS, even the old vendor `console.warn` production notice is gone.
 
 **Structural bar that `verify.js` cannot reach** (needs a DOM): every one of the **103 styles must open** and render 8 sections + footer + hero + 4 visible table rows + 5 pagination buttons + a prompt of ≥3000 chars.
 
-## Tailwind is self-hosted, not the CDN
+## Tailwind is pre-compiled, not runtime JIT
 
-`js/tailwind-browser.js` (398 KB) is a **byte-identical local copy of the Play CDN bundle**, checked in on purpose so the site makes zero third-party requests and works offline.
+Each page loads its own **`css/tailwind-compiled-<page>.css`** — output harvested **verbatim** from the runtime compiler, roughly 14-35 KB per page (`js/tailwind-browser.js`, 398 KB, is no longer loaded by any page; it stays in the repo as the regeneration source).
 
-- It still compiles utilities at runtime by scanning the DOM, so it must stay in `<head>` **before** the markup it styles.
-- It makes **no runtime network calls at all** — no `fetch`, no `XMLHttpRequest`, no `document.currentScript`, no `importScripts` — so serving it from the repo is behaviour-identical. That is also why it can be moved or renamed safely.
-- It logs `cdn.tailwindcss.com should not be used in production...` once per page. That is a `console.warn` baked into the vendor bundle, **not a real defect — do not chase it.**
-- The preflight still ships `* { padding: 0 }`. Button/input sizing therefore still must be declared explicitly in `features.css` — nothing is inherited.
+Why: the Play CDN bundle scans the DOM and recompiles on **every** `innerHTML` mutation — a 103-card grid rebuild per search keystroke meant a full-document JIT rescan per key (measured ~2-3s CPU to first paint in the worst case). Static CSS removes both the 398 KB parse/execute and every rescan.
+
+- The harvest recipe (documented in the head comment of `index.html`): restore the `<script src="js/tailwind-browser.js">` tag, exercise every dynamic surface of the page (all views, dashboard modal, a full showcase open, the page's own widgets), grab `document.querySelector('style').textContent`, save it to `css/tailwind-compiled-<page>.css`, re-remove the script tag.
+- The legacy `tailwind.config = {…}` scripts are **guarded** (`window.tailwind = window.tailwind || {}`) so they are inert without the runtime and stay compatible with a regeneration pass.
+- Regeneration risk: a class that never appears in the exercised DOM would be missing from the capture and render unstyled. Exercise MORE, not less.
+- verify.js asserts: per-page link present **before** `css/styles.css`, no page re-references the runtime script, the index capture carries preflight + `.dark` + grid sentinels, and the vendor bundle remains on disk.
+- The preflight (now static) still ships `* { padding: 0 }`. Button/input sizing therefore still must be declared explicitly in `features.css` — nothing is inherited.
 - `favorites.js` and `token-exporter.js` emit HTML pointing at `https://cdn.tailwindcss.com` **on purpose**: an exported standalone file must not depend on a file that only exists in this repo.
 
 ## Content Security Policy
