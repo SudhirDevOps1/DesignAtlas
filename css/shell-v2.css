@@ -185,6 +185,13 @@
   border-color: var(--sv2-hairline);
   box-shadow: var(--sv2-shadow-soft);
   transition: transform 180ms var(--sv2-ease), box-shadow 180ms var(--sv2-ease), border-color 180ms var(--sv2-ease);
+  /* Perf: 103 cards would otherwise all layout+paint eagerly.
+     Off-screen cards skip rendering entirely until they scroll near the
+     viewport (web.dev reports ~7x render wins on long lists); the fwd
+     placeholder keeps scrollbar/anchor behaviour sane. Chromium/FF; Safari
+     falls back to normal rendering. */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 340px;
 }
 /* Quiet lift + accent hairline on hover (replaces loud 2xl shadow jump) */
 #card-grid article:hover {
@@ -213,12 +220,12 @@
   letter-spacing: -0.015em;
 }
 
-/* Favorite button: ghost ring, not a dark bubble */
+/* Favorite button: ghost ring (plain translucency — backdrop-filter on 103
+   cards is an expensive paint, this is the cheap equivalent) */
 #card-grid article button[title*="favorites"],
 #card-grid article button[title*="favorite"] {
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(30, 41, 59, 0.35);
   border-color: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(8px);
   width: 30px;
   height: 30px;
   border-radius: 999px;

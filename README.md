@@ -2,7 +2,7 @@
 
 **Interactive UI Design Styles & AI Prompt Gallery** — a zero-build static site that catalogs **103 real-world UI design languages**, renders every one as a **live, full-page, interactive demo** (pure CSS engines — no images, no build step), and generates a **stack-agnostic AI prompt** you can copy straight into any IDE.
 
-Live locally: `python -m http.server 8912 --bind 127.0.0.1` → **http://127.0.0.1:8912**
+Live locally: `python serve.py` → **http://127.0.0.1:8912** (keep-alive + gzip + ETag 304s; ~10× faster than the stdlib fallback `python -m http.server 8912`).
 
 ---
 

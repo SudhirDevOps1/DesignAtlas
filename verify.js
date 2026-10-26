@@ -228,6 +228,18 @@ function sectionPrompts(data) {
   check('shell-v2.css exists and is linked from index', fs.existsSync(path.join(ROOT, 'css', 'shell-v2.css')) && /<link rel="stylesheet" href="css\/shell-v2.css">/.test(chromeSrc), 'missing link or file');
   check('shell-v2 hooks present (header/hero/footer/toolbar/actions)',
     ['sv2-header', 'sv2-hero', 'sv2-footer', 'sv2-toolbar', 'sv2-actions'].every((c) => chromeSrc.includes(c)), 'hooks missing');
+
+  // Performance invariants (the slow-server / eager-paint era guards).
+  check('serve.py fast server exists', fs.existsSync(path.join(ROOT, 'serve.py')) &&
+    /protocol_version = .HTTP\/1\.1./.test(fs.readFileSync(path.join(ROOT, 'serve.py'), 'utf8')), 'missing or downgraded');
+  const cvOk = /#card-grid article \{[^}]*content-visibility:\s*auto/.test((() => {
+    const raw = fs.readFileSync(path.join(ROOT, 'css', 'shell-v2.css'), 'utf8');
+    return raw.replace(/\/\*[\s\S]*?\*\//g, '');
+  })());
+  check('cards render lazily (content-visibility in shell-v2.css)', cvOk, 'card CV rule missing');
+  const FONT_PAGES = ['index.html', 'compare.html', 'playground.html', 'prompt-builder.html', 'tokens.html', 'uikit.html'];
+  check('Google Fonts stylesheet is non-blocking on all pages',
+    FONT_PAGES.every((p) => /media="print" onload="this\.media='all'/.test(read(p))), 'blocking fonts link found');
 }
 
 /* ------------------------------------------------------------------ *

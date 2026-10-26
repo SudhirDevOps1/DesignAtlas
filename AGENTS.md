@@ -6,8 +6,10 @@ Zero-build static site: 6 HTML pages + `css/` + `js/`. No `package.json`, no git
 
 ```powershell
 cd D:\designalts
-python -m http.server 8912 --bind 127.0.0.1
+python serve.py            # fast server — keep-alive, gzip, ETag 304s
 ```
+
+Fallback: `python -m http.server 8912 --bind 127.0.0.1` also works, but is measurably slow even over loopback (~250-800ms per file; `serve.py` serves the same files in 7-33ms — measured with curl). `serve.py` takes an optional port argument (`python serve.py 9013`).
 
 Serve over HTTP. `file://` breaks clipboard copy and some loaders.
 
