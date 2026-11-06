@@ -15,7 +15,7 @@ Serve over HTTP. `file://` breaks clipboard copy and some loaders.
 
 ## Verify — run `node verify.js` after every change
 
-`verify.js` is a **zero-dependency suite, 122 checks, exit code 1 on failure**. It is the only automated test in the repo, and it covers exactly the invariants that have already bitten this project:
+`verify.js` is a **zero-dependency suite, 139 checks, exit code 1 on failure**. It is the only automated test in the repo, and it covers exactly the invariants that have already bitten this project:
 
 - syntax of every `js/*.js` **and** of the 12 inline `<script>` blocks in the HTML — `node --check` never sees the inline ones, which is where the real breakage hides
 - data integrity: unique ids, required fields, 4-colour palettes, `cssClass === style-<id>`

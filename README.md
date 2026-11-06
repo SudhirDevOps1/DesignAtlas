@@ -62,7 +62,7 @@ js/icon-sprite.js     shared icon-sprite injector for the 5 sub-pages (extracted
                       verbatim from index.html; verify.js guards the 37-symbol sync)
 js/demo-showcase.js   builds the whole showcase demo + interactivity + night preview
 sw.js + js/sw-register.js   network-first service worker (fresh CSS/JS after every edit)
-verify.js             zero-dependency test suite (122 checks, exit 1 on failure)
+verify.js             zero-dependency test suite (139 checks, exit 1 on failure)
 ```
 
 **Load order is law** — CSS: `styles.css` → `features.css` → `monolith-shell.css` → `shell-v2.css`. JS: `data.js` → `util.js` → `sw-register.js` → `icon-sprite.js` → page scripts. Specificity: engines are (0,2,0); generic rules never exceed (0,1,0) on identity props.
@@ -86,7 +86,7 @@ verify.js             zero-dependency test suite (122 checks, exit 1 on failure)
 ## Verification
 
 ```
-node verify.js      # 122 checks: syntax, data integrity, CSS↔data sync, prompts,
+node verify.js      # 139 checks: syntax, data integrity, CSS↔data sync, prompts,
                     # wiring, load order, CSP, service worker, comfort layer
 ```
 
