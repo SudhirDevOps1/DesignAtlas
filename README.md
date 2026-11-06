@@ -4,22 +4,23 @@
 ### The Definitive UI Design System & AI Prompt Catalog
 
 [![CI Verification](https://github.com/SudhirDevOps1/DesignAtlas/actions/workflows/ci.yml/badge.svg)](https://github.com/SudhirDevOps1/DesignAtlas/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![Zero Build](https://img.shields.io/badge/Architecture-Zero--Build-emerald.svg)](#architecture)
 [![Styles](https://img.shields.io/badge/Catalog-106%20UI%20Languages-indigo.svg)](#the-design-catalog)
-[![Tests](https://img.shields.io/badge/Verify-139%2F139%20Passing-success.svg)](verify.js)
+[![Tests](https://img.shields.io/badge/Verify-139%2F139%20Passing-success.svg)](./verify.js)
 [![Website](https://img.shields.io/badge/Live-GitHub%20Pages-sky.svg)](https://sudhirdevops1.github.io/DesignAtlas/)
 
 <p align="center">
   A production-grade, zero-build catalog of <b>106 real-world UI design languages</b>. Every design style is rendered through a <b>pure CSS engine</b> (no images, no client-side runtime build step), accompanied by full-page interactive product demos and <b>stack-agnostic, production-grade AI prompt specifications</b> (10,000+ characters) ready to drop into any modern IDE or LLM agent.
 </p>
 
-[**🌐 Explore Live Storefront**](https://sudhirdevops1.github.io/DesignAtlas/) • [**📖 Architecture**](#architecture) • [**🤖 AI Prompt Spec**](#the-ai-prompt-system) • [**🛠️ Contributing**](CONTRIBUTING.md)
+[**🌐 Explore Live Storefront**](https://sudhirdevops1.github.io/DesignAtlas/) • [**📖 Architecture**](#architecture) • [**🤖 AI Prompt Spec**](#the-ai-prompt-system) • [**🛠️ Contributing**](./CONTRIBUTING.md)
 
 </div>
 
 ---
 
+<a id="quick-start"></a>
 ## ⚡ Quick Start
 
 ### Local Development (Fast Server)
@@ -43,9 +44,8 @@ node verify.js
 
 ---
 
+<a id="the-design-catalog"></a>
 ## 🏛️ The Design Catalog (106 Languages)
-
-Design Atlas indexes 106 distinct visual movements across 12 architectural categories:
 
 | Category | Styles Included | Signature Grammar |
 |---|---|---|
@@ -60,6 +60,7 @@ Design Atlas indexes 106 distinct visual movements across 12 architectural categ
 
 ---
 
+<a id="features"></a>
 ## 🎯 Production-Grade Features
 
 ### 1. Full-Screen Interactive Showcase
@@ -72,16 +73,17 @@ Clicking any design card opens a complete, full-scale interactive mock applicati
 Test how any of the 106 styles adapt to your company's primary branding color in real time. The floating studio pill dynamically tints every button, badge, and focus ring without mutating core CSS.
 
 ### 3. Subpage Ecosystem
-- **`/compare.html`**: Side-by-side versus mode comparing two styles with interactive audio feedback.
-- **`/playground.html`**: Live code laboratory to tweak component parameters on the fly.
-- **`/prompt-builder.html`**: Interactive Studio to customize stack-specific constraints (React, Tailwind, Next.js, Vue, Svelte, Flutter).
-- **`/tokens.html` & `/uikit.html`**: Complete design token dictionary and live component inventory.
+- [**`/compare.html`**](./compare.html): Side-by-side versus mode comparing two styles with interactive audio feedback.
+- [**`/playground.html`**](./playground.html): Live code laboratory to tweak component parameters on the fly.
+- [**`/prompt-builder.html`**](./prompt-builder.html): Interactive Studio to customize stack-specific constraints (React, Tailwind, Next.js, Vue, Svelte, Flutter).
+- [**`/tokens.html`**](./tokens.html) & [**`/uikit.html`**](./uikit.html): Complete design token dictionary and live component inventory.
 
 ---
 
+<a id="the-ai-prompt-system"></a>
 ## 🤖 The AI Prompt System
 
-Every style is backed by `buildDetailedPrompt(style, opts)` in `js/util.js`, emitting a **14-section comprehensive design specification**:
+Every style is backed by `buildDetailedPrompt(style, opts)` in [js/util.js](./js/util.js), emitting a **14-section comprehensive design specification**:
 
 ```
 1. ROLE & TARGET CONTEXT        8. COMPONENTS ARCHITECTURE
@@ -95,6 +97,7 @@ Every style is backed by `buildDetailedPrompt(style, opts)` in `js/util.js`, emi
 
 ---
 
+<a id="architecture"></a>
 ## 🏗️ Architecture & Operational Rules
 
 ```
@@ -127,6 +130,7 @@ Every style is backed by `buildDetailedPrompt(style, opts)` in `js/util.js`, emi
 
 ---
 
+<a id="verification"></a>
 ## 🧪 Verification & Quality Assurance
 
 ```powershell
@@ -141,10 +145,11 @@ ALL GREEN
 
 ---
 
+<a id="license-security"></a>
 ## 📄 License & Security
 
-- **License**: Released under the [MIT License](LICENSE).
-- **Security**: For vulnerability reporting, see [SECURITY.md](SECURITY.md).
+- **License**: Released under the [MIT License](./LICENSE).
+- **Security**: For vulnerability reporting, see [SECURITY.md](./SECURITY.md).
 - **Maintainer**: [@SudhirDevOps1](https://github.com/SudhirDevOps1)
 
 ---
