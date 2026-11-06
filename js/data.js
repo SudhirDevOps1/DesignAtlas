@@ -2675,6 +2675,94 @@ const STYLES_DATA = [
     tailwindSnippet: `<div class="bg-white border border-[#dbdbdb] rounded-none p-6 text-black shadow-none">
   <button class="bg-black text-white font-bold rounded-none px-6 py-2.5">Read the Full Story</button>
 </div>`
+  },
+  {
+    id: "lightskeuomorphism",
+    name: "Light Skeuomorphism",
+    category: "Retro",
+    cssClass: "style-lightskeuomorphism",
+    vibe: "Refined tactile depth: micro-bevel highlights, soft debossed grooves, brushed aluminum",
+    vibeEn: "Refined tactile depth: micro-bevel highlights, soft debossed grooves, brushed aluminum",
+    bestFit: "Audio hardware apps, digital synthesizers, creative tool suites, luxury dashboards",
+    prompt: "Design a [project] in Light Skeuomorphism style: delicate modern physical tactility — micro-embossed bevel highlights, soft debossed grooves with inner shadows, clean aluminum and warm cream surfaces, delicate tactile switches, tactile physical presence without 2010s heavy plastic gloss.",
+    palette: ["#f1f3f7", "#3b82f6", "#cbd5e1", "#1e293b"],
+    tags: ["skeuomorphic", "tactile", "bevel", "micro-shadow", "physical"],
+    audioTone: "pop",
+    cssSnippet: `.lightskeuo-card {
+  background: #f1f3f7;
+  border-radius: 16px;
+  box-shadow: 4px 4px 10px #cbd5e1, -4px -4px 10px #ffffff;
+}
+.lightskeuo-btn {
+  background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 100%);
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.9);
+  color: #1e293b;
+  font-weight: 700;
+}`,
+    tailwindSnippet: `<div class="bg-slate-100 border border-white/60 shadow-[4px_4px_10px_#cbd5e1,-4px_-4px_10px_#ffffff] p-6 rounded-2xl">
+  <button class="bg-gradient-to-b from-white to-slate-200 border border-slate-300 text-slate-800 font-bold px-5 py-2.5 rounded-xl shadow-sm">Toggle Switch</button>
+</div>`
+  },
+  {
+    id: "cluttercore",
+    name: "Cluttercore / Maximalist Desk",
+    category: "Playful",
+    cssClass: "style-cluttercore",
+    vibe: "Organized desktop chaos: overlapping sticky notes, sticker collages, curated personal clutter",
+    vibeEn: "Organized desktop chaos: overlapping sticky notes, sticker collages, curated personal clutter",
+    bestFit: "Creative zines, digital pinboards, Gen-Z lifestyle brands, artist portfolios",
+    prompt: "Design a [project] in Cluttercore Maximalist Desk style: joyful organized visual chaos — layered overlapping sticky note containers, rotated polaroids and retro stamp stickers, high-energy warm pastel color accents, playful pins, vibrant personal desktop aesthetic full of charm and tactile layers.",
+    palette: ["#fdf6e2", "#ff5470", "#70e000", "#2b2d42"],
+    tags: ["cluttercore", "collage", "stickers", "desk", "maximalist"],
+    audioTone: "arcade",
+    cssSnippet: `.cluttercore-card {
+  background: #fdf6e2;
+  border: 2px solid #2b2d42;
+  box-shadow: 6px 6px 0px #ff5470;
+  transform: rotate(-1deg);
+  color: #2b2d42;
+}
+.cluttercore-btn {
+  background: #ff5470;
+  color: #ffffff;
+  border: 2px solid #2b2d42;
+  box-shadow: 3px 3px 0px #70e000;
+  font-weight: 800;
+  transform: rotate(1deg);
+}`,
+    tailwindSnippet: `<div class="bg-amber-50 border-2 border-slate-900 shadow-[6px_6px_0px_#ff5470] -rotate-1 p-6 text-slate-800">
+  <button class="bg-rose-500 text-white font-extrabold px-5 py-2 border-2 border-slate-900 rotate-1 shadow-[3px_3px_0px_#65a30d]">Pin Note</button>
+</div>`
+  },
+  {
+    id: "grainfilm",
+    name: "Grain & Film Texture",
+    category: "Editorial",
+    cssClass: "style-grainfilm",
+    vibe: "Fine analogue film grain, rich muted sepia tones, cinematic editorial framing",
+    vibeEn: "Fine analogue film grain, rich muted sepia tones, cinematic editorial framing",
+    bestFit: "Independent film studios, photography portfolios, literary reviews, artisanal brands",
+    prompt: "Design a [project] in Grain & Film Texture style: fine analogue film grain texture overlaid on deep charcoal and warm sepia surfaces, quiet cinematic editorial typography, widescreen letterbox image containers, high-grain human tactile warmth counteracting digital sterility.",
+    palette: ["#181615", "#e6af2e", "#433e3f", "#f5f3f0"],
+    tags: ["film-grain", "analogue", "cinematic", "sepia", "editorial"],
+    audioTone: "subtle",
+    cssSnippet: `.grainfilm-card {
+  background: #181615;
+  border: 1px solid #433e3f;
+  color: #f5f3f0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+.grainfilm-btn {
+  background: #e6af2e;
+  color: #181615;
+  border: none;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}`,
+    tailwindSnippet: `<div class="bg-stone-950 border border-stone-700 text-stone-100 p-6 rounded-none shadow-2xl">
+  <button class="bg-amber-500 text-stone-950 font-bold px-6 py-2.5 rounded-none uppercase tracking-wider">Roll Film</button>
+</div>`
   }
 ];
 

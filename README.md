@@ -1,6 +1,6 @@
 # Design Atlas
 
-**Interactive UI Design Styles & AI Prompt Gallery** — a zero-build static site that catalogs **103 real-world UI design languages**, renders every one as a **live, full-page, interactive demo** (pure CSS engines — no images, no build step), and generates a **stack-agnostic AI prompt** you can copy straight into any IDE.
+**Interactive UI Design Styles & AI Prompt Gallery** — a zero-build static site that catalogs **106 real-world UI design languages**, renders every one as a **live, full-page, interactive demo** (pure CSS engines — no images, no build step), and generates a **stack-agnostic AI prompt** you can copy straight into any IDE.
 
 Live locally: `python serve.py` → **http://127.0.0.1:8912** (keep-alive + gzip + ETag 304s; ~10× faster than the stdlib fallback `python -m http.server 8912`).
 
@@ -10,7 +10,7 @@ Live locally: `python serve.py` → **http://127.0.0.1:8912** (keep-alive + gzip
 
 | View | What it does |
 |---|---|
-| **Gallery** (`#/gallery`) | 103 filterable, searchable style cards with live-CSS previews + runtime-generated artwork. Counts everywhere derive from `STYLES_DATA.length`. |
+| **Gallery** (`#/gallery`) | 106 filterable, searchable style cards with live-CSS previews + runtime-generated artwork. Counts everywhere derive from `STYLES_DATA.length`. |
 | **Versus** (`#/compare`) | Side-by-side style comparison with audio demo per style. |
 | **Playground** (`#/playground`) | Tweak any style's components live. |
 | **Prompt Studio** (`#/prompt-builder`) | Build a custom design brief for any style. |
@@ -21,8 +21,8 @@ Live locally: `python serve.py` → **http://127.0.0.1:8912** (keep-alive + gzip
 
 Every style opens into a **full-page demo of a fake product website** rebuilt by that style's CSS engine — with a browser-like chrome bar:
 
-- **Back to Gallery** button, prev/next style (←/→), positional count `#n of 103`
-- **Day/Night preview** — chrome button or keyboard **N** flips `.da-night`, an `invert(1) hue-rotate(160deg)` filter over the whole canvas. One computational night look covers all 103 engines; contrast pairs survive inversion. Persisted in `localStorage` key `daShowcaseNight`.
+- **Back to Gallery** button, prev/next style (←/→), positional count `#n of 106`
+- **Day/Night preview** — chrome button or keyboard **N** flips `.da-night`, an `invert(1) hue-rotate(160deg)` filter over the whole canvas. One computational night look covers all 106 engines; contrast pairs survive inversion. Persisted in `localStorage` key `daShowcaseNight`.
 - **Fully interactive demos** — dropdowns, tabs, table sorting, pagination, modals, toasts, form validation all work inside the demo; any unhooked button still gives press-pulse + toast feedback.
 - **Copy Prompt** (≥3000-char English spec, stack-agnostic — see below), **HTML boilerplate download**, print, fullscreen (**F**).
 
@@ -49,13 +49,13 @@ Every style opens into a **full-page demo of a fake product website** rebuilt by
 ```
 index.html            gallery + showcase chrome + icon sprite + inline app JS
 compare|playground|prompt-builder|tokens|uikit.html   focused pages (styles.css + shell-v2.css)
-css/styles.css        the 103 .style-* engines (numbered comments) + comfort layer
+css/styles.css        the 106 .style-* engines (numbered comments) + comfort layer
 css/features.css      shared .demo-* components, generic hover/focus layer, icon system
 css/monolith-shell.css  app-skin variants
 css/shell-v2.css      chrome design layer: header/hero/cards (index) + sub-page
                       headers, ghost sub-nav, plates; carries the .icon base
                       for pages that don't load features.css
-js/data.js            single source of truth: 103 style records (id, name, category,
+js/data.js            single source of truth: 106 style records (id, name, category,
                       palette ×4, prompt, cssSnippet, tailwindSnippet, vibe/vibeEn, tags…)
 js/util.js            shared globals + buildDetailedPrompt (Node-requireable, exported)
 js/icon-sprite.js     shared icon-sprite injector for the 5 sub-pages (extracted

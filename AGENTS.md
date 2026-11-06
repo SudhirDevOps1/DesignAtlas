@@ -19,8 +19,8 @@ Serve over HTTP. `file://` breaks clipboard copy and some loaders.
 
 - syntax of every `js/*.js` **and** of the 12 inline `<script>` blocks in the HTML — `node --check` never sees the inline ones, which is where the real breakage hides
 - data integrity: unique ids, required fields, 4-colour palettes, `cssClass === style-<id>`
-- **`css/styles.css` and `js/data.js` staying in sync in both directions** (103 engines ↔ 103 records, no orphans either way). It strips CSS comments first, because `styles.css` documents itself with a `.style-x` placeholder that a naive scan counts as a 104th engine.
-- `buildDetailedPrompt()` returns a ≥3000 char brief for all 103 styles, with the expected section markers, and never throws; it also guards that the universal brief is **stack-agnostic** (STACK ADAPTATION / ACCEPTANCE CHECKLIST / PROTECTION present, no HTML-only deliverable), that `{stack:'react'}` narrows it, that the contrast advice always resolves ('WCAG AA pass' or a `--color-ink-strong` fallback), and that ROLE carries the detect-or-ask `[project]` rule
+- **`css/styles.css` and `js/data.js` staying in sync in both directions** (106 engines ↔ 106 records, no orphans either way). It strips CSS comments first, because `styles.css` documents itself with a `.style-x` placeholder that a naive scan counts as a 107th engine.
+- `buildDetailedPrompt()` returns a ≥3000 char brief for all 106 styles, with the expected section markers, and never throws; it also guards that the universal brief is **stack-agnostic** (STACK ADAPTATION / ACCEPTANCE CHECKLIST / PROTECTION present, no HTML-only deliverable), that `{stack:'react'}` narrows it, that the contrast advice always resolves ('WCAG AA pass' or a `--color-ink-strong` fallback), and that ROLE carries the detect-or-ask `[project]` rule
 - wiring: no orphan `js/*.js`, no dead `<script src>`/`<link href>`
 - load order, CSP meta and service-worker wiring on all 6 pages
 - `window.STYLES_DATA` never reappearing in HTML or in any js source
@@ -31,7 +31,7 @@ Low-level equivalent: `node --check js\*.js` (18 files). Inline blocks need a se
 
 **Browser:** read the console after loading a page. All 6 pages should be at **0 errors** and, since the runtime Tailwind JIT was replaced by static compiled CSS, even the old vendor `console.warn` production notice is gone.
 
-**Structural bar that `verify.js` cannot reach** (needs a DOM): every one of the **103 styles must open** and render 8 sections + footer + hero + 4 visible table rows + 5 pagination buttons + a prompt of ≥3000 chars.
+**Structural bar that `verify.js` cannot reach** (needs a DOM): every one of the **106 styles must open** and render 8 sections + footer + hero + 4 visible table rows + 5 pagination buttons + a prompt of ≥3000 chars.
 
 ## Tailwind is pre-compiled, not runtime JIT
 

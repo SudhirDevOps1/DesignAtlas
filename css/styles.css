@@ -2802,6 +2802,99 @@ dialog::backdrop {
   color: #ffffff;
 }
 
+/* 104. LIGHT SKEUOMORPHISM */
+.style-lightskeuomorphism {
+  background: #f1f3f7;
+  color: #1e293b;
+}
+.style-lightskeuomorphism .demo-box {
+  background: #f1f3f7;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  box-shadow: 4px 4px 12px #cbd5e1, -4px -4px 12px #ffffff;
+}
+.style-lightskeuomorphism .demo-btn {
+  background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 100%);
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  font-weight: 700;
+}
+.style-lightskeuomorphism .demo-btn:hover {
+  background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+.style-lightskeuomorphism .demo-input {
+  background: #f1f3f7;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  box-shadow: inset 2px 2px 5px #cbd5e1, inset -2px -2px 5px #ffffff;
+  color: #1e293b;
+}
+
+/* 105. CLUTTERCORE */
+.style-cluttercore {
+  background: #fdf6e2;
+  color: #2b2d42;
+}
+.style-cluttercore .demo-box {
+  background: #ffffff;
+  border: 2px solid #2b2d42;
+  border-radius: 4px;
+  box-shadow: 6px 6px 0px #ff5470;
+  transform: rotate(-0.8deg);
+}
+.style-cluttercore .demo-btn {
+  background: #ff5470;
+  color: #ffffff;
+  border: 2px solid #2b2d42;
+  border-radius: 4px;
+  box-shadow: 3px 3px 0px #70e000;
+  font-weight: 800;
+  transform: rotate(0.8deg);
+}
+.style-cluttercore .demo-btn:hover {
+  transform: translate(2px, 2px) rotate(0.8deg);
+  box-shadow: 1px 1px 0px #70e000;
+}
+.style-cluttercore .demo-input {
+  background: #ffffff;
+  border: 2px solid #2b2d42;
+  border-radius: 4px;
+  color: #2b2d42;
+}
+
+/* 106. GRAIN & FILM TEXTURE */
+.style-grainfilm {
+  background: #181615;
+  color: #f5f3f0;
+}
+.style-grainfilm .demo-box {
+  background: #201e1d;
+  border: 1px solid #433e3f;
+  border-radius: 0;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+.style-grainfilm .demo-btn {
+  background: #e6af2e;
+  color: #181615;
+  border: none;
+  border-radius: 0;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.style-grainfilm .demo-btn:hover {
+  background: #f4c254;
+}
+.style-grainfilm .demo-input {
+  background: #141211;
+  border: 1px solid #433e3f;
+  border-radius: 0;
+  color: #f5f3f0;
+}
+
 
 /* ==========================================================================
    PER-STYLE HOVER PERSONALITY (showcase demo components)
