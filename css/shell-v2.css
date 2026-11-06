@@ -121,62 +121,103 @@
   opacity: 0.92;
 }
 
-/* Harmonizer frame: from filled card to hairline tray */
-.sv2-hero .max-w-2xl {
+/* Harmonizer frame: compact floating studio pill */
+.sv2-hero .max-w-xl {
   border: 1px solid var(--sv2-hairline);
-  border-radius: 14px;
-  background: color-mix(in srgb, white 60%, transparent);
-  box-shadow: none;
+  background: color-mix(in srgb, white 70%, transparent);
+  box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
-.dark .sv2-hero .max-w-2xl {
-  background: rgba(148, 163, 184, 0.06);
+.dark .sv2-hero .max-w-xl {
+  background: rgba(15, 23, 42, 0.65);
+  border-color: rgba(148, 163, 184, 0.12);
+  box-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.4);
 }
 
 /* -------------------------------------------------------- search + sort */
+.sv2-toolbar {
+  background: color-mix(in srgb, white 40%, transparent);
+  padding: 0.35rem;
+  border-radius: 999px;
+  border: 1px solid var(--sv2-hairline);
+  box-shadow: 0 4px 20px -6px rgba(15, 23, 42, 0.06);
+}
+.dark .sv2-toolbar {
+  background: rgba(15, 23, 42, 0.45);
+  border-color: rgba(148, 163, 184, 0.12);
+  box-shadow: 0 6px 24px -8px rgba(0, 0, 0, 0.4);
+}
+
 .sv2-toolbar input[type="search"] {
   border-radius: 999px;
-  border-color: var(--sv2-hairline);
-  box-shadow: var(--sv2-shadow-soft);
-  padding-top: 0.7rem;
-  padding-bottom: 0.7rem;
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  padding-top: 0.65rem;
+  padding-bottom: 0.65rem;
+  font-size: 0.85rem;
   transition: box-shadow 150ms var(--sv2-ease), border-color 150ms var(--sv2-ease);
 }
 .sv2-toolbar input[type="search"]:focus {
-  border-color: rgba(56, 189, 248, 0.5);
+  border-color: transparent;
   outline: none;
+  box-shadow: none;
+}
+.sv2-toolbar:focus-within {
+  border-color: rgba(56, 189, 248, 0.6);
   box-shadow: var(--sv2-ring);
 }
 .sv2-toolbar select {
   border-radius: 999px;
   border-color: var(--sv2-hairline);
   box-shadow: none;
-  transition: box-shadow 150ms var(--sv2-ease);
+  font-size: 0.78rem;
+  padding-top: 0.45rem;
+  padding-bottom: 0.45rem;
+  transition: box-shadow 150ms var(--sv2-ease), border-color 150ms var(--sv2-ease);
 }
 .sv2-toolbar select:focus {
   outline: none;
+  border-color: rgba(56, 189, 248, 0.5);
   box-shadow: var(--sv2-ring);
 }
 
 /* ---------------------------------------------------------- filter chips */
+#filter-container {
+  padding: 0.25rem 0.5rem;
+}
 #filter-container button {
   border-radius: 999px;
   font-size: 0.72rem;
-  padding: 0.35rem 0.7rem;
+  font-weight: 600;
+  padding: 0.38rem 0.75rem;
   letter-spacing: 0.01em;
+  border: 1px solid var(--sv2-hairline);
+  background: color-mix(in srgb, white 70%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   transition: background-color 150ms var(--sv2-ease), color 150ms var(--sv2-ease), box-shadow 150ms var(--sv2-ease), transform 120ms var(--sv2-ease);
+}
+.dark #filter-container button {
+  background: rgba(15, 23, 42, 0.5);
+  border-color: rgba(148, 163, 184, 0.1);
 }
 #filter-container button:active {
   transform: scale(0.96);
 }
-/* Active chip: ink-on-paper monochrome instead of loud sky fill */
+/* Active chip: crisp contrast */
 #filter-container button[class*="bg-sky-500"] {
-  background: #1e293b;
-  color: #f8fafc;
-  box-shadow: 0 4px 12px -4px rgba(15, 23, 42, 0.45);
+  background: #0284c7 !important;
+  color: #ffffff !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 4px 14px -3px rgba(2, 132, 199, 0.55);
 }
 .dark #filter-container button[class*="bg-sky-500"] {
-  background: #e2e8f0;
-  color: #0f172a;
+  background: #38bdf8 !important;
+  color: #0f172a !important;
+  border-color: #38bdf8 !important;
+  box-shadow: 0 4px 14px -3px rgba(56, 189, 248, 0.55);
 }
 
 /* ------------------------------------------------------------ card grid */
